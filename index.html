@@ -1,0 +1,1725 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Early access documentation for Red Hat Quay 3.7.0</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Early access docs for 370 release"/><link rel="next" href="#idm45556224438528" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm45556230709696"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.7</span></div><div><h1 class="title">Early access documentation for Red Hat Quay 3.7.0</h1></div><div><h2 class="subtitle">Red Hat Quay Early Access Documentation</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm45556229429904">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
+				Early access docs for 370 release
+			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm45556224438528">Preface</a></span></li><li><span class="chapter"><a href="#quay-release-notes">1. Red Hat Quay Release Notes</a></span><ul><li><span class="section"><a href="#rn-3-700">1.1. Version 3.7.0</a></span><ul><li><span class="section"><a href="#quota">1.1.1. Quota</a></span></li><li><span class="section"><a href="#proxy">1.1.2. Proxy</a></span></li><li><span class="section"><a href="#geo_replication">1.1.3. Geo-replication</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#quota_management">2. Quota management</a></span><ul><li><span class="section"><a href="#red-hat-quay-quota-management-and-enforcement">2.1. Red Hat Quay quota management and enforcement</a></span><ul><li><span class="section"><a href="#quota-management-arch">2.1.1. Quota management architecture</a></span></li><li><span class="section"><a href="#quota-management-limitations">2.1.2. Quota management limitations</a></span></li><li><span class="section"><a href="#config-fields-quota">2.1.3. Quota management configuration</a></span></li><li><span class="section"><a href="#quota-establishment-api">2.1.4. Establishing quota with the Red Hat Quay API</a></span></li></ul></li><li><span class="section"><a href="#namespacequota_api">2.2. namespacequota API</a></span><ul><li><span class="section"><a href="#deleteorganizationquotalimit">2.2.1. deleteOrganizationQuotaLimit</a></span></li><li><span class="section"><a href="#changeorganizationquotalimit">2.2.2. changeOrganizationQuotaLimit</a></span></li><li><span class="section"><a href="#getorganizationquotalimit">2.2.3. getOrganizationQuotaLimit</a></span></li><li><span class="section"><a href="#createorganizationquotalimit">2.2.4. createOrganizationQuotaLimit</a></span></li><li><span class="section"><a href="#getorganizationsizereporting">2.2.5. getOrganizationSizeReporting</a></span></li><li><span class="section"><a href="#deleteorganizationquota">2.2.6. deleteOrganizationQuota</a></span></li><li><span class="section"><a href="#changeorganizationquota">2.2.7. changeOrganizationQuota</a></span></li><li><span class="section"><a href="#getnamespacequota">2.2.8. getNamespaceQuota</a></span></li><li><span class="section"><a href="#createnamespacequota">2.2.9. createNamespaceQuota</a></span></li><li><span class="section"><a href="#definitions">2.2.10. Definitions</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#geo_replication_with_the_operator">3. Geo-replication with the Operator</a></span><ul><li><span class="section"><a href="#georepl-intro">3.1. Geo-replication</a></span><ul><li><span class="section"><a href="#geo_replication_features">3.1.1. Geo-replication features</a></span></li><li><span class="section"><a href="#georepl-prereqs">3.1.2. Geo-replication requirements and constraints</a></span></li><li><span class="section"><a href="#georepl-arch-operator">3.1.3. Geo-replication architecture - Quay Operator</a></span></li><li><span class="section"><a href="#georepl-deploy-operator">3.1.4. Setting up geo-replication on Openshift</a></span></li><li><span class="section"><a href="#georepl-mixed-storage">3.1.5. Mixed storage for geo-replication</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#red_hat_quay_as_cache_proxy">4. Red Hat Quay as cache proxy</a></span><ul><li><span class="section"><a href="#quay-as-cache-proxy">4.1. Red Hat Quay as a proxy cache for upstream registries</a></span><ul><li><span class="section"><a href="#proxy-cache-architecture">4.1.1. Proxy cache architecture</a></span></li><li><span class="section"><a href="#proxy-cache-limitations">4.1.2. Proxy cache limitations</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#build_enhancements">5. Build Enhancements</a></span><ul><li><span class="section"><a href="#red-hat-quay-builders-enhancement">5.1. Red Hat Quay build enhancements</a></span><ul><li><span class="section"><a href="#red-hat-quay-builds-architecture">5.1.1. Red Hat Quay enhanced build architecture</a></span></li><li><span class="section"><a href="#red-hat-quay-build-limitations">5.1.2. Red Hat Quay build limitations</a></span></li><li><span class="section"><a href="#setting-up-builders">5.1.3. Creating a Red Hat Quay builders environment with OpenShift</a></span></li></ul></li></ul></li></ul></div><section class="preface" id="idm45556224438528"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div></section><section class="chapter" id="quay-release-notes"><div class="titlepage"><div><div><h1 class="title">Chapter 1. Red Hat Quay Release Notes</h1></div></div></div><p>
+			Red Hat Quay is regularly released, containing new features, bug fixes, and software updates. We highly recommend deploying the latest version of Red Hat Quay.
+		</p><p>
+			For Red Hat Quay documentation, you should know that:
+		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					Documentation is versioned along with each major release
+				</li><li class="listitem">
+					The latest Red Hat Quay documentation is available from the <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay">Red Hat Quay Documentation</a> page
+				</li><li class="listitem">
+					Prior to version 2.9.2, the product was referred to as Quay Enterprise
+				</li></ul></div><p>
+			Red Hat Quay, version 3 is the latest major version.
+		</p><section class="section" id="rn-3-700"><div class="titlepage"><div><div><h2 class="title">1.1. Version 3.7.0</h2></div></div></div><section class="section" id="quota"><div class="titlepage"><div><div><h3 class="title">1.1.1. Quota</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-302">PROJQUAY-302</a>. Quota Management and Enforcements
+						</li></ul></div><section class="section" id="details"><div class="titlepage"><div><div><h4 class="title">1.1.1.1. Details</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2936">ROJQUAY-2936</a>. Reporting API and Schema
+							</li><li class="listitem">
+								<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2937">PROJQUAY-2937</a>. Repository Soft/Hard Limit Implementation
+							</li></ul></div></section></section><section class="section" id="proxy"><div class="titlepage"><div><div><h3 class="title">1.1.2. Proxy</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-465">PROJQUAY-465</a>. Quay as a cache proxy / pull-through cache for other registries
+						</li></ul></div><section class="section" id="design"><div class="titlepage"><div><div><h4 class="title">1.1.2.1. Design</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2888">PROJQUAY-2888</a>. Quay as a cache proxy - Design: Proxy org creation and configuration
+							</li><li class="listitem">
+								<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2889">PROJQUAY-2889</a>. Quay as a cache proxy - Design: Upstream image pull flow
+							</li><li class="listitem">
+								<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2890">PROJQUAY-2890</a>. Quay as a cache proxy - Design: Local storage of upstream image layers and manifests
+							</li><li class="listitem">
+								<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2891">PROJQUAY-2891</a>. Quay as a cache proxy - Design: Quota Management in Cache Proxy org Spike
+							</li></ul></div></section><section class="section" id="user_stories"><div class="titlepage"><div><div><h4 class="title">1.1.2.2. User stories</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-3029">PROJQUAY-3029</a>. As a Quay user, I want to create and configure pull-through proxy orgs via UI
+							</li><li class="listitem">
+								<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-3030">PROJQUAY-3030</a>. As a Quay user I want to be able to proxy images through Quay orgs
+							</li><li class="listitem">
+								<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-3033">PROJQUAY-3033</a>. As a Quay user I want proxied images to be stored in Quay so that my pulls are faster
+							</li></ul></div></section></section><section class="section" id="geo_replication"><div class="titlepage"><div><div><h3 class="title">1.1.3. Geo-replication</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2504">PROJQUAY-2504</a>. Quay Operator supports geo-replication
+						</li></ul></div><section class="section" id="details_2"><div class="titlepage"><div><div><h4 class="title">1.1.3.1. Details</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-3055">PROJQUAY-3055</a>. Environment variables override
+							</li><li class="listitem">
+								<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-3056">PROJQUAY-3056</a>. Scale down quay, clair and mirror
+							</li><li class="listitem">
+								<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-1723">PROJQUAY-1723</a>. Multi-cluster deployment of Quay on OpenShift along with all components
+							</li></ul></div></section></section></section></section><section class="chapter" id="quota_management"><div class="titlepage"><div><div><h1 class="title">Chapter 2. Quota management</h1></div></div></div><section class="section" id="red-hat-quay-quota-management-and-enforcement"><div class="titlepage"><div><div><h2 class="title">2.1. Red Hat Quay quota management and enforcement</h2></div></div></div><p>
+				With Red Hat Quay 3.7, users have the ability to report storage consumption and to contain registry growth by establishing configured storage quota limits. Although there are no limitations on a Quay organization’s storage consumption, on-premise Quay users are now equipped with the following capabilities to manage the capacity limits of their environment:
+			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+						<span class="strong strong"><strong>Quota reporting:</strong></span> With this feature, a superuser can track the storage consumption of all their organizations. Additionally, users can track the storage consumption of their assigned organization.
+					</li><li class="listitem">
+						<span class="strong strong"><strong>Quota management:</strong></span> With this feature, a superuser can define soft and hard checks for Red Hat Quay users. Soft checks tell users if the storage consumption of an organization reaches their configured threshold. Hard checks prevent users from pushing to the registry when storage consumption reaches the configured limit.
+					</li></ul></div><p>
+				Together, these features allow service owners of a Quay registry to define service level agreements and support a healthy resource budget.
+			</p><section class="section" id="quota-management-arch"><div class="titlepage"><div><div><h3 class="title">2.1.1. Quota management architecture</h3></div></div></div><p>
+					The <code class="literal">RepositorySize</code> database table holds the storage consumption, in bytes, of a Red Hat Quay repository within an organization. The sum of all repository sizes for an organization defines the current storage size of a Red Hat Quay organization. When an image push is initialized, the user’s organization storage is validated to check if it is beyond the configured quota limits. If an image push exceeds defined quota limitations, a soft or hard check occurs:
+				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							For a soft check, users are notified.
+						</li><li class="listitem">
+							For a hard check, the push is stopped.
+						</li></ul></div><p>
+					If storage consumption is within configured quota limits, the push is allowed to proceed.
+				</p><p>
+					Image manifest deletion follows a similar flow, whereby the links between associated image tags and the manifest are deleted. Additionally, after the image manifest is deleted, the repository size is recalculated and updated in the <code class="literal">RepositorySize</code> table.
+				</p></section><section class="section" id="quota-management-limitations"><div class="titlepage"><div><div><h3 class="title">2.1.2. Quota management limitations</h3></div></div></div><p>
+					Quota management helps organizations to maintain resource consumption, but there are a few limitations in the current implementation. For example, calculating resource consumption on push, as opposed to monitoring consumption with a background worker, does not take into account the usage data of existing images. To avoid potential issues, a backfill for all existing repositories is required before the feature is enabled. In addition, calculation becomes part of a push’s critical path, otherwise the usage data could drift.
+				</p></section><section class="section" id="config-fields-quota"><div class="titlepage"><div><div><h3 class="title">2.1.3. Quota management configuration</h3></div></div></div><p>
+					Quota management is now supported under the <code class="literal">FEATURE_QUOTA_MANAGEMENT</code> property. Quota management is turned off by default, so to enable it, set the feature flag in your <code class="literal">config.yaml</code> to <code class="literal">true</code>:
+				</p><pre class="programlisting language-yaml">FEATURE_QUOTA_MANAGEMENT: true</pre></section><section class="section" id="quota-establishment-api"><div class="titlepage"><div><div><h3 class="title">2.1.4. Establishing quota with the Red Hat Quay API</h3></div></div></div><p>
+					When an organization is first create, it does not have a quota applied.
+				</p><div class="formalpara"><p class="title"><strong>No initial quota</strong></p><p>
+						<span class="inlinemediaobject"><img src="images/quota-no-quota.png" alt="No quota"/></span>
+					</p></div><section class="section" id="setting_the_quota"><div class="titlepage"><div><div><h4 class="title">2.1.4.1. Setting the quota</h4></div></div></div><div class="formalpara"><p class="title"><strong>Sample command</strong></p><p>
+							
+<pre class="programlisting language-terminal">$ curl -k -X POST -H "Authorization: Bearer haK4lv6Zgf7ohmWQS37qzzJj34hZ0U3D37EGxf5f" -H 'Content-Type: application/json' -d '{"limit_bytes": 10485760}'  https://example-registry-quay-quay-enterprise.apps.docs.quayteam.org/api/v1/namespacequota/testorg/quota | jq</pre>
+						</p></div><div class="formalpara"><p class="title"><strong>Sample output</strong></p><p>
+							
+<pre class="programlisting language-terminal">"Created"</pre>
+						</p></div></section><section class="section" id="viewing_the_quota"><div class="titlepage"><div><div><h4 class="title">2.1.4.2. Viewing the quota</h4></div></div></div><div class="formalpara"><p class="title"><strong>Sample command</strong></p><p>
+							
+<pre class="programlisting language-terminal">$ curl -k -X GET -H "Authorization: Bearer haK4lv6Zgf7ohmWQS37qzzJj34hZ0U3D37EGxf5f" https://example-registry-quay-quay-enterprise.apps.docs.quayteam.org/api/v1/namespacequota/testorg/quota  | jq</pre>
+						</p></div><div class="formalpara"><p class="title"><strong>Sample output</strong></p><p>
+							
+<pre class="programlisting language-json">{
+  "orgname": "testorg",
+  "limit_bytes": 10485760,
+  "quota_limit_types": [
+    {
+      "quota_type_id": 1,
+      "name": "Warning"
+    },
+    {
+      "quota_type_id": 2,
+      "name": "Reject"
+    }
+  ]
+}</pre>
+						</p></div><div class="formalpara"><p class="title"><strong>Organization quota of 10MB</strong></p><p>
+							<span class="inlinemediaobject"><img src="images/quota-10MB-empty.png" alt="10MB quota"/></span>
+						</p></div></section><section class="section" id="modifying_the_quota"><div class="titlepage"><div><div><h4 class="title">2.1.4.3. Modifying the quota</h4></div></div></div><p>
+						Use the PUT command to change the existing quota, in this instance, from 10MB to 100MB:
+					</p><div class="formalpara"><p class="title"><strong>Sample command</strong></p><p>
+							
+<pre class="programlisting language-terminal">$ curl -k -X PUT -H "Authorization: Bearer haK4lv6Zgf7ohmWQS37qzzJj34hZ0U3D37EGxf5f" -H 'Content-Type: application/json' -d '{"limit_bytes": 104857600}'  https://example-registry-quay-quay-enterprise.apps.docs.quayteam.org/api/v1/namespacequota/testorg/quota | jq</pre>
+						</p></div><div class="formalpara"><p class="title"><strong>Sample output</strong></p><p>
+							
+<pre class="programlisting language-terminal">"Updated"</pre>
+						</p></div><div class="formalpara"><p class="title"><strong>Organization quota of 100MB</strong></p><p>
+							<span class="inlinemediaobject"><img src="images/quota-100MB-empty.png" alt="100MB quota"/></span>
+						</p></div><p>
+						The quota settings are also visible in the organization settings UI:
+					</p><div class="formalpara"><p class="title"><strong>Organization settings UI</strong></p><p>
+							<span class="inlinemediaobject"><img src="images/quota-100MB-settings-ui.png" alt="Organization settings UI"/></span>
+						</p></div></section><section class="section" id="pushing_images"><div class="titlepage"><div><div><h4 class="title">2.1.4.4. Pushing images</h4></div></div></div><section class="section" id="pushing_ubuntu_18_04"><div class="titlepage"><div><div><h5 class="title">2.1.4.4.1. Pushing ubuntu:18.04</h5></div></div></div><div class="formalpara"><p class="title"><strong>Sample commands</strong></p><p>
+								
+<pre class="programlisting language-terminal">$ podman pull ubuntu:18.04
+
+$ podman tag docker.io/library/ubuntu:18.04 example-registry-quay-quay-enterprise.apps.docs.quayteam.org/testorg/ubuntu:18.04
+
+$ podman push --tls-verify=false example-registry-quay-quay-enterprise.apps.docs.quayteam.org/testorg/ubuntu:18.04</pre>
+							</p></div><p>
+							The UI shows the total proportion of the quota used up by this first Ubuntu image:
+						</p><div class="formalpara"><p class="title"><strong>Total Quota Consumed for first image</strong></p><p>
+								<span class="inlinemediaobject"><img src="images/quota-first-image.png" alt="Total Quota Consumed for first image"/></span>
+							</p></div></section><section class="section" id="using_the_api_to_see_quota_usage"><div class="titlepage"><div><div><h5 class="title">2.1.4.4.2. Using the API to see quota usage</h5></div></div></div><div class="formalpara"><p class="title"><strong>Sample command</strong></p><p>
+								
+<pre class="programlisting language-terminal">$ curl -k -X GET -H "Authorization: Bearer haK4lv6Zgf7ohmWQS37qzzJj34hZ0U3D37EGxf5f" https://example-registry-quay-quay-enterprise.apps.docs.quayteam.org/api/v1/namespacequota/testorg/quotareport  | jq</pre>
+							</p></div><div class="formalpara"><p class="title"><strong>Sample output</strong></p><p>
+								
+<pre class="programlisting language-json">{
+  "response": "[{\"repository_name\": \"ubuntu\", \"repository_id\": 22, \"repository_size\": \"27958715\"}]"
+}</pre>
+							</p></div></section><section class="section" id="pushing_another_image"><div class="titlepage"><div><div><h5 class="title">2.1.4.4.3. Pushing another image</h5></div></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+									Pull, tag and push the <code class="literal">nginx</code> image:
+								</p><div class="formalpara"><p class="title"><strong>Sample commands</strong></p><p>
+										
+<pre class="programlisting language-terminal">$ podman pull nginx
+
+$ podman tag docker.io/library/nginx example-registry-quay-quay-enterprise.apps.docs.quayteam.org/testorg/nginx
+
+$ podman push --tls-verify=false example-registry-quay-quay-enterprise.apps.docs.quayteam.org/testorg/nginx</pre>
+									</p></div></li><li class="listitem"><p class="simpara">
+									View the quota report
+								</p><div class="formalpara"><p class="title"><strong>Sample command</strong></p><p>
+										
+<pre class="programlisting language-terminal">$ curl -k -X GET -H "Authorization: Bearer haK4lv6Zgf7ohmWQS37qzzJj34hZ0U3D37EGxf5f" https://example-registry-quay-quay-enterprise.apps.docs.quayteam.org/api/v1/namespacequota/testorg/quotareport  | jq</pre>
+									</p></div><div class="formalpara"><p class="title"><strong>Sample output</strong></p><p>
+										
+<pre class="programlisting language-json">{
+  "response": "[{\"repository_name\": \"nginx\", \"repository_id\": 23, \"repository_size\": \"59232587\"}, {\"repository_name\": \"ubuntu\", \"repository_id\": 22, \"repository_size\": \"27958715\"}]"
+}</pre>
+									</p></div></li></ol></div><div class="formalpara"><p class="title"><strong>Total Quota Consumed for two images</strong></p><p>
+								<span class="inlinemediaobject"><img src="images/quota-second-image.png" alt="Total Quota Consumed for two images"/></span>
+							</p></div></section></section><section class="section" id="rejecting_pushes_using_quota_limits"><div class="titlepage"><div><div><h4 class="title">2.1.4.5. Rejecting pushes using quota limits</h4></div></div></div><section class="section" id="setting_reject_and_warning_limits"><div class="titlepage"><div><div><h5 class="title">2.1.4.5.1. Setting reject and warning limits</h5></div></div></div><div class="formalpara"><p class="title"><strong>Sample reject limit command</strong></p><p>
+								
+<pre class="programlisting language-terminal">$ curl -k -X POST -H "Authorization: Bearer haK4lv6Zgf7ohmWQS37qzzJj34hZ0U3D37EGxf5f" -H 'Content-Type: application/json' -d ' {  "quota_type_id": 2, "percent_of_limit": 80}'  https://example-registry-quay-quay-enterprise.apps.docs.quayteam.org/api/v1/namespacequota/testorg/quotalimits | jq</pre>
+							</p></div><div class="formalpara"><p class="title"><strong>Sample warning limit command</strong></p><p>
+								
+<pre class="programlisting language-terminal">$ curl -k -X POST -H "Authorization: Bearer haK4lv6Zgf7ohmWQS37qzzJj34hZ0U3D37EGxf5f" -H 'Content-Type: application/json' -d ' {  "quota_type_id": 1, "percent_of_limit": 70}'  https://example-registry-quay-quay-enterprise.apps.docs.quayteam.org/api/v1/namespacequota/testorg/quotalimits | jq</pre>
+							</p></div><div class="formalpara"><p class="title"><strong>View quota limits</strong></p><p>
+								
+<pre class="programlisting language-terminal">$  curl -k -X GET -H "Authorization: Bearer haK4lv6Zgf7ohmWQS37qzzJj34hZ0U3D37EGxf5f" https://example-registry-quay-quay-enterprise.apps.docs.quayteam.org/api/v1/namespacequota/testorg/quotalimits  | jq</pre>
+							</p></div><div class="formalpara"><p class="title"><strong>Sample output for quota limits</strong></p><p>
+								
+<pre class="programlisting language-json">{
+  "quota_limits": [
+    {
+      "percent_of_limit": 80,
+      "limit_type": {
+        "name": "Reject",
+        "quota_limit_id": 8,
+        "quota_type_id": 2
+      }
+    },
+    {
+      "percent_of_limit": 70,
+      "limit_type": {
+        "name": "Warning",
+        "quota_limit_id": 9,
+        "quota_type_id": 1
+      }
+    }
+  ]
+}</pre>
+							</p></div><div class="formalpara"><p class="title"><strong>Quota limits in Organization Settings</strong></p><p>
+								<span class="inlinemediaobject"><img src="images/quota-limits.png" alt="Quota limits in Organization Settings"/></span>
+							</p></div></section><section class="section" id="pushing_image_when_reject_limit_is_exceeded"><div class="titlepage"><div><div><h5 class="title">2.1.4.5.2. Pushing image when reject limit is exceeded</h5></div></div></div><p>
+							In this example, the reject limit (80%) has been set to below the current repository size (~83%), so the next push should automatically be rejected.
+						</p><div class="formalpara"><p class="title"><strong>Sample image push</strong></p><p>
+								
+<pre class="programlisting language-terminal">$ podman pull ubuntu:20.04
+
+$ podman tag docker.io/library/ubuntu:20.04 example-registry-quay-quay-enterprise.apps.docs.quayteam.org/testorg/ubuntu:20.04
+
+$ podman push --tls-verify=false example-registry-quay-quay-enterprise.apps.docs.quayteam.org/testorg/ubuntu:20.04</pre>
+							</p></div><div class="formalpara"><p class="title"><strong>Sample output when quota exceeded</strong></p><p>
+								
+<pre class="programlisting language-terminal">Getting image source signatures
+Copying blob cba97cc5811c [--------------------------------------] 8.0b / 15.0KiB
+Copying blob d4dfaa212623 [--------------------------------------] 8.0b / 3.5KiB
+Copying blob 0c78fac124da [--------------------------------------] 8.0b / 71.8MiB
+WARN[0004] failed, retrying in 1s ... (1/3). Error: Error writing blob: Error initiating layer upload to /v2/testorg/ubuntu/blobs/uploads/ in example-registry-quay-quay-enterprise.apps.docs.quayteam.org: denied: Quota has been exceeded on namespace
+Getting image source signatures
+Copying blob d4dfaa212623 [--------------------------------------] 8.0b / 3.5KiB
+Copying blob cba97cc5811c [--------------------------------------] 8.0b / 15.0KiB
+Copying blob 0c78fac124da [--------------------------------------] 8.0b / 71.8MiB
+WARN[0009] failed, retrying in 1s ... (2/3). Error: Error writing blob: Error initiating layer upload to /v2/testorg/ubuntu/blobs/uploads/ in example-registry-quay-quay-enterprise.apps.docs.quayteam.org: denied: Quota has been exceeded on namespace
+Getting image source signatures
+Copying blob d4dfaa212623 [--------------------------------------] 8.0b / 3.5KiB
+Copying blob cba97cc5811c [--------------------------------------] 8.0b / 15.0KiB
+Copying blob 0c78fac124da [--------------------------------------] 8.0b / 71.8MiB
+WARN[0014] failed, retrying in 1s ... (3/3). Error: Error writing blob: Error initiating layer upload to /v2/testorg/ubuntu/blobs/uploads/ in example-registry-quay-quay-enterprise.apps.docs.quayteam.org: denied: Quota has been exceeded on namespace
+Getting image source signatures
+Copying blob cba97cc5811c [--------------------------------------] 8.0b / 15.0KiB
+Copying blob d4dfaa212623 [--------------------------------------] 8.0b / 3.5KiB
+Copying blob 0c78fac124da [--------------------------------------] 8.0b / 71.8MiB
+Error: Error writing blob: Error initiating layer upload to /v2/testorg/ubuntu/blobs/uploads/ in example-registry-quay-quay-enterprise.apps.docs.quayteam.org: denied: Quota has been exceeded on namespace</pre>
+							</p></div></section><section class="section" id="notifications_for_limits_exceeded"><div class="titlepage"><div><div><h5 class="title">2.1.4.5.3. Notifications for limits exceeded</h5></div></div></div><p>
+							When limits are exceeded, a notification appears:
+						</p><div class="formalpara"><p class="title"><strong>Quota notifications</strong></p><p>
+								<span class="inlinemediaobject"><img src="images/quota-notifications.png" alt="Quota notifications"/></span>
+							</p></div></section></section></section></section><section class="section" id="namespacequota_api"><div class="titlepage"><div><div><h2 class="title">2.2. namespacequota API</h2></div></div></div><p>
+				Manage organizations, members and OAuth applications.
+			</p><section class="section" id="deleteorganizationquotalimit"><div class="titlepage"><div><div><h3 class="title">2.2.1. deleteOrganizationQuotaLimit</h3></div></div></div><h5 id="delete_api_v1_namespacequota_namespace_quotalimits">DELETE /api/v1/namespacequota/{namespace}/quotalimits</h5><p>
+					<span class="strong strong"><strong>Authorizations: </strong></span>
+				</p><h5 id="path_parameters">Path parameters</h5><div class="informaltable"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 11%; " class="col_1"/><col style="width: 17%; " class="col_2"/><col style="width: 50%; " class="col_3"/><col style="width: 22%; " class="col_4"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556227469072" scope="col">Type</th><th align="left" valign="middle" id="idm45556227467984" scope="col">Name</th><th align="left" valign="middle" id="idm45556227466896" scope="col">Description</th><th align="left" valign="middle" id="idm45556227465808" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556227469072">
+								<p>
+									path
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227467984">
+								<p>
+									<span class="strong strong"><strong>namespace</strong></span><br/><span class="emphasis"><em>required</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227466896"> </td><td align="left" valign="middle" headers="idm45556227465808">
+								<p>
+									string
+								</p>
+								</td></tr></tbody></table></div><h5 id="responses">Responses</h5><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 10%; " class="col_1"/><col style="width: 70%; " class="col_2"/><col style="width: 20%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556226186048" scope="col">HTTP Code</th><th align="left" valign="middle" id="idm45556226184960" scope="col">Description</th><th align="left" valign="middle" id="idm45556226183872" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556226186048">
+								<p>
+									204
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556226184960">
+								<p>
+									Deleted
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556226183872"> </td></tr><tr><td align="left" valign="middle" headers="idm45556226186048">
+								<p>
+									400
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556226184960">
+								<p>
+									Bad Request
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556226183872">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556226186048">
+								<p>
+									401
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556226184960">
+								<p>
+									Session required
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556226183872">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556226186048">
+								<p>
+									403
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556226184960">
+								<p>
+									Unauthorized access
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556226183872">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556226186048">
+								<p>
+									404
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556226184960">
+								<p>
+									Not found
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556226183872">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr></tbody></table></div></section><section class="section" id="changeorganizationquotalimit"><div class="titlepage"><div><div><h3 class="title">2.2.2. changeOrganizationQuotaLimit</h3></div></div></div><h5 id="put_api_v1_namespacequota_namespace_quotalimits">PUT /api/v1/namespacequota/{namespace}/quotalimits</h5><p>
+					<span class="strong strong"><strong>Authorizations: </strong></span>
+				</p><h5 id="path_parameters_2">Path parameters</h5><div class="informaltable"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 11%; " class="col_1"/><col style="width: 17%; " class="col_2"/><col style="width: 50%; " class="col_3"/><col style="width: 22%; " class="col_4"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556227418464" scope="col">Type</th><th align="left" valign="middle" id="idm45556227417376" scope="col">Name</th><th align="left" valign="middle" id="idm45556227416288" scope="col">Description</th><th align="left" valign="middle" id="idm45556227415200" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556227418464">
+								<p>
+									path
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227417376">
+								<p>
+									<span class="strong strong"><strong>namespace</strong></span><br/><span class="emphasis"><em>required</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227416288"> </td><td align="left" valign="middle" headers="idm45556227415200">
+								<p>
+									string
+								</p>
+								</td></tr></tbody></table></div><h5 id="request_body_schema_application_json">Request body schema (application/json)</h5><p>
+					Description of a new organization quota limit threshold
+				</p><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 19%; " class="col_1"/><col style="width: 56%; " class="col_2"/><col style="width: 25%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556229092080" scope="col">Name</th><th align="left" valign="middle" id="idm45556229090992" scope="col">Description</th><th align="left" valign="middle" id="idm45556229089904" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556229092080">
+								<p>
+									<span class="strong strong"><strong>percent_of_limit</strong></span><br/><span class="emphasis"><em>optional</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229090992">
+								<p>
+									Percentage of quota at which to do something
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229089904">
+								<p>
+									integer
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556229092080">
+								<p>
+									<span class="strong strong"><strong>quota_type_id</strong></span><br/><span class="emphasis"><em>optional</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229090992">
+								<p>
+									Quota type Id
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229089904">
+								<p>
+									integer
+								</p>
+								</td></tr></tbody></table></div><h5 id="responses_2">Responses</h5><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 10%; " class="col_1"/><col style="width: 70%; " class="col_2"/><col style="width: 20%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556224706928" scope="col">HTTP Code</th><th align="left" valign="middle" id="idm45556224705840" scope="col">Description</th><th align="left" valign="middle" id="idm45556224704752" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556224706928">
+								<p>
+									200
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224705840">
+								<p>
+									Successful invocation
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224704752"> </td></tr><tr><td align="left" valign="middle" headers="idm45556224706928">
+								<p>
+									400
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224705840">
+								<p>
+									Bad Request
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224704752">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556224706928">
+								<p>
+									401
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224705840">
+								<p>
+									Session required
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224704752">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556224706928">
+								<p>
+									403
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224705840">
+								<p>
+									Unauthorized access
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224704752">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556224706928">
+								<p>
+									404
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224705840">
+								<p>
+									Not found
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224704752">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr></tbody></table></div></section><section class="section" id="getorganizationquotalimit"><div class="titlepage"><div><div><h3 class="title">2.2.3. getOrganizationQuotaLimit</h3></div></div></div><h5 id="get_api_v1_namespacequota_namespace_quotalimits">GET /api/v1/namespacequota/{namespace}/quotalimits</h5><p>
+					<span class="strong strong"><strong>Authorizations: </strong></span>
+				</p><h5 id="path_parameters_3">Path parameters</h5><div class="informaltable"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 11%; " class="col_1"/><col style="width: 17%; " class="col_2"/><col style="width: 50%; " class="col_3"/><col style="width: 22%; " class="col_4"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556224474432" scope="col">Type</th><th align="left" valign="middle" id="idm45556224473344" scope="col">Name</th><th align="left" valign="middle" id="idm45556224472256" scope="col">Description</th><th align="left" valign="middle" id="idm45556224471168" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556224474432">
+								<p>
+									path
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224473344">
+								<p>
+									<span class="strong strong"><strong>namespace</strong></span><br/><span class="emphasis"><em>required</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224472256"> </td><td align="left" valign="middle" headers="idm45556224471168">
+								<p>
+									string
+								</p>
+								</td></tr></tbody></table></div><h5 id="responses_3">Responses</h5><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 10%; " class="col_1"/><col style="width: 70%; " class="col_2"/><col style="width: 20%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556229212144" scope="col">HTTP Code</th><th align="left" valign="middle" id="idm45556229211056" scope="col">Description</th><th align="left" valign="middle" id="idm45556229209968" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556229212144">
+								<p>
+									200
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229211056">
+								<p>
+									Successful invocation
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229209968"> </td></tr><tr><td align="left" valign="middle" headers="idm45556229212144">
+								<p>
+									400
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229211056">
+								<p>
+									Bad Request
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229209968">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556229212144">
+								<p>
+									401
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229211056">
+								<p>
+									Session required
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229209968">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556229212144">
+								<p>
+									403
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229211056">
+								<p>
+									Unauthorized access
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229209968">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556229212144">
+								<p>
+									404
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229211056">
+								<p>
+									Not found
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229209968">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr></tbody></table></div></section><section class="section" id="createorganizationquotalimit"><div class="titlepage"><div><div><h3 class="title">2.2.4. createOrganizationQuotaLimit</h3></div></div></div><p>
+					Create a new organization quota.
+				</p><h5 id="post_api_v1_namespacequota_namespace_quotalimits">POST /api/v1/namespacequota/{namespace}/quotalimits</h5><p>
+					<span class="strong strong"><strong>Authorizations: </strong></span>
+				</p><h5 id="path_parameters_4">Path parameters</h5><div class="informaltable"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 11%; " class="col_1"/><col style="width: 17%; " class="col_2"/><col style="width: 50%; " class="col_3"/><col style="width: 22%; " class="col_4"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556227391008" scope="col">Type</th><th align="left" valign="middle" id="idm45556227389920" scope="col">Name</th><th align="left" valign="middle" id="idm45556227388832" scope="col">Description</th><th align="left" valign="middle" id="idm45556227387744" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556227391008">
+								<p>
+									path
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227389920">
+								<p>
+									<span class="strong strong"><strong>namespace</strong></span><br/><span class="emphasis"><em>required</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227388832"> </td><td align="left" valign="middle" headers="idm45556227387744">
+								<p>
+									string
+								</p>
+								</td></tr></tbody></table></div><h5 id="request_body_schema_application_json_2">Request body schema (application/json)</h5><p>
+					Description of a new organization quota limit threshold
+				</p><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 19%; " class="col_1"/><col style="width: 56%; " class="col_2"/><col style="width: 25%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556225698000" scope="col">Name</th><th align="left" valign="middle" id="idm45556225696912" scope="col">Description</th><th align="left" valign="middle" id="idm45556224889632" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556225698000">
+								<p>
+									<span class="strong strong"><strong>percent_of_limit</strong></span><br/><span class="emphasis"><em>optional</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225696912">
+								<p>
+									Percentage of quota at which to do something
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224889632">
+								<p>
+									integer
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556225698000">
+								<p>
+									<span class="strong strong"><strong>quota_type_id</strong></span><br/><span class="emphasis"><em>optional</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225696912">
+								<p>
+									Quota type Id
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556224889632">
+								<p>
+									integer
+								</p>
+								</td></tr></tbody></table></div><h5 id="responses_4">Responses</h5><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 10%; " class="col_1"/><col style="width: 70%; " class="col_2"/><col style="width: 20%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556227654944" scope="col">HTTP Code</th><th align="left" valign="middle" id="idm45556227653856" scope="col">Description</th><th align="left" valign="middle" id="idm45556227652768" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556227654944">
+								<p>
+									201
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227653856">
+								<p>
+									Successful creation
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227652768"> </td></tr><tr><td align="left" valign="middle" headers="idm45556227654944">
+								<p>
+									400
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227653856">
+								<p>
+									Bad Request
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227652768">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556227654944">
+								<p>
+									401
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227653856">
+								<p>
+									Session required
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227652768">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556227654944">
+								<p>
+									403
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227653856">
+								<p>
+									Unauthorized access
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227652768">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556227654944">
+								<p>
+									404
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227653856">
+								<p>
+									Not found
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227652768">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr></tbody></table></div></section><section class="section" id="getorganizationsizereporting"><div class="titlepage"><div><div><h3 class="title">2.2.5. getOrganizationSizeReporting</h3></div></div></div><h5 id="get_api_v1_namespacequota_namespace_quotareport">GET /api/v1/namespacequota/{namespace}/quotareport</h5><p>
+					<span class="strong strong"><strong>Authorizations: </strong></span>
+				</p><h5 id="path_parameters_5">Path parameters</h5><div class="informaltable"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 11%; " class="col_1"/><col style="width: 17%; " class="col_2"/><col style="width: 50%; " class="col_3"/><col style="width: 22%; " class="col_4"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556227447792" scope="col">Type</th><th align="left" valign="middle" id="idm45556227446704" scope="col">Name</th><th align="left" valign="middle" id="idm45556227445616" scope="col">Description</th><th align="left" valign="middle" id="idm45556227444528" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556227447792">
+								<p>
+									path
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227446704">
+								<p>
+									<span class="strong strong"><strong>namespace</strong></span><br/><span class="emphasis"><em>required</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227445616"> </td><td align="left" valign="middle" headers="idm45556227444528">
+								<p>
+									string
+								</p>
+								</td></tr></tbody></table></div><h5 id="responses_5">Responses</h5><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 10%; " class="col_1"/><col style="width: 70%; " class="col_2"/><col style="width: 20%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556227324128" scope="col">HTTP Code</th><th align="left" valign="middle" id="idm45556227323040" scope="col">Description</th><th align="left" valign="middle" id="idm45556230876656" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556227324128">
+								<p>
+									200
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227323040">
+								<p>
+									Successful invocation
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556230876656"> </td></tr><tr><td align="left" valign="middle" headers="idm45556227324128">
+								<p>
+									400
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227323040">
+								<p>
+									Bad Request
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556230876656">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556227324128">
+								<p>
+									401
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227323040">
+								<p>
+									Session required
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556230876656">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556227324128">
+								<p>
+									403
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227323040">
+								<p>
+									Unauthorized access
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556230876656">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556227324128">
+								<p>
+									404
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227323040">
+								<p>
+									Not found
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556230876656">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr></tbody></table></div></section><section class="section" id="deleteorganizationquota"><div class="titlepage"><div><div><h3 class="title">2.2.6. deleteOrganizationQuota</h3></div></div></div><h5 id="delete_api_v1_namespacequota_namespace_quota">DELETE /api/v1/namespacequota/{namespace}/quota</h5><p>
+					<span class="strong strong"><strong>Authorizations: </strong></span>
+				</p><h5 id="path_parameters_6">Path parameters</h5><div class="informaltable"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 11%; " class="col_1"/><col style="width: 17%; " class="col_2"/><col style="width: 50%; " class="col_3"/><col style="width: 22%; " class="col_4"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556227517648" scope="col">Type</th><th align="left" valign="middle" id="idm45556227516560" scope="col">Name</th><th align="left" valign="middle" id="idm45556227515472" scope="col">Description</th><th align="left" valign="middle" id="idm45556229454128" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556227517648">
+								<p>
+									path
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227516560">
+								<p>
+									<span class="strong strong"><strong>namespace</strong></span><br/><span class="emphasis"><em>required</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227515472"> </td><td align="left" valign="middle" headers="idm45556229454128">
+								<p>
+									string
+								</p>
+								</td></tr></tbody></table></div><h5 id="responses_6">Responses</h5><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 10%; " class="col_1"/><col style="width: 70%; " class="col_2"/><col style="width: 20%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556227144144" scope="col">HTTP Code</th><th align="left" valign="middle" id="idm45556227143056" scope="col">Description</th><th align="left" valign="middle" id="idm45556227141968" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556227144144">
+								<p>
+									204
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227143056">
+								<p>
+									Deleted
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227141968"> </td></tr><tr><td align="left" valign="middle" headers="idm45556227144144">
+								<p>
+									400
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227143056">
+								<p>
+									Bad Request
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227141968">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556227144144">
+								<p>
+									401
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227143056">
+								<p>
+									Session required
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227141968">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556227144144">
+								<p>
+									403
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227143056">
+								<p>
+									Unauthorized access
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227141968">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556227144144">
+								<p>
+									404
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227143056">
+								<p>
+									Not found
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227141968">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr></tbody></table></div></section><section class="section" id="changeorganizationquota"><div class="titlepage"><div><div><h3 class="title">2.2.7. changeOrganizationQuota</h3></div></div></div><h5 id="put_api_v1_namespacequota_namespace_quota">PUT /api/v1/namespacequota/{namespace}/quota</h5><p>
+					<span class="strong strong"><strong>Authorizations: </strong></span>
+				</p><h5 id="path_parameters_7">Path parameters</h5><div class="informaltable"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 11%; " class="col_1"/><col style="width: 17%; " class="col_2"/><col style="width: 50%; " class="col_3"/><col style="width: 22%; " class="col_4"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556230726432" scope="col">Type</th><th align="left" valign="middle" id="idm45556230725344" scope="col">Name</th><th align="left" valign="middle" id="idm45556230724256" scope="col">Description</th><th align="left" valign="middle" id="idm45556226068480" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556230726432">
+								<p>
+									path
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556230725344">
+								<p>
+									<span class="strong strong"><strong>namespace</strong></span><br/><span class="emphasis"><em>required</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556230724256"> </td><td align="left" valign="middle" headers="idm45556226068480">
+								<p>
+									string
+								</p>
+								</td></tr></tbody></table></div><h5 id="request_body_schema_application_json_3">Request body schema (application/json)</h5><p>
+					Description of a new organization quota
+				</p><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 19%; " class="col_1"/><col style="width: 56%; " class="col_2"/><col style="width: 25%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556227240640" scope="col">Name</th><th align="left" valign="middle" id="idm45556227239552" scope="col">Description</th><th align="left" valign="middle" id="idm45556227238464" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556227240640">
+								<p>
+									<span class="strong strong"><strong>limit_bytes</strong></span><br/><span class="emphasis"><em>optional</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227239552">
+								<p>
+									Number of bytes the organization is allowed
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556227238464">
+								<p>
+									integer
+								</p>
+								</td></tr></tbody></table></div><h5 id="responses_7">Responses</h5><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 10%; " class="col_1"/><col style="width: 70%; " class="col_2"/><col style="width: 20%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556225726816" scope="col">HTTP Code</th><th align="left" valign="middle" id="idm45556225725728" scope="col">Description</th><th align="left" valign="middle" id="idm45556225724640" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556225726816">
+								<p>
+									200
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225725728">
+								<p>
+									Successful invocation
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225724640"> </td></tr><tr><td align="left" valign="middle" headers="idm45556225726816">
+								<p>
+									400
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225725728">
+								<p>
+									Bad Request
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225724640">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556225726816">
+								<p>
+									401
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225725728">
+								<p>
+									Session required
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225724640">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556225726816">
+								<p>
+									403
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225725728">
+								<p>
+									Unauthorized access
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225724640">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556225726816">
+								<p>
+									404
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225725728">
+								<p>
+									Not found
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225724640">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr></tbody></table></div></section><section class="section" id="getnamespacequota"><div class="titlepage"><div><div><h3 class="title">2.2.8. getNamespaceQuota</h3></div></div></div><h5 id="get_api_v1_namespacequota_namespace_quota">GET /api/v1/namespacequota/{namespace}/quota</h5><p>
+					<span class="strong strong"><strong>Authorizations: </strong></span>
+				</p><h5 id="path_parameters_8">Path parameters</h5><div class="informaltable"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 11%; " class="col_1"/><col style="width: 17%; " class="col_2"/><col style="width: 50%; " class="col_3"/><col style="width: 22%; " class="col_4"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556229497312" scope="col">Type</th><th align="left" valign="middle" id="idm45556229496224" scope="col">Name</th><th align="left" valign="middle" id="idm45556229495136" scope="col">Description</th><th align="left" valign="middle" id="idm45556229494048" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556229497312">
+								<p>
+									path
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229496224">
+								<p>
+									<span class="strong strong"><strong>namespace</strong></span><br/><span class="emphasis"><em>required</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229495136"> </td><td align="left" valign="middle" headers="idm45556229494048">
+								<p>
+									string
+								</p>
+								</td></tr></tbody></table></div><h5 id="responses_8">Responses</h5><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 10%; " class="col_1"/><col style="width: 70%; " class="col_2"/><col style="width: 20%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556225810320" scope="col">HTTP Code</th><th align="left" valign="middle" id="idm45556225809232" scope="col">Description</th><th align="left" valign="middle" id="idm45556225808144" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556225810320">
+								<p>
+									200
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225809232">
+								<p>
+									Successful invocation
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225808144"> </td></tr><tr><td align="left" valign="middle" headers="idm45556225810320">
+								<p>
+									400
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225809232">
+								<p>
+									Bad Request
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225808144">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556225810320">
+								<p>
+									401
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225809232">
+								<p>
+									Session required
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225808144">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556225810320">
+								<p>
+									403
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225809232">
+								<p>
+									Unauthorized access
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225808144">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556225810320">
+								<p>
+									404
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225809232">
+								<p>
+									Not found
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556225808144">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr></tbody></table></div></section><section class="section" id="createnamespacequota"><div class="titlepage"><div><div><h3 class="title">2.2.9. createNamespaceQuota</h3></div></div></div><p>
+					Create a new organization quota.
+				</p><h5 id="post_api_v1_namespacequota_namespace_quota">POST /api/v1/namespacequota/{namespace}/quota</h5><p>
+					<span class="strong strong"><strong>Authorizations: </strong></span>
+				</p><h5 id="path_parameters_9">Path parameters</h5><div class="informaltable"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 11%; " class="col_1"/><col style="width: 17%; " class="col_2"/><col style="width: 50%; " class="col_3"/><col style="width: 22%; " class="col_4"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556230648112" scope="col">Type</th><th align="left" valign="middle" id="idm45556230647024" scope="col">Name</th><th align="left" valign="middle" id="idm45556230645936" scope="col">Description</th><th align="left" valign="middle" id="idm45556230644848" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556230648112">
+								<p>
+									path
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556230647024">
+								<p>
+									<span class="strong strong"><strong>namespace</strong></span><br/><span class="emphasis"><em>required</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556230645936"> </td><td align="left" valign="middle" headers="idm45556230644848">
+								<p>
+									string
+								</p>
+								</td></tr></tbody></table></div><h5 id="request_body_schema_application_json_4">Request body schema (application/json)</h5><p>
+					Description of a new organization quota
+				</p><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 19%; " class="col_1"/><col style="width: 56%; " class="col_2"/><col style="width: 25%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556228928448" scope="col">Name</th><th align="left" valign="middle" id="idm45556228927360" scope="col">Description</th><th align="left" valign="middle" id="idm45556228926272" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556228928448">
+								<p>
+									<span class="strong strong"><strong>limit_bytes</strong></span><br/><span class="emphasis"><em>optional</em></span>
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556228927360">
+								<p>
+									Number of bytes the organization is allowed
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556228926272">
+								<p>
+									integer
+								</p>
+								</td></tr></tbody></table></div><h5 id="responses_9">Responses</h5><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 10%; " class="col_1"/><col style="width: 70%; " class="col_2"/><col style="width: 20%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556229036352" scope="col">HTTP Code</th><th align="left" valign="middle" id="idm45556229035264" scope="col">Description</th><th align="left" valign="middle" id="idm45556229034176" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556229036352">
+								<p>
+									201
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229035264">
+								<p>
+									Successful creation
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229034176"> </td></tr><tr><td align="left" valign="middle" headers="idm45556229036352">
+								<p>
+									400
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229035264">
+								<p>
+									Bad Request
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229034176">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556229036352">
+								<p>
+									401
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229035264">
+								<p>
+									Session required
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229034176">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556229036352">
+								<p>
+									403
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229035264">
+								<p>
+									Unauthorized access
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229034176">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr><tr><td align="left" valign="middle" headers="idm45556229036352">
+								<p>
+									404
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229035264">
+								<p>
+									Not found
+								</p>
+								</td><td align="left" valign="middle" headers="idm45556229034176">
+								<p>
+									<a class="link" href="#apierror" title="2.2.10.1. ApiError">ApiError</a>
+								</p>
+								</td></tr></tbody></table></div></section><section class="section" id="definitions"><div class="titlepage"><div><div><h3 class="title">2.2.10. Definitions</h3></div></div></div><section class="section" id="apierror"><div class="titlepage"><div><div><h4 class="title">2.2.10.1. ApiError</h4></div></div></div><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 19%; " class="col_1"/><col style="width: 56%; " class="col_2"/><col style="width: 25%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556227220464" scope="col">Name</th><th align="left" valign="middle" id="idm45556227219376" scope="col">Description</th><th align="left" valign="middle" id="idm45556227218288" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556227220464">
+									<p>
+										<span class="strong strong"><strong>status</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556227219376">
+									<p>
+										Status code of the response.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556227218288">
+									<p>
+										integer
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556227220464">
+									<p>
+										<span class="strong strong"><strong>type</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556227219376">
+									<p>
+										Reference to the type of the error.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556227218288">
+									<p>
+										string
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556227220464">
+									<p>
+										<span class="strong strong"><strong>detail</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556227219376">
+									<p>
+										Details about the specific instance of the error.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556227218288">
+									<p>
+										string
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556227220464">
+									<p>
+										<span class="strong strong"><strong>title</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556227219376">
+									<p>
+										Unique error code to identify the type of error.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556227218288">
+									<p>
+										string
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556227220464">
+									<p>
+										<span class="strong strong"><strong>error_message</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556227219376">
+									<p>
+										Deprecated; alias for detail
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556227218288">
+									<p>
+										string
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556227220464">
+									<p>
+										<span class="strong strong"><strong>error_type</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556227219376">
+									<p>
+										Deprecated; alias for detail
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556227218288">
+									<p>
+										string
+									</p>
+									</td></tr></tbody></table></div></section><section class="section" id="userview"><div class="titlepage"><div><div><h4 class="title">2.2.10.2. UserView</h4></div></div></div><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 19%; " class="col_1"/><col style="width: 56%; " class="col_2"/><col style="width: 25%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556226199264" scope="col">Name</th><th align="left" valign="middle" id="idm45556226198176" scope="col">Description</th><th align="left" valign="middle" id="idm45556226197088" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556226199264">
+									<p>
+										<span class="strong strong"><strong>verified</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226198176">
+									<p>
+										Whether the user’s email address has been verified
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226197088">
+									<p>
+										boolean
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556226199264">
+									<p>
+										<span class="strong strong"><strong>anonymous</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226198176">
+									<p>
+										true if this user data represents a guest user
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226197088">
+									<p>
+										boolean
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556226199264">
+									<p>
+										<span class="strong strong"><strong>email</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226198176">
+									<p>
+										The user’s email address
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226197088">
+									<p>
+										string
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556226199264">
+									<p>
+										<span class="strong strong"><strong>avatar</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226198176">
+									<p>
+										Avatar data representing the user’s icon
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226197088">
+									<p>
+										object
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556226199264">
+									<p>
+										<span class="strong strong"><strong>organizations</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226198176">
+									<p>
+										Information about the organizations in which the user is a member
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226197088">
+									<p>
+										array of object<br/>
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556226199264">
+									<p>
+										<span class="strong strong"><strong>logins</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226198176">
+									<p>
+										The list of external login providers against which the user has authenticated
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226197088">
+									<p>
+										array of object<br/>
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556226199264">
+									<p>
+										<span class="strong strong"><strong>can_create_repo</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226198176">
+									<p>
+										Whether the user has permission to create repositories
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226197088">
+									<p>
+										boolean
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556226199264">
+									<p>
+										<span class="strong strong"><strong>preferred_namespace</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226198176">
+									<p>
+										If true, the user’s namespace is the preferred namespace to display
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556226197088">
+									<p>
+										boolean
+									</p>
+									</td></tr></tbody></table></div></section><section class="section" id="viewmirrorconfig"><div class="titlepage"><div><div><h4 class="title">2.2.10.3. ViewMirrorConfig</h4></div></div></div><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 19%; " class="col_1"/><col style="width: 56%; " class="col_2"/><col style="width: 25%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556225770288" scope="col">Name</th><th align="left" valign="middle" id="idm45556225769200" scope="col">Description</th><th align="left" valign="middle" id="idm45556225768112" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556225770288">
+									<p>
+										<span class="strong strong"><strong>is_enabled</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225769200">
+									<p>
+										Used to enable or disable synchronizations.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225768112">
+									<p>
+										boolean
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556225770288">
+									<p>
+										<span class="strong strong"><strong>external_reference</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225769200">
+									<p>
+										Location of the external repository.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225768112">
+									<p>
+										string
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556225770288">
+									<p>
+										<span class="strong strong"><strong>external_registry_username</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225769200">
+									<p>
+										Username used to authenticate with external registry.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225768112"> </td></tr><tr><td align="left" valign="middle" headers="idm45556225770288">
+									<p>
+										<span class="strong strong"><strong>external_registry_password</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225769200">
+									<p>
+										Password used to authenticate with external registry.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225768112"> </td></tr><tr><td align="left" valign="middle" headers="idm45556225770288">
+									<p>
+										<span class="strong strong"><strong>sync_start_date</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225769200">
+									<p>
+										Determines the next time this repository is ready for synchronization.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225768112">
+									<p>
+										string
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556225770288">
+									<p>
+										<span class="strong strong"><strong>sync_interval</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225769200">
+									<p>
+										Number of seconds after next_start_date to begin synchronizing.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225768112">
+									<p>
+										integer
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556225770288">
+									<p>
+										<span class="strong strong"><strong>robot_username</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225769200">
+									<p>
+										Username of robot which will be used for image pushes.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225768112">
+									<p>
+										string
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556225770288">
+									<p>
+										<span class="strong strong"><strong>root_rule</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225769200">
+									<p>
+										A list of glob-patterns used to determine which tags should be synchronized.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225768112">
+									<p>
+										object
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556225770288">
+									<p>
+										<span class="strong strong"><strong>external_registry_config</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556225769200"> </td><td align="left" valign="middle" headers="idm45556225768112">
+									<p>
+										object
+									</p>
+									</td></tr></tbody></table></div></section><section class="section" id="apierrordescription"><div class="titlepage"><div><div><h4 class="title">2.2.10.4. ApiErrorDescription</h4></div></div></div><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 19%; " class="col_1"/><col style="width: 56%; " class="col_2"/><col style="width: 25%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="middle" id="idm45556228079984" scope="col">Name</th><th align="left" valign="middle" id="idm45556228078896" scope="col">Description</th><th align="left" valign="middle" id="idm45556228077808" scope="col">Schema</th></tr></thead><tbody><tr><td align="left" valign="middle" headers="idm45556228079984">
+									<p>
+										<span class="strong strong"><strong>type</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556228078896">
+									<p>
+										A reference to the error type resource
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556228077808">
+									<p>
+										string
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556228079984">
+									<p>
+										<span class="strong strong"><strong>title</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556228078896">
+									<p>
+										The title of the error. Can be used to uniquely identify the kind of error.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556228077808">
+									<p>
+										string
+									</p>
+									</td></tr><tr><td align="left" valign="middle" headers="idm45556228079984">
+									<p>
+										<span class="strong strong"><strong>description</strong></span><br/><span class="emphasis"><em>optional</em></span>
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556228078896">
+									<p>
+										A more detailed description of the error that may include help for fixing the issue.
+									</p>
+									</td><td align="left" valign="middle" headers="idm45556228077808">
+									<p>
+										string
+									</p>
+									</td></tr></tbody></table></div></section></section></section></section><section class="chapter" id="geo_replication_with_the_operator"><div class="titlepage"><div><div><h1 class="title">Chapter 3. Geo-replication with the Operator</h1></div></div></div><section class="section" id="georepl-intro"><div class="titlepage"><div><div><h2 class="title">3.1. Geo-replication</h2></div></div></div><p>
+				Geo-replication allows multiple, geographically distributed Quay deployments to work as a single registry from the perspective of a client or user. It significantly improves push and pull performance in a globally-distributed Quay setup. Image data is asynchronously replicated in the background with transparent failover / redirect for clients.
+			</p><section class="section" id="geo_replication_features"><div class="titlepage"><div><div><h3 class="title">3.1.1. Geo-replication features</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							When geo-replication is configured, container image pushes will be written to the preferred storage engine for that Red Hat Quay instance (typically the nearest storage backend within the region).
+						</li><li class="listitem">
+							After the initial push, image data will be replicated in the background to other storage engines.
+						</li><li class="listitem">
+							The list of replication locations is configurable and those can be different storage backends.
+						</li><li class="listitem">
+							An image pull will always use the closest available storage engine, to maximize pull performance.
+						</li><li class="listitem">
+							If replication hasn’t been completed yet, the pull will use the source storage backend instead.
+						</li></ul></div></section><section class="section" id="georepl-prereqs"><div class="titlepage"><div><div><h3 class="title">3.1.2. Geo-replication requirements and constraints</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							A single database, and therefore all metadata and Quay configuration, is shared across all regions.
+						</li><li class="listitem">
+							A single Redis cache is shared across the entire Quay setup and needs to accessible by all Quay pods.
+						</li><li class="listitem">
+							The exact same configuration should be used across all regions, with exception of the storage backend, which can be configured explicitly using the <code class="literal">QUAY_DISTRIBUTED_STORAGE_PREFERENCE</code> environment variable.
+						</li><li class="listitem">
+							Geo-Replication requires object storage in each region. It does not work with local storage or NFS.
+						</li><li class="listitem">
+							Each region must be able to access every storage engine in each region (requires a network path).
+						</li><li class="listitem">
+							Alternatively, the storage proxy option can be used.
+						</li><li class="listitem">
+							The entire storage backend (all blobs) is replicated. This is in contrast to repository mirroring, which can be limited to an organization or repository or image.
+						</li><li class="listitem">
+							All Quay instances must share the same entrypoint, typically via load balancer.
+						</li><li class="listitem">
+							All Quay instances must have the same set of superusers, as they are defined inside the common configuration file.
+						</li></ul></div><p>
+					If the above requirements cannot be met, you should instead use two or more distinct Quay deployments and take advantage of repository mirroring functionality.
+				</p></section><section class="section" id="georepl-arch-operator"><div class="titlepage"><div><div><h3 class="title">3.1.3. Geo-replication architecture - Quay Operator</h3></div></div></div><p>
+					The following diagram shows a possible distribution of resources where Quay has been deployed on two OpenShift clusters using the Operator:
+				</p><p>
+					<span class="inlinemediaobject"><img src="images/178_Quay_architecture_0821_georeplication_openshift.png" alt="Georeplication architecture"/></span>
+				</p><p>
+					In the example shown above, Quay Operator is deployed in two separate regions, with a common database and a common Redis instance. Localized image storage is provided in each region and image pulls are served from the closest available storage engine. Container image pushes are written to the preferred storage engine for the Quay instance, and will then be replicated, in the background, to the other storage engines.
+				</p></section><section class="section" id="georepl-deploy-operator"><div class="titlepage"><div><div><h3 class="title">3.1.4. Setting up geo-replication on Openshift</h3></div></div></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Deploy Quay postgres instance
+						</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
+									Login to the database
+								</li><li class="listitem"><p class="simpara">
+									Create a database for Quay
+								</p><pre class="programlisting language-terminal">CREATE DATABASE quay;</pre></li><li class="listitem"><p class="simpara">
+									Enable pg_trm extension inside the database
+								</p><pre class="programlisting language-terminal">\c quay;
+CREATE EXTENSION IF NOT EXISTS pg_trgm;</pre></li></ol></div></li><li class="listitem"><p class="simpara">
+							Deploy a Redis instance
+						</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
+									Deploy a VM for Redis
+								</li><li class="listitem">
+									Make sure that it is accessible from the clusters where Quay is running
+								</li><li class="listitem">
+									Port 6379/TCP must be open
+								</li><li class="listitem"><p class="simpara">
+									Run Redis inside the instance
+								</p><pre class="programlisting language-terminal">sudo dnf install -y podman
+podman run -d --name redis -p 6379:6379 redis</pre></li></ol></div></li><li class="listitem"><p class="simpara">
+							Create two object storage backends, one for each cluster
+						</p><p class="simpara">
+							Ideally one object storage bucket will be close to the 1st cluster (primary) while the other will run closer to the 2nd cluster (secondary).
+						</p></li><li class="listitem">
+							Deploy the clusters with the same config bundle, using environment variable overrides to select the appropriate storage backend for an individual cluster
+						</li><li class="listitem">
+							Configure a load balancer, to provide a single entry point to the clusters
+						</li></ol></div><section class="section" id="configuration"><div class="titlepage"><div><div><h4 class="title">3.1.4.1. Configuration</h4></div></div></div><p>
+						The <code class="literal">config.yaml</code> file is shared between clusters, and will contain the details for the common PostgreSQL, Redis and storage backends:
+					</p><div class="formalpara"><p class="title"><strong>config.yaml</strong></p><p>
+							
+<pre class="screen">DB_CONNECTION_ARGS:
+  autorollback: true
+  threadlocals: true
+DB_URI: postgresql://postgres:password@10.19.0.1:5432/quay
+BUILDLOGS_REDIS:
+  host: 10.19.0.2
+  port: 6379
+USER_EVENTS_REDIS:
+  host: 10.19.0.2
+  port: 6379
+DISTRIBUTED_STORAGE_CONFIG:
+  usstorage:
+    - GoogleCloudStorage
+    - access_key: GOOGQGPGVMASAAMQABCDEFG
+      bucket_name: georep-test-bucket-0
+      secret_key: AYWfEaxX/u84XRA2vUX5C987654321
+      storage_path: /quaygcp
+  eustorage:
+    - GoogleCloudStorage
+    - access_key: GOOGQGPGVMASAAMQWERTYUIOP
+      bucket_name: georep-test-bucket-1
+      secret_key: AYWfEaxX/u84XRA2vUX5Cuj12345678
+      storage_path: /quaygcp
+DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS:
+  - usstorage
+  - eustorage
+DISTRIBUTED_STORAGE_PREFERENCE:
+  - usstorage
+  - eustorage</pre>
+						</p></div><p>
+						Create the <code class="literal">configBundleSecret</code>:
+					</p><pre class="programlisting language-terminal">$ oc create secret generic --from-file config.yaml=./config.yaml georep-config-bundle</pre><p>
+						In each of the clusters, set the <code class="literal">configBundleSecret</code> and use the <code class="literal">QUAY_DISTRIBUTED_STORAGE_PREFERENCE</code> environmental variable override to configure the appropriate storage for that cluster:
+					</p><div class="formalpara"><p class="title"><strong>US cluster</strong></p><p>
+							
+<pre class="screen">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: example-registry
+  namespace: quay-enterprise
+spec:
+  configBundleSecret: georep-config-bundle
+  components:
+    - kind: postgres
+      managed: false
+    - kind: clairpostgres
+      managed: false
+    - kind: redis
+      managed: false
+    - kind: base
+      managed: true
+      overrides:
+        env:
+          - name: QUAY_DISTRIBUTED_STORAGE_PREFERENCE
+            value: usstorage</pre>
+						</p></div><div class="formalpara"><p class="title"><strong>European cluster</strong></p><p>
+							
+<pre class="screen">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: example-registry
+  namespace: quay-enterprise
+spec:
+  configBundleSecret: georep-config-bundle
+  components:
+    - kind: postgres
+      managed: false
+    - kind: clairpostgres
+      managed: false
+    - kind: redis
+      managed: false
+    - kind: base
+      managed: true
+      overrides:
+        env:
+          - name: QUAY_DISTRIBUTED_STORAGE_PREFERENCE
+            value: eustorage</pre>
+						</p></div></section></section><section class="section" id="georepl-mixed-storage"><div class="titlepage"><div><div><h3 class="title">3.1.5. Mixed storage for geo-replication</h3></div></div></div><p>
+					Quay geo-replication supports the use of different, and multiple, replication targets for example, using AWS S3 storage on public cloud and using Ceph storage on-prem. This complicates the key requirement of granting access to all storage backends from all Quay pods and cluster nodes. As a result, it is recommended that you:
+				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							Use a VPN to prevent visibility of the internal storage <span class="emphasis"><em>or</em></span>
+						</li><li class="listitem">
+							Use a token pair that only allows access to the specified bucket used by Quay
+						</li></ul></div><p>
+					This will result in the public cloud instance of Quay having access to on-prem storage but the network will be encrypted, protected, and will use ACLs, thereby meeting security requirements.
+				</p><p>
+					If you cannot implement these security measures, it may be preferable to deploy two distinct Quay registries and to use repository mirroring as an alternative to geo-replication.
+				</p></section></section></section><section class="chapter" id="red_hat_quay_as_cache_proxy"><div class="titlepage"><div><div><h1 class="title">Chapter 4. Red Hat Quay as cache proxy</h1></div></div></div><section class="section" id="quay-as-cache-proxy"><div class="titlepage"><div><div><h2 class="title">4.1. Red Hat Quay as a proxy cache for upstream registries</h2></div></div></div><p>
+				With the growing popularity of container development, customers increasingly rely on container images from upstream registries like Docker or Google Cloud Platform to get services up and running. Today, registries have rate limitations and throttling on the number of times users can pull from these registries.
+			</p><p>
+				With this feature, Red Hat Quay will act as a proxy cache to circumvent pull-rate limitations from upstream registries. Adding a cache feature also accelerates pull performance, because images are pulled from the cache rather than upstream dependencies. Cached images are only updated when the upstream image digest differs from the cached image, reducing rate limitations and potential throttling.
+			</p><p>
+				With Red Hat Quay acting as a cache proxy for upstream registries, the following features are available:
+			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+						Configuration of a Quay repository that acts as a cache for a specific upstream registry. This repository can be defined by the Quay config.yaml or the Quay UI.
+					</li><li class="listitem">
+						Leveraging of an organization’s storage quota to limit cache size.
+					</li><li class="listitem">
+						Cache and image streams transparency to client. Images in the proxy cache act similar to other images on Quay, and default behaviors such as security scanner, time machine, etc. are supported.
+					</li><li class="listitem">
+						Audit log that tracks all cache pulls.
+					</li><li class="listitem">
+						Cache dump to eliminate storage consumption.
+					</li><li class="listitem">
+						Robot account creation with Role Based Access Control (RBAC) management.
+					</li><li class="listitem">
+						Metrics to track cache activity and efficiency, for example, hit rate, size, and evictions.
+					</li></ul></div><section class="section" id="proxy-cache-architecture"><div class="titlepage"><div><div><h3 class="title">4.1.1. Proxy cache architecture</h3></div></div></div><p>
+					The following image shows the expected design flow and architecture of the proxy cache feature.
+				</p><p>
+					<span class="inlinemediaobject"><img src="images/cache-proxy-overview.png" alt="Proxy cache overview"/></span>
+				</p><p>
+					When a user pulls an image, for example, <code class="literal">postgres:14</code>, from an upstream repository on Red Hat Quay, the repository checks to see if an image is present. If the image does not exist, a fresh pull is initiated. After being pulled, the image layers are saved to cache and server to the user in parallel. The following image depicts an architectural overview of this scenario:
+				</p><p>
+					<span class="inlinemediaobject"><img src="images/cache-proxy-pulled-image.png" alt="Pulled image overview"/></span>
+				</p><p>
+					If the image in the cache exists, users can rely on Quay’s cache to stay up-to-date with the upstream source so that newer images from the cache are automatically pulled. This happens when tags of the original image have been overwritten in the upstream registry. The following image depicts an architectural overview of what happens when the upstream image and cached version of the image are different:
+				</p><p>
+					<span class="inlinemediaobject"><img src="images/updated-layers-in-cache.png" alt="Updating opposing layers overview"/></span>
+				</p><p>
+					If the upstream image and cached version are the same, no layers are pulled and the cached image is delivered to the user.
+				</p><p>
+					In some cases, users initiate pulls when the upstream registry is down. If this happens with the configured staleness period, the image stored in cache is delivered. If the pull happens after the configured staleness period, the error is propagated to the user. The following image depicts an architectural overview when a pull happens after the configured staleness period:
+				</p><p>
+					image: cache-proxy-staleness-pull.png[Staleness pull overview]
+				</p><p>
+					Quay administrators can leverage the configurable size limit of an organization to limit cache size so that backend storage consumption remains predictable. This is achieved by discarding images from the cache according to the frequency in which an image is used. The following image depicts an architectural overview of this scenario:
+				</p></section><section class="section" id="proxy-cache-limitations"><div class="titlepage"><div><div><h3 class="title">4.1.2. Proxy cache limitations</h3></div></div></div><p>
+					Proxy caching with Red Hat Quay has the following limitations:
+				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							Your proxy cache must have a size limit of greater than, or equal to, the image you want to cache. For example, if your proxy cache organization has a maximum size of 500 MB, and the image a user wants to pull is 700 MB, the image will be cached and will overflow beyond the configured limit.
+						</li><li class="listitem">
+							Cached images must have the same properties that images on a Quay repository must have.
+						</li></ul></div></section></section></section><section class="chapter" id="build_enhancements"><div class="titlepage"><div><div><h1 class="title">Chapter 5. Build Enhancements</h1></div></div></div><section class="section" id="red-hat-quay-builders-enhancement"><div class="titlepage"><div><div><h2 class="title">5.1. Red Hat Quay build enhancements</h2></div></div></div><p>
+				Prior to Red Hat Quay 3.7, Quay ran <code class="literal">podman</code> commands in virtual machines launched by pods. Running builds on virtual platforms requires enabling nested virtualization, which is not featured in Red Hat Enterprise Linux or OpenShift Container Platform. As a result, builds had to run on bare-metal clusters, which is an inefficient use of resources.
+			</p><p>
+				With Red Hat Quay 3.7., the bare-metal constraint required to run builds has been removed by adding an additional build option which does not contain the virtual machine layer. As a result, builds can be run on virtualized platforms. Backwards compatibility to run previous build configurations are also available.
+			</p><section class="section" id="red-hat-quay-builds-architecture"><div class="titlepage"><div><div><h3 class="title">5.1.1. Red Hat Quay enhanced build architecture</h3></div></div></div><p>
+					The preceding image shows the expected design flow and architecture of the enhanced build features:
+				</p><p>
+					<span class="inlinemediaobject"><img src="images/quay-builds-architecture.png" alt="Enhanced Quay builds architecture"/></span>
+				</p><p>
+					With this enhancement, the build manager first creates the <code class="literal">Job Object</code>. Then, the <code class="literal">Job Object</code> then creates a pod using the <code class="literal">quay-builder-image</code>. The <code class="literal">quay-builder-image</code> will contain the <code class="literal">quay-builder binary</code> and the <code class="literal">Podman</code> service. The created pod runs as <code class="literal">unprivileged</code>. The <code class="literal">quay-builder binary</code> then builds the image while communicating status and retrieving build information from the Build Manager.
+				</p></section><section class="section" id="red-hat-quay-build-limitations"><div class="titlepage"><div><div><h3 class="title">5.1.2. Red Hat Quay build limitations</h3></div></div></div><p>
+					Running builds in Red Hat Quay in an unprivileged context might cause some commands that were working under the previous build strategy to fail. Attempts to change the build strategy could potentially cause performance issues and reliability with the build.
+				</p><p>
+					Running builds direclty in a container will not have the same isolation as using virtual machines. Changing the build environment might also caused builds that were previously working to fail.
+				</p></section><section class="section" id="setting-up-builders"><div class="titlepage"><div><div><h3 class="title">5.1.3. Creating a Red Hat Quay builders environment with OpenShift</h3></div></div></div><section class="section" id="openshift_tls_component"><div class="titlepage"><div><div><h4 class="title">5.1.3.1. OpenShift TLS component</h4></div></div></div><p>
+						The Red Hat Quay 3.6 Operator has introduced the <code class="literal">tls</code> component which allows you to control TLS configuration.
+					</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+							Red Hat Quay 3.6 does not support builders when the TLS component is managed by the Operator.
+						</p></div></div><p>
+						If you set <code class="literal">tls</code> to <code class="literal">unmanaged</code>, you supply your own <code class="literal">ssl.cert</code> and <code class="literal">ssl.key</code> files. In this instance, if you want your cluster to support builders, you must add both the Quay route and the builder route name to the SAN list in the cert, or alternatively use a wildcard. To add the builder route, use the following format:
+					</p><pre class="programlisting language-bash">[quayregistry-cr-name]-quay-builder-[ocp-namespace].[ocp-domain-name]:443</pre></section><section class="section" id="red-hat-quay-quota-builders-establishment"><div class="titlepage"><div><div><h4 class="title">5.1.3.2. Using OpenShift Container Platform for Red Hat Quay builders</h4></div></div></div><p>
+						The following procedure describes how you can implement the builders feature in Red Hat Quay.
+					</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+								Builders require SSL certificates. For more information, see <a class="link" href="https://dxp-docs.ext.us-west.aws.prod.paas.redhat.com/documentation/en-us/red_hat_quay/3.6/html-single/deploy_red_hat_quay_for_proof-of-concept_non-production_purposes/index#advanced_red_hat_quay_deployment">Advanced Red Hat Quay deployment</a>.
+							</li><li class="listitem">
+								Prior to running builders, you must modify your AWS S3 storage bucket in the AWS console. See "Modifying your AWS S3 storage bucket" in the following section for the required parameters.
+							</li></ul></div><div class="admonition note"><div class="admonition_header">Procedure</div><div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+									This procedure assumes you already have a cluster provisioned and a Quay Operator running.
+								</li><li class="listitem">
+									This procedure is for setting up a virtual namespace on OpenShift Container Platform.
+								</li></ul></div></div></div><section class="section" id="red-hat-quay-s3-bucket-modify"><div class="titlepage"><div><div><h5 class="title">5.1.3.2.1. Modifying your AWS S3 storage bucket</h5></div></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+									Log in to your AWS console at <a class="link" href="https://s3.console.aws.amazon.com">s3.console.aws.com</a>.
+								</li><li class="listitem">
+									In the search bar, search for <code class="literal">S3</code> and then click <span class="strong strong"><strong>S3</strong></span>.
+								</li><li class="listitem">
+									Click the name of your bucket, for example, <code class="literal">myawsbucket</code>.
+								</li><li class="listitem">
+									Click the <span class="strong strong"><strong>Permissions</strong></span> tab.
+								</li><li class="listitem"><p class="simpara">
+									Under <span class="strong strong"><strong>Cross-origin resource sharing (CORS)</strong></span>, include the following parameters:
+								</p><pre class="programlisting language-yaml">  [
+      {
+          "AllowedHeaders": [
+              "Authorization"
+          ],
+          "AllowedMethods": [
+              "GET"
+          ],
+          "AllowedOrigins": [
+              "*"
+          ],
+          "ExposeHeaders": [],
+          "MaxAgeSeconds": 3000
+      },
+      {
+          "AllowedHeaders": [
+              "Content-Type",
+              "x-amz-acl",
+              "origin"
+          ],
+          "AllowedMethods": [
+              "PUT"
+          ],
+          "AllowedOrigins": [
+              "*"
+          ],
+          "ExposeHeaders": [],
+          "MaxAgeSeconds": 3000
+      }
+  ]</pre></li></ol></div></section><section class="section" id="red-hat-quay-setting-up-builders"><div class="titlepage"><div><div><h5 class="title">5.1.3.2.2. Preparing OpenShift Container Platform for builders</h5></div></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+									Log in to your Red Hat Quay cluster using your specified username and password:
+								</p><pre class="screen">$ oc login -u $KUBE_USER -p $KUBE_PASSWORD $KUBE_API</pre></li><li class="listitem"><p class="simpara">
+									Create a new project where your virtual builders will be run (e.g., <code class="literal">virtual-builders</code>).
+								</p><pre class="screen">$ oc new-project virtual-builders</pre></li><li class="listitem"><p class="simpara">
+									Create a <code class="literal">ServiceAccount</code> in this <code class="literal">Project</code> that will be used to run builds.
+								</p><pre class="screen">$ oc create sa -n virtual-builders quay-builder</pre></li><li class="listitem"><p class="simpara">
+									Provide the created service account with editing permissions so that it can run the build:
+								</p><pre class="screen">$ oc adm policy -n virtual-builders add-role-to-user edit system:serviceaccount:virtual-builders:quay-builder</pre></li><li class="listitem"><p class="simpara">
+									Grant the Quay builder <code class="literal">anyuid scc</code> permissions:
+								</p><pre class="screen">$ oc adm policy -n virtual-builders add-scc-to-user anyuid -z quay-builder</pre><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+										This action requires cluster admin privileges and is required because for unprivileged or rootless builds to work, they must run as the Podman user.
+									</p></div></div></li><li class="listitem"><p class="simpara">
+									Obtain the token for the Quay builder service account:
+								</p><pre class="screen">$ oc sa get-token -n virtual-builders quay-builder</pre></li><li class="listitem"><p class="simpara">
+									Update your config.yaml to include the Quay builder service account:
+								</p><pre class="programlisting language-yaml">  DB_URI: "postgresql://admin:password@postgres:5432/quay"
+  FEATURE_USER_INITIALIZE: true
+  FEATURE_REPO_MIRROR: true
+  REPO_MIRROR_INTERVAL: 20
+  REPO_MIRROR_TLS_VERIFY: false
+  FEATURE_USER_INITIALIZE: true
+  SUPER_USERS:
+    - quay
+    - admin
+  DISTRIBUTED_STORAGE_CONFIG:
+    default:
+      - LocalStorage
+      - storage_path: /datastorage/registry
+  DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
+  DISTRIBUTED_STORAGE_PREFERENCE:
+    - default
+
+  FEATURE_BUILD_SUPPORT: True
+  BUILDMAN_HOSTNAME: &lt;sample_build_route&gt;.org <span id="CO1-1"/><span class="callout">1</span>
+  BUILD_MANAGER:
+    - ephemeral
+    - ALLOWED_WORKER_COUNT: 1
+      ORCHESTRATOR_PREFIX: buildman/production/
+      ORCHESTRATOR:
+        REDIS_HOST: &lt;sample_redis_hostname&gt; <span id="CO1-2"/><span class="callout">2</span>
+        REDIS_PASSWORD: ""
+        REDIS_SSL: false
+        REDIS_SKIP_KEYSPACE_EVENT_SETUP: false
+      EXECUTORS:
+        - EXECUTOR: kubernetesPodman
+          NAME: openshift
+          BUILDER_NAMESPACE: &lt;sample_builder_namespace&gt; <span id="CO1-3"/><span class="callout">3</span>
+          SETUP_TIME: 180
+          MINIMUM_RETRY_THRESHOLD: 1
+          BUILDER_CONTAINER_IMAGE: &lt;sample_builder_container_image&gt; <span id="CO1-4"/><span class="callout">4</span>
+          # Kubernetes resource options
+          K8S_API_SERVER: &lt;sample_k8s_api_server&gt; <span id="CO1-5"/><span class="callout">5</span>
+          K8S_API_TLS_CA: &lt;sample_crt_file&gt;.crt <span id="CO1-6"/><span class="callout">6</span>
+          VOLUME_SIZE: 8G
+          KUBERNETES_DISTRIBUTION: openshift
+          CONTAINER_MEMORY_LIMITS: 300Mi
+          CONTAINER_CPU_LIMITS: 1G <span id="CO1-7"/><span class="callout">7</span>
+          CONTAINER_MEMORY_REQUEST: 300Mi
+          CONTAINER_CPU_REQUEST: 1G
+          NODE_SELECTOR_LABEL_KEY: ""
+          NODE_SELECTOR_LABEL_VALUE: ""
+          SERVICE_ACCOUNT_NAME: &lt;sample_service_account_name&gt;
+          SERVICE_ACCOUNT_TOKEN: &lt;sample_account_token&gt; <span id="CO1-8"/><span class="callout">8</span></pre><div class="calloutlist"><dl class="calloutlist"><dt><a href="#CO1-1"><span class="callout">1</span></a> </dt><dd><div class="para">
+											The build route is obtained by running <code class="literal">oc get route -n</code> with the name of your OpenShift Operators namespace. A port must be provided at the end of the route, for example, and it should follow the following format: <code class="literal">[quayregistry-cr-name]-quay-builder-[ocp-namespace].[ocp-domain-name]:443</code>.
+										</div></dd><dt><a href="#CO1-2"><span class="callout">2</span></a> </dt><dd><div class="para">
+											If your Redis host has a password or SSL certificates, you must update accordingly.
+										</div></dd><dt><a href="#CO1-3"><span class="callout">3</span></a> </dt><dd><div class="para">
+											Set to match the name of your virtual builders namespace, for example, <code class="literal">virtual-builders</code>.
+										</div></dd><dt><a href="#CO1-4"><span class="callout">4</span></a> </dt><dd><div class="para">
+											For early access, the <code class="literal">BUILDER_CONTAINER_IMAGE</code> is currently <code class="literal">quay.io/projectquay/quay-builder:3.7.0-rc.2</code>. Note that this might change during the early access window. In the event this happens, customers will be alerted.
+										</div></dd><dt><a href="#CO1-5"><span class="callout">5</span></a> </dt><dd><div class="para">
+											Obtained by running <code class="literal">oc cluster-info</code>.
+										</div></dd><dt><a href="#CO1-6"><span class="callout">6</span></a> </dt><dd><div class="para">
+											You must manually create and add your custom .crt TLS. For more information, see link:
+										</div></dd><dt><a href="#CO1-7"><span class="callout">7</span></a> </dt><dd><div class="para">
+											For virtual builds, you must ensure that there are enough resources in your cluster.
+										</div></dd><dt><a href="#CO1-8"><span class="callout">8</span></a> </dt><dd><div class="para">
+											Obtained when running <code class="literal">oc create sa</code> in Step 3 of this procedure.
+										</div></dd></dl></div></li></ol></div></section><section class="section" id="red-hat-quay-manual-ssl-for-builders"><div class="titlepage"><div><div><h5 class="title">5.1.3.2.3. Manually adding SSL certificates.</h5></div></div></div><div class="admonition important"><div class="admonition_header">Important</div><div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+										Due to a known issue with the configuration tool, you must manually add your custom SSL certificates to properly run builders. Use the following procedure to manually add custom SSL certificates. For more information creating SSL certificates, see <a class="link" href="https://dxp-docs.ext.us-west.aws.prod.paas.redhat.com/documentation/en-us/red_hat_quay/3.6/html-single/deploy_red_hat_quay_for_proof-of-concept_non-production_purposes/index#advanced_red_hat_quay_deployment">Advanced Red Hat Quay deployment</a>.
+									</li><li class="listitem">
+										In the following steps, your SSL certificates and keys must match the name of your <code class="literal">K8S_API_TLS_CA</code> file name in the config.yaml in the previous procedure. This can be cross-checked by comparing name of your <code class="literal">K8S_API_TLS_CA</code> file name, e.g., <code class="literal">&lt;sample_crt_file&gt;.crt</code> with the same name that appears under the <span class="strong strong"><strong>Data</strong></span> information of the <code class="literal">example-registry-config-bundle</code> <span class="strong strong"><strong>Details</strong></span> page.
+									</li></ul></div></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+									In your Quay Registry yaml, set <code class="literal">kind: tls</code> to <code class="literal">managed: false</code>:
+								</p><pre class="programlisting language-yaml">  - kind: tls
+    managed: false</pre></li><li class="listitem"><p class="simpara">
+									Generate a self-signed SSL certificate with the .crt extension:
+								</p><pre class="screen">$ SECRET=$(oc get sa openshift-apiserver-sa --namespace=openshift-apiserver -o json | jq -r '.secrets[] | select(.name | contains("openshift-apiserver-sa-token"))'.name)\
+oc get secret $SECRET -n openshift-apiserver -o json | jq  '.data."ca.crt"' -r | base64 -d &gt; &lt;sample_crt_file&gt;.crt</pre></li><li class="listitem"><p class="simpara">
+									You can call the domain names of your Quay registry and Builders registry by running the following command:
+								</p><pre class="screen">$ cat domain.conf
+[req]
+default_bits = 2048
+prompt = no
+default_md = sha256
+x509_extensions = v3_req
+distinguished_name = dn
+
+[dn]
+C = US
+ST = NY
+L = New York City
+O = redhat
+emailAddress = example@redhat.com
+CN = test.apps.automagic.quayteam.org
+
+[v3_req]
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = &lt;sample_builders_url&gt;.org
+DNS.2 = &lt;sample_registry_url&gt;.org</pre><p class="simpara">
+									<code class="literal">DNS.1</code> and <code class="literal">DNS.2</code> should match the <code class="literal">BUILDMAN_HOSTNAME</code> and the URL of your registry.
+								</p></li><li class="listitem"><p class="simpara">
+									Generate an ssl.cert and an ssl.key:
+								</p><pre class="screen">$ openssl req -newkey rsa:4096 -x509  -sha256  -days 3650  -nodes  -out ssl.cert  -keyout ssl.key -config domain.conf</pre></li><li class="listitem"><p class="simpara">
+									Create a new .crt secret in your default namespace:
+								</p><pre class="screen">$ oc create secret generic temp-crt --from-file &lt;sample_crt_file&gt;.crt</pre></li><li class="listitem"><p class="simpara">
+									Create a new ssl.key and ssl.cert in your default namespace:
+								</p><pre class="screen">$ oc create secret generic quay-config-ssl --from-file ssl.cert --from-file ssl.key</pre></li><li class="listitem">
+									Manually add the newly-generated .crt file to your Quay configuration using the UI by first going to <span class="strong strong"><strong>Workloads</strong></span> → <span class="strong strong"><strong>Secrets</strong></span> on the OpenShift Container Platform UI.
+								</li><li class="listitem">
+									Search for the name of your temporary secret created above, for example, <code class="literal">temp-crt</code>.
+								</li><li class="listitem">
+									Click the name of your temporary secret, then click the <span class="strong strong"><strong>YAML</strong></span> tab.
+								</li><li class="listitem"><p class="simpara">
+									Under the <code class="literal">data</code> parameter of the <code class="literal">temp-crt</code> yaml, copy the name of your newly-created .crt file and thumbprint, for example:
+								</p><pre class="programlisting language-yaml">  data:
+    &lt;sample_crt_file&gt;.crt: &gt;-
+      xxxxx</pre></li><li class="listitem">
+									Manually add the newly-generated .crt file to your Quay Registry configuration bundle by returning to the <span class="strong strong"><strong>Secrets</strong></span> page on the OpenShift Container Platform UI and searching for the <code class="literal">example-registry-config-bundle</code>.
+								</li><li class="listitem"><p class="simpara">
+									Under the <code class="literal">data</code> parameter of the <code class="literal">example-registry-config-bundle</code> yaml, copy the name of your .crt file and thumbprint, for example:
+								</p><pre class="programlisting language-yaml">  data:
+    &lt;sample_crt_file&gt;.crt: &gt;-
+      xxxxx</pre></li><li class="listitem">
+									Manually add the ssl.key and ssl.cert file to your Quay Registry configuration bundle by returning to the <span class="strong strong"><strong>Secrets</strong></span> page on the OpenShift Container Platform UI and searching for the <code class="literal">example-registry-config-bundle</code>.
+								</li><li class="listitem"><p class="simpara">
+									Under the <code class="literal">data</code> parameter of the <code class="literal">example-registry-config-bundle</code> yaml, copy the the ssl.cert and ssl.key and their thumbprints, for example:
+								</p><pre class="programlisting language-yaml">  data:
+    ssl.cert: &gt;-
+      xxxxx
+    ssl.key: &gt;-
+      xxxxx</pre></li><li class="listitem">
+									Manually add the ssl.key and ssl.cert to your namespace’s (e.g., <code class="literal">virtual-builders</code>) Quay config SSL by returning to the <span class="strong strong"><strong>Secrets</strong></span> page on the OpenShift Container Platform UI and searching for <code class="literal">quay-config-ssl</code>.
+								</li><li class="listitem"><p class="simpara">
+									Under the <code class="literal">data</code> parameter of the <code class="literal">quay-config-ssl</code> yaml, copy the name of your ssl.key, ssl.cert and their respective thumbprints, for example:
+								</p><pre class="programlisting language-yaml">  data:
+    ssl.cert: &gt;-
+      xxxxx
+    ssl.key: &gt;-
+      xxxxx</pre></li><li class="listitem">
+									Click <span class="strong strong"><strong>Save</strong></span>.
+								</li><li class="listitem"><p class="simpara">
+									After reconfiguring your Quay registry, check the status of your pods by running the following command:
+								</p><pre class="screen">$ oc get pods</pre></li></ol></div></section><section class="section" id="red-hat-quay-builders-ui"><div class="titlepage"><div><div><h5 class="title">5.1.3.2.4. Using the UI to create a build trigger</h5></div></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+									Obtain the route to your Quay registry:
+								</p><pre class="screen">$ oc get route</pre><p class="simpara">
+									Example output:
+								</p><pre class="screen">reg-quay-quay.apps.ci-ln-he73nk-82jg7.origin-ci-int-aws.dev.rhcloud.com</pre></li><li class="listitem">
+									Log in to your Quay repository.
+								</li><li class="listitem">
+									Click <span class="strong strong"><strong>Create New Repository</strong></span> and create a new registry, for example, <code class="literal">test</code>.
+								</li><li class="listitem">
+									On the <span class="strong strong"><strong>Repositories</strong></span> page, click <span class="strong strong"><strong>Builds</strong></span> on the left hand pane, and then <span class="strong strong"><strong>Create Build Trigger</strong></span>.
+								</li><li class="listitem">
+									Enter the HTTPS or SSH style URL used to clone your Git repository, then click <span class="strong strong"><strong>Continue</strong></span>.
+								</li><li class="listitem">
+									Check <span class="strong strong"><strong>Tag manifest with the branch or tag name</strong></span> and then click <span class="strong strong"><strong>Continue</strong></span>.
+								</li><li class="listitem">
+									Enter the location of the Dockerfile to build when the trigger is invoked, for example, <code class="literal">/Dockerfile</code> and click <span class="strong strong"><strong>Continue</strong></span>.
+								</li><li class="listitem">
+									Enter the location of the context for the Docker build, for example, <code class="literal">/</code>, and click <span class="strong strong"><strong>Continue</strong></span>.
+								</li><li class="listitem">
+									If warranted, create a Robot Account. Otherwise, click <span class="strong strong"><strong>Continue</strong></span>.
+								</li><li class="listitem">
+									Click <span class="strong strong"><strong>Continue</strong></span> to verify the parameters.
+								</li><li class="listitem">
+									On the <span class="strong strong"><strong>Builds</strong></span> page, click <span class="strong strong"><strong>Options</strong></span> of your Trigger Name, and then click <span class="strong strong"><strong>Run Trigger Now</strong></span>.
+								</li><li class="listitem">
+									Enter the commit of the Git repository you are cloning and click <span class="strong strong"><strong>Run Build</strong></span>.
+								</li><li class="listitem">
+									You can check the status of your build by clicking the commit in the <span class="strong strong"><strong>Build History</strong></span> page, or by running <code class="literal">oc get pods -n virtual-builders</code>.
+								</li><li class="listitem"><p class="simpara">
+									When the build is finished, you can check the status of the tag under <span class="strong strong"><strong>Tags</strong></span> on the left hand pane.
+								</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+										With early access, full build logs and timestamps of builds are currently unavailable.
+									</p></div></div></li></ol></div></section></section></section></section></section><div><div xml:lang="en-US" class="legalnotice" id="idm45556229429904"><h1 class="legalnotice">Legal Notice</h1><div class="para">
+		Copyright <span class="trademark"/>© 2022 Red Hat, Inc.
+	</div><div class="para">
+		The text of and illustrations in this document are licensed by Red Hat under a Creative Commons Attribution–Share Alike 3.0 Unported license ("CC-BY-SA"). An explanation of CC-BY-SA is available at <a class="uri" href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a>. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
+	</div><div class="para">
+		Red Hat, as the licensor of this document, waives the right to enforce, and agrees not to assert, Section 4d of CC-BY-SA to the fullest extent permitted by applicable law.
+	</div><div class="para">
+		Red Hat, Red Hat Enterprise Linux, the Shadowman logo, the Red Hat logo, JBoss, OpenShift, Fedora, the Infinity logo, and RHCE are trademarks of Red Hat, Inc., registered in the United States and other countries.
+	</div><div class="para">
+		<span class="trademark">Linux</span>® is the registered trademark of Linus Torvalds in the United States and other countries.
+	</div><div class="para">
+		<span class="trademark">Java</span>® is a registered trademark of Oracle and/or its affiliates.
+	</div><div class="para">
+		<span class="trademark">XFS</span>® is a trademark of Silicon Graphics International Corp. or its subsidiaries in the United States and/or other countries.
+	</div><div class="para">
+		<span class="trademark">MySQL</span>® is a registered trademark of MySQL AB in the United States, the European Union and other countries.
+	</div><div class="para">
+		<span class="trademark">Node.js</span>® is an official trademark of Joyent. Red Hat is not formally related to or endorsed by the official Joyent Node.js open source or commercial project.
+	</div><div class="para">
+		The <span class="trademark">OpenStack</span>® Word Mark and OpenStack logo are either registered trademarks/service marks or trademarks/service marks of the OpenStack Foundation, in the United States and other countries and are used with the OpenStack Foundation's permission. We are not affiliated with, endorsed or sponsored by the OpenStack Foundation, or the OpenStack community.
+	</div><div class="para">
+		All other trademarks are the property of their respective owners.
+	</div></div></div></div></div></div><script type="text/javascript">
+                        jQuery(document).ready(function() {
+                            initSwitchery();
+                            jQuery('pre[class*="language-"]').each(function(i, block){hljs.highlightBlock(block);});
+                        });
+                    </script></body></html>
