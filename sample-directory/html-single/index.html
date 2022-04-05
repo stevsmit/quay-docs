@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Manage Red Hat Quay</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Manage Red Hat Quay"/><link rel="next" href="#idm45728308659248" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm45728392462992"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.6</span></div><div><h1 class="title">Manage Red Hat Quay</h1></div><div><h2 class="subtitle">Manage Red Hat Quay</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm45728305543824">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
+<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Manage Red Hat Quay</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Manage Red Hat Quay"/><link rel="next" href="#idm46045501534800" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm46045502353056"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.6</span></div><div><h1 class="title">Manage Red Hat Quay</h1></div><div><h2 class="subtitle">Manage Red Hat Quay</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm46045499375568">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
 				Manage Red Hat Quay
-			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm45728308659248">Preface</a></span></li><li><span class="chapter"><a href="#advanced-quay-configuration">1. Advanced Red Hat Quay configuration</a></span><ul><li><span class="section"><a href="#using-the-config-tool">1.1. Using Red Hat Quay Config Tool to modify Red Hat Quay</a></span><ul><li><span class="section"><a href="#running_the_config_tool_from_the_red_hat_quay_operator">1.1.1. Running the Config Tool from the Red Hat Quay Operator</a></span></li><li><span class="section"><a href="#running_the_config_tool_from_the_command_line">1.1.2. Running the Config Tool from the command line</a></span></li></ul></li><li><span class="section"><a href="#overview-advanced-config">1.2. Using the API to modify Red Hat Quay</a></span></li><li><span class="section"><a href="#editing_the_literal_config_yaml_literal_file_to_modify_red_hat_quay">1.3. Editing the <code class="literal">config.yaml</code> file to modify Red Hat Quay</a></span><ul><li><span class="section"><a href="#add_name_and_company_to_red_hat_quay_sign_in">1.3.1. Add name and company to Red Hat Quay sign-in</a></span></li><li><span class="section"><a href="#disable_tls_protocols">1.3.2. Disable TLS Protocols</a></span></li><li><span class="section"><a href="#rate_limit_api_calls">1.3.3. Rate limit API calls</a></span></li><li><span class="section"><a href="#adjust_database_connection_pooling">1.3.4. Adjust database connection pooling</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#using_the_configuration_api">2. Using the configuration API</a></span><ul><li><span class="section"><a href="#retrieving_the_default_configuration">2.1. Retrieving the default configuration</a></span></li><li><span class="section"><a href="#retrieving_the_current_configuration">2.2. Retrieving the current configuration</a></span></li><li><span class="section"><a href="#validating_configuration_using_the_api">2.3. Validating configuration using the API</a></span></li><li><span class="section"><a href="#determining_the_required_fields">2.4. Determining the required fields</a></span></li></ul></li><li><span class="chapter"><a href="#release-notifications">3. Getting Red Hat Quay release notifications</a></span></li><li><span class="chapter"><a href="#using-ssl-to-protect-quay">4. Using SSL to protect connections to Red Hat Quay</a></span><ul><li><span class="section"><a href="#introduction_to_using_ssl">4.1. Introduction to using SSL</a></span></li><li><span class="section"><a href="#create-a-ca-and-sign-a-certificate">4.2. Create a Certificate Authority and sign a certificate</a></span><ul><li><span class="section"><a href="#create_a_certificate_authority">4.2.1. Create a Certificate Authority</a></span></li><li><span class="section"><a href="#sign_a_certificate">4.2.2. Sign a certificate</a></span></li></ul></li><li><span class="section"><a href="#configuring_ssl_using_the_command_line">4.3. Configuring SSL using the command line</a></span></li><li><span class="section"><a href="#configuring_ssl_using_the_ui">4.4. Configuring SSL using the UI</a></span></li><li><span class="section"><a href="#testing_ssl_configuration_using_the_command_line">4.5. Testing SSL configuration using the command line</a></span></li><li><span class="section"><a href="#testing_ssl_configuration_using_the_browser">4.6. Testing SSL configuration using the browser</a></span></li><li><span class="section"><a href="#configuring_podman_to_trust_the_certificate_authority">4.7. Configuring podman to trust the Certificate Authority</a></span></li><li><span class="section"><a href="#configuring_the_system_to_trust_the_certificate_authority">4.8. Configuring the system to trust the certificate authority</a></span></li></ul></li><li><span class="chapter"><a href="#config-custom-ssl-certs-manual">5. Adding TLS Certificates to the Red Hat Quay Container</a></span><ul><li><span class="section"><a href="#add-certificates-to-quay-container">5.1. Add TLS certificates to Red Hat Quay</a></span></li><li><span class="section"><a href="#config-custom-ssl-cert-kubernetes">5.2. Add certs when deployed on Kubernetes</a></span></li></ul></li><li><span class="chapter"><a href="#proc_manage-log-storage">6. Configuring action log storage for Elasticsearch</a></span></li><li><span class="chapter"><a href="#clair-intro2">7. Clair Security Scanning</a></span><ul><li><span class="section"><a href="#clair-openshift">7.1. Setting Up Clair on a Red Hat Quay OpenShift deployment</a></span><ul><li><span class="section"><a href="#deploying_via_the_quay_operator">7.1.1. Deploying Via the Quay Operator</a></span></li><li><span class="section"><a href="#clair-openshift-manual">7.1.2. Manually Deploying Clair</a></span></li></ul></li><li><span class="section"><a href="#clair-standalone">7.2. Setting up Clair on a non-OpenShift Red Hat Quay deployment</a></span></li><li><span class="section"><a href="#clair-using">7.3. Using Clair</a></span></li><li><span class="section"><a href="#clair-cve">7.4. CVE ratings from the National Vulnerability Database</a></span></li><li><span class="section"><a href="#clair-disconnected">7.5. Configuring Clair for Disconnected Environments</a></span></li><li><span class="section"><a href="#clair-updater-urls">7.6. Clair updater URLs</a></span></li><li><span class="section"><a href="#clair-add-info">7.7. Additional Information</a></span></li></ul></li><li><span class="chapter"><a href="#container-security-operator-setup">8. Scan pod images with the Container Security Operator</a></span><ul><li><span class="section"><a href="#run_the_cso_in_openshift">8.1. Run the CSO in OpenShift</a></span></li><li><span class="section"><a href="#query_image_vulnerabilities_from_the_cli">8.2. Query image vulnerabilities from the CLI</a></span></li></ul></li><li><span class="chapter"><a href="#quay-bridge-operator">9. Integrate Red Hat Quay into OpenShift with the Bridge Operator</a></span><ul><li><span class="section"><a href="#running_the_quay_bridge_operator">9.1. Running the Quay Bridge Operator</a></span><ul><li><span class="section"><a href="#prerequisites">9.1.1. Prerequisites</a></span></li><li><span class="section"><a href="#setting_up_and_configuring_openshift_and_red_hat_quay">9.1.2. Setting up and configuring OpenShift and Red Hat Quay</a></span></li><li><span class="section"><a href="#red_hat_quay_setup">9.1.3. Red Hat Quay setup</a></span></li><li><span class="section"><a href="#openshift_setup">9.1.4. OpenShift Setup</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#repo-mirroring-in-red-hat-quay">10. Repository mirroring</a></span><ul><li><span class="section"><a href="#mirroring-intro">10.1. Repository mirroring</a></span></li><li><span class="section"><a href="#mirroring-versus-georepl">10.2. Repository mirroring versus geo-replication</a></span></li><li><span class="section"><a href="#mirroring-using">10.3. Using repository mirroring</a></span></li><li><span class="section"><a href="#mirroring_configuration_ui">10.4. Mirroring configuration UI</a></span></li><li><span class="section"><a href="#config-fields-mirroring">10.5. Mirroring configuration fields</a></span></li><li><span class="section"><a href="#mirroring-worker">10.6. Mirroring worker</a></span></li><li><span class="section"><a href="#mirroring-creating-repo">10.7. Creating a mirrored repository</a></span><ul><li><span class="section"><a href="#repository_mirroring_settings">10.7.1. Repository mirroring settings</a></span></li><li><span class="section"><a href="#advanced_settings">10.7.2. Advanced settings</a></span></li><li><span class="section"><a href="#synchronize_now">10.7.3. Synchronize now</a></span></li></ul></li><li><span class="section"><a href="#mirroring-events">10.8. Event notifications for mirroring</a></span></li><li><span class="section"><a href="#mirroring-tag-patterns">10.9. Mirroring tag patterns</a></span><ul><li><span class="section"><a href="#pattern_syntax">10.9.1. Pattern syntax</a></span></li><li><span class="section"><a href="#example_tag_patterns">10.9.2. Example tag patterns</a></span></li></ul></li><li><span class="section"><a href="#mirroring-working-with">10.10. Working with mirrored repositories</a></span></li><li><span class="section"><a href="#mirroring-recommend">10.11. Repository mirroring recommendations</a></span></li></ul></li><li><span class="chapter"><a href="#ldap-authentication-setup-for-quay-enterprise">11. LDAP Authentication Setup for Red Hat Quay</a></span><ul><li><span class="section"><a href="#considerations_prior_to_enabling_ldap">11.1. Considerations prior to enabling LDAP</a></span><ul><li><span class="section"><a href="#considerations-for-existing-quay-deployments">11.1.1. Existing Quay deployments</a></span></li><li><span class="section"><a href="#considerations-for-manual-user-creation">11.1.2. Manual User Creation and LDAP authentication</a></span></li></ul></li><li><span class="section"><a href="#setup-ldap-configuration">11.2. Set Up LDAP Configuration</a></span><ul><li><span class="section"><a href="#full_ldap_uri">11.2.1. Full LDAP URI</a></span></li><li><span class="section"><a href="#team_synchronization">11.2.2. Team Synchronization</a></span></li><li><span class="section"><a href="#base_and_relative_distinguished_names">11.2.3. Base and Relative Distinguished Names</a></span></li><li><span class="section"><a href="#additional_user_filters">11.2.4. Additional User Filters</a></span></li><li><span class="section"><a href="#administrator_dn">11.2.5. Administrator DN</a></span></li><li><span class="section"><a href="#uid_and_mail_attributes">11.2.6. UID and Mail attributes</a></span></li><li><span class="section"><a href="#validation">11.2.7. Validation</a></span></li></ul></li><li><span class="section"><a href="#common-issues">11.3. Common Issues</a></span></li><li><span class="section"><a href="#configure-ldap-superuser">11.4. Configure an LDAP user as superuser</a></span></li></ul></li><li><span class="chapter"><a href="#prometheus-metrics-under-quay-enterprise">12. Prometheus and Grafana metrics under Red Hat Quay</a></span><ul><li><span class="section"><a href="#exposing-the-prometheus-endpoint">12.1. Exposing the Prometheus endpoint</a></span><ul><li><span class="section"><a href="#standalone_red_hat_quay">12.1.1. Standalone Red Hat Quay</a></span></li><li><span class="section"><a href="#red_hat_quay_operator">12.1.2. Red Hat Quay Operator</a></span></li><li><span class="section"><a href="#setting-up-prometheus-to-consume-metrics">12.1.3. Setting up Prometheus to consume metrics</a></span></li><li><span class="section"><a href="#dns-configuration-under-kubernetes">12.1.4. DNS configuration under Kubernetes</a></span></li><li><span class="section"><a href="#dns-configuration-for-a-manual-cluster">12.1.5. DNS configuration for a manual cluster</a></span></li></ul></li><li><span class="section"><a href="#metrics-intro">12.2. Introduction to metrics</a></span><ul><li><span class="section"><a href="#metrics-general-registry-stats">12.2.1. General registry statistics</a></span></li><li><span class="section"><a href="#metrics-queue-items">12.2.2. Queue items</a></span></li><li><span class="section"><a href="#metrics-garbage-collection">12.2.3. Garbage collection metrics</a></span></li><li><span class="section"><a href="#metrics-image-push-pull">12.2.4. Image push / pull metrics</a></span></li><li><span class="section"><a href="#metrics-authentication">12.2.5. Authentication metrics</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#red-hat-quay-quota-management-and-enforcement">13. Red Hat Quay quota management and enforcement</a></span><ul><li><span class="section"><a href="#quota-management-arch">13.1. Quota management architecture</a></span></li><li><span class="section"><a href="#quota-management-limitations">13.2. Quota management limitations</a></span></li></ul></li><li><span class="chapter"><a href="#georepl-intro">14. Geo-replication</a></span><ul><li><span class="section"><a href="#geo_replication_features">14.1. Geo-replication features</a></span></li><li><span class="section"><a href="#georepl-prereqs">14.2. Geo-replication requirements and constraints</a></span></li><li><span class="section"><a href="#georepl-arch">14.3. Geo-replication architecture</a></span></li><li><span class="section"><a href="#config-ui-storage-georepl">14.4. Enable storage replication</a></span><ul><li><span class="section"><a href="#georepl-deploy">14.4.1. Run Red Hat Quay with storage preferences</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#quay-troubleshooting-guides">15. Red Hat Quay Troubleshooting</a></span></li><li><span class="chapter"><a href="#quay-schema">16. Schema for Red Hat Quay configuration</a></span></li></ul></div><section class="preface" id="idm45728308659248"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div><p>
+			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm46045501534800">Preface</a></span></li><li><span class="chapter"><a href="#advanced-quay-configuration">1. Advanced Red Hat Quay configuration</a></span><ul><li><span class="section"><a href="#using-the-config-tool">1.1. Using Red Hat Quay Config Tool to modify Red Hat Quay</a></span><ul><li><span class="section"><a href="#running_the_config_tool_from_the_red_hat_quay_operator">1.1.1. Running the Config Tool from the Red Hat Quay Operator</a></span></li><li><span class="section"><a href="#running_the_config_tool_from_the_command_line">1.1.2. Running the Config Tool from the command line</a></span></li></ul></li><li><span class="section"><a href="#overview-advanced-config">1.2. Using the API to modify Red Hat Quay</a></span></li><li><span class="section"><a href="#editing_the_literal_config_yaml_literal_file_to_modify_red_hat_quay">1.3. Editing the <code class="literal">config.yaml</code> file to modify Red Hat Quay</a></span><ul><li><span class="section"><a href="#add_name_and_company_to_red_hat_quay_sign_in">1.3.1. Add name and company to Red Hat Quay sign-in</a></span></li><li><span class="section"><a href="#disable_tls_protocols">1.3.2. Disable TLS Protocols</a></span></li><li><span class="section"><a href="#rate_limit_api_calls">1.3.3. Rate limit API calls</a></span></li><li><span class="section"><a href="#adjust_database_connection_pooling">1.3.4. Adjust database connection pooling</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#using_the_configuration_api">2. Using the configuration API</a></span><ul><li><span class="section"><a href="#retrieving_the_default_configuration">2.1. Retrieving the default configuration</a></span></li><li><span class="section"><a href="#retrieving_the_current_configuration">2.2. Retrieving the current configuration</a></span></li><li><span class="section"><a href="#validating_configuration_using_the_api">2.3. Validating configuration using the API</a></span></li><li><span class="section"><a href="#determining_the_required_fields">2.4. Determining the required fields</a></span></li></ul></li><li><span class="chapter"><a href="#release-notifications">3. Getting Red Hat Quay release notifications</a></span></li><li><span class="chapter"><a href="#using-ssl-to-protect-quay">4. Using SSL to protect connections to Red Hat Quay</a></span><ul><li><span class="section"><a href="#introduction_to_using_ssl">4.1. Introduction to using SSL</a></span></li><li><span class="section"><a href="#create-a-ca-and-sign-a-certificate">4.2. Create a Certificate Authority and sign a certificate</a></span><ul><li><span class="section"><a href="#create_a_certificate_authority">4.2.1. Create a Certificate Authority</a></span></li><li><span class="section"><a href="#sign_a_certificate">4.2.2. Sign a certificate</a></span></li></ul></li><li><span class="section"><a href="#configuring_ssl_using_the_command_line">4.3. Configuring SSL using the command line</a></span></li><li><span class="section"><a href="#configuring_ssl_using_the_ui">4.4. Configuring SSL using the UI</a></span></li><li><span class="section"><a href="#testing_ssl_configuration_using_the_command_line">4.5. Testing SSL configuration using the command line</a></span></li><li><span class="section"><a href="#testing_ssl_configuration_using_the_browser">4.6. Testing SSL configuration using the browser</a></span></li><li><span class="section"><a href="#configuring_podman_to_trust_the_certificate_authority">4.7. Configuring podman to trust the Certificate Authority</a></span></li><li><span class="section"><a href="#configuring_the_system_to_trust_the_certificate_authority">4.8. Configuring the system to trust the certificate authority</a></span></li></ul></li><li><span class="chapter"><a href="#config-custom-ssl-certs-manual">5. Adding TLS Certificates to the Red Hat Quay Container</a></span><ul><li><span class="section"><a href="#add-certificates-to-quay-container">5.1. Add TLS certificates to Red Hat Quay</a></span></li><li><span class="section"><a href="#config-custom-ssl-cert-kubernetes">5.2. Add certs when deployed on Kubernetes</a></span></li></ul></li><li><span class="chapter"><a href="#proc_manage-log-storage">6. Configuring action log storage for Elasticsearch</a></span></li><li><span class="chapter"><a href="#clair-intro2">7. Clair Security Scanning</a></span><ul><li><span class="section"><a href="#clair-openshift">7.1. Setting Up Clair on a Red Hat Quay OpenShift deployment</a></span><ul><li><span class="section"><a href="#deploying_via_the_quay_operator">7.1.1. Deploying Via the Quay Operator</a></span></li><li><span class="section"><a href="#clair-openshift-manual">7.1.2. Manually Deploying Clair</a></span></li></ul></li><li><span class="section"><a href="#clair-standalone">7.2. Setting up Clair on a non-OpenShift Red Hat Quay deployment</a></span></li><li><span class="section"><a href="#clair-using">7.3. Using Clair</a></span></li><li><span class="section"><a href="#clair-cve">7.4. CVE ratings from the National Vulnerability Database</a></span></li><li><span class="section"><a href="#clair-disconnected">7.5. Configuring Clair for Disconnected Environments</a></span></li><li><span class="section"><a href="#clair-updater-urls">7.6. Clair updater URLs</a></span></li><li><span class="section"><a href="#clair-add-info">7.7. Additional Information</a></span></li></ul></li><li><span class="chapter"><a href="#container-security-operator-setup">8. Scan pod images with the Container Security Operator</a></span><ul><li><span class="section"><a href="#run_the_cso_in_openshift">8.1. Run the CSO in OpenShift</a></span></li><li><span class="section"><a href="#query_image_vulnerabilities_from_the_cli">8.2. Query image vulnerabilities from the CLI</a></span></li></ul></li><li><span class="chapter"><a href="#quay-bridge-operator">9. Integrate Red Hat Quay into OpenShift with the Bridge Operator</a></span><ul><li><span class="section"><a href="#running_the_quay_bridge_operator">9.1. Running the Quay Bridge Operator</a></span><ul><li><span class="section"><a href="#prerequisites">9.1.1. Prerequisites</a></span></li><li><span class="section"><a href="#setting_up_and_configuring_openshift_and_red_hat_quay">9.1.2. Setting up and configuring OpenShift and Red Hat Quay</a></span></li><li><span class="section"><a href="#red_hat_quay_setup">9.1.3. Red Hat Quay setup</a></span></li><li><span class="section"><a href="#openshift_setup">9.1.4. OpenShift Setup</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#repo-mirroring-in-red-hat-quay">10. Repository mirroring</a></span><ul><li><span class="section"><a href="#mirroring-intro">10.1. Repository mirroring</a></span></li><li><span class="section"><a href="#mirroring-versus-georepl">10.2. Repository mirroring versus geo-replication</a></span></li><li><span class="section"><a href="#mirroring-using">10.3. Using repository mirroring</a></span></li><li><span class="section"><a href="#mirroring_configuration_ui">10.4. Mirroring configuration UI</a></span></li><li><span class="section"><a href="#config-fields-mirroring">10.5. Mirroring configuration fields</a></span></li><li><span class="section"><a href="#mirroring-worker">10.6. Mirroring worker</a></span></li><li><span class="section"><a href="#mirroring-creating-repo">10.7. Creating a mirrored repository</a></span><ul><li><span class="section"><a href="#repository_mirroring_settings">10.7.1. Repository mirroring settings</a></span></li><li><span class="section"><a href="#advanced_settings">10.7.2. Advanced settings</a></span></li><li><span class="section"><a href="#synchronize_now">10.7.3. Synchronize now</a></span></li></ul></li><li><span class="section"><a href="#mirroring-events">10.8. Event notifications for mirroring</a></span></li><li><span class="section"><a href="#mirroring-tag-patterns">10.9. Mirroring tag patterns</a></span><ul><li><span class="section"><a href="#pattern_syntax">10.9.1. Pattern syntax</a></span></li><li><span class="section"><a href="#example_tag_patterns">10.9.2. Example tag patterns</a></span></li></ul></li><li><span class="section"><a href="#mirroring-working-with">10.10. Working with mirrored repositories</a></span></li><li><span class="section"><a href="#mirroring-recommend">10.11. Repository mirroring recommendations</a></span></li></ul></li><li><span class="chapter"><a href="#back-up-and-restore-red-hat-quay">11. Back up and recover Red Hat Quay</a></span><ul><li><span class="section"><a href="#backing_up_red_hat_quay">11.1. Backing up Red Hat Quay</a></span></li><li><span class="section"><a href="#restoring_red_hat_quay_when_the_operator_manages_the_database">11.2. Restoring Red Hat Quay when the Operator manages the database</a></span></li></ul></li><li><span class="chapter"><a href="#ldap-authentication-setup-for-quay-enterprise">12. LDAP Authentication Setup for Red Hat Quay</a></span><ul><li><span class="section"><a href="#considerations_prior_to_enabling_ldap">12.1. Considerations prior to enabling LDAP</a></span><ul><li><span class="section"><a href="#considerations-for-existing-quay-deployments">12.1.1. Existing Quay deployments</a></span></li><li><span class="section"><a href="#considerations-for-manual-user-creation">12.1.2. Manual User Creation and LDAP authentication</a></span></li></ul></li><li><span class="section"><a href="#setup-ldap-configuration">12.2. Set Up LDAP Configuration</a></span><ul><li><span class="section"><a href="#full_ldap_uri">12.2.1. Full LDAP URI</a></span></li><li><span class="section"><a href="#team_synchronization">12.2.2. Team Synchronization</a></span></li><li><span class="section"><a href="#base_and_relative_distinguished_names">12.2.3. Base and Relative Distinguished Names</a></span></li><li><span class="section"><a href="#additional_user_filters">12.2.4. Additional User Filters</a></span></li><li><span class="section"><a href="#administrator_dn">12.2.5. Administrator DN</a></span></li><li><span class="section"><a href="#uid_and_mail_attributes">12.2.6. UID and Mail attributes</a></span></li><li><span class="section"><a href="#validation">12.2.7. Validation</a></span></li></ul></li><li><span class="section"><a href="#common-issues">12.3. Common Issues</a></span></li><li><span class="section"><a href="#configure-ldap-superuser">12.4. Configure an LDAP user as superuser</a></span></li></ul></li><li><span class="chapter"><a href="#prometheus-metrics-under-quay-enterprise">13. Prometheus and Grafana metrics under Red Hat Quay</a></span><ul><li><span class="section"><a href="#exposing-the-prometheus-endpoint">13.1. Exposing the Prometheus endpoint</a></span><ul><li><span class="section"><a href="#setting-up-prometheus-to-consume-metrics">13.1.1. Setting up Prometheus to consume metrics</a></span></li><li><span class="section"><a href="#dns-configuration-under-kubernetes">13.1.2. DNS configuration under Kubernetes</a></span></li><li><span class="section"><a href="#dns-configuration-for-a-manual-cluster">13.1.3. DNS configuration for a manual cluster</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#georepl-intro">14. Geo-replication</a></span><ul><li><span class="section"><a href="#geo_replication_features">14.1. Geo-replication features</a></span></li><li><span class="section"><a href="#georepl-prereqs">14.2. Geo-replication requirements and constraints</a></span></li><li><span class="section"><a href="#georepl-arch">14.3. Geo-replication architecture</a></span></li><li><span class="section"><a href="#config-ui-storage-georepl">14.4. Enable storage replication</a></span><ul><li><span class="section"><a href="#georepl-deploy">14.4.1. Run Red Hat Quay with storage preferences</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#quay-troubleshooting-guides">15. Red Hat Quay Troubleshooting</a></span></li><li><span class="chapter"><a href="#quay-schema">16. Schema for Red Hat Quay configuration</a></span></li></ul></div><section class="preface" id="idm46045501534800"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div><p>
 			Once you have deployed a Red Hat Quay registry, there are many ways you can further configure and manage that deployment. Topics covered here include:
 		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 					Advanced Red Hat Quay configuration
@@ -72,7 +72,7 @@
 							<span class="strong strong"><strong>Start quay in config mode</strong></span>: On the first <code class="literal">quay</code> node run the following, replacing <code class="literal">my-secret-password</code> with your password. If you would like to modify an existing config bundle, you can simply mount your configuration directory into the <code class="literal">Quay</code> container as you would in registry mode.
 						</p><pre class="literallayout"># podman run --rm -it --name quay_config -p 8080:8080 \
     -v path/to/config-bundle:/conf/stack \
-    registry.redhat.io/quay/quay-rhel8:v3.6.3 config my-secret-password</pre></li><li class="listitem">
+    registry.redhat.io/quay/quay-rhel8:v3.6.2 config my-secret-password</pre></li><li class="listitem">
 							<span class="strong strong"><strong>Open browser</strong></span>: When the quay configuration tool starts up, open a browser to the URL and port 8080 of the system you are running the configuration tool on (for example <a class="link" href="https://myquay.example.com:8080">https://myquay.example.com:8080</a>). You are prompted for a username and password.
 						</li></ol></div><p>
 					At this point, you can begin modifying your Red Hat Quay cluster as described earlier.
@@ -183,51 +183,51 @@ WORKER_CONNECTION_COUNT=n</pre><div class="informalexample"><p>
 										environment variable: WORKER_COUNT_SECSCAN
 									</li></ul></div></li></ul></div></section><section class="section" id="environment_variables"><div class="titlepage"><div><div><h4 class="title">1.3.4.5. Environment variables</h4></div></div></div><p>
 						Red Hat Quay allows overriding default behavior using environment variables. This table lists and describes each variable and the values they can expect.
-					</p><div class="table" id="idm45728308783472"><p class="title"><strong>Table 1.1. Worker count environment variables</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 33%; " class="col_1"/><col style="width: 33%; " class="col_2"/><col style="width: 33%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="top" id="idm45728301707376" scope="col">Variable</th><th align="left" valign="top" id="idm45728301706288" scope="col">Description</th><th align="left" valign="top" id="idm45728301705200" scope="col">Values</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45728301707376">
+					</p><div class="table" id="idm46045498087840"><p class="title"><strong>Table 1.1. Worker count environment variables</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 33%; " class="col_1"/><col style="width: 33%; " class="col_2"/><col style="width: 33%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="top" id="idm46045502260704" scope="col">Variable</th><th align="left" valign="top" id="idm46045502259616" scope="col">Description</th><th align="left" valign="top" id="idm46045502258528" scope="col">Values</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm46045502260704">
 									<p>
 										WORKER_COUNT_REGISTRY
 									</p>
-									</td><td align="left" valign="top" headers="idm45728301706288">
+									</td><td align="left" valign="top" headers="idm46045502259616">
 									<p>
 										Specifies the number of processes to handle Registry requests within the <code class="literal">Quay</code> container.
 									</p>
-									</td><td align="left" valign="top" headers="idm45728301705200">
+									</td><td align="left" valign="top" headers="idm46045502258528">
 									<p>
 										Integer between 8 and 64
 									</p>
-									</td></tr><tr><td align="left" valign="top" headers="idm45728301707376">
+									</td></tr><tr><td align="left" valign="top" headers="idm46045502260704">
 									<p>
 										WORKER_COUNT_WEB
 									</p>
-									</td><td align="left" valign="top" headers="idm45728301706288">
+									</td><td align="left" valign="top" headers="idm46045502259616">
 									<p>
 										Specifies the number of processes to handle UI/Web requests within the container.
 									</p>
-									</td><td align="left" valign="top" headers="idm45728301705200">
+									</td><td align="left" valign="top" headers="idm46045502258528">
 									<p>
 										Integer between 2 and 32
 									</p>
-									</td></tr><tr><td align="left" valign="top" headers="idm45728301707376">
+									</td></tr><tr><td align="left" valign="top" headers="idm46045502260704">
 									<p>
 										WORKER_COUNT_SECSCAN
 									</p>
-									</td><td align="left" valign="top" headers="idm45728301706288">
+									</td><td align="left" valign="top" headers="idm46045502259616">
 									<p>
 										Specifies the number of processes to handle Security Scanning (e.g. Clair) integration within the container.
 									</p>
-									</td><td align="left" valign="top" headers="idm45728301705200">
+									</td><td align="left" valign="top" headers="idm46045502258528">
 									<p>
 										Integer between 2 and 4
 									</p>
-									</td></tr><tr><td align="left" valign="top" headers="idm45728301707376">
+									</td></tr><tr><td align="left" valign="top" headers="idm46045502260704">
 									<p>
 										DB_CONNECTION_POOLING
 									</p>
-									</td><td align="left" valign="top" headers="idm45728301706288">
+									</td><td align="left" valign="top" headers="idm46045502259616">
 									<p>
 										Toggle database connection pooling. In 3.4, it is disabled by default.
 									</p>
-									</td><td align="left" valign="top" headers="idm45728301705200">
+									</td><td align="left" valign="top" headers="idm46045502258528">
 									<p>
 										"true" or "false"
 									</p>
@@ -241,7 +241,7 @@ WORKER_CONNECTION_COUNT=n</pre><div class="informalexample"><p>
 				If you are running the configuration tool for the first time, and do not have an existing configuration, you can retrieve the default configuration. Start the container in config mode:
 			</p><pre class="literallayout">$ sudo podman run --rm -it --name quay_config \
   -p 8080:8080 \
-  registry.redhat.io/quay/quay-rhel8:v3.6.3 config secret</pre><p>
+  registry.redhat.io/quay/quay-rhel8:v3.6.2 config secret</pre><p>
 				Use the <code class="literal">config</code> endpoint of the configuration API to get the default:
 			</p><pre class="literallayout">$ curl -X GET -u quayconfig:secret http://quay-server:8080/api/v1/config  | jq</pre><p>
 				The value returned is the default configuration in JSON format:
@@ -266,7 +266,7 @@ WORKER_CONNECTION_COUNT=n</pre><div class="informalexample"><p>
 			</p><pre class="literallayout">$ sudo podman run --rm -it --name quay_config \
   -p 8080:8080 \
   -v $QUAY/config:/conf/stack:Z \
-  registry.redhat.io/quay/quay-rhel8:v3.6.3 config secret</pre><p>
+  registry.redhat.io/quay/quay-rhel8:v3.6.2 config secret</pre><p>
 				Use the <code class="literal">config</code> endpoint of the API to get the current configuration:
 			</p><pre class="literallayout">$ curl -X GET -u quayconfig:secret http://quay-server:8080/api/v1/config  | jq</pre><p>
 				The value returned is the current configuration in JSON format, including database and Redis configuration data:
@@ -450,11 +450,11 @@ $ sudo podman run -d --rm -p 80:8080 -p 443:8443 \
   --name=quay \
   -v $QUAY/config:/conf/stack:Z \
   -v $QUAY/storage:/datastorage:Z \
-  registry.redhat.io/quay/quay-rhel8:v3.6.3</pre></li></ol></div></section><section class="section" id="configuring_ssl_using_the_ui"><div class="titlepage"><div><div><h2 class="title">4.4. Configuring SSL using the UI</h2></div></div></div><p>
+  registry.redhat.io/quay/quay-rhel8:v3.6.2</pre></li></ol></div></section><section class="section" id="configuring_ssl_using_the_ui"><div class="titlepage"><div><div><h2 class="title">4.4. Configuring SSL using the UI</h2></div></div></div><p>
 				This section configures SSL using the Quay UI. To configure SSL using the command line interface, see the following section.
 			</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
 						Start the <code class="literal">Quay</code> container in configuration mode:
-					</p><pre class="screen">$ sudo podman run --rm -it --name quay_config -p 80:8080 -p 443:8443 registry.redhat.io/quay/quay-rhel8:v3.6.3 config secret</pre></li><li class="listitem">
+					</p><pre class="screen">$ sudo podman run --rm -it --name quay_config -p 80:8080 -p 443:8443 registry.redhat.io/quay/quay-rhel8:v3.6.2 config secret</pre></li><li class="listitem">
 						In the Server Configuration section, select <code class="literal">Red Hat Quay handles TLS</code> for TLS. Upload the certificate file and private key file created earlier, ensuring that the Server Hostname matches the value used when creating the certs. Validate and download the updated configuration.
 					</li><li class="listitem"><p class="simpara">
 						Stop the <code class="literal">Quay</code> container and then restart the registry:
@@ -463,7 +463,7 @@ $ sudo podman run -d --rm -p 80:8080 -p 443:8443 \
 --name=quay \
 -v $QUAY/config:/conf/stack:Z \
 -v $QUAY/storage:/datastorage:Z \
-registry.redhat.io/quay/quay-rhel8:v3.6.3</pre></li></ol></div></section><section class="section" id="testing_ssl_configuration_using_the_command_line"><div class="titlepage"><div><div><h2 class="title">4.5. Testing SSL configuration using the command line</h2></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+registry.redhat.io/quay/quay-rhel8:v3.6.2</pre></li></ol></div></section><section class="section" id="testing_ssl_configuration_using_the_command_line"><div class="titlepage"><div><div><h2 class="title">4.5. Testing SSL configuration using the command line</h2></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
 						Use the <code class="literal">podman login</code> command to attempt to log in to the Quay registry with SSL enabled:
 					</p><pre class="screen">$ sudo podman login quay-server.example.com
 Username: quayadmin
@@ -536,7 +536,7 @@ $ tree quay/config/
 						Obtain the <code class="literal">Quay</code> container’s <code class="literal">CONTAINER ID</code> with <code class="literal">podman ps</code>:
 					</p><pre class="screen">$ sudo podman ps
 CONTAINER ID        IMAGE                                COMMAND                  CREATED             STATUS              PORTS
-5a3e82c4a75f        &lt;registry&gt;/&lt;repo&gt;/quay:v3.6.3 "/sbin/my_init"          24 hours ago        Up 18 hours         0.0.0.0:80-&gt;80/tcp, 0.0.0.0:443-&gt;443/tcp, 443/tcp   grave_keller</pre></li><li class="listitem"><p class="simpara">
+5a3e82c4a75f        &lt;registry&gt;/&lt;repo&gt;/quay:v3.6.2 "/sbin/my_init"          24 hours ago        Up 18 hours         0.0.0.0:80-&gt;80/tcp, 0.0.0.0:443-&gt;443/tcp, 443/tcp   grave_keller</pre></li><li class="listitem"><p class="simpara">
 						Restart the container with that ID:
 					</p><pre class="screen">$ sudo podman restart 5a3e82c4a75f</pre></li><li class="listitem"><p class="simpara">
 						Examine the certificate copied into the container namespace:
@@ -780,7 +780,7 @@ spec:
         quay-component: clair-combo
     spec:
       containers:
-        - image: registry.redhat.io/quay/clair-rhel8:v3.6.3  <span id="CO2-1"/><span class="callout">1</span>
+        - image: registry.redhat.io/quay/clair-rhel8:v3.6.2  <span id="CO2-1"/><span class="callout">1</span>
           imagePullPolicy: IfNotPresent
           name: clair-combo
           env:
@@ -884,7 +884,7 @@ metrics:
 				More information about Clair’s configuration format can be found in <a class="link" href="https://quay.github.io/clair/reference/config.html">upstream Clair documentation</a>.
 			</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
 						Run Clair via the container image, mounting in the configuration from the file you created.
-					</p><pre class="screen">$ podman run -p 8080:8080 -p 8089:8089 -e CLAIR_CONF=/clair/config.yaml -e CLAIR_MODE=combo -v /etc/clair4/config:/clair -d registry.redhat.io/quay/clair-rhel8:v3.6.3</pre></li><li class="listitem">
+					</p><pre class="screen">$ podman run -p 8080:8080 -p 8089:8089 -e CLAIR_CONF=/clair/config.yaml -e CLAIR_MODE=combo -v /etc/clair4/config:/clair -d registry.redhat.io/quay/clair-rhel8:v3.6.2</pre></li><li class="listitem">
 						Follow the remaining instructions from the previous section for configuring Red Hat Quay to use the new Clair V4 endpoint.
 					</li></ol></div><p>
 				Running multiple Clair containers in this fashion is also possible, but for deployment scenarios beyond a single container the use of a container orchestrator like Kubernetes or OpenShift is strongly recommended.
@@ -920,9 +920,9 @@ metrics:
   disable_updaters: true</pre>
 						</p></div></li><li class="listitem"><p class="simpara">
 						Export out the latest Updater data to a local archive. This requires the <code class="literal">clairctl</code> tool which can be run directly as a binary, or via the Clair container image. Assuming your Clair configuration is in <code class="literal">/etc/clairv4/config/config.yaml</code>, to run via the container image:
-					</p><pre class="screen">$ podman run -it --rm -v /etc/clairv4/config:/cfg:Z -v /path/to/output/directory:/updaters:Z --entrypoint /bin/clairctl registry.redhat.io/quay/clair-rhel8:v3.6.3 --config /cfg/config.yaml export-updaters  /updaters/updaters.gz</pre><p class="simpara">
+					</p><pre class="screen">$ podman run -it --rm -v /etc/clairv4/config:/cfg:Z -v /path/to/output/directory:/updaters:Z --entrypoint /bin/clairctl registry.redhat.io/quay/clair-rhel8:v3.6.2 --config /cfg/config.yaml export-updaters  /updaters/updaters.gz</pre><p class="simpara">
 						Note that you need to explicitly reference the Clair configuration. This will create the Updater archive in <code class="literal">/etc/clairv4/updaters/updaters.gz</code>. If you want to ensure the archive was created without any errors from the source databases, you can supply the <code class="literal">--strict</code> flag to <code class="literal">clairctl</code>. The archive file should be copied over to a volume that is accessible from the disconnected host running Clair. From the disconnected host, use the same procedure now to import the archive into Clair.
-					</p><pre class="screen">$ podman run -it --rm -v /etc/clairv4/config:/cfg:Z -v /path/to/output/directory:/updaters:Z --entrypoint /bin/clairctl registry.redhat.io/quay/clair-rhel8:v3.6.3 --config /cfg/config.yaml import-updaters /updaters/updaters.gz</pre></li></ol></div></section><section class="section" id="clair-updater-urls"><div class="titlepage"><div><div><h2 class="title">7.6. Clair updater URLs</h2></div></div></div><p>
+					</p><pre class="screen">$ podman run -it --rm -v /etc/clairv4/config:/cfg:Z -v /path/to/output/directory:/updaters:Z --entrypoint /bin/clairctl registry.redhat.io/quay/clair-rhel8:v3.6.2 --config /cfg/config.yaml import-updaters /updaters/updaters.gz</pre></li></ol></div></section><section class="section" id="clair-updater-urls"><div class="titlepage"><div><div><h2 class="title">7.6. Clair updater URLs</h2></div></div></div><p>
 				The following are the HTTP hosts and paths that Clair will attempt to talk to in a default configuration. This list is non-exhaustive, as some servers will issue redirects and some request URLs are constructed dynamically.
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						https://secdb.alpinelinux.org/
@@ -1133,87 +1133,87 @@ spec:
 						Automatic synchronization or mirroring of selected (whitelisted) upstream repositories from external registries into a local Quay deployment
 					</li></ul></div><div class="admonition note"><div class="admonition_header">Note</div><div><p>
 					Repository mirroring and geo-replication can be used simultaneously.
-				</p></div></div><div class="table" id="idm45728304759360"><p class="title"><strong>Table 10.1. Red Hat Quay Repository mirroring versus geo-replication</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 33%; " class="col_1"/><col style="width: 33%; " class="col_2"/><col style="width: 33%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="top" id="idm45728304752816" scope="col">Feature / Capability</th><th align="left" valign="top" id="idm45728304751728" scope="col">Geo-replication</th><th align="left" valign="top" id="idm45728304750640" scope="col">Repository mirroring</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45728304752816">
+				</p></div></div><div class="table" id="idm46045499738608"><p class="title"><strong>Table 10.1. Red Hat Quay Repository mirroring versus geo-replication</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 33%; " class="col_1"/><col style="width: 33%; " class="col_2"/><col style="width: 33%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="top" id="idm46045497819712" scope="col">Feature / Capability</th><th align="left" valign="top" id="idm46045497818624" scope="col">Geo-replication</th><th align="left" valign="top" id="idm46045497817536" scope="col">Repository mirroring</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm46045497819712">
 							<p>
 								What is the feature designed to do?
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304751728">
+							</td><td align="left" valign="top" headers="idm46045497818624">
 							<p>
 								A shared, global registry
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304750640">
+							</td><td align="left" valign="top" headers="idm46045497817536">
 							<p>
 								Distinct, different registries
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45728304752816">
+							</td></tr><tr><td align="left" valign="top" headers="idm46045497819712">
 							<p>
 								What happens if replication or mirroring hasn’t been completed yet?
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304751728">
+							</td><td align="left" valign="top" headers="idm46045497818624">
 							<p>
 								The remote copy is used (slower)
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304750640">
+							</td><td align="left" valign="top" headers="idm46045497817536">
 							<p>
 								No image is served
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45728304752816">
+							</td></tr><tr><td align="left" valign="top" headers="idm46045497819712">
 							<p>
 								Is access to all storage backends in both regions required?
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304751728">
+							</td><td align="left" valign="top" headers="idm46045497818624">
 							<p>
 								Yes (all Red Hat Quay nodes)
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304750640">
+							</td><td align="left" valign="top" headers="idm46045497817536">
 							<p>
 								No (distinct storage)
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45728304752816">
+							</td></tr><tr><td align="left" valign="top" headers="idm46045497819712">
 							<p>
 								Can users push images from both sites to the same repository?
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304751728">
+							</td><td align="left" valign="top" headers="idm46045497818624">
 							<p>
 								Yes
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304750640">
+							</td><td align="left" valign="top" headers="idm46045497817536">
 							<p>
 								No
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45728304752816">
+							</td></tr><tr><td align="left" valign="top" headers="idm46045497819712">
 							<p>
 								Is all registry content and configuration identical across all regions (shared database)
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304751728">
+							</td><td align="left" valign="top" headers="idm46045497818624">
 							<p>
 								Yes
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304750640">
+							</td><td align="left" valign="top" headers="idm46045497817536">
 							<p>
 								No
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45728304752816">
+							</td></tr><tr><td align="left" valign="top" headers="idm46045497819712">
 							<p>
 								Can users select individual namespaces or repositories to be mirrored?
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304751728">
+							</td><td align="left" valign="top" headers="idm46045497818624">
 							<p>
 								No,by default
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304750640">
+							</td><td align="left" valign="top" headers="idm46045497817536">
 							<p>
 								Yes
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45728304752816">
+							</td></tr><tr><td align="left" valign="top" headers="idm46045497819712">
 							<p>
 								Can users apply filters to synchronization rules?
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304751728">
+							</td><td align="left" valign="top" headers="idm46045497818624">
 							<p>
 								No
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304750640">
+							</td><td align="left" valign="top" headers="idm46045497817536">
 							<p>
 								Yes
 							</p>
@@ -1239,63 +1239,63 @@ spec:
 						<span class="inlinemediaobject"><img src="images/repo_mirror_config.png" alt="Enable mirroring and require HTTPS and verified certificates"/></span>
 					</p></li><li class="listitem">
 						Validate and download the <code class="literal">configuration</code> file, and then restart Quay in registry mode using the updated config file.
-					</li></ol></div></section><section class="section" id="config-fields-mirroring"><div class="titlepage"><div><div><h2 class="title">10.5. Mirroring configuration fields</h2></div></div></div><div class="table" id="idm45728306179024"><p class="title"><strong>Table 10.2. Mirroring configuration</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 17%; " class="col_2"/><col style="width: 33%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="top" id="idm45728304711808" scope="col">Field</th><th align="left" valign="top" id="idm45728304710720" scope="col">Type</th><th align="left" valign="top" id="idm45728304709632" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45728304711808">
+					</li></ol></div></section><section class="section" id="config-fields-mirroring"><div class="titlepage"><div><div><h2 class="title">10.5. Mirroring configuration fields</h2></div></div></div><div class="table" id="idm46045497878208"><p class="title"><strong>Table 10.2. Mirroring configuration</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 17%; " class="col_2"/><col style="width: 33%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="top" id="idm46045497872448" scope="col">Field</th><th align="left" valign="top" id="idm46045497900496" scope="col">Type</th><th align="left" valign="top" id="idm46045497899408" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm46045497872448">
 							<p>
 								<span class="strong strong"><strong>FEATURE_REPO_MIRROR</strong></span>
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304710720">
+							</td><td align="left" valign="top" headers="idm46045497900496">
 							<p>
 								Boolean
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304709632">
+							</td><td align="left" valign="top" headers="idm46045497899408">
 							<p>
 								Enable or disable repository mirroring<br/><br/> <span class="strong strong"><strong>Default:</strong></span> <code class="literal">false</code>
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45728304711808">
+							</td></tr><tr><td align="left" valign="top" headers="idm46045497872448">
 							<p>
 								 
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304710720">
+							</td><td align="left" valign="top" headers="idm46045497900496">
 							<p>
 								 
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304709632">
+							</td><td align="left" valign="top" headers="idm46045497899408">
 							<p>
 								 
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45728304711808">
+							</td></tr><tr><td align="left" valign="top" headers="idm46045497872448">
 							<p>
 								<span class="strong strong"><strong>REPO_MIRROR_INTERVAL</strong></span>
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304710720">
+							</td><td align="left" valign="top" headers="idm46045497900496">
 							<p>
 								Number
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304709632">
+							</td><td align="left" valign="top" headers="idm46045497899408">
 							<p>
 								The number of seconds between checking for repository mirror candidates<br/><br/><span class="strong strong"><strong>Default:</strong></span> 30
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45728304711808">
+							</td></tr><tr><td align="left" valign="top" headers="idm46045497872448">
 							<p>
 								<span class="strong strong"><strong>REPO_MIRROR_SERVER_HOSTNAME</strong></span>
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304710720">
+							</td><td align="left" valign="top" headers="idm46045497900496">
 							<p>
 								String
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304709632">
+							</td><td align="left" valign="top" headers="idm46045497899408">
 							<p>
 								Replaces the <code class="literal">SERVER_HOSTNAME</code> as the destination for mirroring. <br/><br/><span class="strong strong"><strong>Default:</strong></span> None<br/><br/><span class="strong strong"><strong>Example</strong></span>:<br/><code class="literal">openshift-quay-service</code>
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45728304711808">
+							</td></tr><tr><td align="left" valign="top" headers="idm46045497872448">
 							<p>
 								<span class="strong strong"><strong>REPO_MIRROR_TLS_VERIFY</strong></span>
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304710720">
+							</td><td align="left" valign="top" headers="idm46045497900496">
 							<p>
 								Boolean
 							</p>
-							</td><td align="left" valign="top" headers="idm45728304709632">
+							</td><td align="left" valign="top" headers="idm46045497899408">
 							<p>
 								Require HTTPS and verify certificates of Quay registry during mirror.<br/><br/> <span class="strong strong"><strong>Default:</strong></span> <code class="literal">false</code>
 							</p>
@@ -1303,12 +1303,12 @@ spec:
 						To run the repository mirroring worker, start by running a <code class="literal">Quay</code> pod with the <code class="literal">repomirror</code> option:
 					</p><pre class="screen">$ sudo podman run -d --name mirroring-worker \
   -v $QUAY/config:/conf/stack:Z \
-  registry.redhat.io/quay/quay-rhel8:v3.6.3 repomirror</pre></li><li class="listitem"><p class="simpara">
+  registry.redhat.io/quay/quay-rhel8:v3.6.2 repomirror</pre></li><li class="listitem"><p class="simpara">
 						If you have configured TLS communications using a certificate <code class="literal">/root/ca.crt</code>, then the following example shows how to start the mirroring worker:
 					</p><pre class="screen">$ sudo podman run -d --name mirroring-worker \
   -v $QUAY/config:/conf/stack:Z \
   -v /root/ca.crt:/etc/pki/ca-trust/source/anchors/ca.crt \
-  registry.redhat.io/quay/quay-rhel8:v3.6.3 repomirror</pre></li></ul></div></section><section class="section" id="mirroring-creating-repo"><div class="titlepage"><div><div><h2 class="title">10.7. Creating a mirrored repository</h2></div></div></div><p>
+  registry.redhat.io/quay/quay-rhel8:v3.6.2 repomirror</pre></li></ul></div></section><section class="section" id="mirroring-creating-repo"><div class="titlepage"><div><div><h2 class="title">10.7. Creating a mirrored repository</h2></div></div></div><p>
 				The steps shown in this section assume you already have enabled repository mirroring in the configuration for your Red Hat Quay cluster and that you have a deployed a mirroring worker.
 			</p><p>
 				When mirroring a repository from an external container registry, create a new private repository. Typically the same name is used as the target repository, for example, <code class="literal">quay-rhel8</code>:
@@ -1519,19 +1519,258 @@ spec:
 						You should balance your mirroring schedule across all mirrored repositories, so that they do not all start up at the same time.
 					</li><li class="listitem">
 						For a mid-size deployment, with approximately 1000 users and 1000 repositories, and with roughly 100 mirrored repositories, it is expected that you would use 3-5 mirroring pods, scaling up to 10 if required.
-					</li></ul></div></section></section><section class="chapter" id="ldap-authentication-setup-for-quay-enterprise"><div class="titlepage"><div><div><h1 class="title">Chapter 11. LDAP Authentication Setup for Red Hat Quay</h1></div></div></div><p>
+					</li></ul></div></section></section><section class="chapter" id="back-up-and-restore-red-hat-quay"><div class="titlepage"><div><div><h1 class="title">Chapter 11. Back up and recover Red Hat Quay</h1></div></div></div><p>
+			Use the content within this section to back up and restore Red Hat Quay on an OpenShift Container Platform deployment.
+		</p><section class="section" id="backing_up_red_hat_quay"><div class="titlepage"><div><div><h2 class="title">11.1. Backing up Red Hat Quay</h2></div></div></div><p>
+				This procedure is exclusively for OpenShift Container Platform and NooBaa deployments.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						A Red Hat Quay deployment on OpenShift Container Platform.
+					</li><li class="listitem">
+						An initial user set as <code class="literal">superuser</code> to prevent user creation.
+					</li><li class="listitem">
+						At least two user accounts. This procedure uses <code class="literal">test1</code> and <code class="literal">test2</code> as sample user names.
+					</li><li class="listitem">
+						A organization within your Quay deployment. This procedure uses <code class="literal">testorg</code> as its example organization.
+					</li><li class="listitem">
+						An image in your repository. This documentation uses the <code class="literal">busybox</code> image for backing up and restoring.
+					</li></ul></div><div class="admonition note"><div class="admonition_header">Procedure</div><div><p>
+					The procedure in this documents uses the following namespace: <code class="literal">quay-enterprise</code>.
+				</p></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Obtain a list of your deployed pods in your Quay namespace:
+					</p><pre class="screen">$ oc get pods -n quay-enterprise</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">NAME                                                   READY   STATUS      RESTARTS   AGE
+example-registry-clair-app-7dccddc6fd-fwckp            1/1     Running     0          69m
+example-registry-clair-postgres-558d7cc9c-xgk2m        1/1     Running     0          68m
+example-registry-quay-app-5677cb59b7-fpxcg             1/1     Running     0          69m
+example-registry-quay-app-upgrade-zstr4                0/1     Completed   0          69m
+example-registry-quay-config-editor-67c769f669-dp5gf   1/1     Running     0          69m
+example-registry-quay-database-6d58c4c545-99s2g        1/1     Running     0          69m
+example-registry-quay-mirror-d4bc9c99c-rmk4f           1/1     Running     0          68m
+example-registry-quay-postgres-init-rwbsq              0/1     Completed   0          69m
+example-registry-quay-redis-577776d494-k48zv           1/1     Running     0          69m
+quay-operator.{productminv}-798d5c8b69-q6x88                  1/1     Running     0          79m</pre></li><li class="listitem"><p class="simpara">
+						Obtain the configuration secret of your Quay application deployment in JSON:
+					</p><pre class="screen">$ oc get deployment -n quay-enterprise example-registry-quay-app -o json | jq '.spec.template.spec.containers[].env[]'</pre><p class="simpara">
+						Example output:
+					</p><pre class="programlisting language-terminal">{
+  "name": "QE_K8S_CONFIG_SECRET",
+  "value": "example-registry-quay-config-secret-m25mf4dg78"
+}
+{
+  "name": "QE_K8S_NAMESPACE",
+  "valueFrom": {
+    "fieldRef": {
+      "apiVersion": "v1",
+      "fieldPath": "metadata.namespace"
+    }
+  }
+}
+{
+  "name": "DEBUGLOG",
+  "value": "false"
+}
+{
+  "name": "WORKER_COUNT_WEB",
+  "value": "4"
+}
+{
+  "name": "WORKER_COUNT_SECSCAN",
+  "value": "2"
+}
+{
+  "name": "WORKER_COUNT_REGISTRY",
+  "value": "8"
+}</pre></li><li class="listitem"><p class="simpara">
+						Back up the Quay configuration secret into a yaml file, for example <code class="literal">quay-config-yaml.backup.yaml</code>:
+					</p><pre class="screen">$ oc get secret -n quay-enterprise example-registry-quay-config-secret-m25mf4dg78 -o json | jq '.data."config.yaml"' | cut -d '"' -f2 | base64 -d -w0 &gt; quay-config-yaml-backup.yaml</pre></li><li class="listitem"><p class="simpara">
+						Obtain the DB_URI of your Quay database from the generated yaml file:
+					</p><pre class="screen">$ cat quay-config-yaml-backup.yaml | grep -i DB_URI | cut -d ':' -f3 | sed 's/^..//g'</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">example-registry-quay-database</pre></li><li class="listitem"><p class="simpara">
+						Back up your Quay database locally using PostgreSQL:
+					</p><pre class="screen">$ oc exec -it -n quay-enterprise example-registry-quay-database-7885795468-x9v6n -- pg_dump -h localhost -d example-registry-quay-database -O &gt; quay-database-backup.sql</pre></li><li class="listitem"><p class="simpara">
+						Ensure that your database has been backed up by running the following command:
+					</p><pre class="screen">$ ls -lah</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">total 248K
+drwxr-xr-x  2 root root   74 Jan 28 15:00 .
+drwx------ 12 root root  298 Jan 28 14:42 ..
+-rw-r--r--  1 root root 1.9K Jan 28 14:56 quay-config-yaml-backup.yaml
+-rw-r--r--  1 root root 243K Jan 28 15:00 quay-database-backup.sql</pre></li><li class="listitem"><p class="simpara">
+						Obtain the OpenShift Container Storage credentials of your Quay configuration using the backup yaml file:
+					</p><pre class="screen">$ cat quay-config-yaml-backup.yaml</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">...
+local_us:
+ - RHOCSStorage
+ - access_key: EX6TtZQ6yCgDn8PqITzO
+   bucket_name: quay-datastore-776165c1-f2a1-43bd-96c5-65c35b458201
+   hostname: s3.openshift-storage.svc.cluster.local
+   is_secure: true
+   port: 443
+   secret_key: Y+Es2psOqsYoHNHRnM541PwgEtNt23qOzQwlppaO
+   storage_path: /datastorage/registry
+...</pre></li><li class="listitem"><p class="simpara">
+						Create a directory for your bucket backup:
+					</p><pre class="screen">$ mkdir bucket-backup</pre></li><li class="listitem"><p class="simpara">
+						Export the AWS Access Key ID revealed in Step 7:
+					</p><pre class="screen">$ export AWS_ACCESS_KEY_ID=xxx</pre></li><li class="listitem"><p class="simpara">
+						Export the AWS Secret Access Key revealed in Step 7:
+					</p><pre class="screen">$ export AWS_SECRET_ACCESS_KEY=Y+xxx</pre></li><li class="listitem"><p class="simpara">
+						Obtain the AWS s3 route of your OpenShift Container Storage namespace:
+					</p><pre class="screen">$ oc get route s3 -n openshift-storage -o yaml -o jsonpath="{.spec.host}{'\n'}"</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">s3-openshift-storage.apps.ci-ln-3wbqlxt-76ef8.origin-ci-int-aws.dev.rhcloud.com</pre></li><li class="listitem"><p class="simpara">
+						Set your AWS s3 storage route as the s3 route of your Quay namespace:
+					</p><pre class="screen">$ aws s3 sync --no-verify-ssl --endpoint-url https://s3-openshift-storage.apps.ci-ln-kwrvf4b-76ef8.origin-ci-int-aws.dev.rhcloud.com s3://quay-datastore-7a70998f-e7fe-4640-8207-fafcb0b5410c/ bucket-backup/</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 's3-openshift-storage.apps.ci-ln-kwrvf4b-76ef8.origin-ci-int-aws.dev.rhcloud.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 's3-openshift-storage.apps.ci-ln-kwrvf4b-76ef8.origin-ci-int-aws.dev.rhcloud.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 's3-openshift-storage.apps.ci-ln-kwrvf4b-76ef8.origin-ci-int-aws.dev.rhcloud.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 's3-openshift-storage.apps.ci-ln-kwrvf4b-76ef8.origin-ci-int-aws.dev.rhcloud.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+download: s3://quay-datastore-7a70998f-e7fe-4640-8207-fafcb0b5410c/datastorage/registry/sha256/be/beae173ccac6ad749f76713cf4440fe3d21d1043fe616dfbe30775815d1d0f6a to bucket-backup/datastorage/registry/sha256/be/beae173ccac6ad749f76713cf4440fe3d21d1043fe616dfbe30775815d1d0f6a
+download: s3://quay-datastore-7a70998f-e7fe-4640-8207-fafcb0b5410c/datastorage/registry/sha256/a3/a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4 to bucket-backup/datastorage/registry/sha256/a3/a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4
+download: s3://quay-datastore-7a70998f-e7fe-4640-8207-fafcb0b5410c/datastorage/registry/sha256/90/900aaabb02f1b145b67b03589a936df812154094d5d9d5d4046057ad3f199a41 to bucket-backup/datastorage/registry/sha256/90/900aaabb02f1b145b67b03589a936df812154094d5d9d5d4046057ad3f199a41</pre></li></ol></div></section><section class="section" id="restoring_red_hat_quay_when_the_operator_manages_the_database"><div class="titlepage"><div><div><h2 class="title">11.2. Restoring Red Hat Quay when the Operator manages the database</h2></div></div></div><p>
+				This procedure is used to restore Red Hat Quay when the Red Hat Quay Operator manages the database. It should be performed after a backup of your Quay registry has been performed.
+			</p><p>
+				This procedure is tested within the same Red Hat Quay minor version, regardless of the z-stream version. There should be no changes in the database schema between z-stream releases.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						Red Hat Quay is deployed on OpenShift Container Platform using the Quay Operator.
+					</li><li class="listitem">
+						Your Red Hat Quay database has been backed up.
+					</li><li class="listitem">
+						A new Red Hat Quay registry has been created.
+					</li></ul></div><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+					The procedure in this document uses <code class="literal">quay-enterprise-restore</code> for the namespace, and <code class="literal">example-restore-registry</code> for the name of the registry.
+				</p></div></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Obtain a list of the deployed pods in your new Quay namespace:
+					</p><pre class="screen">$ oc get pods -n quay-enterprise-restore</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">NAME                                                           READY   STATUS      RESTARTS   AGE
+example-registry-restore-clair-app-86bcc78fc4-tgxnh            1/1     Running     0          28m
+example-registry-restore-clair-postgres-d5d68599f-7ddfk        1/1     Running     0          28m
+example-registry-restore-quay-app-6d59c5d8b5-w6lrm             1/1     Running     1          28m
+example-registry-restore-quay-app-upgrade-clrml                0/1     Pending     0          28m
+example-registry-restore-quay-config-editor-5d89c6db4f-zxbn2   1/1     Running     0          28m
+example-registry-restore-quay-database-85d455b6cc-rrgt4        1/1     Running     0          28m
+example-registry-restore-quay-mirror-6d8f9d7bc8-fd7ks          1/1     Running     0          28m
+example-registry-restore-quay-postgres-init-t7rrf              0/1     Completed   0          28m
+example-registry-restore-quay-redis-588f6dbc8f-jdn9b           1/1     Running     0          28m</pre></li><li class="listitem"><p class="simpara">
+						Scale down your Quay application:
+					</p><pre class="screen">$ oc scale deployment example-registry-restore-quay-app --replicas=1 -n openshift-operators</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">deployment.apps/quay-operator.v3.5.7 scaled</pre></li><li class="listitem"><p class="simpara">
+						Scale down the Quay registry application and the Quay mirror registry:
+					</p><pre class="screen">$ oc scale deployment example-registry-restore-quay-app --replicas=0 -n quay-enterprise-restore</pre><pre class="screen">$ oc scale deployment example-registry-restore-quay-mirror --replicas=0 -n quay-enterprise-restore</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">deployment.apps/example-registry-restore-quay-mirror scaled</pre></li><li class="listitem"><p class="simpara">
+						Copy the Quay database backup .sql file to a local file space, for example <code class="literal">/var/lib/pgsql/data/userdata</code>.
+					</p><pre class="screen">$ oc cp quay-database-backup.sql -n quay-enterprise-restore \
+example-registry-restore-quay-database-85d455b6cc-rrgt4:/var/lib/pgsql/data/userdata</pre></li><li class="listitem"><p class="simpara">
+						Obtain secret of the Quay registry in JSON that you will be restoring to:
+					</p><pre class="screen">$ oc get secret -n quay-enterprise-restore \
+example-restore-registry-quay-config-secret-8b7d982t79 -o json | jq '.data."config.yaml"' | cut -d '"' -f2 | base64 -d -w0 | grep -i DB_URI</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">DB_URI: postgresql://example-restore-registry-quay-database:onHl1LDsspZh4hoOL5wW1Of7GV0Kmtp2@example-restore-registry-quay-database:5432/example-restore-registry-quay-database</pre></li><li class="listitem"><p class="simpara">
+						Enter bin/bash mode of your Quay registry database:
+					</p><pre class="screen">$ oc exec -it -n quay-enterprise-restore \
+example-restore-registry-quay-database-85d455b6cc-rrgt4 -- /bin/bash</pre></li><li class="listitem"><p class="simpara">
+						Enter psql:
+					</p><pre class="screen">bash-4.4$ psql</pre></li><li class="listitem"><p class="simpara">
+						Drop the database:
+					</p><pre class="screen">postgres=# DROP DATABASE "example-restore-registry-quay-database";</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">DROP DATABASE</pre></li><li class="listitem"><p class="simpara">
+						Create a new database and set the owner as the same name:
+					</p><pre class="screen">postgres=# CREATE DATABASE "example-restore-registry-quay-database" OWNER "example-restore-registry-quay-database";</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">CREATE DATABASE</pre></li><li class="listitem"><p class="simpara">
+						Connect to the database:
+					</p><pre class="screen">postgres=# \c "example-restore-registry-quay-database";</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">You are now connected to database "example-restore-registry-quay-database" as user "postgres".</pre></li><li class="listitem"><p class="simpara">
+						Create a <code class="literal">pg_trmg</code> extension of your Quay database:
+					</p><pre class="screen">example-restore-registry-quay-database=# create extension pg_trgm ;</pre><pre class="screen">CREATE EXTENSION</pre></li><li class="listitem"><p class="simpara">
+						Exit the postgres CLI to re-enter bash-4.4:
+					</p><pre class="screen">\q</pre></li><li class="listitem"><p class="simpara">
+						Set the hostname, username, and password for your PostgreSQL deployment:
+					</p><pre class="screen">psql -h localhost -d "example-restore-registry-quay-database" -U example-restore-registry-quay-database -W &lt; /var/lib/pgsql/data/userdata/quay-database-backup.sql
+Password for user example-restore-registry-quay-database:</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">SET
+SET
+SET
+SET
+SET
+...</pre></li><li class="listitem"><p class="simpara">
+						Exit bash mode:
+					</p><pre class="screen">bash-4.4$ exit</pre></li><li class="listitem"><p class="simpara">
+						Reveal the Quay configuration database secret key:
+					</p><pre class="screen">$ cat quay-config-yaml-backup.yaml | grep SECRET_KEY</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">DATABASE_SECRET_KEY: 0ufEzdS-JV8G5z-I62wLXasa5FbsfDnLTX1k3L9VHdZ0PoZkYXWGNUBA0A7cWhsq9Y3v8Pda6Uj1v23q
+SECRET_KEY: Skrn1dQ5CDtXb0EnqEAHkc3dKo67OJAv2KZ3crBROmTQBuC3GwaKtY8zPQO1FlvvPVrQMS1-9t3iNzXV</pre></li><li class="listitem"><p class="simpara">
+						Set the database secret key in a specified encryption yaml file, for example <code class="literal">encryption_keys.yaml</code>:
+					</p><pre class="screen">$ cat quay-config-yaml-backup.yaml | grep SECRET_KEY &gt; encryption_keys.yaml</pre></li><li class="listitem"><p class="simpara">
+						Create a new configuration bundle secret from your encrypted yaml file:
+					</p><pre class="screen">$ oc create secret generic new-custom-config-bundle --from-file=config.yaml=encryption_keys.yaml</pre><p class="simpara">
+						Exampe output:
+					</p><pre class="screen">secret/new-custom-config-bundle created</pre></li><li class="listitem"><p class="simpara">
+						Patch the registry using the configuration bundle secret:
+					</p><pre class="screen">$  oc patch quayregistry example-restore-registry -n quay-enterprise-restore \
+--type=merge -p '{"spec":{"configBundleSecret":"new-custom-config-bundle"}}' quayregistry.quay.redhat.com/example-restore-registry patched</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">quayregistry.quay.redhat.com/example-restore-registry patched</pre></li><li class="listitem"><p class="simpara">
+						Obtain the secret of your Quay registry application:
+					</p><pre class="screen">$ oc get deployment -n quay-enterprise-restore \
+example-restore-registry-quay-app -o json | jq '.spec.template.spec.volumes[].projected.sources' | grep -i config-secret</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">"name": "example-restore-registry-quay-config-secret-2gk5859gfb"</pre></li><li class="listitem"><p class="simpara">
+						Obtain the OpenShift Container Storage credentials of your Quay configuration secret:
+					</p><pre class="screen">$ oc get secret -n quay-enterprise-restore \
+example-restore-registry-quay-config-secret-2gk5859gfb -o json | jq '.data."config.yaml"' | cut -d '"' -f2 | base64 -d -w0; echo</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">...
+  - RHOCSStorage
+  - access_key: yqdstmJtFxVRgnYyliNd
+    bucket_name: quay-datastore-8466fff4-256c-4dea-801f-24fcbfdee101
+    hostname: s3.openshift-storage.svc.cluster.local
+    is_secure: true
+    port: 443
+    secret_key: zsk/j4zEOkQq+W0BQJdSufP+IackV8WICXB5zvdF
+    storage_path: /datastorage/registry
+...</pre></li><li class="listitem"><p class="simpara">
+						Export the new AWS access key:
+					</p><pre class="screen">$ export AWS_ACCESS_KEY_ID=xxx</pre></li><li class="listitem"><p class="simpara">
+						Export the new AWS secret access key:
+					</p><pre class="screen">$ export AWS_SECRET_ACCESS_KEY= xxxx</pre></li><li class="listitem"><p class="simpara">
+						Sync the backup directory with both the OpenShift Container Storage bucket name and obtained in Step X, and the bucket name of the OpenShift Container Storage generated in Step X of "Backing up Red Hat Quay":
+					</p><pre class="screen">$ aws s3 sync bucket-backup/ s3://quay-datastore-8466fff4-256c-4dea-801f-24fcbfdee101 --no-verify-ssl --endpoint-url=https://s3-openshift-storage.apps.ci-ln-3wbqlxt-76ef8.origin-ci-int-aws.dev.rhcloud.com</pre><p class="simpara">
+						Example output:
+					</p><pre class="screen">urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 's3-openshift-storage.apps.ci-ln-mfty3gt-76ef8.origin-ci-int-aws.dev.rhcloud.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 's3-openshift-storage.apps.ci-ln-mfty3gt-76ef8.origin-ci-int-aws.dev.rhcloud.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 's3-openshift-storage.apps.ci-ln-mfty3gt-76ef8.origin-ci-int-aws.dev.rhcloud.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 's3-openshift-storage.apps.ci-ln-mfty3gt-76ef8.origin-ci-int-aws.dev.rhcloud.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+upload: bucket-backup/datastorage/registry/sha256/a3/a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4 to s3://quay-datastore-8466fff4-256c-4dea-801f-24fcbfdee101/datastorage/registry/sha256/a3/a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4
+upload: bucket-backup/datastorage/registry/sha256/be/beae173ccac6ad749f76713cf4440fe3d21d1043fe616dfbe30775815d1d0f6a to s3://quay-datastore-8466fff4-256c-4dea-801f-24fcbfdee101/datastorage/registry/sha256/be/beae173ccac6ad749f76713cf4440fe3d21d1043fe616dfbe30775815d1d0f6a
+upload: bucket-backup/datastorage/registry/sha256/90/900aaabb02f1b145b67b03589a936df812154094d5d9d5d4046057ad3f199a41 to s3://quay-datastore-8466fff4-256c-4dea-801f-24fcbfdee101/datastorage/registry/sha256/90/900aaabb02f1b145b67b03589a936df812154094d5d9d5d4046057ad3f199a41</pre></li><li class="listitem"><p class="simpara">
+						Scale up Quay application:
+					</p><pre class="screen">$ oc scale deployment example-registry-restore-quay-app --replicas=1 -n openshift-operators</pre><pre class="screen">deployment.apps/example-registry-restore-quay-app scaled</pre></li><li class="listitem"><p class="simpara">
+						Scale up the Quay registry application and the Quay mirror registry:
+					</p><pre class="screen">$ oc scale deployment example-registry-restore-quay-app --replicas=0 -n quay-enterprise-restore</pre><pre class="screen">$ oc scale deployment example-registry-restore-quay-mirror --replicas=0 -n quay-enterprise-restore</pre></li></ol></div></section></section><section class="chapter" id="ldap-authentication-setup-for-quay-enterprise"><div class="titlepage"><div><div><h1 class="title">Chapter 12. LDAP Authentication Setup for Red Hat Quay</h1></div></div></div><p>
 			The Lightweight Directory Access Protocol (LDAP) is an open, vendor-neutral, industry standard application protocol for accessing and maintaining distributed directory information services over an Internet Protocol (IP) network. Red Hat Quay supports using LDAP as an identity provider.
-		</p><section class="section" id="considerations_prior_to_enabling_ldap"><div class="titlepage"><div><div><h2 class="title">11.1. Considerations prior to enabling LDAP</h2></div></div></div><section class="section" id="considerations-for-existing-quay-deployments"><div class="titlepage"><div><div><h3 class="title">11.1.1. Existing Quay deployments</h3></div></div></div><p>
+		</p><section class="section" id="considerations_prior_to_enabling_ldap"><div class="titlepage"><div><div><h2 class="title">12.1. Considerations prior to enabling LDAP</h2></div></div></div><section class="section" id="considerations-for-existing-quay-deployments"><div class="titlepage"><div><div><h3 class="title">12.1.1. Existing Quay deployments</h3></div></div></div><p>
 					Conflicts between user names can arise when you enable LDAP for an existing Quay deployment that already has users configured. Consider the scenario where a particular user, <code class="literal">alice</code>, was manually created in Quay prior to enabling LDAP. If the user name <code class="literal">alice</code> also exists in the LDAP directory, Quay will create a new user <code class="literal">alice-1</code> when <code class="literal">alice</code> logs in for the first time using LDAP, and will map the LDAP credentials to this account. This might not be want you want, for consistency reasons, and it is recommended that you remove any potentially conflicting local account names from Quay prior to enabling LDAP.
-				</p></section><section class="section" id="considerations-for-manual-user-creation"><div class="titlepage"><div><div><h3 class="title">11.1.2. Manual User Creation and LDAP authentication</h3></div></div></div><p>
+				</p></section><section class="section" id="considerations-for-manual-user-creation"><div class="titlepage"><div><div><h3 class="title">12.1.2. Manual User Creation and LDAP authentication</h3></div></div></div><p>
 					When Quay is configured for LDAP, LDAP-authenticated users are automatically created in Quay’s database on first log in, if the configuration option <code class="literal">FEATURE_USER_CREATION</code> is set to <code class="literal">true</code>. If this option is set to <code class="literal">false</code>, the automatic user creation for LDAP users will fail and the user is not allowed to log in. In this scenario, the superuser needs to create the desired user account first. Conversely, if <code class="literal">FEATURE_USER_CREATION</code> is set to <code class="literal">true</code>, this also means that a user can still create an account from the Quay login screen, even if there is an equivalent user in LDAP.
-				</p></section></section><section class="section" id="setup-ldap-configuration"><div class="titlepage"><div><div><h2 class="title">11.2. Set Up LDAP Configuration</h2></div></div></div><p>
+				</p></section></section><section class="section" id="setup-ldap-configuration"><div class="titlepage"><div><div><h2 class="title">12.2. Set Up LDAP Configuration</h2></div></div></div><p>
 				In the config tool, locate the Authentication section and select “LDAP” from the drop-down menu. Update LDAP configuration fields as required.
 			</p><p>
 				<span class="inlinemediaobject"><img src="images/authentication-ldap.png" alt="Fill in LDAP information"/></span>
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Here is an example of the resulting entry in the <span class="emphasis"><em>config.yaml</em></span> file:
-					</li></ul></div><pre class="literallayout">AUTHENTICATION_TYPE: LDAP</pre><section class="section" id="full_ldap_uri"><div class="titlepage"><div><div><h3 class="title">11.2.1. Full LDAP URI</h3></div></div></div><p>
+					</li></ul></div><pre class="literallayout">AUTHENTICATION_TYPE: LDAP</pre><section class="section" id="full_ldap_uri"><div class="titlepage"><div><div><h3 class="title">12.2.1. Full LDAP URI</h3></div></div></div><p>
 					<span class="inlinemediaobject"><img src="images/authentication-ldap-uri.png" alt="LDAP server URI"/></span>
 					<span class="inlinemediaobject"><img src="images/authentication-ldap-ssl.png" alt="LDAP server SSL"/></span>
 				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
@@ -1540,7 +1779,7 @@ spec:
 							A URI beginning with <span class="emphasis"><em>ldaps://</em></span> will make use of the provided SSL certificate(s) for TLS setup.
 						</li><li class="listitem">
 							Here is an example of the resulting entry in the <span class="emphasis"><em>config.yaml</em></span> file:
-						</li></ul></div><pre class="literallayout">LDAP_URI: ldaps://ldap.example.org</pre></section><section class="section" id="team_synchronization"><div class="titlepage"><div><div><h3 class="title">11.2.2. Team Synchronization</h3></div></div></div><p>
+						</li></ul></div><pre class="literallayout">LDAP_URI: ldaps://ldap.example.org</pre></section><section class="section" id="team_synchronization"><div class="titlepage"><div><div><h3 class="title">12.2.2. Team Synchronization</h3></div></div></div><p>
 					<span class="inlinemediaobject"><img src="images/authentication-ldap-team-sync-1.png" alt="Team synchronization"/></span>
 				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 							If enabled, organization administrators who are also superusers can set teams to have their membership synchronized with a backing group in LDAP.
@@ -1554,7 +1793,7 @@ spec:
 							Here is an example of the resulting entries in the <span class="emphasis"><em>config.yaml</em></span> file:
 						</li></ul></div><pre class="literallayout">FEATURE_TEAM_SYNCING: true
 TEAM_RESYNC_STALE_TIME: 60m
-FEATURE_NONSUPERUSER_TEAM_SYNCING_SETUP: true</pre></section><section class="section" id="base_and_relative_distinguished_names"><div class="titlepage"><div><div><h3 class="title">11.2.3. Base and Relative Distinguished Names</h3></div></div></div><p>
+FEATURE_NONSUPERUSER_TEAM_SYNCING_SETUP: true</pre></section><section class="section" id="base_and_relative_distinguished_names"><div class="titlepage"><div><div><h3 class="title">12.2.3. Base and Relative Distinguished Names</h3></div></div></div><p>
 					<span class="inlinemediaobject"><img src="images/authentication-ldap-basedn.png" alt="Distinguished Names"/></span>
 				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 							A Distinguished Name path which forms the base path for looking up all LDAP records. Example: <span class="emphasis"><em>dc=my,dc=domain,dc=com</em></span>
@@ -1575,13 +1814,13 @@ LDAP_USER_RDN:
 - ou=users
 LDAP_SECONDARY_USER_RDNS:
 - ou=bots
-- ou=external</pre></section><section class="section" id="additional_user_filters"><div class="titlepage"><div><div><h3 class="title">11.2.4. Additional User Filters</h3></div></div></div><p>
+- ou=external</pre></section><section class="section" id="additional_user_filters"><div class="titlepage"><div><div><h3 class="title">12.2.4. Additional User Filters</h3></div></div></div><p>
 					<span class="inlinemediaobject"><img src="images/authentication-ldap-user-filter.png" alt="User filters"/></span>
 				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 							If specified, the additional filter used for all user lookup queries. Note that all Distinguished Names used in the filter must be <span class="strong strong"><strong>full</strong></span> paths; the Base DN is not added automatically here. <span class="strong strong"><strong>Must</strong></span> be wrapped in parens. Example: (&amp;(someFirstField=someValue)(someOtherField=someOtherValue))
 						</li><li class="listitem">
 							Here is an example of the resulting entry in the <span class="emphasis"><em>config.yaml</em></span> file:
-						</li></ul></div><pre class="literallayout">LDAP_USER_FILTER: (memberof=cn=developers,ou=groups,dc=example,dc=com)</pre></section><section class="section" id="administrator_dn"><div class="titlepage"><div><div><h3 class="title">11.2.5. Administrator DN</h3></div></div></div><p>
+						</li></ul></div><pre class="literallayout">LDAP_USER_FILTER: (memberof=cn=developers,ou=groups,dc=example,dc=com)</pre></section><section class="section" id="administrator_dn"><div class="titlepage"><div><div><h3 class="title">12.2.5. Administrator DN</h3></div></div></div><p>
 					<span class="inlinemediaobject"><img src="images/authentication-ldap-admin-dn.png" alt="Administrator DN"/></span>
 				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 							The Distinguished Name and password for the administrator account. This account must be able to login and view the records for all user accounts. Example: uid=admin,ou=employees,dc=my,dc=domain,dc=com
@@ -1590,7 +1829,7 @@ LDAP_SECONDARY_USER_RDNS:
 						</li><li class="listitem">
 							Here is an example of the resulting entries in the <span class="emphasis"><em>config.yaml</em></span> file:
 						</li></ul></div><pre class="literallayout">LDAP_ADMIN_DN: cn=admin,dc=example,dc=com
-LDAP_ADMIN_PASSWD: changeme</pre></section><section class="section" id="uid_and_mail_attributes"><div class="titlepage"><div><div><h3 class="title">11.2.6. UID and Mail attributes</h3></div></div></div><p>
+LDAP_ADMIN_PASSWD: changeme</pre></section><section class="section" id="uid_and_mail_attributes"><div class="titlepage"><div><div><h3 class="title">12.2.6. UID and Mail attributes</h3></div></div></div><p>
 					<span class="inlinemediaobject"><img src="images/authentication-ldap-uid-mail.png" alt="UID and Mail"/></span>
 				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 							The UID attribute is the name of the property field in LDAP user record to use as the <span class="strong strong"><strong>username</strong></span>. Typically "uid".
@@ -1605,13 +1844,13 @@ LDAP_ADMIN_PASSWD: changeme</pre></section><section class="section" id="uid_and_
 						</li><li class="listitem">
 							Here is an example of the resulting entries in the <span class="emphasis"><em>config.yaml</em></span> file:
 						</li></ul></div><pre class="literallayout">LDAP_UID_ATTR: uid
-LDAP_EMAIL_ATTR: mail</pre></section><section class="section" id="validation"><div class="titlepage"><div><div><h3 class="title">11.2.7. Validation</h3></div></div></div><p>
+LDAP_EMAIL_ATTR: mail</pre></section><section class="section" id="validation"><div class="titlepage"><div><div><h3 class="title">12.2.7. Validation</h3></div></div></div><p>
 					Once the configuration is completed, click on “Save Configuration Changes” button to validate the configuration.
 				</p><p>
 					<span class="inlinemediaobject"><img src="images/authentication-ldap-success.png" alt="Fill in LDAP information"/></span>
 				</p><p>
 					All validation must succeed before proceeding, or additional configuration may be performed by selecting the "Continue Editing" button.
-				</p></section></section><section class="section" id="common-issues"><div class="titlepage"><div><div><h2 class="title">11.3. Common Issues</h2></div></div></div><p>
+				</p></section></section><section class="section" id="common-issues"><div class="titlepage"><div><div><h2 class="title">12.3. Common Issues</h2></div></div></div><p>
 				<span class="strong strong"><strong><span class="emphasis"><em>Invalid credentials</em></span></strong></span>
 			</p><p>
 				Administrator DN or Administrator DN Password values are incorrect
@@ -1619,7 +1858,7 @@ LDAP_EMAIL_ATTR: mail</pre></section><section class="section" id="validation"><d
 				<span class="strong strong"><strong><span class="emphasis"><em>Verification of superuser %USERNAME% failed: Username not found The user either does not exist in the remote authentication system OR LDAP auth is misconfigured.</em></span></strong></span>
 			</p><p>
 				Red Hat Quay can connect to the LDAP server via Username/Password specified in the Administrator DN fields however cannot find the current logged in user with the UID Attribute or Mail Attribute fields in the User Relative DN Path. Either current logged in user does not exist in User Relative DN Path, or Administrator DN user do not have rights to search/read this LDAP path.
-			</p></section><section class="section" id="configure-ldap-superuser"><div class="titlepage"><div><div><h2 class="title">11.4. Configure an LDAP user as superuser</h2></div></div></div><p>
+			</p></section><section class="section" id="configure-ldap-superuser"><div class="titlepage"><div><div><h2 class="title">12.4. Configure an LDAP user as superuser</h2></div></div></div><p>
 				Once LDAP is configured, you can log in to your Red Hat Quay instance with a valid LDAP username and password. You are prompted to confirm your Red Hat Quay username as shown in the following figure:
 			</p><p>
 				<span class="inlinemediaobject"><img src="images/confirm-ldap-username.png" alt="Confirm LDAP username for Red Hat Quay"/></span>
@@ -1628,388 +1867,17 @@ LDAP_EMAIL_ATTR: mail</pre></section><section class="section" id="validation"><d
 			</p><pre class="literallayout">SUPER_USERS:
 - testadmin</pre><p>
 				Restart the Red Hat <code class="literal">Quay</code> container with the updated config.yaml file. The next time you log in, the user will have superuser privileges.
-			</p></section></section><section class="chapter" id="prometheus-metrics-under-quay-enterprise"><div class="titlepage"><div><div><h1 class="title">Chapter 12. Prometheus and Grafana metrics under Red Hat Quay</h1></div></div></div><p>
+			</p></section></section><section class="chapter" id="prometheus-metrics-under-quay-enterprise"><div class="titlepage"><div><div><h1 class="title">Chapter 13. Prometheus and Grafana metrics under Red Hat Quay</h1></div></div></div><p>
 			Red Hat Quay exports a <a class="link" href="https://prometheus.io/">Prometheus</a>- and Grafana-compatible endpoint on each instance to allow for easy monitoring and alerting.
-		</p><section class="section" id="exposing-the-prometheus-endpoint"><div class="titlepage"><div><div><h2 class="title">12.1. Exposing the Prometheus endpoint</h2></div></div></div><section class="section" id="standalone_red_hat_quay"><div class="titlepage"><div><div><h3 class="title">12.1.1. Standalone Red Hat Quay</h3></div></div></div><p>
-					When using <code class="literal">podman run</code> to start the <code class="literal">Quay</code> container, expose the metrics port <code class="literal">9091</code>:
-				</p><pre class="literallayout">$ sudo podman run -d --rm -p 80:8080 -p 443:8443  -p 9091:9091\
-   --name=quay \
-   -v $QUAY/config:/conf/stack:Z \
-   -v $QUAY/storage:/datastorage:Z \
-   registry.redhat.io/quay/quay-rhel8:v3.6.3</pre><p>
-					The metrics will now be available:
-				</p><pre class="programlisting language-terminal">$ curl quay.example.com:9091/metrics</pre><p>
-					See <a class="link" href="https://access.redhat.com/solutions/3750281">Monitoring Quay with Prometheus and Grafana</a> for details on configuring Prometheus and Grafana to monitor Quay repository counts.
-				</p></section><section class="section" id="red_hat_quay_operator"><div class="titlepage"><div><div><h3 class="title">12.1.2. Red Hat Quay Operator</h3></div></div></div><p>
-					Determine the cluster IP for the <code class="literal">quay-metrics</code> service:
-				</p><pre class="programlisting language-terminal">$ oc get services -n quay-enterprise
-NAME                                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                             AGE
-example-registry-clair-app            ClusterIP   172.30.61.161    &lt;none&gt;        80/TCP,8089/TCP                     18h
-example-registry-clair-postgres       ClusterIP   172.30.122.136   &lt;none&gt;        5432/TCP                            18h
-example-registry-quay-app             ClusterIP   172.30.72.79     &lt;none&gt;        443/TCP,80/TCP,8081/TCP,55443/TCP   18h
-example-registry-quay-config-editor   ClusterIP   172.30.185.61    &lt;none&gt;        80/TCP                              18h
-example-registry-quay-database        ClusterIP   172.30.114.192   &lt;none&gt;        5432/TCP                            18h
-example-registry-quay-metrics         ClusterIP   172.30.37.76     &lt;none&gt;        9091/TCP                            18h
-example-registry-quay-redis           ClusterIP   172.30.157.248   &lt;none&gt;        6379/TCP                            18h</pre><p>
-					Connect to your cluster and access the metrics using the cluster IP and port for the <code class="literal">quay-metrics</code> service:
-				</p><pre class="programlisting language-terminal">$ oc debug node/master-0
-
-sh-4.4# curl 172.30.37.76:9091/metrics
-
-# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.
-# TYPE go_gc_duration_seconds summary
-go_gc_duration_seconds{quantile="0"} 4.0447e-05
-go_gc_duration_seconds{quantile="0.25"} 6.2203e-05
-...</pre></section><section class="section" id="setting-up-prometheus-to-consume-metrics"><div class="titlepage"><div><div><h3 class="title">12.1.3. Setting up Prometheus to consume metrics</h3></div></div></div><p>
+		</p><section class="section" id="exposing-the-prometheus-endpoint"><div class="titlepage"><div><div><h2 class="title">13.1. Exposing the Prometheus endpoint</h2></div></div></div><p>
+				The Prometheus- and Grafana-compatible endpoint on the Red Hat Quay instance can be found at port <code class="literal">9091</code>. See <a class="link" href="https://access.redhat.com/solutions/3750281">Monitoring Quay with Prometheus and Grafana</a> for details on configuring Prometheus and Grafana to monitor Quay repository counts.
+			</p><section class="section" id="setting-up-prometheus-to-consume-metrics"><div class="titlepage"><div><div><h3 class="title">13.1.1. Setting up Prometheus to consume metrics</h3></div></div></div><p>
 					Prometheus needs a way to access all Red Hat Quay instances running in a cluster. In the typical setup, this is done by listing all the Red Hat Quay instances in a single named DNS entry, which is then given to Prometheus.
-				</p></section><section class="section" id="dns-configuration-under-kubernetes"><div class="titlepage"><div><div><h3 class="title">12.1.4. DNS configuration under Kubernetes</h3></div></div></div><p>
-					A simple <a class="link" href="http://kubernetes.io/docs/user-guide/services/">Kubernetes service</a> can be configured to provide the DNS entry for Prometheus.
-				</p></section><section class="section" id="dns-configuration-for-a-manual-cluster"><div class="titlepage"><div><div><h3 class="title">12.1.5. DNS configuration for a manual cluster</h3></div></div></div><p>
+				</p></section><section class="section" id="dns-configuration-under-kubernetes"><div class="titlepage"><div><div><h3 class="title">13.1.2. DNS configuration under Kubernetes</h3></div></div></div><p>
+					A simple <a class="link" href="http://kubernetes.io/docs/user-guide/services/">Kubernetes service</a> can be configured to provide the DNS entry for Prometheus. Details on running Prometheus under Kubernetes can be found at <a class="link" href="https://coreos.com/blog/prometheus-and-kubernetes-up-and-running.html">Prometheus and Kubernetes</a> and <a class="link" href="https://coreos.com/blog/monitoring-kubernetes-with-prometheus.html">Monitoring Kubernetes with Prometheus</a>.
+				</p></section><section class="section" id="dns-configuration-for-a-manual-cluster"><div class="titlepage"><div><div><h3 class="title">13.1.3. DNS configuration for a manual cluster</h3></div></div></div><p>
 					<a class="link" href="https://github.com/skynetservices/skydns">SkyDNS</a> is a simple solution for managing this DNS record when not using Kubernetes. SkyDNS can run on an <a class="link" href="https://github.com/coreos/etcd">etcd</a> cluster. Entries for each Red Hat Quay instance in the cluster can be added and removed in the etcd store. SkyDNS will regularly read them from there and update the list of Quay instances in the DNS record accordingly.
-				</p></section></section><section class="section" id="metrics-intro"><div class="titlepage"><div><div><h2 class="title">12.2. Introduction to metrics</h2></div></div></div><p>
-				Red Hat Quay provides metrics to help monitor the registry, including metrics for general registry usage, uploads, downloads, garbage collection, and authentication.
-			</p><section class="section" id="metrics-general-registry-stats"><div class="titlepage"><div><div><h3 class="title">12.2.1. General registry statistics</h3></div></div></div><p>
-					General registry statistics can indicate how large the registry has grown.
-				</p><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><thead><tr><th align="left" valign="top" id="idm45728306628224" scope="col">Metric name</th><th align="left" valign="top" id="idm45728306627136" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45728306628224">
-								<p>
-									quay_user_rows
-								</p>
-								</td><td align="left" valign="top" headers="idm45728306627136">
-								<p>
-									Number of users in the database
-								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45728306628224">
-								<p>
-									quay_robot_rows
-								</p>
-								</td><td align="left" valign="top" headers="idm45728306627136">
-								<p>
-									Number of robot accounts in the database
-								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45728306628224">
-								<p>
-									quay_org_rows
-								</p>
-								</td><td align="left" valign="top" headers="idm45728306627136">
-								<p>
-									Number of organizations in the database
-								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45728306628224">
-								<p>
-									quay_repository_rows
-								</p>
-								</td><td align="left" valign="top" headers="idm45728306627136">
-								<p>
-									Number of repositories in the database
-								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45728306628224">
-								<p>
-									quay_security_scanning_unscanned_images_remaining_total
-								</p>
-								</td><td align="left" valign="top" headers="idm45728306627136">
-								<p>
-									Number of images that are not scanned by the latest security scanner
-								</p>
-								</td></tr></tbody></table></div><div class="formalpara"><p class="title"><strong>Sample metrics output</strong></p><p>
-						
-<pre class="programlisting language-terminal"># HELP quay_user_rows number of users in the database
-# TYPE quay_user_rows gauge
-quay_user_rows{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="65",process_name="globalpromstats.py"} 3
-
-# HELP quay_robot_rows number of robot accounts in the database
-# TYPE quay_robot_rows gauge
-quay_robot_rows{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="65",process_name="globalpromstats.py"} 2
-
-# HELP quay_org_rows number of organizations in the database
-# TYPE quay_org_rows gauge
-quay_org_rows{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="65",process_name="globalpromstats.py"} 2
-
-# HELP quay_repository_rows number of repositories in the database
-# TYPE quay_repository_rows gauge
-quay_repository_rows{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="65",process_name="globalpromstats.py"} 4
-
-# HELP quay_security_scanning_unscanned_images_remaining number of images that are not scanned by the latest security scanner
-# TYPE quay_security_scanning_unscanned_images_remaining gauge
-quay_security_scanning_unscanned_images_remaining{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 5</pre>
-					</p></div></section><section class="section" id="metrics-queue-items"><div class="titlepage"><div><div><h3 class="title">12.2.2. Queue items</h3></div></div></div><p>
-					The <span class="emphasis"><em>queue items</em></span> metrics provide information on the multiple queues used by Quay for managing work.
-				</p><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><thead><tr><th align="left" valign="top" id="idm45728305677232" scope="col">Metric name</th><th align="left" valign="top" id="idm45728305676144" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45728305677232">
-								<p>
-									quay_queue_items_available
-								</p>
-								</td><td align="left" valign="top" headers="idm45728305676144">
-								<p>
-									Number of items in a specific queue
-								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45728305677232">
-								<p>
-									quay_queue_items_locked
-								</p>
-								</td><td align="left" valign="top" headers="idm45728305676144">
-								<p>
-									Number of items that are running
-								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45728305677232">
-								<p>
-									quay_queue_items_available_unlocked
-								</p>
-								</td><td align="left" valign="top" headers="idm45728305676144">
-								<p>
-									Number of items that are waiting to be processed
-								</p>
-								</td></tr></tbody></table></div><div class="itemizedlist"><p class="title"><strong>Metric labels</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
-							<span class="strong strong"><strong>queue_name:</strong></span> The name of the queue. One of:
-						</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
-									<span class="strong strong"><strong>exportactionlogs:</strong></span> Queued requests to export action logs. These logs are then processed and put in storage. A link is then sent to the requester via email.
-								</li><li class="listitem">
-									<span class="strong strong"><strong>namespacegc:</strong></span> Queued namespaces to be garbage collected
-								</li><li class="listitem">
-									<span class="strong strong"><strong>notification:</strong></span> Queue for repository notifications to be sent out
-								</li><li class="listitem">
-									<span class="strong strong"><strong>repositorygc:</strong></span> Queued repositories to be garbage collected
-								</li><li class="listitem">
-									<span class="strong strong"><strong>secscanv4:</strong></span> Notification queue specific for Clair V4
-								</li><li class="listitem">
-									<span class="strong strong"><strong>dockerfilebuild:</strong></span> Queue for Quay docker builds
-								</li><li class="listitem">
-									<span class="strong strong"><strong>imagestoragereplication:</strong></span> Queued blob to be replicated across multiple storages
-								</li><li class="listitem">
-									<span class="strong strong"><strong>chunk_cleanup:</strong></span> Queued blob segments that needs to be deleted. This is only used by some storage implementations, for example, Swift.
-								</li></ul></div></li></ul></div><p>
-					For example, the queue labelled <span class="strong strong"><strong>repositorygc</strong></span> contains the repositories marked for deletion by the repository garbage collection worker. For metrics with a <span class="strong strong"><strong>queue_name</strong></span> label of <span class="strong strong"><strong>repositorygc</strong></span>:
-				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-							<span class="strong strong"><strong>quay_queue_items_locked</strong></span> is the number of repositories currently being deleted.
-						</li><li class="listitem">
-							<span class="strong strong"><strong>quay_queue_items_available_unlocked</strong></span> is the number of repositories waiting to get processed by the worker.
-						</li></ul></div><div class="formalpara"><p class="title"><strong>Sample metrics output</strong></p><p>
-						
-<pre class="programlisting language-terminal"># HELP quay_queue_items_available number of queue items that have not expired
-# TYPE quay_queue_items_available gauge
-quay_queue_items_available{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="63",process_name="exportactionlogsworker.py",queue_name="exportactionlogs"} 0
-...
-
-# HELP quay_queue_items_available_unlocked number of queue items that have not expired and are not locked
-# TYPE quay_queue_items_available_unlocked gauge
-quay_queue_items_available_unlocked{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="63",process_name="exportactionlogsworker.py",queue_name="exportactionlogs"} 0
-...
-
-# HELP quay_queue_items_locked number of queue items that have been acquired
-# TYPE quay_queue_items_locked gauge
-quay_queue_items_locked{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="63",process_name="exportactionlogsworker.py",queue_name="exportactionlogs"} 0</pre>
-					</p></div></section><section class="section" id="metrics-garbage-collection"><div class="titlepage"><div><div><h3 class="title">12.2.3. Garbage collection metrics</h3></div></div></div><p>
-					These metrics show you how many resources have been removed from garbage collection (gc). They show many times the gc workers have run and how many namespaces, repositories, and blobs were removed.
-				</p><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><thead><tr><th align="left" valign="top" id="idm45728306726976" scope="col">Metric name</th><th align="left" valign="top" id="idm45728306725888" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45728306726976">
-								<p>
-									quay_gc_iterations_total
-								</p>
-								</td><td align="left" valign="top" headers="idm45728306725888">
-								<p>
-									Number of iterations by the GCWorker
-								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45728306726976">
-								<p>
-									quay_gc_namespaces_purged_total
-								</p>
-								</td><td align="left" valign="top" headers="idm45728306725888">
-								<p>
-									Number of namespaces purged by the NamespaceGCWorker
-								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45728306726976">
-								<p>
-									quay_gc_repos_purged_total
-								</p>
-								</td><td align="left" valign="top" headers="idm45728306725888">
-								<p>
-									Number of repositories purged by the RepositoryGCWorker or NamespaceGCWorker
-								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45728306726976">
-								<p>
-									quay_gc_storage_blobs_deleted_total
-								</p>
-								</td><td align="left" valign="top" headers="idm45728306725888">
-								<p>
-									Number of storage blobs deleted
-								</p>
-								</td></tr></tbody></table></div><div class="formalpara"><p class="title"><strong>Sample metrics output</strong></p><p>
-						
-<pre class="programlisting language-terminal"># TYPE quay_gc_iterations_created gauge
-quay_gc_iterations_created{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 1.6317823190189714e+09
-...
-
-# HELP quay_gc_iterations_total number of iterations by the GCWorker
-# TYPE quay_gc_iterations_total counter
-quay_gc_iterations_total{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 0
-...
-
-# TYPE quay_gc_namespaces_purged_created gauge
-quay_gc_namespaces_purged_created{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 1.6317823190189433e+09
-...
-
-# HELP quay_gc_namespaces_purged_total number of namespaces purged by the NamespaceGCWorker
-# TYPE quay_gc_namespaces_purged_total counter
-quay_gc_namespaces_purged_total{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 0
-....
-
-# TYPE quay_gc_repos_purged_created gauge
-quay_gc_repos_purged_created{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 1.631782319018925e+09
-...
-
-# HELP quay_gc_repos_purged_total number of repositories purged by the RepositoryGCWorker or NamespaceGCWorker
-# TYPE quay_gc_repos_purged_total counter
-quay_gc_repos_purged_total{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 0
-...
-
-# TYPE quay_gc_storage_blobs_deleted_created gauge
-quay_gc_storage_blobs_deleted_created{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 1.6317823190189059e+09
-...
-
-# HELP quay_gc_storage_blobs_deleted_total number of storage blobs deleted
-# TYPE quay_gc_storage_blobs_deleted_total counter
-quay_gc_storage_blobs_deleted_total{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 0
-...</pre>
-					</p></div><section class="section" id="metrics-multipart-uploads"><div class="titlepage"><div><div><h4 class="title">12.2.3.1. Multipart uploads metrics</h4></div></div></div><p>
-						The multipart uploads metrics show the number of blobs uploads to storage (S3, Rados, GoogleCloudStorage, RHOCS). These can help identify issues when Quay is unable to correctly upload blobs to storage.
-					</p><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><thead><tr><th align="left" valign="top" id="idm45728306434656" scope="col">Metric name</th><th align="left" valign="top" id="idm45728306433568" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45728306434656">
-									<p>
-										quay_multipart_uploads_started_total
-									</p>
-									</td><td align="left" valign="top" headers="idm45728306433568">
-									<p>
-										Number of multipart uploads to Quay storage that completed
-									</p>
-									</td></tr><tr><td align="left" valign="top" headers="idm45728306434656">
-									<p>
-										quay_multipart_uploads_completed_total
-									</p>
-									</td><td align="left" valign="top" headers="idm45728306433568">
-									<p>
-										Number of multipart uploads to Quay storage that started
-									</p>
-									</td></tr></tbody></table></div><div class="formalpara"><p class="title"><strong>Sample metrics output</strong></p><p>
-							
-<pre class="programlisting language-terminal"># TYPE quay_multipart_uploads_completed_created gauge
-quay_multipart_uploads_completed_created{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 1.6317823308284895e+09
-...
-
-# HELP quay_multipart_uploads_completed_total number of multipart uploads to Quay storage that completed
-# TYPE quay_multipart_uploads_completed_total counter
-quay_multipart_uploads_completed_total{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 0
-
-# TYPE quay_multipart_uploads_started_created gauge
-quay_multipart_uploads_started_created{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 1.6317823308284352e+09
-...
-
-# HELP quay_multipart_uploads_started_total number of multipart uploads to Quay storage that started
-# TYPE quay_multipart_uploads_started_total counter
-quay_multipart_uploads_started_total{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 0
-...</pre>
-						</p></div></section></section><section class="section" id="metrics-image-push-pull"><div class="titlepage"><div><div><h3 class="title">12.2.4. Image push / pull metrics</h3></div></div></div><p>
-					A number of metrics are available related to pushing and pulling images.
-				</p><section class="section" id="image_pulls_total"><div class="titlepage"><div><div><h4 class="title">12.2.4.1. Image pulls total</h4></div></div></div><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><thead><tr><th align="left" valign="top" id="idm45728302788688" scope="col">Metric name</th><th align="left" valign="top" id="idm45728302787600" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45728302788688">
-									<p>
-										quay_registry_image_pulls_total
-									</p>
-									</td><td align="left" valign="top" headers="idm45728302787600">
-									<p>
-										The number of images downloaded from the registry.
-									</p>
-									</td></tr></tbody></table></div><div class="itemizedlist"><p class="title"><strong>Metric labels</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
-								<span class="strong strong"><strong>protocol:</strong></span> the registry protocol used (should always be v2)
-							</li><li class="listitem">
-								<span class="strong strong"><strong>ref:</strong></span> ref used to pull - tag, manifest
-							</li><li class="listitem">
-								<span class="strong strong"><strong>status:</strong></span> http return code of the request
-							</li></ul></div></section><section class="section" id="image_bytes_pulled"><div class="titlepage"><div><div><h4 class="title">12.2.4.2. Image bytes pulled</h4></div></div></div><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><thead><tr><th align="left" valign="top" id="idm45728306823568" scope="col">Metric name</th><th align="left" valign="top" id="idm45728306822480" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45728306823568">
-									<p>
-										quay_registry_image_pulled_estimated_bytes_total
-									</p>
-									</td><td align="left" valign="top" headers="idm45728306822480">
-									<p>
-										The number of bytes downloaded from the registry
-									</p>
-									</td></tr></tbody></table></div><div class="itemizedlist"><p class="title"><strong>Metric labels</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
-								<span class="strong strong"><strong> protocol:</strong></span> the registry protocol used (should always be v2)
-							</li></ul></div></section><section class="section" id="image_pushes_total"><div class="titlepage"><div><div><h4 class="title">12.2.4.3. Image pushes total</h4></div></div></div><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><thead><tr><th align="left" valign="top" id="idm45728302280528" scope="col">Metric name</th><th align="left" valign="top" id="idm45728302279440" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45728302280528">
-									<p>
-										quay_registry_image_pushes_total
-									</p>
-									</td><td align="left" valign="top" headers="idm45728302279440">
-									<p>
-										The number of images uploaded from the registry.
-									</p>
-									</td></tr></tbody></table></div><div class="itemizedlist"><p class="title"><strong>Metric labels</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
-								<span class="strong strong"><strong>protocol:</strong></span> the registry protocol used (should always be v2)
-							</li><li class="listitem">
-								<span class="strong strong"><strong>pstatus:</strong></span> http return code of the request
-							</li><li class="listitem">
-								<span class="strong strong"><strong>pmedia_type:</strong></span> the uploaded manifest type
-							</li></ul></div></section><section class="section" id="image_bytes_pushed"><div class="titlepage"><div><div><h4 class="title">12.2.4.4. Image bytes pushed</h4></div></div></div><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><thead><tr><th align="left" valign="top" id="idm45728304304240" scope="col">Metric name</th><th align="left" valign="top" id="idm45728304303152" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45728304304240">
-									<p>
-										quay_registry_image_pushed_bytes_total
-									</p>
-									</td><td align="left" valign="top" headers="idm45728304303152">
-									<p>
-										The number of bytes uploaded to the registry
-									</p>
-									</td></tr></tbody></table></div><div class="formalpara"><p class="title"><strong>Sample metrics output</strong></p><p>
-							
-<pre class="programlisting language-terminal"># HELP quay_registry_image_pushed_bytes_total number of bytes pushed to the registry
-# TYPE quay_registry_image_pushed_bytes_total counter
-quay_registry_image_pushed_bytes_total{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="221",process_name="registry:application"} 0
-...</pre>
-						</p></div></section></section><section class="section" id="metrics-authentication"><div class="titlepage"><div><div><h3 class="title">12.2.5. Authentication metrics</h3></div></div></div><p>
-					The authentication metrics provide the number of authentication requests, labeled by type and whether it succeeded or not. For example, this metric could be used to monitor failed basic authentication requests.
-				</p><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><thead><tr><th align="left" valign="top" id="idm45728304288144" scope="col">Metric name</th><th align="left" valign="top" id="idm45728304287056" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45728304288144">
-								<p>
-									quay_authentication_attempts_total
-								</p>
-								</td><td align="left" valign="top" headers="idm45728304287056">
-								<p>
-									Number of authentication attempts across the registry and API
-								</p>
-								</td></tr></tbody></table></div><div class="itemizedlist"><p class="title"><strong>Metric labels</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
-							<span class="strong strong"><strong>auth_kind:</strong></span> The type of auth used, including:
-						</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
-									basic
-								</li><li class="listitem">
-									oauth
-								</li><li class="listitem">
-									credentials
-								</li></ul></div></li><li class="listitem">
-							<span class="strong strong"><strong>success:</strong></span> true or false
-						</li></ul></div><div class="formalpara"><p class="title"><strong>Sample metrics output</strong></p><p>
-						
-<pre class="programlisting language-terminal"># TYPE quay_authentication_attempts_created gauge
-quay_authentication_attempts_created{auth_kind="basic",host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="221",process_name="registry:application",success="True"} 1.6317843039374158e+09
-...
-
-# HELP quay_authentication_attempts_total number of authentication attempts across the registry and API
-# TYPE quay_authentication_attempts_total counter
-quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="221",process_name="registry:application",success="True"} 2
-...</pre>
-					</p></div></section></section></section><section class="chapter" id="red-hat-quay-quota-management-and-enforcement"><div class="titlepage"><div><div><h1 class="title">Chapter 13. Red Hat Quay quota management and enforcement</h1></div></div></div><p>
-			With Red Hat Quay 3.7, users have the ability to report storage consumption and contain registry growth by establishing configured storage quota limits. Although there are no limitations on a Quay organization’s storage consumption, on-premises Quay customers subjected to capacity limits of their environment are now equipped with the following capabilities:
-		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-					Quota reporting. With this feature, a super admin can track the storage consumption of all their organizations. Additionally, users can track the storage consumption of their assigned organization.
-				</li><li class="listitem">
-					Quota management. With this feature, a superuser can define soft and hard checks for Red Hat Quay users. Soft checks tell users if the storage consumption of an organization reaches their configured threshold. Hard checks prevent users from pushing to the registry when storage consumption reaches the configured limit.
-				</li></ul></div><p>
-			Collectively, these features allow service owners of a Quay registry to define service level agreements and support a healthy budget.
-		</p><section class="section" id="quota-management-arch"><div class="titlepage"><div><div><h2 class="title">13.1. Quota management architecture</h2></div></div></div><p>
-				<span class="inlinemediaobject"><img src="images/quota-management.png" alt="Quota management architecture"/></span>
-			</p><p>
-				The above image shows the expected design flow and architecture of the Quota management feature.
-			</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
-					With Red Hat Quay 3.7, boxes outlined in black show the current flow, and boxes outlined in green show what need to be implemented to support this feature.
-				</p></div></div><p>
-				Architecturally, the <code class="literal">RepositorySize</code> table holds the storage consumption, in bytes, of a Red Hat Quay repository within an organization. The sum of all repository sizes for an organization defines the current storage size of a Red Hat Quay organization. When an image push is initialized, the user’s organization storage is validated to check if it is beyond the configured quota limits. If an image push exceeds defined quota limitations, a soft or hard check occurs. For a soft check, users are notified, and for a hard check, the push is stopped. If storage consumption is within configured quota limits, the push happens as expected.
-			</p><p>
-				Image manifest deletion follows a similar flow, wherein the link between associated image tags and the manfiest are deleted. Additionally, after the image manifest is deleted, the repository size is recalculated and updated in the <code class="literal">RepositorySize</code> table. The image below represents the design flow and architecture when deleting an image manifest:
-			</p><p>
-				<span class="inlinemediaobject"><img src="images/manifest-deletion-architecture.png" alt="Manifest deletion architecture"/></span>
-			</p></section><section class="section" id="quota-management-limitations"><div class="titlepage"><div><div><h2 class="title">13.2. Quota management limitations</h2></div></div></div><p>
-				Quota management helps organizations maintain resource consumption, however there are a few limitations. For example, calculating resource consumption on push, as opposed to monitoring consumption with a background worker, does not take into account the usage data of existing images. To avoid potential issues, a backfill for all existing repositories is required before the feature is enabled. Additionally, calculation becomes part of a push’s critical path, otherwise the usage data could drift.
-			</p></section></section><section class="chapter" id="georepl-intro"><div class="titlepage"><div><div><h1 class="title">Chapter 14. Geo-replication</h1></div></div></div><p>
+				</p></section></section></section><section class="chapter" id="georepl-intro"><div class="titlepage"><div><div><h1 class="title">Chapter 14. Geo-replication</h1></div></div></div><p>
 			Geo-replication allows multiple, geographically distributed Quay deployments to work as a single registry from the perspective of a client or user. It significantly improves push and pull performance in a globally-distributed Quay setup. Image data is asynchronously replicated in the background with transparent failover / redirect for clients.
 		</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
 				Deploying Red Hat Quay with geo-replication on OpenShift is not supported by the Operator.
@@ -2072,7 +1940,7 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
    --name=quay \
    -v $QUAY/config:/conf/stack:Z \
    -e QUAY_DISTRIBUTED_STORAGE_PREFERENCE=europestorage \
-   registry.redhat.io/quay/quay-rhel8:v3.6.3</pre><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+   registry.redhat.io/quay/quay-rhel8:v3.6.2</pre><div class="admonition note"><div class="admonition_header">Note</div><div><p>
 								The value of the environment variable specified must match the name of a Location ID as defined in the config panel.
 							</p></div></div></li><li class="listitem">
 							Restart all Red Hat Quay containers
@@ -2106,7 +1974,7 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 			Most Red Hat Quay configuration information is stored in the <code class="literal">config.yaml</code> file that is created using the browser-based config tool when Red Hat Quay is first deployed.
 		</p><p>
 			The configuration options are described in the Red Hat Quay Configuration Guide.
-		</p><h2 id="additional_resources">Additional resources</h2></section><div><div xml:lang="en-US" class="legalnotice" id="idm45728305543824"><h1 class="legalnotice">Legal Notice</h1><div class="para">
+		</p><h2 id="additional_resources">Additional resources</h2></section><div><div xml:lang="en-US" class="legalnotice" id="idm46045499375568"><h1 class="legalnotice">Legal Notice</h1><div class="para">
 		Copyright <span class="trademark"/>© 2022 Red Hat, Inc.
 	</div><div class="para">
 		The text of and illustrations in this document are licensed by Red Hat under a Creative Commons Attribution–Share Alike 3.0 Unported license ("CC-BY-SA"). An explanation of CC-BY-SA is available at <a class="uri" href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a>. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
