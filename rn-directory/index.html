@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Red Hat Quay Release Notes</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Red Hat Quay Release Notes"/><link rel="next" href="#idm46003447649840" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm46003447655952"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.7</span></div><div><h1 class="title">Red Hat Quay Release Notes</h1></div><div><h2 class="subtitle">Red Hat Quay</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm46003445332368">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
+<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Red Hat Quay Release Notes</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Red Hat Quay Release Notes"/><link rel="next" href="#idm45686648430080" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm45686648253824"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.7</span></div><div><h1 class="title">Red Hat Quay Release Notes</h1></div><div><h2 class="subtitle">Red Hat Quay</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm45686640758752">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
 				Red Hat Quay Release Notes
-			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm46003447649840">Preface</a></span></li></ul></div><section class="preface" id="idm46003447649840"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div><p>
+			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm45686648430080">Preface</a></span></li></ul></div><section class="preface" id="idm45686648430080"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div><p>
 			Red Hat Quay is regularly released, containing new features, bug fixes, and software updates. We highly recommend deploying the latest version of Red Hat Quay.
 		</p><p>
 			For Red Hat Quay documentation, you should know that:
@@ -16,37 +16,61 @@
 					Documentation versions prior to 2.9.2 are archived on the <a class="link" href="https://coreos.com/quay-enterprise/docs/latest/">CoreOS</a> site
 				</li></ul></div><p>
 			Red Hat Quay, version 3 is the latest major version.
-		</p></section><section class="section" id="rn-3-700"><div class="titlepage"><div><div><h2 class="title">1. Version 3.7.0</h2></div></div></div><section class="section" id="quota"><div class="titlepage"><div><div><h3 class="title">1.1. Quota</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-302">PROJQUAY-302</a>. Quota Management and Enforcements
-					</li></ul></div><section class="section" id="details"><div class="titlepage"><div><div><h4 class="title">1.1.1. Details</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2936">ROJQUAY-2936</a>. Reporting API and Schema
-						</li><li class="listitem">
-							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2937">PROJQUAY-2937</a>. Repository Soft/Hard Limit Implementation
-						</li></ul></div></section></section><section class="section" id="proxy"><div class="titlepage"><div><div><h3 class="title">1.2. Proxy</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-465">PROJQUAY-465</a>. Quay as a cache proxy / pull-through cache for other registries
-					</li></ul></div><section class="section" id="design"><div class="titlepage"><div><div><h4 class="title">1.2.1. Design</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2888">PROJQUAY-2888</a>. Quay as a cache proxy - Design: Proxy org creation and configuration
-						</li><li class="listitem">
-							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2889">PROJQUAY-2889</a>. Quay as a cache proxy - Design: Upstream image pull flow
-						</li><li class="listitem">
-							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2890">PROJQUAY-2890</a>. Quay as a cache proxy - Design: Local storage of upstream image layers and manifests
-						</li><li class="listitem">
-							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2891">PROJQUAY-2891</a>. Quay as a cache proxy - Design: Quota Management in Cache Proxy org Spike
-						</li></ul></div></section><section class="section" id="user_stories"><div class="titlepage"><div><div><h4 class="title">1.2.2. User stories</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-3029">PROJQUAY-3029</a>. As a Quay user, I want to create and configure pull-through proxy orgs via UI
-						</li><li class="listitem">
-							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-3030">PROJQUAY-3030</a>. As a Quay user I want to be able to proxy images through Quay orgs
-						</li><li class="listitem">
-							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-3033">PROJQUAY-3033</a>. As a Quay user I want proxied images to be stored in Quay so that my pulls are faster
-						</li></ul></div></section></section><section class="section" id="geo_replication"><div class="titlepage"><div><div><h3 class="title">1.3. Geo-replication</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2504">PROJQUAY-2504</a>. Quay Operator supports geo-replication
-					</li></ul></div><section class="section" id="details_2"><div class="titlepage"><div><div><h4 class="title">1.3.1. Details</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-3055">PROJQUAY-3055</a>. Environment variables override
-						</li><li class="listitem">
-							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-3056">PROJQUAY-3056</a>. Scale down quay, clair and mirror
-						</li><li class="listitem">
-							<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-1723">PROJQUAY-1723</a>. Multi-cluster deployment of Quay on OpenShift along with all components
-						</li></ul></div></section></section></section><section class="section" id="rn-3-603"><div class="titlepage"><div><div><h2 class="title">2. Version 3.6.3</h2></div></div></div><section class="section" id="quay_clair_quay_builder"><div class="titlepage"><div><div><h3 class="title">2.1. quay / clair / quay-builder</h3></div></div></div><p>
+		</p></section><section class="section" id="rn-3-700"><div class="titlepage"><div><div><h2 class="title">1. Version 3.7.0</h2></div></div></div><section class="section" id="quay_clair_quay_builder"><div class="titlepage"><div><div><h3 class="title">1.1. quay / clair / quay-builder</h3></div></div></div><p>
+				Added/Changed:
+			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+						With Red Hat Quay 3.7, users have the ability to report storage consumption and to contain registry growth by establishing configured storage quota limits. Although there are no limitations on a Quay organization’s storage consumption, on-premise Quay users are now equipped with quota reporting and quota management capabilities to manage the capacity limits of their environment. (<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-302">PROJQUAY-302</a>, <a class="link" href="https://issues.redhat.com/browse/PROJQUAY-253">PROJQUAY-253</a>)
+					</li><li class="listitem">
+						The bare-metal constraint required to run builds has been removed by adding an additional build option which does not contain the virtual machine layer. As a result, builds can be run on virtualized platforms. Backwards compatibility to run previous build configurations are also available. (<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-295">PROJQUAY-295</a>)
+					</li><li class="listitem">
+						Red Hat Quay can now act as a proxy cache to circumvent pull-rate limitations from upstream registries. This feature also accelerates pull performance, because images are pulled from the cache rather than upstream dependencies. Cached images are only updated when the upstream image digest differs from the cached image, reducing rate limitations and potential throttling. (<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-465">PROJQUAY-465</a>)
+					</li><li class="listitem">
+						Support for Microsoft Azure Government (MAG) has been added. (<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-891">PROJQUAY-891</a>)
+					</li></ul></div><p>
+				Known issues:
+			</p><p>
+				Fixed:
+			</p></section><section class="section" id="red_hat_quay_feature_tracker"><div class="titlepage"><div><div><h3 class="title">1.2. Red Hat Quay feature tracker</h3></div></div></div><p>
+				New features have been added to Red Hat Quay, some of which are currently in Technology Preview. Technology Preview features are experimental features and are not intended for production use.
+			</p><p>
+				Some features available in previously releases have been deprecated or remove. Deprecated functionality is still included in Red Hat Quay, but is planned for removal in a future release and is not recommended for new deployments. For the most recent list of major functionality deprecated and remove with Red Hat Quay 3.6, refer to the table below. Additional details for more fine-grained functionality that has been deprecated and removed are listed after the table.
+			</p><div class="table" id="idm45686648049136"><p class="title"><strong>Table 1. Technology Preview tracker</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><thead><tr><th align="left" valign="top" id="idm45686648368768" scope="col">Feature</th><th align="left" valign="top" id="idm45686648367680" scope="col">Quay 3.6</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45686648368768"> </td><td align="left" valign="top" headers="idm45686648367680"> </td></tr><tr><td align="left" valign="top" headers="idm45686648368768"> </td><td align="left" valign="top" headers="idm45686648367680"> </td></tr><tr><td align="left" valign="top" headers="idm45686648368768"> </td><td align="left" valign="top" headers="idm45686648367680"> </td></tr><tr><td align="left" valign="top" headers="idm45686648368768"> </td><td align="left" valign="top" headers="idm45686648367680"> </td></tr></tbody></table></div></div><section class="section" id="deprecated_features"><div class="titlepage"><div><div><h4 class="title">1.2.1. Deprecated features</h4></div></div></div></section><section class="section" id="technology_preview_features"><div class="titlepage"><div><div><h4 class="title">1.2.2. Technology preview features</h4></div></div></div></section></section><section class="section" id="quay_operator"><div class="titlepage"><div><div><h3 class="title">1.3. quay-operator</h3></div></div></div><p>
+				Added/Changed:
+			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+						Advanced Clair configuration is now available for Red Hat Quay 3.7. The following features are now available to Quay administrators on the Quay Operator:
+					</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
+								Configuration of Clair’s updater set through the Quay Operator.
+							</li><li class="listitem">
+								Configuration of the database connection string through the Quay Operator.
+							</li><li class="listitem">
+								Configuration of custom certificates into the Clair deployment, which allows support of internal HTTPS proxies.
+							</li><li class="listitem">
+								Override, or re-size, the size and storage class of the Postgres Database PVC.
+							</li><li class="listitem">
+								Support for alternative fully qualified domain names (FQDN) for Clair that can leverage a global load balancing mechanism fronting different clusters running Clair.
+							</li></ul></div></li></ul></div><p>
+				For more information, see <a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2110">PROJQUAY-2210</a>.
+			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+						With advanced Clair configuration, users can also provide a custom Clair configuration for an unmanaged Clair database on the Red Hat Quay Operator. An unmanaged Clair database allows the Red Hat Quay Operator to work in a Geo-Replicated environment, where multiple instances of the Operator must communicate with the same database. An unmanaged Clair database can also be used when a user requires a highly-available (HA) Clair database that exists outside of a cluster. (<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-1696">PROJQUAY-1969</a>)
+					</li><li class="listitem">
+						Geo-replication is now available. This feature allows multiple, geographically distributed Quay deployments to work as a single registry from the perspective of a client or user. It significantly improves push and pull performance in a globally-distributed Quay setup. Image data is asynchronously replicated in the background with transparent failover / redirect for clients. (<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2504">PROJQUAY-2504</a>)
+					</li></ul></div><p>
+				Known issues:
+			</p><p>
+				Fixed:
+			</p></section><section class="section" id="quay_container_security_operator"><div class="titlepage"><div><div><h3 class="title">1.4. quay-container-security-operator</h3></div></div></div><p>
+				Added/Changed:
+			</p><p>
+				Known issues:
+			</p><p>
+				Fixed:
+			</p></section><section class="section" id="quay_openshift_bridge_operators"><div class="titlepage"><div><div><h3 class="title">1.5. quay-openshift-bridge-operators</h3></div></div></div><p>
+				Added/Changed:
+			</p><p>
+				Known issues:
+			</p><p>
+				Fixed:
+			</p></section></section><section class="section" id="rn-3-603"><div class="titlepage"><div><div><h2 class="title">2. Version 3.6.3</h2></div></div></div><section class="section" id="quay_clair_quay_builder_2"><div class="titlepage"><div><div><h3 class="title">2.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2080">PROJQUAY-2080</a>. Quay failed to delete new team with 400 error code when the team role is Admin.
@@ -64,7 +88,7 @@
 				Added/Changed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2989">PROJQUAY-2989</a>. Bump LDAP 3.2.0 to 3.4.0.
-					</li></ul></div></section><section class="section" id="quay_operator"><div class="titlepage"><div><div><h3 class="title">2.2. quay-operator</h3></div></div></div><p>
+					</li></ul></div></section><section class="section" id="quay_operator_2"><div class="titlepage"><div><div><h3 class="title">2.2. quay-operator</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2049">PROJQUAY-2049</a>. When routes are not managed a config editor endpoint is still propagated in status.
@@ -94,13 +118,13 @@
 				Added/Changed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2973">PROJQUAY-2973</a>. Bump github.com/ulikunitz/xz dependency.
-					</li></ul></div></section><section class="section" id="quay_openshift_bridge_operators"><div class="titlepage"><div><div><h3 class="title">2.3. quay-openshift-bridge-operators</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					</li></ul></div></section><section class="section" id="quay_openshift_bridge_operators_2"><div class="titlepage"><div><div><h3 class="title">2.3. quay-openshift-bridge-operators</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2732">PROJQUAY-2732</a>. Faster creation of resources and permissions.
 					</li><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2898">PROJQUAY-2898</a>. Review QBO - Issue with BuildConfig being mutated incorrectly.
 					</li><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2984">PROJQUAY-2984</a>. Change label/selector on QBO pod and service.
-					</li></ul></div></section></section><section class="section" id="rn-3-602"><div class="titlepage"><div><div><h2 class="title">3. Version 3.6.2</h2></div></div></div><section class="section" id="quay_clair_quay_builder_2"><div class="titlepage"><div><div><h3 class="title">3.1. quay / clair / quay-builder</h3></div></div></div><p>
+					</li></ul></div></section></section><section class="section" id="rn-3-602"><div class="titlepage"><div><div><h2 class="title">3. Version 3.6.2</h2></div></div></div><section class="section" id="quay_clair_quay_builder_3"><div class="titlepage"><div><div><h3 class="title">3.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2416">PROJQUAY-2416</a>. Builder jobs not completing and timing out after 3 minutes of inactivity.
@@ -108,7 +132,7 @@
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2313">PROJQUAY-2313</a>. Quay is using more storage than other registries on s3.
 					</li><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2681">PROJQUAY-2681</a>. Quay 3.6.0 registry title was not changed after changes with the config editor.
-					</li></ul></div></section><section class="section" id="quay_operator_2"><div class="titlepage"><div><div><h3 class="title">3.2. quay-operator</h3></div></div></div><p>
+					</li></ul></div></section><section class="section" id="quay_operator_3"><div class="titlepage"><div><div><h3 class="title">3.2. quay-operator</h3></div></div></div><p>
 				Added/Changed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						As of Red Hat Quay v3.6.2, you can specify the desired size of storage resources provisioned for managed components. <a class="link" href="https://issues.redhat.com/browse/PROJQUAY-1090">PROJQUAY-1090</a>.
@@ -118,11 +142,11 @@
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2930">PROJQUAY-2930</a>. Quay Operator unable to reconcile when specified the PVC volume size of Clair PostgreSQL DB.
 					</li><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2824">PROJQUAY-2824</a>. Upgrades to 3.6.1 are broken in OpenShift 4.6
-					</li></ul></div></section><section class="section" id="quay_container_security_operator"><div class="titlepage"><div><div><h3 class="title">3.3. quay-container-security-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					</li></ul></div></section><section class="section" id="quay_container_security_operator_2"><div class="titlepage"><div><div><h3 class="title">3.3. quay-container-security-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2928">PROJQUAY-2928</a>. CSO shows the wrong title in Operator Hub.
-					</li></ul></div></section><section class="section" id="quay_openshift_bridge_operators_2"><div class="titlepage"><div><div><h3 class="title">3.4. quay-openshift-bridge-operators</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					</li></ul></div></section><section class="section" id="quay_openshift_bridge_operators_3"><div class="titlepage"><div><div><h3 class="title">3.4. quay-openshift-bridge-operators</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2797">PROJQUAY-2797</a>. Quay Bridge Operator prevents deletion of builds.
-					</li></ul></div></section></section><section class="section" id="rn-3-601"><div class="titlepage"><div><div><h2 class="title">4. Version 3.6.1</h2></div></div></div><section class="section" id="quay_clair_quay_builder_3"><div class="titlepage"><div><div><h3 class="title">4.1. quay / clair / quay-builder</h3></div></div></div><p>
+					</li></ul></div></section></section><section class="section" id="rn-3-601"><div class="titlepage"><div><div><h2 class="title">4. Version 3.6.1</h2></div></div></div><section class="section" id="quay_clair_quay_builder_4"><div class="titlepage"><div><div><h3 class="title">4.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-1936">PROJQUAY-1936</a>. Quay Operator reports wrong hostname in registryEndpoint status field for custom hostnames.
@@ -144,7 +168,7 @@
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2541">PROJQUAY-2541</a>. Enrichment data visibility fix on Quay UI.
 					</li><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2636">PROJQUAY-2636</a>. Operator communicates healthy status per managed component.
-					</li></ul></div></section></section><section class="section" id="rn-3-600"><div class="titlepage"><div><div><h2 class="title">5. Version 3.6.0</h2></div></div></div><section class="section" id="quay_clair_quay_builder_4"><div class="titlepage"><div><div><h3 class="title">5.1. quay / clair / quay-builder</h3></div></div></div><p>
+					</li></ul></div></section></section><section class="section" id="rn-3-600"><div class="titlepage"><div><div><h2 class="title">5. Version 3.6.0</h2></div></div></div><section class="section" id="quay_clair_quay_builder_5"><div class="titlepage"><div><div><h3 class="title">5.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Added/Changed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
 						Red Hat Quay 3.6 now includes support for the following Open Container Initiative (OCI) image media types by default: CLI cosigning, Helm, and the ztsd compression scheme. Other OCI media types can be configured by the user in their config.yaml file, for example:
@@ -233,51 +257,51 @@ ALLOWED_OCI_ARTIFACT_TYPES:
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2200">PROJQUAY-2200</a>. Quay Config editor need to support sslmode=verify-full in config.yaml after uploading database SSL Cert
 					</li><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2185">PROJQUAY-2185</a>. Quay CR modified after making changes via the config tool
-					</li></ul></div></section><section class="section" id="red_hat_quay_feature_tracker"><div class="titlepage"><div><div><h3 class="title">5.2. Red Hat Quay feature tracker</h3></div></div></div><p>
+					</li></ul></div></section><section class="section" id="red_hat_quay_feature_tracker_2"><div class="titlepage"><div><div><h3 class="title">5.2. Red Hat Quay feature tracker</h3></div></div></div><p>
 				New features have been added to Red Hat Quay, some of which are currently in Technology Preview. Technology Preview features are experimental features and are not intended for production use.
 			</p><p>
 				Some features available in previously releases have been deprecated or remove. Deprecated functionality is still included in Red Hat Quay, but is planned for removal in a future release and is not recommended for new deployments. For the most recent list of major functionality deprecated and remove with Red Hat Quay 3.6, refer to the table below. Additional details for more fine-grained functionality that has been deprecated and removed are listed after the table.
-			</p><div class="table" id="idm46003447598304"><p class="title"><strong>Table 1. Technology Preview tracker</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><thead><tr><th align="left" valign="top" id="idm46003447785872" scope="col">Feature</th><th align="left" valign="top" id="idm46003447784784" scope="col">Quay 3.6</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm46003447785872">
+			</p><div class="table" id="idm45686641303904"><p class="title"><strong>Table 2. Technology Preview tracker</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><thead><tr><th align="left" valign="top" id="idm45686641299104" scope="col">Feature</th><th align="left" valign="top" id="idm45686648112240" scope="col">Quay 3.6</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45686641299104">
 							<p>
 								<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/configure_red_hat_quay/index#config-fields-helm-oci">FEATURE_HELM_OCI_SUPPORT</a>
 							</p>
-							</td><td align="left" valign="top" headers="idm46003447784784">
+							</td><td align="left" valign="top" headers="idm45686648112240">
 							<p>
 								Deprecated
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm46003447785872">
+							</td></tr><tr><td align="left" valign="top" headers="idm45686641299104">
 							<p>
 								<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/configure_red_hat_quay/index#config-ui-database">MySQL and MariaDB database support</a>
 							</p>
-							</td><td align="left" valign="top" headers="idm46003447784784">
+							</td><td align="left" valign="top" headers="idm45686648112240">
 							<p>
 								Deprecated
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm46003447785872">
+							</td></tr><tr><td align="left" valign="top" headers="idm45686641299104">
 							<p>
 								<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/use_red_hat_quay/index#oci-intro">Open Container Initiative (OCI) Media types</a>
 							</p>
-							</td><td align="left" valign="top" headers="idm46003447784784">
+							</td><td align="left" valign="top" headers="idm45686648112240">
 							<p>
 								General Availability
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm46003447785872">
+							</td></tr><tr><td align="left" valign="top" headers="idm45686641299104">
 							<p>
 								Java scanning with Clair
 							</p>
-							</td><td align="left" valign="top" headers="idm46003447784784">
+							</td><td align="left" valign="top" headers="idm45686648112240">
 							<p>
 								Technology Preview
 							</p>
-							</td></tr></tbody></table></div></div><section class="section" id="deprecated_features"><div class="titlepage"><div><div><h4 class="title">5.2.1. Deprecated features</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							</td></tr></tbody></table></div></div><section class="section" id="deprecated_features_2"><div class="titlepage"><div><div><h4 class="title">5.2.1. Deprecated features</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 							<span class="strong strong"><strong>FEATURE_HELM_OCI_SUPPORT</strong></span>: This option has been deprecated and will be removed in a future version of Red Hat Quay. In Red Hat Quay 3.7, Helm artifacts are supported by default and included under the <code class="literal">FEATURE_GENERAL_OCI_SUPPORT</code> property. Users are no longer required to update their config.yaml files to enable support. (<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2334">PROJQUAY-2334</a>)
 						</li><li class="listitem">
 							<span class="strong strong"><strong>MySQL and MariaDB database support</strong></span>: The MySQL and mariaDB databases have been deprecated as of Red Hat Quay 3.6. Support for these databases will be removed in a future version of Red Hat Quay. If starting a new Red Hat Quay installation, it is strongly recommended to use PostgreSQL. (<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-1998">PROJQUAY-1998</a>)
-						</li></ul></div></section><section class="section" id="technology_preview_features"><div class="titlepage"><div><div><h4 class="title">5.2.2. Technology preview features</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+						</li></ul></div></section><section class="section" id="technology_preview_features_2"><div class="titlepage"><div><div><h4 class="title">5.2.2. Technology preview features</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
 							<span class="strong strong"><strong>Java scanning with Clair</strong></span>: With {product-title} 3.6, Clair 4.2 include support for Java scanning. Java scanning is dependent on an external service (CRDA) to gather vulnerability data. Because Clair is using a shared default token to access the CRDA service, it might encounter rate limiting if too many requests are made in a short period of time. Because of this, Clair might miss certain vulnerabilities, for example, log4j.
 						</p><p class="simpara">
 							Customers can obtain and use their own token for CRDA which might help avoid the occurrence of rate limiting by submitting <a class="link" href="https://docs.google.com/forms/d/e/1FAIpQLSfJ1aoOfi0tQ6_o0srEbYL-cSwzo_MyDJQnwcFG9IYVlNXJrA/viewform">this form</a>. Because of these issues, Java scanning for Clair is considered Technical Preview and will be enhanced in future Quay updates.
-						</p></li></ul></div></section></section><section class="section" id="quay_operator_3"><div class="titlepage"><div><div><h3 class="title">5.3. quay-operator</h3></div></div></div><p id="operator-added-changed">
+						</p></li></ul></div></section></section><section class="section" id="quay_operator_4"><div class="titlepage"><div><div><h3 class="title">5.3. quay-operator</h3></div></div></div><p id="operator-added-changed">
 				Added/Changed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
 						Red Hat Quay 3.6 adds a <code class="literal">disconnected</code> annotation to Operators. For example:
@@ -323,9 +347,9 @@ ALLOWED_OCI_ARTIFACT_TYPES:
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2068">PROJQUAY-2068</a>. Operator doesn’t check for deployment failures
 					</li><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2121">PROJQUAY-2121</a>. Quay upgrade pods running all workers instead of just database upgrade
-					</li></ul></div></section><section class="section" id="quay_container_security_operator_2"><div class="titlepage"><div><div><h3 class="title">5.4. quay-container-security-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					</li></ul></div></section><section class="section" id="quay_container_security_operator_3"><div class="titlepage"><div><div><h3 class="title">5.4. quay-container-security-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						The Operator Lifecycle Manager now supports the new v1 CRD API, <code class="literal">apiextensions.k8s.io.v1.CustomResourceDefinition</code> for the Container Security Operator. This CRD should be used instead of the <code class="literal">v1beta1</code> CRD, which has been deprecated as of OpenShift Container Platform 4.9. (<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-613">PROJQUAY-613</a>), (<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-1791">PROJQUAY-1791</a>)
-					</li></ul></div></section><section class="section" id="quay_openshift_bridge_operators_3"><div class="titlepage"><div><div><h3 class="title">5.5. quay-openshift-bridge-operators</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+					</li></ul></div></section><section class="section" id="quay_openshift_bridge_operators_4"><div class="titlepage"><div><div><h3 class="title">5.5. quay-openshift-bridge-operators</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
 						The installation experience for the Quay Bridge Operator (QBO) has been improved. Enhancements include the following:
 					</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
 								<code class="literal">MutatingAdmissionWebhook</code> is created automatically during install.
@@ -363,7 +387,7 @@ ALLOWED_OCI_ARTIFACT_TYPES:
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Clair scan throwing 400 bad request
-					</li></ul></div></section></section><section class="section" id="rn-3-503"><div class="titlepage"><div><div><h2 class="title">10. Version 3.5.3</h2></div></div></div><section class="section" id="quay_clair_quay_builder_5"><div class="titlepage"><div><div><h3 class="title">10.1. quay / clair / quay-builder</h3></div></div></div><p>
+					</li></ul></div></section></section><section class="section" id="rn-3-503"><div class="titlepage"><div><div><h2 class="title">10. Version 3.5.3</h2></div></div></div><section class="section" id="quay_clair_quay_builder_6"><div class="titlepage"><div><div><h3 class="title">10.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Quay config validation fails on PostgreSQL 11 backed by SSL
@@ -375,9 +399,9 @@ ALLOWED_OCI_ARTIFACT_TYPES:
 						Quay repository mirroring fixed
 					</li><li class="listitem">
 						Quay config validation crash on startup
-					</li></ul></div></section><section class="section" id="quay_operator_4"><div class="titlepage"><div><div><h3 class="title">10.2. quay-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					</li></ul></div></section><section class="section" id="quay_operator_5"><div class="titlepage"><div><div><h3 class="title">10.2. quay-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Quay operator upgrade pods running all workers instead of just database upgrade
-					</li></ul></div></section></section><section class="section" id="rn-3-502"><div class="titlepage"><div><div><h2 class="title">11. Version 3.5.2</h2></div></div></div><section class="section" id="quay_clair_quay_builder_6"><div class="titlepage"><div><div><h3 class="title">11.1. quay / clair / quay-builder</h3></div></div></div><p>
+					</li></ul></div></section></section><section class="section" id="rn-3-502"><div class="titlepage"><div><div><h2 class="title">11. Version 3.5.2</h2></div></div></div><section class="section" id="quay_clair_quay_builder_7"><div class="titlepage"><div><div><h3 class="title">11.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Fix config validation of LDAP server to prevent the server from timing out on large LDAP requests.
@@ -391,15 +415,15 @@ ALLOWED_OCI_ARTIFACT_TYPES:
 						Fix quay to prevent creation of empty files in storage during multi-part upload.
 					</li><li class="listitem">
 						Fix clair to properly start in a disconnected environment.
-					</li></ul></div></section><section class="section" id="quay_operator_5"><div class="titlepage"><div><div><h3 class="title">11.2. quay-operator</h3></div></div></div><p>
+					</li></ul></div></section><section class="section" id="quay_operator_6"><div class="titlepage"><div><div><h3 class="title">11.2. quay-operator</h3></div></div></div><p>
 				Known issues:
 			</p><p>
 				Geo-replication does not work when Quay is deployed on OpenShift using the Operator.
-			</p></section></section><section class="section" id="rn-3-501"><div class="titlepage"><div><div><h2 class="title">12. Version 3.5.1</h2></div></div></div><section class="section" id="quay_clair_quay_builder_7"><div class="titlepage"><div><div><h3 class="title">12.1. quay / clair / quay-builder</h3></div></div></div><p>
+			</p></section></section><section class="section" id="rn-3-501"><div class="titlepage"><div><div><h2 class="title">12. Version 3.5.1</h2></div></div></div><section class="section" id="quay_clair_quay_builder_8"><div class="titlepage"><div><div><h3 class="title">12.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Fixed:
 			</p><p>
 				Fix Clair "duplicate key value violates unique constraint" after upgrade <a class="link" href="https://issues.redhat.com/browse/PROJQUAY-1889">PROJQUAY-1889</a>
-			</p></section></section><section class="section" id="rn-3-500"><div class="titlepage"><div><div><h2 class="title">13. Version 3.5.0</h2></div></div></div><section class="section" id="quay_clair_quay_builder_8"><div class="titlepage"><div><div><h3 class="title">13.1. quay / clair / quay-builder</h3></div></div></div><p>
+			</p></section></section><section class="section" id="rn-3-500"><div class="titlepage"><div><div><h2 class="title">13. Version 3.5.0</h2></div></div></div><section class="section" id="quay_clair_quay_builder_9"><div class="titlepage"><div><div><h3 class="title">13.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Note:
 			</p><p>
 				Some features of Quay are not currently available when running on a FIPS-enabled OCP cluster or RHEL system:
@@ -465,7 +489,7 @@ ALLOWED_OCI_ARTIFACT_TYPES:
 						Added support of github action to publish to a repository
 					</li><li class="listitem">
 						Document clair updater URLs
-					</li></ul></div></section><section class="section" id="quay_operator_6"><div class="titlepage"><div><div><h3 class="title">13.2. quay-operator</h3></div></div></div><p>
+					</li></ul></div></section><section class="section" id="quay_operator_7"><div class="titlepage"><div><div><h3 class="title">13.2. quay-operator</h3></div></div></div><p>
 				Note: The new quay-operator OCP monitor dashboard requires that the operator be install in all namespaces (the default). If installed in a single namespace, the "monitoring" component will be unmanaged and not installed.
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Document using disconnected clair with quay-operator
@@ -475,17 +499,17 @@ ALLOWED_OCI_ARTIFACT_TYPES:
 						Fix BUILDMAN_HOSTNAME in config bundle with managed route component
 					</li><li class="listitem">
 						Added OCP monitoring integration
-					</li></ul></div></section><section class="section" id="quay_container_security_operator_3"><div class="titlepage"><div><div><h3 class="title">13.3. quay-container-security-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					</li></ul></div></section><section class="section" id="quay_container_security_operator_4"><div class="titlepage"><div><div><h3 class="title">13.3. quay-container-security-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Fix reading security metadata when FEATURE_ANONYMOUS_ACCESS is set to false
-					</li></ul></div></section></section><section class="section" id="rn-3-407"><div class="titlepage"><div><div><h2 class="title">14. Version 3.4.7</h2></div></div></div><section class="section" id="quay_clair_quay_builder_9"><div class="titlepage"><div><div><h3 class="title">14.1. quay / clair / quay-builder</h3></div></div></div><p>
+					</li></ul></div></section></section><section class="section" id="rn-3-407"><div class="titlepage"><div><div><h2 class="title">14. Version 3.4.7</h2></div></div></div><section class="section" id="quay_clair_quay_builder_10"><div class="titlepage"><div><div><h3 class="title">14.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2479">PROJQUAY-2479</a>. Update downstream Operator extensions API to "v1" for 3.4.
-					</li></ul></div></section><section class="section" id="quay_operator_7"><div class="titlepage"><div><div><h3 class="title">14.2. quay-operator</h3></div></div></div><p>
+					</li></ul></div></section><section class="section" id="quay_operator_8"><div class="titlepage"><div><div><h3 class="title">14.2. quay-operator</h3></div></div></div><p>
 				Known issues:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						<a class="link" href="https://issues.redhat.com/browse/PROJQUAY-2921">PROJQUAY-2921</a>. Quay App route hostname is changed when upgrade from 3.4.7 to 3.6.2. As a result, you should avoid upgrading from v3.4.7 to v3.5.* or to v3.6.*.
-					</li></ul></div></section></section><section class="section" id="rn-3-406"><div class="titlepage"><div><div><h2 class="title">15. Version 3.4.6</h2></div></div></div><section class="section" id="quay_clair_quay_builder_10"><div class="titlepage"><div><div><h3 class="title">15.1. quay / clair / quay-builder</h3></div></div></div><p>
+					</li></ul></div></section></section><section class="section" id="rn-3-406"><div class="titlepage"><div><div><h2 class="title">15. Version 3.4.6</h2></div></div></div><section class="section" id="quay_clair_quay_builder_11"><div class="titlepage"><div><div><h3 class="title">15.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Quay config validation fails on PostgreSQL 11 backed by SSL
@@ -493,27 +517,27 @@ ALLOWED_OCI_ARTIFACT_TYPES:
 						Quay config validation fails on SSL database connection on PostgreSQL 12 with SCRAM password authentication
 					</li><li class="listitem">
 						Quay config validation fails on Azure PostgreSQL DB with SSL
-					</li></ul></div></section><section class="section" id="quay_operator_8"><div class="titlepage"><div><div><h3 class="title">15.2. quay-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					</li></ul></div></section><section class="section" id="quay_operator_9"><div class="titlepage"><div><div><h3 class="title">15.2. quay-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Quay operator upgrade pods running all workers instead of just database upgrade
 					</li></ul></div></section></section><section class="section" id="rn-3-405"><div class="titlepage"><div><div><h2 class="title">16. Version 3.4.5</h2></div></div></div><p>
 			Fixed:
 		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 					Remove requirement to include Kubernetes internal service hostnames as SAN entries in user-provided TLS to fix upgrade from v3.3
-				</li></ul></div></section><section class="section" id="rn-3-404"><div class="titlepage"><div><div><h2 class="title">17. Version 3.4.4</h2></div></div></div><section class="section" id="quay_clair_quay_builder_11"><div class="titlepage"><div><div><h3 class="title">17.1. quay / clair / quay-builder</h3></div></div></div><p>
+				</li></ul></div></section><section class="section" id="rn-3-404"><div class="titlepage"><div><div><h2 class="title">17. Version 3.4.4</h2></div></div></div><section class="section" id="quay_clair_quay_builder_12"><div class="titlepage"><div><div><h3 class="title">17.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Fix Clair python recognize known vulnerabilities <a class="link" href="https://issues.redhat.com/browse/PROJQUAY-1775">PROJQUAY-1775</a>
-					</li></ul></div></section></section><section class="section" id="rn-3-403"><div class="titlepage"><div><div><h2 class="title">18. Version 3.4.3</h2></div></div></div><section class="section" id="quay_clair_quay_builder_12"><div class="titlepage"><div><div><h3 class="title">18.1. quay / clair / quay-builder</h3></div></div></div><p>
+					</li></ul></div></section></section><section class="section" id="rn-3-403"><div class="titlepage"><div><div><h2 class="title">18. Version 3.4.3</h2></div></div></div><section class="section" id="quay_clair_quay_builder_13"><div class="titlepage"><div><div><h3 class="title">18.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Fix Quay security scanning backfill API <a class="link" href="https://issues.redhat.com/browse/PROJQUAY-1613">PROJQUAY-1613</a>
 					</li><li class="listitem">
 						Fix Clair python language matching <a class="link" href="https://issues.redhat.com/browse/PROJQUAY-1692">PROJQUAY-1692</a>
-					</li></ul></div></section><section class="section" id="quay_operator_9"><div class="titlepage"><div><div><h3 class="title">18.2. quay-operator</h3></div></div></div><p>
+					</li></ul></div></section><section class="section" id="quay_operator_10"><div class="titlepage"><div><div><h3 class="title">18.2. quay-operator</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Fix Quay Operator handling of provided certificates related to BUILDMAN_HOSTNAME <a class="link" href="https://issues.redhat.com/browse/PROJQUAY-1577">PROJQUAY-1577</a>
-					</li></ul></div></section></section><section class="section" id="rn-3-402"><div class="titlepage"><div><div><h2 class="title">19. Version 3.4.2</h2></div></div></div><section class="section" id="quay_clair_quay_builder_13"><div class="titlepage"><div><div><h3 class="title">19.1. quay / clair / quay-builder</h3></div></div></div><p>
+					</li></ul></div></section></section><section class="section" id="rn-3-402"><div class="titlepage"><div><div><h2 class="title">19. Version 3.4.2</h2></div></div></div><section class="section" id="quay_clair_quay_builder_14"><div class="titlepage"><div><div><h3 class="title">19.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Fix clair crash downloading RHEL content mapping
@@ -521,11 +545,11 @@ ALLOWED_OCI_ARTIFACT_TYPES:
 						Quay config-tool validates SMTP
 					</li><li class="listitem">
 						Quay config-tool now prevents SECRET_KEY from changing on config updates
-					</li></ul></div></section><section class="section" id="quay_operator_10"><div class="titlepage"><div><div><h3 class="title">19.2. quay-operator</h3></div></div></div><p>
+					</li></ul></div></section><section class="section" id="quay_operator_11"><div class="titlepage"><div><div><h3 class="title">19.2. quay-operator</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Fix Quay Operator reconciler loop resulting in failed mirror configurations
-					</li></ul></div></section></section><section class="section" id="rn-3-401"><div class="titlepage"><div><div><h2 class="title">20. Version 3.4.1</h2></div></div></div><section class="section" id="quay_clair_quay_builder_14"><div class="titlepage"><div><div><h3 class="title">20.1. quay / clair / quay-builder</h3></div></div></div><p>
+					</li></ul></div></section></section><section class="section" id="rn-3-401"><div class="titlepage"><div><div><h2 class="title">20. Version 3.4.1</h2></div></div></div><section class="section" id="quay_clair_quay_builder_15"><div class="titlepage"><div><div><h3 class="title">20.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Quay config editor validates OIDC provider
@@ -533,13 +557,13 @@ ALLOWED_OCI_ARTIFACT_TYPES:
 						Quay config editor correctly validates MySQL database with SSL
 					</li><li class="listitem">
 						Quay config editor no longer requires Time Machine expiration when feature not enabled
-					</li></ul></div></section><section class="section" id="quay_operator_11"><div class="titlepage"><div><div><h3 class="title">20.2. quay-operator</h3></div></div></div><p>
+					</li></ul></div></section><section class="section" id="quay_operator_12"><div class="titlepage"><div><div><h3 class="title">20.2. quay-operator</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Quay Operator generates correct cert for build manager
 					</li><li class="listitem">
 						Quay Operator documentation link corrected to 3.4
-					</li></ul></div></section><section class="section" id="quay_container_security_operator_4"><div class="titlepage"><div><div><h3 class="title">20.3. quay-container-security-operator</h3></div></div></div><p>
+					</li></ul></div></section><section class="section" id="quay_container_security_operator_5"><div class="titlepage"><div><div><h3 class="title">20.3. quay-container-security-operator</h3></div></div></div><p>
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						<code class="literal">Quay</code> container Security Operator upgrade to 3.4.0
@@ -547,7 +571,7 @@ ALLOWED_OCI_ARTIFACT_TYPES:
 				Fixed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Quay Bridge Operator upgrade to 3.4.0
-					</li></ul></div></section></section><section class="section" id="rn-3-400"><div class="titlepage"><div><div><h2 class="title">21. Version 3.4.0</h2></div></div></div><section class="section" id="quay_clair_quay_builder_15"><div class="titlepage"><div><div><h3 class="title">21.1. quay / clair / quay-builder</h3></div></div></div><p>
+					</li></ul></div></section></section><section class="section" id="rn-3-400"><div class="titlepage"><div><div><h2 class="title">21. Version 3.4.0</h2></div></div></div><section class="section" id="quay_clair_quay_builder_16"><div class="titlepage"><div><div><h3 class="title">21.1. quay / clair / quay-builder</h3></div></div></div><p>
 				Added/Changed:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Clair V4 now GA and the default security scanner for Quay 3.4.0. New features include support for notifications and disconnected deployments.
@@ -703,7 +727,7 @@ FEATURE_HELM_OCI_SUPPORT: True</pre></li><li class="listitem">
 						PROJQUAY-1390 Quay login with Openstack Keystone user was failed
 					</li><li class="listitem">
 						Official Red Hat repositories may now contain "source" images which will be included in Mirrored repositories. See <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/building_running_and_managing_containers/index#getting-ubi-container-image-source-code_adding-software-to-a-running-ubi-container">Getting UBI Container Image Source Code</a> for an example of a source image tag. There is no simple way to exclude these source containers using Quay’s current tag patterns. This will be addressed in future Quay versions.
-					</li></ul></div></section><section class="section" id="quay_operator_12"><div class="titlepage"><div><div><h3 class="title">21.2. quay-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					</li></ul></div></section><section class="section" id="quay_operator_13"><div class="titlepage"><div><div><h3 class="title">21.2. quay-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Only supported on OCP-4.5 or newer
 					</li></ul></div><p>
 				Added:
@@ -719,7 +743,7 @@ FEATURE_HELM_OCI_SUPPORT: True</pre></li><li class="listitem">
 						PROJQUAY-1056 Quay deployment was failed at setup DB on GCP when use GCP SQL Postgresql
 					</li><li class="listitem">
 						PROJQUAY-1394 Quay TNG Operator was failed to start managed postgresql database POD (operator upgrades may encounter this issue, recreating your QuayRegistry CR should resolve the issue)
-					</li></ul></div></section><section class="section" id="quay_container_security_operator_5"><div class="titlepage"><div><div><h3 class="title">21.3. quay-container-security-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					</li></ul></div></section><section class="section" id="quay_container_security_operator_6"><div class="titlepage"><div><div><h3 class="title">21.3. quay-container-security-operator</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Only supported on OCP-4.5 or newer
 					</li></ul></div><p>
 				Fixed:
@@ -830,7 +854,7 @@ FEATURE_EXPERIMENTAL_HELM_OCI_SUPPORT = True</pre></li></ul></div><p>
 				Known Issues:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Containers running as repository mirrors may lock under certain conditions; restart the containers as needed.
-					</li></ul></div></section><section class="section" id="quay_operator_13"><div class="titlepage"><div><div><h3 class="title">26.2. quay-operator</h3></div></div></div><p>
+					</li></ul></div></section><section class="section" id="quay_operator_14"><div class="titlepage"><div><div><h3 class="title">26.2. quay-operator</h3></div></div></div><p>
 				Note:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Only supported on OCP-4.2 or newer
@@ -894,7 +918,7 @@ FEATURE_EXPERIMENTAL_HELM_OCI_SUPPORT = True</pre></li></ul></div><p>
 						Cloudfront cannot be properly configured using the CR. It can be managed using Quay’s configuration app.
 					</li><li class="listitem">
 						This version of the operator cannot be used for an automatic upgrade due to schema changes in the CR.
-					</li></ul></div></section><section class="section" id="quay_container_security_operator_6"><div class="titlepage"><div><div><h3 class="title">26.3. quay-container-security-operator</h3></div></div></div><p>
+					</li></ul></div></section><section class="section" id="quay_container_security_operator_7"><div class="titlepage"><div><div><h3 class="title">26.3. quay-container-security-operator</h3></div></div></div><p>
 				Note:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						Only supported on OCP-4.2 or newer
@@ -2573,7 +2597,7 @@ restrict access to V1 push.</pre></li></ul></div><p>
 					Improved internal test suite (#381, #374, #388, #455, #457)
 				</li></ul></div><p>
 			<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/red_hat_quay_release_notes#rn-1-120">Link to this Release</a>
-		</p></section><div><div xml:lang="en-US" class="legalnotice" id="idm46003445332368"><h1 class="legalnotice">Legal Notice</h1><div class="para">
+		</p></section><div><div xml:lang="en-US" class="legalnotice" id="idm45686640758752"><h1 class="legalnotice">Legal Notice</h1><div class="para">
 		Copyright <span class="trademark"/>© 2022 Red Hat, Inc.
 	</div><div class="para">
 		The text of and illustrations in this document are licensed by Red Hat under a Creative Commons Attribution–Share Alike 3.0 Unported license ("CC-BY-SA"). An explanation of CC-BY-SA is available at <a class="uri" href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a>. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
