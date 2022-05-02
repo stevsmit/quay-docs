@@ -39,7 +39,7 @@ Added/Changed:
 +
 For more information, see link:https://issues.redhat.com/browse/PROJQUAY-2110[PROJQUAY-2210].
 
-* With advanced Clair configuration, users can also provide a custom Clair configuration for an unmanaged Clair database on the {productname} Operator. An unmanaged Clair database allows the {productname} Operator to work in a Geo-Replicated environment, where multiple instances of the Operator must communicate with the same database. An unmanaged Clair database can also be used when a user requires a highly-available (HA) Clair database that exists outside of a cluster. (link:https://issues.redhat.com/browse/PROJQUAY-1696[PROJQUAY-1969])
+* With advanced Clair configuration, users can also provide a custom Clair configuration for an unmanaged Clair database on the {productname} Operator. An unmanaged Clair database allows the {productname} Operator to work in a Geo-Replicated environment, where multiple instances of Clair, or Quay,  must communicate with the same database. An unmanaged Clair database can also be used when a user requires a highly-available (HA) Clair database that exists outside of a cluster. (link:https://issues.redhat.com/browse/PROJQUAY-1696[PROJQUAY-1969])
 
 * Geo-replication is now available with the Red Hat Quay Operator. This feature allows multiple, geographically distributed Quay deployments to work as a single registry from the perspective of a client or user. It significantly improves push and pull performance in a globally-distributed Quay setup. Image data is asynchronously replicated in the background with transparent failover / redirect for clients. (link:https://issues.redhat.com/browse/PROJQUAY-2504[PROJQUAY-2504])
 
