@@ -51,7 +51,7 @@ Some features available in previous releases have been deprecated or removed. De
 |-
 
 
-|link:https://access.redhat.com/[Advanced Clair configuration]
+|link:https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/manage_red_hat_quay#unmanaged_clair_configuration[Advanced Clair configuration]
 |General Availability
 |-
 
