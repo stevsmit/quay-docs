@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Early access documentation for Red Hat Quay</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Early access docs for 370 release"/><link rel="next" href="#idm45798282533568" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm45798287263776"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.8</span></div><div><h1 class="title">Early access documentation for Red Hat Quay</h1></div><div><h2 class="subtitle">Red Hat Quay Early Access Documentation</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm45798285279088">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
+<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Early access documentation for Red Hat Quay</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Early access docs for 370 release"/><link rel="next" href="#idm45241023976224" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm45241029224368"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.8</span></div><div><h1 class="title">Early access documentation for Red Hat Quay</h1></div><div><h2 class="subtitle">Red Hat Quay Early Access Documentation</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm45241026898560">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
 				Early access docs for 370 release
-			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm45798282533568">Preface</a></span></li><li><span class="chapter"><a href="#quay-release-notes">1. Red Hat Quay 3.8 Release Notes</a></span><ul><li><span class="section"><a href="#rn-3-800">1.1. Version 3.8.0</a></span><ul><li><span class="section"><a href="#red_hat_quay_clair_and_quay_builder">1.1.1. Red Hat Quay, Clair, and Quay Builder</a></span></li><li><span class="section"><a href="#red_hat_quay_feature_tracker">1.1.2. Red Hat Quay feature tracker</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#config-updates-37">2. Configuration updates for Quay 3.8</a></span><ul><li><span class="section"><a href="#new-configuration-fields-38">2.1. New configuration fields</a></span></li></ul></li><li><span class="chapter"><a href="#testing-3-800">3. Testing 3.8.0 features</a></span><ul><li><span class="section"><a href="#enabling-ipv6-dual-stack">3.1. Enabling and testing the IPv6 and dual-stack protocol family on standalone Red Hat Quay deployments</a></span><ul><li><span class="section"><a href="#enabling-ipv6">3.1.1. Enabling and testing IPv6</a></span></li><li><span class="section"><a href="#enabling-dual-stack">3.1.2. Enabling and testing dual-stack</a></span></li></ul></li><li><span class="section"><a href="#enabling-ldap-super-users">3.2. Enabling LDAD superusers for Red Hat Quay</a></span><ul><li><span class="section"><a href="#expected_results_3">3.2.1. Expected Results</a></span></li></ul></li><li><span class="section"><a href="#enabling-ldap-restricted-users">3.3. Enabling LDAD restricted users for Red Hat Quay</a></span></li><li><span class="section"><a href="#enabling-superusers-full-access">3.4. Enabling and testing <code class="literal">FEATURE_SUPERUSERS_FULL_ACCESS</code></a></span><ul><li><span class="section"><a href="#expected_results_4">3.4.1. Expected results</a></span></li></ul></li><li><span class="section"><a href="#enabling-feature-restricted-users">3.5. Enabling and testing <code class="literal">FEATURE_RESTRICTED_USERS</code></a></span><ul><li><span class="section"><a href="#expected_results_5">3.5.1. Expected results</a></span></li></ul></li><li><span class="section"><a href="#enabling-restricted-users-read-only">3.6. Enabling and testing <code class="literal">RESTRICTED_USER_READ_ONLY</code></a></span><ul><li><span class="section"><a href="#expected_results_6">3.6.1. Expected results</a></span></li></ul></li><li><span class="section"><a href="#enabling-restricted-users-whitelist">3.7. Enabling and testing <code class="literal">RESTRICTED_USERS_WHITELIST</code></a></span><ul><li><span class="section"><a href="#expected_results_7">3.7.1. Expected results</a></span></li></ul></li><li><span class="section"><a href="#enabling-ui-v2">3.8. Enabling and testing <code class="literal">FEATURE_UI_V2</code></a></span><ul><li><span class="section"><a href="#creating_a_new_organization_in_the_red_hat_quay_3_8_beta_ui">3.8.1. Creating a new organization in the Red Hat Quay 3.8 beta UI</a></span></li><li><span class="section"><a href="#deleting_an_organization_using_the_red_hat_quay_3_8_beta_ui">3.8.2. Deleting an organization using the Red Hat Quay 3.8 beta UI</a></span></li><li><span class="section"><a href="#creating_a_new_repository_using_the_red_hat_quay_3_8_beta_ui">3.8.3. Creating a new repository using the Red Hat Quay 3.8 beta UI</a></span></li><li><span class="section"><a href="#deleting_a_repository_using_the_red_hat_quay_3_8_beta_ui">3.8.4. Deleting a repository using the Red Hat Quay 3.8 beta UI</a></span></li><li><span class="section"><a href="#pushing_an_image_to_the_red_hat_quay_3_8_beta_ui">3.8.5. Pushing an image to the Red Hat Quay 3.8 beta UI</a></span></li><li><span class="section"><a href="#deleting_an_image_using_the_red_hat_quay_3_8_beta_ui">3.8.6. Deleting an image using the Red Hat Quay 3.8 beta UI</a></span></li></ul></li><li><span class="section"><a href="#enabling_the_red_hat_quay_legacy_ui">3.9. Enabling the Red Hat Quay legacy UI</a></span></li><li><span class="section"><a href="#leveraging-storage-quota-limits">3.10. Leveraging storage quota limits in proxy organizations</a></span><ul><li><span class="section"><a href="#testing_the_storage_quota_limits_feature_in_proxy_organizations">3.10.1. Testing the storage quota limits feature in proxy organizations</a></span></li></ul></li></ul></li></ul></div><section class="preface" id="idm45798282533568"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div></section><section class="chapter" id="quay-release-notes"><div class="titlepage"><div><div><h1 class="title">Chapter 1. Red Hat Quay 3.8 Release Notes</h1></div></div></div><p>
+			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm45241023976224">Preface</a></span></li><li><span class="chapter"><a href="#quay-release-notes">1. Red Hat Quay 3.8 Release Notes</a></span><ul><li><span class="section"><a href="#rn-3-800">1.1. Version 3.8.0</a></span><ul><li><span class="section"><a href="#red_hat_quay_clair_and_quay_builder">1.1.1. Red Hat Quay, Clair, and Quay Builder</a></span></li><li><span class="section"><a href="#red_hat_quay_feature_tracker">1.1.2. Red Hat Quay feature tracker</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#config-updates-37">2. Configuration updates for Quay 3.8</a></span><ul><li><span class="section"><a href="#new-configuration-fields-38">2.1. New configuration fields</a></span></li></ul></li><li><span class="chapter"><a href="#testing-3-800">3. Testing 3.8.0 features</a></span><ul><li><span class="section"><a href="#enabling-ipv6-dual-stack">3.1. Enabling and testing the IPv6 and dual-stack protocol family on standalone Red Hat Quay deployments</a></span><ul><li><span class="section"><a href="#enabling-ipv6">3.1.1. Enabling and testing IPv6</a></span></li><li><span class="section"><a href="#enabling-dual-stack">3.1.2. Enabling and testing dual-stack</a></span></li></ul></li><li><span class="section"><a href="#enabling-ldap-super-users">3.2. Enabling LDAD superusers for Red Hat Quay</a></span><ul><li><span class="section"><a href="#expected_results_3">3.2.1. Expected Results</a></span></li></ul></li><li><span class="section"><a href="#enabling-ldap-restricted-users">3.3. Enabling LDAD restricted users for Red Hat Quay</a></span></li><li><span class="section"><a href="#enabling-superusers-full-access">3.4. Enabling and testing <code class="literal">FEATURE_SUPERUSERS_FULL_ACCESS</code></a></span><ul><li><span class="section"><a href="#expected_results_4">3.4.1. Expected results</a></span></li></ul></li><li><span class="section"><a href="#enabling-feature-restricted-users">3.5. Enabling and testing <code class="literal">FEATURE_RESTRICTED_USERS</code></a></span><ul><li><span class="section"><a href="#expected_results_5">3.5.1. Expected results</a></span></li></ul></li><li><span class="section"><a href="#enabling-restricted-users-read-only">3.6. Enabling and testing <code class="literal">RESTRICTED_USER_READ_ONLY</code></a></span><ul><li><span class="section"><a href="#expected_results_6">3.6.1. Expected results</a></span></li></ul></li><li><span class="section"><a href="#enabling-restricted-users-whitelist">3.7. Enabling and testing <code class="literal">RESTRICTED_USERS_WHITELIST</code></a></span><ul><li><span class="section"><a href="#expected_results_7">3.7.1. Expected results</a></span></li></ul></li><li><span class="section"><a href="#enabling-ui-v2">3.8. Enabling and testing <code class="literal">FEATURE_UI_V2</code></a></span><ul><li><span class="section"><a href="#creating_a_new_organization_in_the_red_hat_quay_3_8_beta_ui">3.8.1. Creating a new organization in the Red Hat Quay 3.8 beta UI</a></span></li><li><span class="section"><a href="#deleting_an_organization_using_the_red_hat_quay_3_8_beta_ui">3.8.2. Deleting an organization using the Red Hat Quay 3.8 beta UI</a></span></li><li><span class="section"><a href="#creating_a_new_repository_using_the_red_hat_quay_3_8_beta_ui">3.8.3. Creating a new repository using the Red Hat Quay 3.8 beta UI</a></span></li><li><span class="section"><a href="#deleting_a_repository_using_the_red_hat_quay_3_8_beta_ui">3.8.4. Deleting a repository using the Red Hat Quay 3.8 beta UI</a></span></li><li><span class="section"><a href="#pushing_an_image_to_the_red_hat_quay_3_8_beta_ui">3.8.5. Pushing an image to the Red Hat Quay 3.8 beta UI</a></span></li><li><span class="section"><a href="#deleting_an_image_using_the_red_hat_quay_3_8_beta_ui">3.8.6. Deleting an image using the Red Hat Quay 3.8 beta UI</a></span></li></ul></li><li><span class="section"><a href="#enabling_the_red_hat_quay_legacy_ui">3.9. Enabling the Red Hat Quay legacy UI</a></span></li><li><span class="section"><a href="#leveraging-storage-quota-limits">3.10. Leveraging storage quota limits in proxy organizations</a></span></li><li><span class="section"><a href="#testing_the_storage_quota_limits_feature_in_proxy_organizations">3.11. Testing the storage quota limits feature in proxy organizations</a></span></li></ul></li></ul></div><section class="preface" id="idm45241023976224"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div></section><section class="chapter" id="quay-release-notes"><div class="titlepage"><div><div><h1 class="title">Chapter 1. Red Hat Quay 3.8 Release Notes</h1></div></div></div><p>
 			Red Hat Quay is regularly released, containing new features, bug fixes, and software updates. Deploy the latest version of Red Hat Quay to ensure you are using the latest features, bug fixes, and software updates.
 		</p><p>
 			For Red Hat Quay documentation:
@@ -16,31 +16,31 @@
 					The following updates have been made to Red Hat Quay, Clair, and Quay Builders:
 				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
 							Previously, Red Hat Quay only supported the IPv4 protocol family. IPv6 support is now available in Red Hat Quay 3.8 standalone deployments. Additionally, dual stack (IPv4/IPv6) support is available.
-						</p><div class="table" id="idm45798302959232"><p class="title"><strong>Table 1.1. Network protocol support</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 25%; " class="col_2"/><col style="width: 25%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="top" id="idm45798301392448" scope="col">Protocol family</th><th align="left" valign="top" id="idm45798282100384" scope="col">Red Hat Quay 3.7</th><th align="left" valign="top" id="idm45798303037184" scope="col">Red Hat Quay 3.8</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45798301392448">
+						</p><div class="table" id="idm45241028144896"><p class="title"><strong>Table 1.1. Network protocol support</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 25%; " class="col_2"/><col style="width: 25%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="top" id="idm45241023955904" scope="col">Protocol family</th><th align="left" valign="top" id="idm45241025673440" scope="col">Red Hat Quay 3.7</th><th align="left" valign="top" id="idm45241025672576" scope="col">Red Hat Quay 3.8</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45241023955904">
 										<p>
 											IPv4
 										</p>
-										</td><td align="left" valign="top" headers="idm45798282100384">
+										</td><td align="left" valign="top" headers="idm45241025673440">
 										<p>
 											✓
 										</p>
-										</td><td align="left" valign="top" headers="idm45798303037184">
+										</td><td align="left" valign="top" headers="idm45241025672576">
 										<p>
 											✓
 										</p>
-										</td></tr><tr><td align="left" valign="top" headers="idm45798301392448">
+										</td></tr><tr><td align="left" valign="top" headers="idm45241023955904">
 										<p>
 											IPv6
 										</p>
-										</td><td align="left" valign="top" headers="idm45798282100384"> </td><td align="left" valign="top" headers="idm45798303037184">
+										</td><td align="left" valign="top" headers="idm45241025673440"> </td><td align="left" valign="top" headers="idm45241025672576">
 										<p>
 											✓
 										</p>
-										</td></tr><tr><td align="left" valign="top" headers="idm45798301392448">
+										</td></tr><tr><td align="left" valign="top" headers="idm45241023955904">
 										<p>
 											Dual stack (IPv4/IPv6)
 										</p>
-										</td><td align="left" valign="top" headers="idm45798282100384"> </td><td align="left" valign="top" headers="idm45798303037184">
+										</td><td align="left" valign="top" headers="idm45241025673440"> </td><td align="left" valign="top" headers="idm45241025672576">
 										<p>
 											✓
 										</p>
@@ -82,7 +82,9 @@
 							The following configuration fields have been added to enhance the superuser role:
 						</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
 									<span class="strong strong"><strong>FEATURE_SUPERUSERS_FULL_ACCESS</strong></span>: This configuration field grants superusers the ability to read, write, and delete content from other repositories in namespaces that they do not own or have explicit permissions for.
-								</li></ul></div></li><li class="listitem"><p class="simpara">
+								</li></ul></div></li><li class="listitem">
+							<span class="strong strong"><strong>GLOBAL_READONLY_SUPER_USERS</strong></span>: This configuration field grants users of this list read access to all repositories, regardless of whether they are public repositories.
+						</li><li class="listitem"><p class="simpara">
 							The following enhancements have been made to Lightweight Directory Access Protocol (LDAP):
 						</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p class="simpara">
 									<span class="strong strong"><strong>LDAP_SUPERUSER_FILTER</strong></span>: This configuration field is a subset of the <code class="literal">LDAP_USER_FILTER</code> configuration field. It allows Red Hat Quay administrators the ability to configure Lightweight Directory Access Protocol (LDAP) users as superusers when Red Hat Quay uses LDAP as its authentication provider.
@@ -130,324 +132,326 @@
 							The <code class="literal">metadata_json</code> column in the <code class="literal">logentry3</code> table on MySQL deployments has a limited size of <code class="literal">TEXT</code>. Currently, the default size of the column set to be <code class="literal">TEXT</code> is 65535 bytes. 65535 bytes is not big enough for some mirror logs when debugging is turned <code class="literal">off</code>. When a statement containing <code class="literal">TEXT</code> larger than 65535 bytes is sent to MySQL, the data sent is truncated to fit into the 65535 boundary. Consequently, this creates issues when the <code class="literal">metadata_json</code> object is decoded, and the decode fails because the string is not terminated properly. As a result, Red Hat Quay returns a 500 error.
 						</p><p class="simpara">
 							There is currently no workaround for this issue, and it will be addressed in a future version of Red Hat Quay. For more information, see <a class="link" href="https://issues.redhat.com/browse/PROJQUAY-4305">PROJQUAY-4305</a>.
-						</p></li></ul></div></section><section class="section" id="red_hat_quay_feature_tracker"><div class="titlepage"><div><div><h3 class="title">1.1.2. Red Hat Quay feature tracker</h3></div></div></div><p>
+						</p></li><li class="listitem">
+							Currently, when using the <code class="literal">--sign-by-sigstore-private-key</code> flag with Podman v4.0.0 or greater, the following error is returned: <code class="literal">Error: writing signatures: writing sigstore attachments is disabled by configuration</code>. There is currently no workaround for this issue, and it will be addressed in a future version of Podman.
+						</li></ul></div></section><section class="section" id="red_hat_quay_feature_tracker"><div class="titlepage"><div><div><h3 class="title">1.1.2. Red Hat Quay feature tracker</h3></div></div></div><p>
 					New features have been added to Red Hat Quay, some of which are currently in Technology Preview. Technology Preview features are experimental features and are not intended for production use.
 				</p><p>
 					Some features available in previous releases have been deprecated or removed. Deprecated functionality is still included in Red Hat Quay, but is planned for removal in a future release and is not recommended for new deployments. For the most recent list of deprecated and removed functionality in Red Hat Quay, refer to Table 1.1. Additional details for more fine-grained functionality that has been deprecated and removed are listed after the table.
-				</p><div class="table" id="idm45798288723936"><p class="title"><strong>Table 1.2. Technology Preview tracker</strong></p><div class="table-contents"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 58%; " class="col_1"/><col style="width: 14%; " class="col_2"/><col style="width: 14%; " class="col_3"/><col style="width: 14%; " class="col_4"/></colgroup><thead><tr><th align="left" valign="top" id="idm45798282077744" scope="col">Feature</th><th align="left" valign="top" id="idm45798282076880" scope="col">Quay 3.8</th><th align="left" valign="top" id="idm45798282537440" scope="col">Quay 3.7</th><th align="left" valign="top" id="idm45798282536576" scope="col">Quay 3.6</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45798282077744">
+				</p><div class="table" id="idm45241024421104"><p class="title"><strong>Table 1.2. Technology Preview tracker</strong></p><div class="table-contents"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 58%; " class="col_1"/><col style="width: 14%; " class="col_2"/><col style="width: 14%; " class="col_3"/><col style="width: 14%; " class="col_4"/></colgroup><thead><tr><th align="left" valign="top" id="idm45241025339680" scope="col">Feature</th><th align="left" valign="top" id="idm45241027434256" scope="col">Quay 3.8</th><th align="left" valign="top" id="idm45241027433392" scope="col">Quay 3.7</th><th align="left" valign="top" id="idm45241027432528" scope="col">Quay 3.6</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="#enabling-ui-v2" title="3.8. Enabling and testing FEATURE_UI_V2">FEATURE_UI_V2</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									Technology Preview
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									-
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="#enabling-ipv6-dual-stack" title="3.1. Enabling and testing the IPv6 and dual-stack protocol family on standalone Red Hat Quay deployments">IPv6 Support</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									-
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="#enabling-ldap-super-users" title="3.2. Enabling LDAD superusers for Red Hat Quay">LDAP_SUPERUSER_FILTER</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									-
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="#enabling-ipv6-dual-stack" title="3.1. Enabling and testing the IPv6 and dual-stack protocol family on standalone Red Hat Quay deployments">FEATURE_LISTEN_IP_VERSION</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									-
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="#enabling-superusers-full-access" title="3.4. Enabling and testing FEATURE_SUPERUSERS_FULL_ACCESS">FEATURE_SUPERUSERS_FULL_ACCESS</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									-
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="#enabling-feature-restricted-users" title="3.5. Enabling and testing FEATURE_RESTRICTED_USERS">FEATURE_RESTRICTED_USERS</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									-
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="#enabling-restricted-users-read-only" title="3.6. Enabling and testing RESTRICTED_USER_READ_ONLY">RESTRICTED_USERS_WHITELIST</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									-
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="#enabling-restricted-users-whitelist" title="3.7. Enabling and testing RESTRICTED_USERS_WHITELIST">RESTRICTED_USER_READ_ONLY</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									-
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="https://access.redhat.com//documentation/en-us/red_hat_quay/3.7/html-single/use_red_hat_quay#red-hat-quay-quota-management-and-enforcement">Quota management and enforcement</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/use_red_hat_quay#red-hat-quay-builders-enhancement">Red Hat Quay build enhancements</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/use_red_hat_quay#quay-as-cache-proxy">Red Hat Quay as proxy cache for upstream registries</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									Technology Preview
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/deploy_red_hat_quay_on_openshift_with_the_quay_operator/index">Geo-replication - Red Hat Quay Operator</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/manage_red_hat_quay#unmanaged_clair_configuration">Advanced Clair configuration</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									Support for Microsoft Azure Government (MAG)
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									-
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.8/html-single/configure_red_hat_quay/index#config-fields-helm-oci">FEATURE_HELM_OCI_SUPPORT</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									Deprecated
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									Deprecated
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									Deprecated
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.8/html-single/configure_red_hat_quay/index#config-ui-database">MySQL and MariaDB database support</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									Deprecated
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									Deprecated
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									Deprecated
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.8/html-single/use_red_hat_quay/index#oci-intro">Open Container Initiative (OCI) Media types</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									General Availability
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									General Availability
 								</p>
-								</td></tr><tr><td align="left" valign="top" headers="idm45798282077744">
+								</td></tr><tr><td align="left" valign="top" headers="idm45241025339680">
 								<p>
 									<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/manage_red_hat_quay#clair_crda_configuration">Java scanning with Clair</a>
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282076880">
+								</td><td align="left" valign="top" headers="idm45241027434256">
 								<p>
 									Technology Preview
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282537440">
+								</td><td align="left" valign="top" headers="idm45241027433392">
 								<p>
 									Technology Preview
 								</p>
-								</td><td align="left" valign="top" headers="idm45798282536576">
+								</td><td align="left" valign="top" headers="idm45241027432528">
 								<p>
 									Technology Preview
 								</p>
 								</td></tr></tbody></table></div></div></section></section></section><section class="chapter" id="config-updates-37"><div class="titlepage"><div><div><h1 class="title">Chapter 2. Configuration updates for Quay 3.8</h1></div></div></div><section class="section" id="new-configuration-fields-38"><div class="titlepage"><div><div><h2 class="title">2.1. New configuration fields</h2></div></div></div><p>
 				The following configuration fields have been introduced with Red Hat Quay 3.8:
-			</p><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 33%; " class="col_1"/><col style="width: 33%; " class="col_2"/><col style="width: 33%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="top" id="idm45798283798944" scope="col">Field</th><th align="left" valign="top" id="idm45798283797856" scope="col">Type</th><th align="left" valign="top" id="idm45798282509088" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45798283798944">
+			</p><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 33%; " class="col_1"/><col style="width: 33%; " class="col_2"/><col style="width: 33%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="top" id="idm45241029134256" scope="col">Field</th><th align="left" valign="top" id="idm45241029133168" scope="col">Type</th><th align="left" valign="top" id="idm45241029132080" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45241029134256">
 							<p>
 								<span class="strong strong"><strong>FEATURE_UI_V2</strong></span>
 							</p>
-							</td><td align="left" valign="top" headers="idm45798283797856">
+							</td><td align="left" valign="top" headers="idm45241029133168">
 							<p>
 								Boolean
 							</p>
-							</td><td align="left" valign="top" headers="idm45798282509088">
+							</td><td align="left" valign="top" headers="idm45241029132080">
 							<p>
 								When set, allows users to try the beta UI environment.
 							</p>
 							<p>
 								<span class="strong strong"><strong>Default:</strong></span> <code class="literal">True</code>
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45798283798944">
+							</td></tr><tr><td align="left" valign="top" headers="idm45241029134256">
 							<p>
 								<span class="strong strong"><strong>FEATURE_LISTEN_IP_VERSION</strong></span>
 							</p>
-							</td><td align="left" valign="top" headers="idm45798283797856">
+							</td><td align="left" valign="top" headers="idm45241029133168">
 							<p>
 								String
 							</p>
-							</td><td align="left" valign="top" headers="idm45798282509088">
+							</td><td align="left" valign="top" headers="idm45241029132080">
 							<p>
 								Enables IPv4, IPv6, or dual-stack protocol family. This configuration field must be properly set, otherwise Red Hat Quay fails to start.
 							</p>
@@ -457,84 +461,96 @@
 							<p>
 								<span class="strong strong"><strong>Additional configurations:</strong></span> <code class="literal">IPv6</code>, <code class="literal">dual-stack</code>
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45798283798944">
+							</td></tr><tr><td align="left" valign="top" headers="idm45241029134256">
 							<p>
 								<span class="strong strong"><strong>LDAP_SUPERUSER_FILTER</strong></span>
 							</p>
-							</td><td align="left" valign="top" headers="idm45798283797856">
+							</td><td align="left" valign="top" headers="idm45241029133168">
 							<p>
 								String
 							</p>
-							</td><td align="left" valign="top" headers="idm45798282509088">
+							</td><td align="left" valign="top" headers="idm45241029132080">
 							<p>
 								Subset of the <code class="literal">LDAP_USER_FILTER</code> configuration field. When configured, allows Red Hat Quay administrators the ability to configure Lightweight Directory Access Protocol (LDAP) users as superusers when Red Hat Quay uses LDAP as its authentication provider.
 							</p>
 							<p>
 								With this field, administrators can add or remove superusers without having to update the Red Hat Quay configuration file and restart their deployment.
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45798283798944">
+							</td></tr><tr><td align="left" valign="top" headers="idm45241029134256">
 							<p>
 								<span class="strong strong"><strong>LDAP_RESTRICTED_USER_FILTER</strong></span>
 							</p>
-							</td><td align="left" valign="top" headers="idm45798283797856">
+							</td><td align="left" valign="top" headers="idm45241029133168">
 							<p>
 								String
 							</p>
-							</td><td align="left" valign="top" headers="idm45798282509088">
+							</td><td align="left" valign="top" headers="idm45241029132080">
 							<p>
 								Subset of the <code class="literal">LDAP_USER_FILTER</code> configuration field. When configured, allows Red Hat Quay administrators the ability to configure Lightweight Directory Access Protocol (LDAP) users as restricted users when Red Hat Quay uses LDAP as its authentication provider.
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45798283798944">
+							</td></tr><tr><td align="left" valign="top" headers="idm45241029134256">
 							<p>
 								<span class="strong strong"><strong>FEATURE_SUPERUSERS_FULL_ACCESS</strong></span>
 							</p>
-							</td><td align="left" valign="top" headers="idm45798283797856">
+							</td><td align="left" valign="top" headers="idm45241029133168">
 							<p>
 								Boolean
 							</p>
-							</td><td align="left" valign="top" headers="idm45798282509088">
+							</td><td align="left" valign="top" headers="idm45241029132080">
 							<p>
 								Grants superusers the ability to read, write, and delete content from other repositories in namespaces that they do not own or have explicit permissions for.
 							</p>
 							<p>
 								<span class="strong strong"><strong>Default:</strong></span> <code class="literal">True</code>
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45798283798944">
+							</td></tr><tr><td align="left" valign="top" headers="idm45241029134256">
 							<p>
 								<span class="strong strong"><strong>FEATURE_RESTRICTED_USERS</strong></span>
 							</p>
-							</td><td align="left" valign="top" headers="idm45798283797856">
+							</td><td align="left" valign="top" headers="idm45241029133168">
 							<p>
 								Boolean
 							</p>
-							</td><td align="left" valign="top" headers="idm45798282509088">
+							</td><td align="left" valign="top" headers="idm45241029132080">
 							<p>
 								Restricts normal users from reading and writing content and creating organizations.
 							</p>
 							<p>
 								<span class="strong strong"><strong>Default:</strong></span> <code class="literal">True</code>
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45798283798944">
+							</td></tr><tr><td align="left" valign="top" headers="idm45241029134256">
 							<p>
-								<span class="strong strong"><strong>RESTRICTED_USERS_WHITELIST</strong></span>
+								<span class="strong strong"><strong>GLOBAL_READONLY_SUPER_USERS</strong></span>
 							</p>
-							</td><td align="left" valign="top" headers="idm45798283797856">
+							</td><td align="left" valign="top" headers="idm45241029133168">
 							<p>
 								String
 							</p>
-							</td><td align="left" valign="top" headers="idm45798282509088">
+							</td><td align="left" valign="top" headers="idm45241029132080">
+							<p>
+								When set, grants users of this list read access to all repositories, regardless of whether they are public repositories.
+							</p>
+							</td></tr><tr><td align="left" valign="top" headers="idm45241029134256">
+							<p>
+								<span class="strong strong"><strong>RESTRICTED_USERS_WHITELIST</strong></span>
+							</p>
+							</td><td align="left" valign="top" headers="idm45241029133168">
+							<p>
+								String
+							</p>
+							</td><td align="left" valign="top" headers="idm45241029132080">
 							<p>
 								When set, specific users can be excluded from the <code class="literal">FEATURE_RESTRICTED_USERS</code> setting.
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm45798283798944">
+							</td></tr><tr><td align="left" valign="top" headers="idm45241029134256">
 							<p>
 								<span class="strong strong"><strong>RESTRICTED_USER_READ_ONLY</strong></span>
 							</p>
-							</td><td align="left" valign="top" headers="idm45798283797856">
+							</td><td align="left" valign="top" headers="idm45241029133168">
 							<p>
 								Boolean
 							</p>
-							</td><td align="left" valign="top" headers="idm45798282509088">
+							</td><td align="left" valign="top" headers="idm45241029132080">
 							<p>
 								When set, restrict users to read-only operations unless otherwise specified in <code class="literal">RESTRICTED_USERS_WHITELIST</code>.
 							</p>
@@ -709,9 +725,11 @@ LDAP_USER_RDN:
 						Start, or restart, your Red Hat Quay deployment.
 					</li></ol></div></section><section class="section" id="enabling-superusers-full-access"><div class="titlepage"><div><div><h2 class="title">3.4. Enabling and testing <code class="literal">FEATURE_SUPERUSERS_FULL_ACCESS</code></h2></div></div></div><p>
 				The <code class="literal">FEATURE_SUPERUSERS_FULL_ACCESS</code> feature is now available. This configuration field grants superusers the ability to read, write, and delete content from other repositories in namespaces that they do not own or have explicit permissions for.
-			</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
-					This feature is only available on the beta of the new UI. When enabled, it shows all organizations that the super user has access to. To enable the beta of the new UI, see <a class="link" href="#enabling-ui-v2" title="3.8. Enabling and testing FEATURE_UI_V2">FEATURE_UI_V2</a>
-				</p></div></div><p>
+			</p><div class="admonition note"><div class="admonition_header">Note</div><div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							This feature is only available on the beta of the new UI. When enabled, it shows all organizations that the super user has access to. To enable the beta of the new UI, see <a class="link" href="#enabling-ui-v2" title="3.8. Enabling and testing FEATURE_UI_V2">FEATURE_UI_V2</a>
+						</li><li class="listitem">
+							When this field is enabled, the superuser cannot view the image repository of every organization at once. This is a known limitation and will be fixed in a future version of Red Hat Quay. As a temporary workaround, the superuser can view image repositories by navigating to them from the <span class="strong strong"><strong>Organizations</strong></span> page.
+						</li></ul></div></div></div><p>
 				Use the following procedure to test the <code class="literal">FEATURE_SUPERUSERS_FULL_ACCESS</code> feature.
 			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
 						You have defined the <code class="literal">SUPER_USERS</code> configuration field in your <code class="literal">config.yaml</code> file.
@@ -1016,29 +1034,29 @@ FEATURE_USER_CREATION: true
 							As part of the auto-pruning feature, the tags that are marked for deletion are eventually garbage collected by the garbage collector (gc) worker process. As a result, the quota size restriction is not fully enforced during this period.
 						</li><li class="listitem">
 							Currently, the namespace quota size computation does not take into account the size for manifest child. This is a known issue and will be fixed in a future version of Red Hat Quay.
-						</li></ul></div></div></div><section class="section" id="testing_the_storage_quota_limits_feature_in_proxy_organizations"><div class="titlepage"><div><div><h3 class="title">3.10.1. Testing the storage quota limits feature in proxy organizations</h3></div></div></div><p>
-					Use the following procedure to test the auto-pruning feature of an organization with proxy cache and storage quota limitations enabled.
-				</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
-							Your organization is configured to serve as a proxy organization. The following example proxies from quay.io.
-						</li><li class="listitem">
-							<code class="literal">FEATURE_PROXY_CACHE</code> is set to <code class="literal">true</code> in your <code class="literal">config.yaml</code> file.
-						</li><li class="listitem">
-							<code class="literal">FEATURE_QUOTA_MANAGEMENT</code> is set to <code class="literal">true</code> in your <code class="literal">config.yaml</code> file.
-						</li><li class="listitem">
-							Your organization is configured with a quota limit, for example, <code class="literal">150 MB</code>.
-						</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
-							Pull an image to your repository from your proxy organization, for example:
-						</p><pre class="screen">$ podman pull quay-server.example.com/proxytest/projectquay/clair:4.2.3</pre></li><li class="listitem"><p class="simpara">
-							Depending on the space left in your repository, you might need to pull additional images from your proxy organization, for example:
-						</p><pre class="screen">$ podman pull quay-server.example.com/proxytest/projectquay/clair:4.1.5</pre></li><li class="listitem"><p class="simpara">
-							In the Red Hat Quay registry UI, click the name of your repository.
-						</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-									Click <span class="strong strong"><strong>Tags</strong></span> in the navigation pane and ensure that <code class="literal">clair:4.2.3</code> and <code class="literal">clair:4.1.5</code> are tagged.
-								</li></ul></div></li><li class="listitem"><p class="simpara">
-							Pull the last image that will result in your repository exceeding the the allotted quota, for example:
-						</p><pre class="screen">$ podman pull quay-server.example.com/proxytest/projectquay/clair:4.1.4</pre></li><li class="listitem">
-							Refresh the <span class="strong strong"><strong>Tags</strong></span> page of your Red Hat Quay registry. The first image that you pushed, for example, <code class="literal">clair:4.2.3</code> should have been auto-pruned. The <span class="strong strong"><strong>Tags</strong></span> page should now show <code class="literal">clair:4.2.3</code> and <code class="literal">clair:4.1.4</code>.
-						</li></ol></div></section></section></section><div><div xml:lang="en-US" class="legalnotice" id="idm45798285279088"><h1 class="legalnotice">Legal Notice</h1><div class="para">
+						</li></ul></div></div></div></section><section class="section" id="testing_the_storage_quota_limits_feature_in_proxy_organizations"><div class="titlepage"><div><div><h2 class="title">3.11. Testing the storage quota limits feature in proxy organizations</h2></div></div></div><p>
+				Use the following procedure to test the auto-pruning feature of an organization with proxy cache and storage quota limitations enabled.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						Your organization is configured to serve as a proxy organization. The following example proxies from quay.io.
+					</li><li class="listitem">
+						<code class="literal">FEATURE_PROXY_CACHE</code> is set to <code class="literal">true</code> in your <code class="literal">config.yaml</code> file.
+					</li><li class="listitem">
+						<code class="literal">FEATURE_QUOTA_MANAGEMENT</code> is set to <code class="literal">true</code> in your <code class="literal">config.yaml</code> file.
+					</li><li class="listitem">
+						Your organization is configured with a quota limit, for example, <code class="literal">150 MB</code>.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Pull an image to your repository from your proxy organization, for example:
+					</p><pre class="screen">$ podman pull quay-server.example.com/proxytest/projectquay/quay:3.7.9</pre></li><li class="listitem"><p class="simpara">
+						Depending on the space left in your repository, you might need to pull additional images from your proxy organization, for example:
+					</p><pre class="screen">$ podman pull quay-server.example.com/proxytest/projectquay/quay:3.6.2</pre></li><li class="listitem"><p class="simpara">
+						In the Red Hat Quay registry UI, click the name of your repository.
+					</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								Click <span class="strong strong"><strong>Tags</strong></span> in the navigation pane and ensure that <code class="literal">quay:3.7.9</code> and <code class="literal">quay:3.6.2</code> are tagged.
+							</li></ul></div></li><li class="listitem"><p class="simpara">
+						Pull the last image that will result in your repository exceeding the the allotted quota, for example:
+					</p><pre class="screen">$ podman pull quay-server.example.com/proxytest/projectquay/quay:3.5.1</pre></li><li class="listitem">
+						Refresh the <span class="strong strong"><strong>Tags</strong></span> page of your Red Hat Quay registry. The first image that you pushed, for example, <code class="literal">quay:3.7.9</code> should have been auto-pruned. The <span class="strong strong"><strong>Tags</strong></span> page should now show <code class="literal">quay:3.6.2</code> and <code class="literal">quay:3.5.1</code>.
+					</li></ol></div></section></section><div><div xml:lang="en-US" class="legalnotice" id="idm45241026898560"><h1 class="legalnotice">Legal Notice</h1><div class="para">
 		Copyright <span class="trademark"/>© 2022 Red Hat, Inc.
 	</div><div class="para">
 		The text of and illustrations in this document are licensed by Red Hat under a Creative Commons Attribution–Share Alike 3.0 Unported license ("CC-BY-SA"). An explanation of CC-BY-SA is available at <a class="uri" href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a>. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
