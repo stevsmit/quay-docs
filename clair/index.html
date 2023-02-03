@@ -1,0 +1,1158 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Vulnerability scanning with Clair on Red Hat Quay preface</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Get started with Red Hat Quay"/><link rel="next" href="#idm46768224822688" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm46768224541856"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.8</span></div><div><h1 class="title">Vulnerability scanning with Clair on Red Hat Quay preface</h1></div><div><h2 class="subtitle">Vulnerability scanning with Clair on Red Hat Quay</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm46768202374528">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
+				Get started with Red Hat Quay
+			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm46768224822688">Preface</a></span></li><li><span class="part"><a href="#vulnerability-scanning-clair-quay-overview">I. Vulnerability scanning with Clair on Red Hat Quay overview</a></span><ul><li><span class="chapter"><a href="#clair-vulnerability-scanner">1. Clair vulnerability scanner</a></span><ul><li><span class="section"><a href="#clair-vulnerability-scanner-hosts">1.1. Clair vulnerability scanner databases</a></span></li></ul></li><li><span class="chapter"><a href="#clair-concepts">2. Clair concepts</a></span><ul><li><span class="section"><a href="#clair-practice">2.1. Clair in practice</a></span><ul><li><span class="section"><a href="#clair-indexing-concept">2.1.1. Indexing</a></span></li><li><span class="section"><a href="#clair-matching-concept">2.1.2. Matching</a></span></li><li><span class="section"><a href="#clair-notifications-concept">2.1.3. Notifications</a></span></li></ul></li><li><span class="section"><a href="#internal-api">2.2. Internal API endpoints for Clair</a></span><ul><li><span class="section"><a href="#update-diffs">2.2.1. Update diffs</a></span></li><li><span class="section"><a href="#update-operations">2.2.2. Update operation</a></span></li><li><span class="section"><a href="#affected-manifest">2.2.3. AffectedManifest</a></span></li></ul></li><li><span class="section"><a href="#clair-authentication">2.3. Clair authentication</a></span></li><li><span class="section"><a href="#clair-updaters">2.4. Clair updaters</a></span><ul><li><span class="section"><a href="#configuring-updaters">2.4.1. Configuring updaters</a></span></li><li><span class="section"><a href="#clair-updater-urls">2.4.2. Clair updater URLs</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#about-clair">3. About Clair</a></span><ul><li><span class="section"><a href="#clair-releases">3.1. Clair releases</a></span></li><li><span class="section"><a href="#clair-official-containers">3.2. Official Clair containers</a></span></li><li><span class="section"><a href="#clair-cve">3.3. CVE ratings from the National Vulnerability Database</a></span></li><li><span class="section"><a href="#fips-overview">3.4. Federal Information Processing Standard (FIPS) readiness and compliance</a></span></li></ul></li></ul></li><li><span class="part"><a href="#testing-clair-with-quay">II. Clair on Red Hat Quay</a></span><ul><li><span class="chapter"><a href="#clair-standalone-configure">4. Setting up Clair on standalone Red Hat Quay deployments</a></span></li><li><span class="chapter"><a href="#clair-quay-operator-overview">5. Clair on OpenShift Container Platform</a></span><ul><li><span class="section"><a href="#manually-deploy-clair-ocp">5.1. Setting up Clair on Red Hat Quay Operator deployment</a></span></li></ul></li><li><span class="chapter"><a href="#clair-testing">6. Testing Clair security scanner</a></span></li></ul></li><li><span class="part"><a href="#advanced-clair-configuration">III. Advanced Clair configuration</a></span><ul><li><span class="chapter"><a href="#unmanaged-clair-configuration">7. Unmanaged Clair configuration</a></span><ul><li><span class="section"><a href="#unmanaging-clair-database">7.1. Running a custom Clair configuration with an unmanaged Clair database</a></span></li><li><span class="section"><a href="#configuring-custom-clair-database">7.2. Configuring a custom Clair database</a></span></li></ul></li><li><span class="chapter"><a href="#custom-clair-configuration-managed-database">8. Running a custom Clair configuration with a managed Clair database</a></span><ul><li><span class="section"><a href="#managed-clair-database">8.1. Setting a Clair database to managed</a></span></li><li><span class="section"><a href="#configuring-custom-clair-database-managed">8.2. Configuring a custom Clair database</a></span></li></ul></li></ul></li></ul></div><section class="preface" id="idm46768224822688"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div><p>
+			The contents within this guide provide an overview of Clair vulnerability scanner for Red Hat Quay, running Clair on standalone Red Hat Quay and Operator deployments, and advanced Clair configuration.
+		</p></section><div class="part" id="vulnerability-scanning-clair-quay-overview"><div class="titlepage"><div><div><h1 class="title">Part I. Vulnerability scanning with Clair on Red Hat Quay overview</h1></div></div></div><div class="partintro" id="idm46768224760448"><div/><p>
+				The content in this guide explains the key purposes, concepts, and internal APIs of Clair security scanner on Red Hat Quay. It also contains information about Clair releases and the location of official Clair containers.
+			</p><div class="toc"><p><strong>Table of Contents</strong></p><ul class="toc"><li><span class="chapter"><a href="#clair-vulnerability-scanner">1. Clair vulnerability scanner</a></span><ul><li><span class="section"><a href="#clair-vulnerability-scanner-hosts">1.1. Clair vulnerability scanner databases</a></span></li></ul></li><li><span class="chapter"><a href="#clair-concepts">2. Clair concepts</a></span><ul><li><span class="section"><a href="#clair-practice">2.1. Clair in practice</a></span><ul><li><span class="section"><a href="#clair-indexing-concept">2.1.1. Indexing</a></span></li><li><span class="section"><a href="#clair-matching-concept">2.1.2. Matching</a></span></li><li><span class="section"><a href="#clair-notifications-concept">2.1.3. Notifications</a></span></li></ul></li><li><span class="section"><a href="#internal-api">2.2. Internal API endpoints for Clair</a></span><ul><li><span class="section"><a href="#update-diffs">2.2.1. Update diffs</a></span></li><li><span class="section"><a href="#update-operations">2.2.2. Update operation</a></span></li><li><span class="section"><a href="#affected-manifest">2.2.3. AffectedManifest</a></span></li></ul></li><li><span class="section"><a href="#clair-authentication">2.3. Clair authentication</a></span></li><li><span class="section"><a href="#clair-updaters">2.4. Clair updaters</a></span><ul><li><span class="section"><a href="#configuring-updaters">2.4.1. Configuring updaters</a></span></li><li><span class="section"><a href="#clair-updater-urls">2.4.2. Clair updater URLs</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#about-clair">3. About Clair</a></span><ul><li><span class="section"><a href="#clair-releases">3.1. Clair releases</a></span></li><li><span class="section"><a href="#clair-official-containers">3.2. Official Clair containers</a></span></li><li><span class="section"><a href="#clair-cve">3.3. CVE ratings from the National Vulnerability Database</a></span></li><li><span class="section"><a href="#fips-overview">3.4. Federal Information Processing Standard (FIPS) readiness and compliance</a></span></li></ul></li></ul></div></div><section class="chapter" id="clair-vulnerability-scanner"><div class="titlepage"><div><div><h2 class="title">Chapter 1. Clair vulnerability scanner</h2></div></div></div><p>
+				Clair v4 (Clair) is an open source application that leverages static code analyses for parsing image content and reporting vulnerabilities affecting the content. Clair is packaged with Red Hat Quay and can be used in both standalone and Operator deployments. It can be run in highly scalable configurations, where components can be scaled separately as appropriate for enterprise environments.
+			</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+					With the release of Red Hat Quay 3.4, Clair v4 (image registry.redhat.io/quay/clair-rhel8 fully replaced Clair v2 (image quay.io/redhat/clair-jwt). See below for how to run Clair v2 in read-only mode while Clair v4 is updating.
+				</p></div></div><section class="section" id="clair-vulnerability-scanner-hosts"><div class="titlepage"><div><div><h2 class="title">1.1. Clair vulnerability scanner databases</h2></div></div></div><p>
+					Clair uses the following vulnerability databases to scan for issues in your images:
+				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							Ubuntu Oval database
+						</li><li class="listitem">
+							Debian Oval database
+						</li><li class="listitem">
+							Red Hat Enterprise Linux (RHEL) Oval database
+						</li><li class="listitem">
+							SUSE Oval database
+						</li><li class="listitem">
+							Oracle Oval database
+						</li><li class="listitem">
+							Alpine SecDB database
+						</li><li class="listitem">
+							VMWare Photon OS database
+						</li><li class="listitem">
+							Amazon Web Services (AWS) UpdateInfo
+						</li><li class="listitem">
+							Pyup.io (Python) database
+						</li></ul></div><p>
+					For information about how Clair does security mapping with the different databases, see <a class="link" href="https://quay.github.io/claircore/concepts/severity_mapping.html">ClairCore Severity Mapping</a>.
+				</p></section></section><section class="chapter" id="clair-concepts"><div class="titlepage"><div><div><h2 class="title">Chapter 2. Clair concepts</h2></div></div></div><p>
+				The following sections provide a conceptual overview of how Clair works.
+			</p><section class="section" id="clair-practice"><div class="titlepage"><div><div><h2 class="title">2.1. Clair in practice</h2></div></div></div><p>
+					A Clair analysis is broken down into three distinct parts: indexing, matching, and notification.
+				</p><section class="section" id="clair-indexing-concept"><div class="titlepage"><div><div><h3 class="title">2.1.1. Indexing</h3></div></div></div><p>
+						Clair’s indexer service is responsible for indexing a manifest. In Clair, manifests are representations of a container image. The indexer service is the component that Clair uses to understand the contents of layers. Clair leverages the fact that Open Container Initiative (OCI) manifests and layers are content addressed to reduce duplicate work.
+					</p><p>
+						Indexing involves taking a manifest representing a container image and computing its constituent parts. The indexer tries to discover what packages exist in the image, what distribution the image is derived from, and what package repositories are used within the image. When this information is computed, it is persisted into an <code class="literal">IndexReport</code>.
+					</p><p>
+						The <code class="literal">IndexReport</code> is an intermediate data structure that describes the contents of a container image. The <code class="literal">IndexReport</code> can be fed to a <code class="literal">matcher</code> node for vulnerability analysis.
+					</p><section class="section" id="content-addressability"><div class="titlepage"><div><div><h4 class="title">2.1.1.1. Content addressability</h4></div></div></div><p>
+							Clair treats all manifests and layers as <span class="emphasis"><em>content addressable</em></span>. In the context of Clair, content addressable means that when a specific manifest is indexed, it is not indexed again unless it is required; this is the same for individual layers.
+						</p><p>
+							For example, consider how many images in a registry might use <code class="literal">ubuntu:artful</code> as a base layer. If the developers prefer basing their images off of Ubuntu, it could be a large majority of images. Treating the layers and manifests as content addressable means that Clair only fetches and scans the base layer one time.
+						</p><p>
+							In some cases, Clair should re-index a manifest. For example, when an internal component such as a package scanner is updated, Clair performs the scan with the new package scanner. Clair has enough information to determine that a component has changed and that the <code class="literal">IndexReport</code> might be different the second time, and as a result it re-indexes the manifest.
+						</p><p>
+							A client can track Clair’s <code class="literal">index_state</code> endpoint to understand when an internal component has changed, and can subsequently issue re-indexes. See the Clair API guide to learn how to view Clair’s API specification.
+						</p></section></section><section class="section" id="clair-matching-concept"><div class="titlepage"><div><div><h3 class="title">2.1.2. Matching</h3></div></div></div><p>
+						With Clair, a matcher node is responsible for matching vulnerabilities to a provided <code class="literal">IndexReport</code>.
+					</p><p>
+						Matchers are responsible for keeping the database of vulnerabilities up to date. Matchers will typically run a set of updaters, which periodically probe their data sources for new content. New vulnerabilities are stored in the database when they are discovered.
+					</p><p>
+						The matcher API is designed to be used often. It is designed to always provide the most recent <code class="literal">VulnerabilityReport</code> when queried. The <code class="literal">VulnerabilityReport</code> summarizes both a manifest’s content and any vulnerabilities affecting the content.
+					</p><section class="section" id="remote-matching"><div class="titlepage"><div><div><h4 class="title">2.1.2.1. Remote matching</h4></div></div></div><p>
+							A remote matcher acts similar to a matcher, however remote matchers use API calls to fetch vulnerability data for a provided <code class="literal">IndexReport</code>. Remote matchers are useful when it is impossible to persist data from a given source into the database.
+						</p><p>
+							The CRDA remote matcher is responsible for fetching vulnerabilities from Red Hat Code Ready Dependency Analytics (CRDA). By default, this matcher serves 100 requests per minute. The rate limiting can be lifted by requesting a dedicated API key, which is done by submitting <a class="link" href="https://developers.redhat.com/content-gateway/link/3872178">the API key request form</a>.
+						</p><p>
+							To enable CRDA remote matching, see "Enabling CRDA for Clair".
+						</p></section></section><section class="section" id="clair-notifications-concept"><div class="titlepage"><div><div><h3 class="title">2.1.3. Notifications</h3></div></div></div><p>
+						Clair uses a notifier service that keeps track of new security database updates and informs users if new or removed vulnerabilities affect an indexed manifest.
+					</p><p>
+						When the notifier becomes aware of new vulnerabilities affecting a previously indexed manifest, it uses the configured methods in your <code class="literal">config.yaml</code> file to issue notifications about the new changes. Returned notifications express the most severe vulnerability discovered because of the change. This avoids creating excessive notifications for the same security database update.
+					</p><p>
+						When a user receives a notification, it issues a new request against the matcher to receive an up to date vulnerability report.
+					</p><p>
+						The notification schema is the JSON marshalled form of the following types:
+					</p><pre class="programlisting language-json">// Reason indicates the catalyst for a notification
+type Reason string
+const (
+    Added   Reason = "added"
+    Removed Reason = "removed"
+    Changed Reason = "changed"
+)
+type Notification struct {
+    ID            uuid.UUID        `json:"id"`
+    Manifest      claircore.Digest `json:"manifest"`
+    Reason        Reason           `json:"reason"`
+    Vulnerability VulnSummary      `json:"vulnerability"`
+}
+type VulnSummary struct {
+    Name           string                  `json:"name"`
+    Description    string                  `json:"description"`
+    Package        *claircore.Package      `json:"package,omitempty"`
+    Distribution   *claircore.Distribution `json:"distribution,omitempty"`
+    Repo           *claircore.Repository   `json:"repo,omitempty"`
+    Severity       string                  `json:"severity"`
+    FixedInVersion string                  `json:"fixed_in_version"`
+    Links          string                  `json:"links"`
+}</pre><p>
+						You can subscribe to notifications through the following mechanics:
+					</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								Webhook delivery
+							</li><li class="listitem">
+								AMQP delivery
+							</li><li class="listitem">
+								STOMP delivery
+							</li></ul></div><p>
+						Configuring the notifier is done through the Clair YAML configuration file.
+					</p><section class="section" id="webhook-delivery"><div class="titlepage"><div><div><h4 class="title">2.1.3.1. Webhook delivery</h4></div></div></div><p>
+							When you configure the notifier for webhook delivery, you provide the service with the following pieces of information:
+						</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+									A target URL where the webhook will fire.
+								</li><li class="listitem">
+									The callback URL where the notifier might be reached, including its API path. For example, <code class="literal"><a class="link" href="http://clair-notifier/notifier/api/v1/notifications">http://clair-notifier/notifier/api/v1/notifications</a></code>.
+								</li></ul></div><p>
+							When the notifier has determined an updated security database has been changed the affected status of an indexed manifest, it delivers the following JSON body to the configured target:
+						</p><pre class="programlisting language-json">{
+  "notifiction_id": {uuid_string},
+  "callback": {url_to_notifications}
+}</pre><p>
+							On receipt, the server can browse to the URL provided in the callback field.
+						</p></section><section class="section" id="amqp-delivery"><div class="titlepage"><div><div><h4 class="title">2.1.3.2. AMQP delivery</h4></div></div></div><p>
+							The Clair notifier also supports delivering notifications to an AMQP broker. With AMQP delivery, you can control whether a callback is delivered to the broker or whether notifications are directly delivered to the queue. This allows the developer of the AMQP consumer to determine the logic of notification processing.
+						</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+								AMQP delivery only supports AMQP 0.x protocol (for example, RabbitMQ). If you need to publish notifications to AMQP 1.x message queue (for example, ActiveMQ), you can use STOMP delivery.
+							</p></div></div><section class="section" id="amqp-direct-delivery"><div class="titlepage"><div><div><h5 class="title">2.1.3.2.1. AMQP direct delivery</h5></div></div></div><p>
+								If the Clair notifier’s configuration specifies <code class="literal">direct: true</code> for AMQP delivery, notifications are delivered directly to the configured exchange.
+							</p><p>
+								When <code class="literal">direct</code> is set, the <code class="literal">rollup</code> property might be set to instruct the notifier to send a maximum number of notifications in a single AMQP. This provides balance between the size of the message and the number of messages delivered to the queue.
+							</p></section></section><section class="section" id="notifier-testing-development"><div class="titlepage"><div><div><h4 class="title">2.1.3.3. Notifier testing and development mode</h4></div></div></div><p>
+							The notifier has a testing and development mode that can be enabled with the <code class="literal">NOTIFIER_TEST_MODE</code> parameter. This parameter can be set to any value.
+						</p><p>
+							When the <code class="literal">NOTIFIER_TEST_MODE</code> parameter is set, the notifier begins sending fake notifications to the configured delivery mechanism every <code class="literal">poll_interval</code> interval. This provides an easy way to implement and test new or existing deliverers.
+						</p><p>
+							The notifier runs in <code class="literal">NOTIFIER_TEST_MODE</code> until the environment variable is cleared and the service is restarted.
+						</p></section><section class="section" id="deleting-notifications"><div class="titlepage"><div><div><h4 class="title">2.1.3.4. Deleting notifications</h4></div></div></div><p>
+							To delete the notification, you can use the <code class="literal">DELETE</code> API call. Deleting a notification ID manually cleans up resources in the notifier. If you do not use the <code class="literal">DELETE</code> API call, the notifier waits a predetermined length of time before clearing delivered notifications from its database.
+						</p></section></section></section><section class="section" id="internal-api"><div class="titlepage"><div><div><h2 class="title">2.2. Internal API endpoints for Clair</h2></div></div></div><p>
+					Internal API endpoints are embedded in <code class="literal">/api/v1/internal</code> and are meant for communication between Clair microservices.
+				</p><div class="admonition important"><div class="admonition_header">Important</div><div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								If your Clair <code class="literal">config.yaml</code> file is set to <code class="literal">CLAIR_MODE=combo</code>, internal API endpoints might not exist.
+							</li><li class="listitem">
+								APIs are not formally exposed in Clair’s OpenAPI Specification. Further information and usage is dependent on the reader.
+							</li></ul></div></div></div><section class="section" id="update-diffs"><div class="titlepage"><div><div><h3 class="title">2.2.1. Update diffs</h3></div></div></div><p>
+						The <code class="literal">update_diff</code> endpoint exposes the API for diffing two update operations. This parameter is used by the notifier to determine the added and removed vulnerabilities on security database updates.
+					</p></section><section class="section" id="update-operations"><div class="titlepage"><div><div><h3 class="title">2.2.2. Update operation</h3></div></div></div><p>
+						The <code class="literal">update_operation</code> endpoint exposes the API for viewing updaters activity. This is used by the notifier to determine if new updates have occurred, and triggers an update diff to see what has changed.
+					</p></section><section class="section" id="affected-manifest"><div class="titlepage"><div><div><h3 class="title">2.2.3. AffectedManifest</h3></div></div></div><p>
+						The <code class="literal">affected_manifest</code> endpoint exposes the API for retrieving affected manifests given a list of vulnerabilities. This is used by the notifier to determine the manifests that need to have a notification generated.
+					</p></section></section><section class="section" id="clair-authentication"><div class="titlepage"><div><div><h2 class="title">2.3. Clair authentication</h2></div></div></div><p>
+					In its current iteration, Clair v4 (Clair) handles authentication internally.
+				</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+						Previous versions of Clair used JWT Proxy to gate authentication.
+					</p></div></div><p>
+					Authentication is configured by specifying configuration objects underneath the <code class="literal">auth</code> key of the configuration. Multiple authentication configurations might be present, but they are used preferentially in the following order:
+				</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+							PSK. With this authentication configuration, Clair implements JWT-based authentication using a pre-shared key.
+						</li><li class="listitem"><p class="simpara">
+							Configuration. For example:
+						</p><pre class="programlisting language-yaml">auth:
+  psk:
+    key: &gt;-
+      MDQ4ODBlNDAtNDc0ZC00MWUxLThhMzAtOTk0MzEwMGQwYTMxCg==
+    iss: 'issuer'</pre><p class="simpara">
+							In this configuration the <code class="literal">auth</code> field requires two parameters: <code class="literal">iss</code>, which is the issuer to validate all incoming requests, and <code class="literal">key</code>, which is a base64 coded symmetric key for validating the requests.
+						</p></li></ol></div></section><section class="section" id="clair-updaters"><div class="titlepage"><div><div><h2 class="title">2.4. Clair updaters</h2></div></div></div><p>
+					Clair uses <code class="literal">Go</code> packages called <span class="emphasis"><em>updaters</em></span> that contain the logic of fetching and parsing different vulnerability databases.
+				</p><p>
+					Updaters are usually paired with a matcher to interpret if, and how, any vulnerability is related to a package. Administrators might want to update the vulnerability database less frequently, or not import vulnerabilities from databases that they know will not be used.
+				</p><section class="section" id="configuring-updaters"><div class="titlepage"><div><div><h3 class="title">2.4.1. Configuring updaters</h3></div></div></div><p>
+						Updaters can be configured by the <code class="literal">updaters</code> key at the top of the configuration. If updaters are being run automatically within the matcher process, which is the default setting, the period for running updaters is configured under the matcher’s configuration field.
+					</p><section class="section" id="updater-sets"><div class="titlepage"><div><div><h4 class="title">2.4.1.1. Updater sets</h4></div></div></div><p>
+							The following sets can be configured with Clair updaters:
+						</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+									<code class="literal">alpine</code>
+								</li><li class="listitem">
+									<code class="literal">aws</code>
+								</li><li class="listitem">
+									<code class="literal">debian</code>
+								</li><li class="listitem">
+									<code class="literal">enricher/cvss</code>
+								</li><li class="listitem">
+									<code class="literal">libvuln/driver</code>
+								</li><li class="listitem">
+									<code class="literal">oracle</code>
+								</li><li class="listitem">
+									<code class="literal">photon</code>
+								</li><li class="listitem">
+									<code class="literal">pyupio</code>
+								</li><li class="listitem">
+									<code class="literal">rhel</code>
+								</li><li class="listitem">
+									<code class="literal">rhel/rhcc</code>
+								</li><li class="listitem">
+									<code class="literal">suse</code>
+								</li><li class="listitem">
+									<code class="literal">ubuntu</code>
+								</li><li class="listitem">
+									<code class="literal">updater</code>
+								</li></ul></div></section><section class="section" id="selecting-updater-sets"><div class="titlepage"><div><div><h4 class="title">2.4.1.2. Selecting updater sets</h4></div></div></div><p>
+							Specific sets of updaters can be selected by the <code class="literal">sets</code> list. For example:
+						</p><pre class="programlisting language-yaml">updaters:
+  sets:
+    - rhel</pre><p>
+							If the <code class="literal">sets</code> field is not populated, it defaults to using all sets.
+						</p></section><section class="section" id="filtering-updater-sets"><div class="titlepage"><div><div><h4 class="title">2.4.1.3. Filtering updater sets</h4></div></div></div><p>
+							To reject an updater from running without disabling an entire set, the <code class="literal">filter</code> option can be used.
+						</p><p>
+							In the following example, the string is interpreted as a Go <code class="literal">regexp</code> package. This rejects any updater with a name that does not match.
+						</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+								This means that an empty string matches any string. It does not mean that it matches no strings.
+							</p></div></div><pre class="programlisting language-yaml">updaters:
+  filter: '^$'</pre></section><section class="section" id="configuring-specific-updaters"><div class="titlepage"><div><div><h4 class="title">2.4.1.4. Configuring specific updaters</h4></div></div></div><p>
+							Configuration for specific updaters can be passed by putting a key underneath the <code class="literal">config</code> parameter of the <code class="literal">updaters</code> object. The name of an updater might be constructed dynamically, and users should examine logs to ensure updater names are accurate. The specific object that an updater expects should be covered in the updater’s documentation.
+						</p><p>
+							In the following example, the <code class="literal">rhel</code> updater fetches a manifest from a different location:
+						</p><pre class="programlisting language-yaml">updaters:
+  config:
+    rhel:
+      url: https://example.com/mirror/oval/PULP_MANIFEST</pre></section><section class="section" id="disabling-clair-updater-component-managed-db"><div class="titlepage"><div><div><h4 class="title">2.4.1.5. Disabling the Clair Updater component</h4></div></div></div><p>
+							In some scenarios, users might want to disable the Clair updater component. Disabling updaters is required when running Red Hat Quay in a disconnected environment.
+						</p><p>
+							In the following example, Clair updaters are disabled:
+						</p><pre class="programlisting language-yaml">matcher:
+  disable_updaters: true</pre></section></section><section class="section" id="clair-updater-urls"><div class="titlepage"><div><div><h3 class="title">2.4.2. Clair updater URLs</h3></div></div></div><p>
+						The following are the HTTP hosts and paths that Clair will attempt to talk to in a default configuration. This list is non-exhaustive. Some servers issue redirects and some request URLs are constructed dynamically.
+					</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								https://secdb.alpinelinux.org/
+							</li><li class="listitem">
+								http://repo.us-west-2.amazonaws.com/2018.03/updates/x86_64/mirror.list
+							</li><li class="listitem">
+								https://cdn.amazonlinux.com/2/core/latest/x86_64/mirror.list
+							</li><li class="listitem">
+								https://www.debian.org/security/oval/
+							</li><li class="listitem">
+								https://linux.oracle.com/security/oval/
+							</li><li class="listitem">
+								https://packages.vmware.com/photon/photon_oval_definitions/
+							</li><li class="listitem">
+								https://github.com/pyupio/safety-db/archive/
+							</li><li class="listitem">
+								https://catalog.redhat.com/api/containers/
+							</li><li class="listitem">
+								https://www.redhat.com/security/data/
+							</li><li class="listitem">
+								https://support.novell.com/security/oval/
+							</li><li class="listitem">
+								https://people.canonical.com/~ubuntu-security/oval/
+							</li></ul></div></section></section></section><section class="chapter" id="about-clair"><div class="titlepage"><div><div><h2 class="title">Chapter 3. About Clair</h2></div></div></div><p>
+				The content in this section highlights Clair releases, official Clair containers, and information about CVSS enrichment data.
+			</p><section class="section" id="clair-releases"><div class="titlepage"><div><div><h2 class="title">3.1. Clair releases</h2></div></div></div><p>
+					New versions of Clair are regularly released. The source code needed to build Clair is packaged as an archive and attached to each release. Clair releases can be found at <a class="link" href="https://github.com/quay/clair/releases">Clair releases</a>.
+				</p><p>
+					Release artifacts also include the <code class="literal">clairctl</code> command line interface tool, which obtains updater data from the internet by using an open host.
+				</p></section><section class="section" id="clair-official-containers"><div class="titlepage"><div><div><h2 class="title">3.2. Official Clair containers</h2></div></div></div><p>
+					Clair is officially packaged and released as a container at <a class="link" href="quay.io/projectquay/clair">Quay.io/projectquay/clair</a>. The latest tag tracks the Git development branch. Version tags are built from the corresponding release.
+				</p></section><section class="section" id="clair-cve"><div class="titlepage"><div><div><h2 class="title">3.3. CVE ratings from the National Vulnerability Database</h2></div></div></div><p>
+					As of Clair v4.2, Common Vulnerability Scoring System (CVSS) enrichment data is now viewable in the Red Hat Quay UI. Additionally, Clair v4.2 adds CVSS scores from the National Vulnerability Database for detected vulnerabilities.
+				</p><p>
+					With this change, if the vulnerability has a CVSS score that is within 2 levels of the distribution score, the Red Hat Quay UI present’s the distribution’s score by default. For example:
+				</p><p>
+					<span class="inlinemediaobject"><img src="images/clair-4-2-enrichment-data.png" alt="Clair v4.2 data display"/></span>
+				</p><p>
+					This differs from the previous interface, which would only display the following information:
+				</p><p>
+					<span class="inlinemediaobject"><img src="images/clair-4-0-cve-report.png" alt="Clair v4 data display"/></span>
+				</p></section><section class="section" id="fips-overview"><div class="titlepage"><div><div><h2 class="title">3.4. Federal Information Processing Standard (FIPS) readiness and compliance</h2></div></div></div><p>
+					The Federal Information Processing Standard (FIPS) developed by the National Institute of Standards and Technology (NIST) is regarded as the highly regarded for securing and encrypting sensitive data, notably in highly regulated areas such as banking, healthcare, and the public sector. Red Hat Enterprise Linux (RHEL) and OpenShift Container Platform support the FIPS standard by providing a <span class="emphasis"><em>FIPS mode</em></span>, in which the system only allows usage of specific FIPS-validated cryptographic modules like <code class="literal">openssl</code>. This ensures FIPS compliance.
+				</p><p>
+					Red Hat Quay supports running on FIPS-enabled RHEL and OpenShift Container Platform environments from Red Hat Quay version 3.5.0.
+				</p></section></section></div><div class="part" id="testing-clair-with-quay"><div class="titlepage"><div><div><h1 class="title">Part II. Clair on Red Hat Quay</h1></div></div></div><div class="partintro" id="idm46768220969632"><div/><p>
+				This guide contains procedures for running Clair on Red Hat Quay in both standalone and OpenShift Container Platform Operator deployments.
+			</p><div class="toc"><p><strong>Table of Contents</strong></p><ul class="toc"><li><span class="chapter"><a href="#clair-standalone-configure">4. Setting up Clair on standalone Red Hat Quay deployments</a></span></li><li><span class="chapter"><a href="#clair-quay-operator-overview">5. Clair on OpenShift Container Platform</a></span><ul><li><span class="section"><a href="#manually-deploy-clair-ocp">5.1. Setting up Clair on Red Hat Quay Operator deployment</a></span></li></ul></li><li><span class="chapter"><a href="#clair-testing">6. Testing Clair security scanner</a></span></li></ul></div></div><section class="chapter" id="clair-standalone-configure"><div class="titlepage"><div><div><h2 class="title">Chapter 4. Setting up Clair on standalone Red Hat Quay deployments</h2></div></div></div><p>
+				For standalone Red Hat Quay deployments, you can set up Clair security scanner manually.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+						Create a directory
+					</li><li class="listitem"><p class="simpara">
+						Deploy a Clair Postgres database by entering the following command:
+					</p><pre class="programlisting language-terminal">$ sudo podman run -d --rm --name postgresql-clairv4 \
+  -e POSTGRESQL_USER=clairuser \
+  -e POSTGRESQL_PASSWORD=clairpass \
+  -e POSTGRESQL_DATABASE=clair \
+  -e POSTGRESQL_ADMIN_PASSWORD=adminpass \
+  -p 5433:5433 \
+  -v /home/&lt;user-name&gt;/quay-poc/postgres-clairv4:/var/lib/pgsql/data:Z \
+  registry.redhat.io/rhel8/postgresql-10:1</pre></li><li class="listitem"><p class="simpara">
+						Install the Postgres <code class="literal">uuid-ossp</code> module for your Clair deployment:
+					</p><pre class="programlisting language-terminal">$ podman exec -it postgresql-clairv4 /bin/bash -c 'echo "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\"" | psql -d clair -U postgres'</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">CREATE EXTENSION</pre>
+						</p></div><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+							Clair requires the <code class="literal">uuid-ossp</code> extension to be added to its Postgres database. For users with proper privileges, creating the extension will automatically be added by Clair. If users do not have the proper privileges, the extension must be added before start Clair.
+						</p><p>
+							If the extension is not present, the following error will be displayed when Clair attempts to start: <code class="literal">ERROR: Please load the "uuid-ossp" extension. (SQLSTATE 42501)</code>.
+						</p></div></div></li><li class="listitem"><p class="simpara">
+						Create a folder for your Clair configuration file, for example:
+					</p><pre class="programlisting language-terminal">$ mkdir /etc/clairv4/config/</pre></li><li class="listitem"><p class="simpara">
+						Change into the Clair configuration folder:
+					</p><pre class="programlisting language-terminal">$ cd /etc/clairv4/config/</pre></li><li class="listitem"><p class="simpara">
+						Create a Clair configuration file, for example:
+					</p><pre class="programlisting language-yaml">http_listen_addr: :8081
+introspection_addr: :8088
+log_level: debug
+indexer:
+  connstring: host=quay-server.example.com port=5433 dbname=clair user=clairuser password=clairpass sslmode=disable
+  scanlock_retry: 10
+  layer_scan_concurrency: 5
+  migrations: true
+matcher:
+  connstring: host=quay-server.example.com port=5433 dbname=clair user=clairuser password=clairpass sslmode=disable
+  max_conn_pool: 100
+  run: ""
+  migrations: true
+  indexer_addr: clair-indexer
+notifier:
+  connstring: host=quay-server.example.com port=5433 dbname=clair user=clairuser password=clairpass sslmode=disable
+  delivery_interval: 1m
+  poll_interval: 5m
+  migrations: true
+auth:
+  psk:
+    key: "MTU5YzA4Y2ZkNzJoMQ=="
+    iss: ["quay"]
+# tracing and metrics
+trace:
+  name: "jaeger"
+  probability: 1
+  jaeger:
+    agent_endpoint: "localhost:6831"
+    service_name: "clair"
+metrics:
+  name: "prometheus"</pre><p class="simpara">
+						For more information about Clair’s configuration format, see <a class="link" href="https://quay.github.io/clair/reference/config.html">Clair configuration reference</a>.
+					</p></li><li class="listitem"><p class="simpara">
+						Start Clair by using the container image, mounting in the configuration from the file you created:
+					</p><pre class="screen">$ sudo podman run -it --rm --name clairv4 \
+-p 8081:8081 -p 8088:8088 \
+-e CLAIR_CONF=/clair/config.yaml \
+-e CLAIR_MODE=combo \
+-v /etc/clairv4/config:/clair:Z \
+registry.redhat.io/quay/clair-rhel8:v3.8.0</pre><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+							Running multiple Clair containers is also possible, but for deployment scenarios beyond a single container the use of a container orchestrator like Kubernetes or OpenShift Container Platform is strongly recommended.
+						</p></div></div></li></ol></div></section><section class="chapter" id="clair-quay-operator-overview"><div class="titlepage"><div><div><h2 class="title">Chapter 5. Clair on OpenShift Container Platform</h2></div></div></div><p>
+				To set up Clair v4 (Clair) on a Red Hat Quay deployment on OpenShift Container Platform, it is recommended to use the Red Hat Quay Operator. By default, the Red Hat Quay Operator will install or upgrade a Clair deployment along with your Red Hat Quay deployment and configure Clair security scanning automatically.
+			</p><section class="section" id="manually-deploy-clair-ocp"><div class="titlepage"><div><div><h2 class="title">5.1. Setting up Clair on Red Hat Quay Operator deployment</h2></div></div></div><p>
+					Use the following procedure to configure Clair on a Red Hat Quay OpenShift Container Platform deployment.
+				</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+							Your Red Hat Quay Operator has been upgraded to 3.4.0 or greater.
+						</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Enter the following command to set your current project to the name of the project that is running Red Hat Quay:
+						</p><pre class="programlisting language-terminal">$ oc project quay-enterprise</pre></li><li class="listitem"><p class="simpara">
+							Create a Postgres deployment file for Clair, for example, <code class="literal">clairv4-postgres.yaml</code>:
+						</p><pre class="programlisting language-yaml">---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clairv4-postgres
+  namespace: quay-enterprise
+  labels:
+    quay-component: clairv4-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      quay-component: clairv4-postgres
+  template:
+    metadata:
+      labels:
+        quay-component: clairv4-postgres
+    spec:
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: clairv4-postgres
+      containers:
+        - name: postgres
+          image: postgres:11.5
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_DB
+              value: "clair"
+            - name: POSTGRES_PASSWORD
+              value: "postgres"
+            - name: PGDATA
+              value: "/etc/postgres/data"
+          volumeMounts:
+            - name: postgres-data
+              mountPath: "/etc/postgres"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: clairv4-postgres
+  labels:
+    quay-component: clairv4-postgres
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "5Gi"
+    volumeName: "clairv4-postgres"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clairv4-postgres
+  labels:
+    quay-component: clairv4-postgres
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+      protocol: TCP
+      name: postgres
+      targetPort: 5432
+  selector:
+    quay-component: clairv4-postgres</pre></li><li class="listitem"><p class="simpara">
+							Enter the following command to the deploy the Postgres database:
+						</p><pre class="programlisting language-terminal">$ oc create -f ./clairv4-postgres.yaml</pre></li><li class="listitem"><p class="simpara">
+							Create a <code class="literal">config.yaml</code> file for Clair, for example:
+						</p><pre class="programlisting language-yaml">introspection_addr: :8089
+http_listen_addr: :8080
+log_level: debug
+indexer:
+  connstring: host=clairv4-postgres port=5432 dbname=clair user=postgres password=postgres sslmode=disable
+  scanlock_retry: 10
+  layer_scan_concurrency: 5
+  migrations: true
+matcher:
+  connstring: host=clairv4-postgres port=5432 dbname=clair user=postgres password=postgres sslmode=disable
+  max_conn_pool: 100
+  run: ""
+  migrations: true
+  indexer_addr: clair-indexer
+notifier:
+  connstring: host=clairv4-postgres port=5432 dbname=clair user=postgres password=postgres sslmode=disable
+  delivery: 1m
+  poll_interval: 5m
+  migrations: true
+auth:
+  psk:
+    key: MTU5YzA4Y2ZkNzJoMQ== <span id="CO1-1"/><span class="callout">1</span>
+    iss: ["quay"]
+# tracing and metrics
+trace:
+  name: "jaeger"
+  probability: 1
+  jaeger:
+    agent_endpoint: "localhost:6831"
+    service_name: "clair"
+metrics:
+  name: "prometheus"</pre><div class="calloutlist"><dl class="calloutlist"><dt><a href="#CO1-1"><span class="callout">1</span></a> </dt><dd><div class="para">
+									To generate a Clair pre-shared key (PSK), enable <code class="literal">scanning</code> in the Security Scanner section of the User Interface and click <code class="literal">Generate PSK</code>.
+								</div></dd></dl></div><p class="simpara">
+							More information about Clair’s configuration format can be found in <a class="link" href="https://quay.github.io/clair/reference/config.html">upstream Clair documentation</a>.
+						</p></li><li class="listitem"><p class="simpara">
+							Enter the following command to create a secret from the Clair <code class="literal">config.yaml</code> file:
+						</p><pre class="screen">$ oc create secret generic clairv4-config-secret --from-file=./config.yaml</pre></li><li class="listitem"><p class="simpara">
+							Create a deployment file for Clair, for example, <code class="literal">clair-combo.yaml</code>:
+						</p><pre class="programlisting language-yaml">---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    quay-component: clair-combo
+  name: clair-combo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      quay-component: clair-combo
+  template:
+    metadata:
+      labels:
+        quay-component: clair-combo
+    spec:
+      containers:
+        - image: registry.redhat.io/quay/clair-rhel8:v3.8.0  <span id="CO2-1"/><span class="callout">1</span>
+          imagePullPolicy: IfNotPresent
+          name: clair-combo
+          env:
+            - name: CLAIR_CONF
+              value: /clair/config.yaml
+            - name: CLAIR_MODE
+              value: combo
+          ports:
+            - containerPort: 8080
+              name: clair-http
+              protocol: TCP
+            - containerPort: 8089
+              name: clair-intro
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /clair/
+              name: config
+      imagePullSecrets:
+        - name: redhat-pull-secret
+      restartPolicy: Always
+      volumes:
+        - name: config
+          secret:
+            secretName: clairv4-config-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clairv4 <span id="CO2-2"/><span class="callout">2</span>
+  labels:
+    quay-component: clair-combo
+spec:
+  ports:
+    - name: clair-http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+    - name: clair-introspection
+      port: 8089
+      protocol: TCP
+      targetPort: 8089
+  selector:
+    quay-component: clair-combo
+  type: ClusterIP</pre><div class="calloutlist"><dl class="calloutlist"><dt><a href="#CO2-1"><span class="callout">1</span></a> </dt><dd><div class="para">
+									Use the latest Clair image name and version.
+								</div></dd><dt><a href="#CO2-2"><span class="callout">2</span></a> </dt><dd><div class="para">
+									With the <code class="literal">Service</code> set to <code class="literal">clairv4</code>, the scanner endpoint for Clair v4 is entered into the Red Hat Quay <code class="literal">config.yaml</code> file in the <code class="literal">SECURITY_SCANNER_V4_ENDPOINT</code> as <code class="literal">http://clairv4</code>.
+								</div></dd></dl></div></li><li class="listitem"><p class="simpara">
+							Enter the following command to create the Clair deployment:
+						</p><pre class="screen">$ oc create -f ./clair-combo.yaml</pre></li><li class="listitem"><p class="simpara">
+							Add the following entries to your <code class="literal">config.yaml</code> file for your Red Hat Quay deployment.
+						</p><pre class="programlisting language-yaml">FEATURE_SECURITY_NOTIFICATIONS: true
+FEATURE_SECURITY_SCANNER: true
+SECURITY_SCANNER_V4_ENDPOINT: http://clairv4 <span id="CO3-1"/><span class="callout">1</span></pre><div class="calloutlist"><dl class="calloutlist"><dt><a href="#CO3-1"><span class="callout">1</span></a> </dt><dd><div class="para">
+									Obtained by the credentials included in your Clair deployment file.
+								</div></dd></dl></div></li><li class="listitem"><p class="simpara">
+							Enter the following command to delete the original configuration secret for your <code class="literal">quay-enterprise</code> project:
+						</p><pre class="programlisting language-terminal">$ oc delete secret quay-enterprise-config-secret</pre></li><li class="listitem"><p class="simpara">
+							Deploy the modified <code class="literal">config.yaml</code> to the secret containing that file:
+						</p><pre class="programlisting language-terminal">$ oc create secret generic quay-enterprise-config-secret --from-file=./config.yaml</pre></li><li class="listitem"><p class="simpara">
+							Restart your Red Hat Quay pods.
+						</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+								Deleting the <code class="literal">quay-app</code> pods causes pods with the updated configuration to be deployed.
+							</p></div></div></li></ol></div></section></section><section class="chapter" id="clair-testing"><div class="titlepage"><div><div><h2 class="title">Chapter 6. Testing Clair security scanner</h2></div></div></div><p>
+				Use the following procedure to test Clair on either a standalone Red Hat Quay deployment, or on an OpenShift Container Platform Operator-based deployment.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have deployed the Clair container image.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Pull a sample image by entering the following command:
+					</p><pre class="programlisting language-terminal">$ podman pull ubuntu:20.04</pre></li><li class="listitem"><p class="simpara">
+						Tag the image to your registry by entering the following command:
+					</p><pre class="programlisting language-terminal">$ sudo podman tag docker.io/library/ubuntu:20.04 &lt;quay-server.example.com&gt;/&lt;user-name&gt;/ubuntu:20.04</pre></li><li class="listitem"><p class="simpara">
+						Push the image to your Red Hat Quay registry by entering the following command:
+					</p><pre class="programlisting language-terminal">$ sudo podman push --tls-verify=false quay-server.example.com/quayadmin/ubuntu:20.04</pre></li><li class="listitem">
+						Log in to your Red Hat Quay deployment through the UI.
+					</li><li class="listitem">
+						Click the repository name, for example, <span class="strong strong"><strong>quayadmin/ubuntu</strong></span>.
+					</li><li class="listitem"><p class="simpara">
+						In the navigation pane, click <span class="strong strong"><strong>Tags</strong></span>.
+					</p><div class="formalpara"><p class="title"><strong>Scanning summary</strong></p><p>
+							<span class="inlinemediaobject"><img src="images/clair-reposcan.png" alt="Security scan information appears for scanned repository images"/></span>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Click the scanned image report, for example, <span class="strong strong"><strong>45 medium</strong></span>, to show a more detailed report:
+					</p><div class="formalpara"><p class="title"><strong>Scanning details</strong></p><p>
+							<span class="inlinemediaobject"><img src="images/clair-vulnerabilities.png" alt="See all vulnerabilities or only those that are fixable"/></span>
+						</p></div></li></ol></div></section></div><div class="part" id="advanced-clair-configuration"><div class="titlepage"><div><div><h1 class="title">Part III. Advanced Clair configuration</h1></div></div></div><div class="partintro" id="idm46768206656672"><div/><p>
+				Use this section to configure advanced Clair features.
+			</p><div class="toc"><p><strong>Table of Contents</strong></p><ul class="toc"><li><span class="chapter"><a href="#unmanaged-clair-configuration">7. Unmanaged Clair configuration</a></span><ul><li><span class="section"><a href="#unmanaging-clair-database">7.1. Running a custom Clair configuration with an unmanaged Clair database</a></span></li><li><span class="section"><a href="#configuring-custom-clair-database">7.2. Configuring a custom Clair database</a></span></li></ul></li><li><span class="chapter"><a href="#custom-clair-configuration-managed-database">8. Running a custom Clair configuration with a managed Clair database</a></span><ul><li><span class="section"><a href="#managed-clair-database">8.1. Setting a Clair database to managed</a></span></li><li><span class="section"><a href="#configuring-custom-clair-database-managed">8.2. Configuring a custom Clair database</a></span></li></ul></li></ul></div></div><section class="chapter" id="unmanaged-clair-configuration"><div class="titlepage"><div><div><h2 class="title">Chapter 7. Unmanaged Clair configuration</h2></div></div></div><p>
+				Red Hat Quay users can run an unmanaged Clair configuration with the Red Hat Quay OpenShift Container Platform Operator. This feature allows users to create an unmanaged Clair database, or run their custom Clair configuration without an unmanaged database.
+			</p><p>
+				An unmanaged Clair database allows the Red Hat Quay Operator to work in a geo-replicated environment, where multiple instances of the Operator must communicate with the same database. An unmanaged Clair database can also be used when a user requires a highly-available (HA) Clair database that exists outside of a cluster.
+			</p><section class="section" id="unmanaging-clair-database"><div class="titlepage"><div><div><h2 class="title">7.1. Running a custom Clair configuration with an unmanaged Clair database</h2></div></div></div><p>
+					Use the following procedure to set your Clair database to unmanaged.
+				</p><div class="itemizedlist"><p class="title"><strong>Procedure</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+							In the Quay Operator, set the <code class="literal">clairpostgres</code> component of the <code class="literal">QuayRegistry</code> custom resource to <code class="literal">managed: false</code>:
+						</p><pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: quay370
+spec:
+  configBundleSecret: config-bundle-secret
+  components:
+    - kind: objectstorage
+      managed: false
+    - kind: route
+      managed: true
+    - kind: tls
+      managed: false
+    - kind: clairpostgres
+      managed: false</pre></li></ul></div></section><section class="section" id="configuring-custom-clair-database"><div class="titlepage"><div><div><h2 class="title">7.2. Configuring a custom Clair database</h2></div></div></div><p>
+					The Red Hat Quay Operator for OpenShift Container Platform allows users to provide their own Clair database.
+				</p><p>
+					Use the following procedure to create a custom Clair database.
+				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Create a Quay configuration bundle secret that includes the <code class="literal">clair-config.yaml</code> by entering the following command:
+						</p><pre class="programlisting language-terminal">$ oc create secret generic --from-file config.yaml=./config.yaml --from-file extra_ca_cert_rds-ca-2019-root.pem=./rds-ca-2019-root.pem --from-file clair-config.yaml=./clair-config.yaml --from-file ssl.cert=./ssl.cert --from-file ssl.key=./ssl.key config-bundle-secret</pre><div class="formalpara"><p class="title"><strong>Example Clair <code class="literal">config.yaml</code> file</strong></p><p>
+								
+<pre class="programlisting language-yaml">indexer:
+    connstring: host=quay-server.example.com port=5432 dbname=quay user=quayrdsdb password=quayrdsdb sslrootcert=/run/certs/rds-ca-2019-root.pem sslmode=verify-ca
+    layer_scan_concurrency: 6
+    migrations: true
+    scanlock_retry: 11
+log_level: debug
+matcher:
+    connstring: host=quay-server.example.com port=5432 dbname=quay user=quayrdsdb password=quayrdsdb sslrootcert=/run/certs/rds-ca-2019-root.pem sslmode=verify-ca
+    migrations: true
+metrics:
+    name: prometheus
+notifier:
+    connstring: host=quay-server.example.com port=5432 dbname=quay user=quayrdsdb password=quayrdsdb sslrootcert=/run/certs/rds-ca-2019-root.pem sslmode=verify-ca
+    migrations: true</pre>
+							</p></div><div class="admonition note"><div class="admonition_header">Note</div><div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+										The database certificate is mounted under <code class="literal">/run/certs/rds-ca-2019-root.pem</code> on the Clair application pod in the <code class="literal">clair-config.yaml</code>. It must be specified when configuring your <code class="literal">clair-config.yaml</code>.
+									</li><li class="listitem">
+										An example <code class="literal">clair-config.yaml</code> can be found at <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/deploy_red_hat_quay_on_openshift_with_the_quay_operator/quay_operator_features#clair-openshift-config">Clair on OpenShift config</a>.
+									</li></ul></div></div></div></li><li class="listitem"><p class="simpara">
+							Add the <code class="literal">clair-config.yaml</code> file to your bundle secret, for example:
+						</p><pre class="programlisting language-yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: config-bundle-secret
+  namespace: quay-enterprise
+data:
+  config.yaml: &lt;base64 encoded Quay config&gt;
+  clair-config.yaml: &lt;base64 encoded Clair config&gt;
+  extra_ca_cert_&lt;name&gt;: &lt;base64 encoded ca cert&gt;
+  clair-ssl.crt: &gt;-
+  clair-ssl.key: &gt;-</pre><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+								When updated, the provided <code class="literal">clair-config.yaml</code> file is mounted into the Clair pod. Any fields not provided are automatically populated with defaults using the Clair configuration module.
+							</p></div></div></li><li class="listitem"><p class="simpara">
+							You can check the status of your Clair pod by clicking the commit in the <span class="strong strong"><strong>Build History</strong></span> page, or by running <code class="literal">oc get pods -n &lt;namespace&gt;</code>. For example:
+						</p><pre class="screen">$ oc get pods -n &lt;namespace&gt;</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="screen">NAME                                               READY   STATUS    RESTARTS   AGE
+f192fe4a-c802-4275-bcce-d2031e635126-9l2b5-25lg2   1/1     Running   0          7s</pre>
+							</p></div></li></ol></div></section></section><section class="chapter" id="custom-clair-configuration-managed-database"><div class="titlepage"><div><div><h2 class="title">Chapter 8. Running a custom Clair configuration with a managed Clair database</h2></div></div></div><p>
+				In some cases, users might want to run a custom Clair configuration with a managed Clair database. This is useful in the following scenarios:
+			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+						When a user wants to disable specific updater resources.
+					</li><li class="listitem"><p class="simpara">
+						When a user is running Red Hat Quay in an disconnected environment. For more information about running Clair in a disconnected environment, see <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/deploy_red_hat_quay_on_openshift_with_the_quay_operator/index#clair-openshift-airgap-database">Configuring access to the Clair database in the air-gapped OpenShift cluster</a>.
+					</p><div class="admonition note"><div class="admonition_header">Note</div><div><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
+									If you are running Red Hat Quay in an disconnected environment, the <code class="literal">airgap</code> parameter of your <code class="literal">clair-config.yaml</code> must be set to <code class="literal">true</code>.
+								</li><li class="listitem">
+									If you are running Red Hat Quay in an disconnected environment, you should disable all updater components.
+								</li></ul></div></div></div></li></ul></div><section class="section" id="managed-clair-database"><div class="titlepage"><div><div><h2 class="title">8.1. Setting a Clair database to managed</h2></div></div></div><p>
+					Use the following procedure to set your Clair database to managed.
+				</p><div class="itemizedlist"><p class="title"><strong>Procedure</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+							In the Quay Operator, set the <code class="literal">clairpostgres</code> component of the <code class="literal">QuayRegistry</code> custom resource to <code class="literal">managed: true</code>:
+						</p><pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: quay370
+spec:
+  configBundleSecret: config-bundle-secret
+  components:
+    - kind: objectstorage
+      managed: false
+    - kind: route
+      managed: true
+    - kind: tls
+      managed: false
+    - kind: clairpostgres
+      managed: true</pre></li></ul></div></section><section class="section" id="configuring-custom-clair-database-managed"><div class="titlepage"><div><div><h2 class="title">8.2. Configuring a custom Clair database</h2></div></div></div><p>
+					The Red Hat Quay Operator for OpenShift Container Platform allows users to provide their own Clair database.
+				</p><p>
+					Use the following procedure to create a custom Clair database.
+				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Create a Quay configuration bundle secret that includes the <code class="literal">clair-config.yaml</code> by entering the following command:
+						</p><pre class="programlisting language-terminal">$ oc create secret generic --from-file config.yaml=./config.yaml --from-file extra_ca_cert_rds-ca-2019-root.pem=./rds-ca-2019-root.pem --from-file clair-config.yaml=./clair-config.yaml --from-file ssl.cert=./ssl.cert --from-file ssl.key=./ssl.key config-bundle-secret</pre><div class="formalpara"><p class="title"><strong>Example Clair <code class="literal">config.yaml</code> file</strong></p><p>
+								
+<pre class="programlisting language-yaml">indexer:
+    connstring: host=quay-server.example.com port=5432 dbname=quay user=quayrdsdb password=quayrdsdb sslrootcert=/run/certs/rds-ca-2019-root.pem sslmode=verify-ca
+    layer_scan_concurrency: 6
+    migrations: true
+    scanlock_retry: 11
+log_level: debug
+matcher:
+    connstring: host=quay-server.example.com port=5432 dbname=quay user=quayrdsdb password=quayrdsdb sslrootcert=/run/certs/rds-ca-2019-root.pem sslmode=verify-ca
+    migrations: true
+metrics:
+    name: prometheus
+notifier:
+    connstring: host=quay-server.example.com port=5432 dbname=quay user=quayrdsdb password=quayrdsdb sslrootcert=/run/certs/rds-ca-2019-root.pem sslmode=verify-ca
+    migrations: true</pre>
+							</p></div><div class="admonition note"><div class="admonition_header">Note</div><div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+										The database certificate is mounted under <code class="literal">/run/certs/rds-ca-2019-root.pem</code> on the Clair application pod in the <code class="literal">clair-config.yaml</code>. It must be specified when configuring your <code class="literal">clair-config.yaml</code>.
+									</li><li class="listitem">
+										An example <code class="literal">clair-config.yaml</code> can be found at <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/deploy_red_hat_quay_on_openshift_with_the_quay_operator/quay_operator_features#clair-openshift-config">Clair on OpenShift config</a>.
+									</li></ul></div></div></div></li><li class="listitem"><p class="simpara">
+							Add the <code class="literal">clair-config.yaml</code> file to your bundle secret, for example:
+						</p><pre class="programlisting language-yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: config-bundle-secret
+  namespace: quay-enterprise
+data:
+  config.yaml: &lt;base64 encoded Quay config&gt;
+  clair-config.yaml: &lt;base64 encoded Clair config&gt;
+  extra_ca_cert_&lt;name&gt;: &lt;base64 encoded ca cert&gt;
+  clair-ssl.crt: &gt;-
+  clair-ssl.key: &gt;-</pre><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+								When updated, the provided <code class="literal">clair-config.yaml</code> file is mounted into the Clair pod. Any fields not provided are automatically populated with defaults using the Clair configuration module.
+							</p></div></div></li><li class="listitem"><p class="simpara">
+							You can check the status of your Clair pod by clicking the commit in the <span class="strong strong"><strong>Build History</strong></span> page, or by running <code class="literal">oc get pods -n &lt;namespace&gt;</code>. For example:
+						</p><pre class="screen">$ oc get pods -n &lt;namespace&gt;</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="screen">NAME                                               READY   STATUS    RESTARTS   AGE
+f192fe4a-c802-4275-bcce-d2031e635126-9l2b5-25lg2   1/1     Running   0          7s
+
+:leveloffset!:
+
+:leveloffset: +1
+
+// Module included in the following assemblies:
+//
+// clair/master.adoc
+
+:_content-type: CONCEPT
+[id="clair-disconnected-environments"]
+= Clair in disconnected environments
+
+Clair uses a set of components called _updaters_ to handle the fetching and parsing of data from various vulnerability databases. Updaters are set up by default to pull vulnerability data directly from the internet and work for immediate use. However, some users might require {productname} to run in a disconnected environment, or an environment without direct access to the internet. Clair supports disconnected environments by working with different types of update workflows that take network isolation into consideration. This works by using the `clairctl` command line interface tool, which obtains updater data from the internet by using an open host, securely transferring the data to an isolated host, and then important the updater data on the isolated host into Clair.
+
+Use this guide to deploy Clair in a disconnected environment.
+
+[NOTE]
+====
+Currently, Clair enrichment data is CVSS data. Enrichment data is currently unsupported in disconnected environments.
+====
+
+For more information about Clair updaters, see "Clair updaters".
+
+:leveloffset: 2
+
+// for when Clair is managed by OCP
+
+:leveloffset: +2
+
+// Module included in the following assemblies:
+//
+// clair/master.adoc
+
+:_content-type: PROCEDURE
+[id="clair-disconnected-ocp-configuration"]
+= Setting up Clair in a disconnected {ocp} cluster
+
+Use the following procedures to set up an {ocp} provisioned Clair pod in a disconnected {ocp} cluster.
+
+[id="clair-clairctl-ocp"]
+== Installing the clairctl command line utility tool for {ocp} deployments
+
+Use the following procedure to install the `clairctl` CLI tool for {ocp} deployments.
+
+.Procedure
+
+. Install the `clairctl` program for a Clair deployment in an {ocp} cluster by using the `oc cp` command, for example:
++
+[source,terminal]</pre>
+							</p></div><p class="simpara">
+							$ oc -n quay-enterprise cp example-registry-clair-app-64dd48f866-6ptgw:/usr/bin/clairctl ./clairctl
+						</p></li></ol></div><pre class="screen">. Set the permissions of the `clairctl` file so that it can be executed and run by the user, for example:
++
+[source,terminal]</pre><p>
+					$ chmod u+x ./clairctl
+				</p><pre class="screen">:leveloffset: 2
+:leveloffset: +3
+
+// Module included in the following assemblies:
+//
+// clair/master.adoc
+
+:_content-type: PROCEDURE
+[id="clair-openshift-config"]
+= Retrieving and decoding the Clair configuration secret for Clair deployments on {ocp}
+
+Use the following procedure to retrieve and decode the configuration secret for an {ocp} provisioned Clair instance on {ocp}.
+
+.Prerequisites
+
+* You have installed the `clairctl` command line utility tool.
+
+.Procedure
+
+. Enter the following command to retrieve and decode the configuration secret, and then save it to a Clair configuration YAML:
++
+[source,terminal]</pre><p>
+					$ kubectl get secret -n quay-enterprise example-registry-clair-config-secret -o "jsonpath={$.data['config\.yaml']}" | base64 -d &gt; clair-config.yaml
+				</p><pre class="screen">. Update the `clair-config.yaml` file so that the `disable_updaters` and `airgap` parameters are set to `true`, for example:
++
+[source,yaml]</pre><p>
+					
+				</p><p>
+					indexer: airgap: true --- matcher: disable_updaters: true ---
+				</p><pre class="screen">:leveloffset: 2
+:leveloffset: +3
+
+// Module included in the following assemblies:
+//
+// clair/master.adoc
+
+:_content-type: PROCEDURE
+[id="clair-export-bundle"]
+= Exporting the updaters bundle from a connected Clair instance
+
+Use the following procedure to export the updaters bundle from a Clair instance that has access to the internet.
+
+.Prerequisites
+
+* You have installed the `clairctl` command line utility tool.
+* Optional. If your Clair deployment is provisioned by {ocp}, you have retrieved and decoded the Clair configuration secret, and saved it to a Clair `config.yaml` file.
+* Optional. If you are configuring standalone Clair on a a disconnected {ocp} cluster, you have deployed Clair.
+*  The `disable_updaters` and `airgap` parameters are set to `true` in your Clair `config.yaml` file.
+
+.Procedure
+
+* From a Clair instance that has access to the internet, use the `clairctl` CLI tool with your configuration file to export the updaters bundle. For example:
++
+[source,terminal]</pre><p>
+					$ ./clairctl --config ./config.yaml export-updaters updates.gz
+				</p><pre class="screen">:leveloffset: 2
+:leveloffset: +3
+
+// Module included in the following assemblies:
+//
+// clair/master.adoc
+
+:_content-type: PROCEDURE
+[id="clair-openshift-airgap-database"]
+= Configuring access to the Clair database in the disconnected {ocp} cluster
+
+Use the following procedure to configure access to the Clair database in your disconnected {ocp} cluster.
+
+.Prerequisites
+
+* You have installed the `clairctl` command line utility tool.
+* Optional. If your Clair deployment is provisioned by {ocp}, you have retrieved and decoded the Clair configuration secret, and saved it to a Clair `config.yaml` file.
+* Optional. If you are configuring standalone Clair on a a disconnected {ocp} cluster, you have deployed Clair.
+*  The `disable_updaters` and `airgap` parameters are set to `true` in your Clair `config.yaml` file.
+* You have exported the updaters bundle from a Clair instance that has access to the internet.
+
+.Procedure
+
+. Determine your Clair database service by using the `kubectl` CLI tool, for example:
+[source,terminal]
++</pre><p>
+					$ kubectl get svc -n quay-enterprise
+				</p><pre class="screen">+
+.Example output
++
+[source,terminal]</pre><p>
+					NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE example-registry-clair-app ClusterIP 172.30.224.93 &lt;none&gt; 80/TCP,8089/TCP 4d21h example-registry-clair-postgres ClusterIP 172.30.246.88 &lt;none&gt; 5432/TCP 4d21h …​
+				</p><pre class="screen">. Forward the Clair database port so that it is accessible from the local machine. For example:
++
+[source,terminal]</pre><p>
+					$ kubectl port-forward -n quay-enterprise service/example-registry-clair-postgres 5432:5432
+				</p><pre class="screen">. Update your Clair `config.yaml` file, for example:
++
+[source,yaml]</pre><p>
+					indexer: connstring: host=localhost port=5432 dbname=postgres user=postgres password=postgres sslmode=disable &lt;1&gt; scanlock_retry: 10 layer_scan_concurrency: 5 migrations: true scanner: repo: rhel-repository-scanner: repo2cpe_mapping_file: /data/cpe-map.json package: rhel_containerscanner: name2repos_mapping_file: /data/repo-map.json
+				</p><pre class="screen">&lt;1&gt; Replace the value of the `host` in the multiple `connstring` fields with `localhost`.
++
+[NOTE]
+====
+* As an alternative to using `kubectl port-forward`, you can use `kubefwd` instead. With this method, there is no need to modify the `connstring` field in the Clair configuration file to use `localhost`.
+* For more information about the `rhel-repository-scanner` and `rhel_containerscanner` parameters, see "Mapping repositories to Common Product Enumeration information".
+====
+
+:leveloffset: 2
+:leveloffset: +3
+
+
+// Module included in the following assemblies:
+//
+// clair/master.adoc
+
+:_content-type: PROCEDURE
+[id="clair-openshift-airgap-import-bundle"]
+= Importing the updaters bundle into the disconnected {ocp} cluster
+
+Use the following procedure to import the updaters bundle into your disconnected {ocp} cluster.
+
+.Prerequisites
+
+* You have installed the `clairctl` command line utility tool.
+* Optional. If your Clair deployment is provisioned by {ocp}, you have retrieved and decoded the Clair configuration secret, and saved it to a Clair `config.yaml` file.
+* Optional. If you are configuring standalone Clair on a a disconnected {ocp} cluster, you have deployed Clair.
+*  The `disable_updaters` and `airgap` parameters are set to `true` in your Clair `config.yaml` file.
+* You have exported the updaters bundle from a Clair instance that has access to the internet.
+* You have transferred the updaters bundle into your disconnected environment.
+
+.Procedure
+
+* Use the `clairctl` CLI tool to import the updaters bundle into the Clair database that is deployed by {ocp}. For example:
++
+[source,terminal]</pre><p>
+					$ ./clairctl --config ./clair-config.yaml import-updaters updates.gz
+				</p><pre class="screen">:leveloffset: 2
+
+// for when users provide their own Clair DB
+
+:leveloffset: +2
+
+// Module included in the following assemblies:
+//
+// clair/master.adoc
+
+:_content-type: PROCEDURE
+[id="clair-disconnected-standalone-configuration"]
+= Setting up a standalone deployment of Clair for a disconnected {ocp} cluster
+
+Use the following procedures to set up a standalone deployment of Clair for a disconnected {ocp} cluster.
+
+[id="clair-clairctl-standalone"]
+== Installing the clairctl command line utility tool for standalone Clair deployment on {ocp}
+
+Use the following procedure to install the `clairctl` CLI tool for standalone Clair deployments on {ocp}.
+
+.Procedure
+
+. Install the `clairctl` program for a standalone Clair deployments by using the `podman cp` command, for example:
++
+[source,terminal]</pre><p>
+					$ sudo podman cp clairv4:/usr/bin/clairctl ./clairctl
+				</p><pre class="screen">. Set the permissions of the `clairctl` file so that it can be executed and run by the user, for example:
++
+[source,terminal]</pre><p>
+					$ chmod u+x ./clairctl
+				</p><pre class="screen">:leveloffset: 2
+:leveloffset: +3
+
+// Module included in the following assemblies:
+//
+// clair/master.adoc
+
+:_content-type: PROCEDURE
+[id="clair-standalone-config-location"]
+= Deploying a standalone Clair container for disconnected {ocp} clusters
+
+Use the following procedure to deploy a standalone Clair container for disconnected {ocp} clusters.
+
+.Prerequisites
+
+* You have installed the `clairctl` command line utility tool.
+
+.Procedure
+
+. Create a folder for your Clair configuration file, for example:
++
+[source,terminal]</pre><p>
+					$ mkdir /etc/clairv4/config/
+				</p><pre class="screen">. Create a Clair configuration file with the `disable_updaters` parameter set to `true`, for example:
++
+[source,yaml]</pre><p>
+					
+				</p><p>
+					indexer: airgap: true --- matcher: disable_updaters: true ---
+				</p><pre class="screen">. Start Clair by using the container image, mounting in the configuration from the file you created:
++
+[subs="verbatim,attributes"]</pre><p>
+					$ sudo podman run -it --rm --name clairv4 \ -p 8081:8081 -p 8088:8088 \ -e CLAIR_CONF=/clair/config.yaml \ -e CLAIR_MODE=combo \ -v /etc/clairv4/config:/clair:Z \ registry.redhat.io/quay/clair-rhel8:v3.8.0
+				</p><pre class="screen">:leveloffset: 2
+:leveloffset: +3
+
+// Module included in the following assemblies:
+//
+// clair/master.adoc
+
+:_content-type: PROCEDURE
+[id="clair-export-bundle-standalone"]
+= Exporting the updaters bundle from a connected Clair instance
+
+Use the following procedure to export the updaters bundle from a Clair instance that has access to the internet.
+
+.Prerequisites
+
+* You have installed the `clairctl` command line utility tool.
+* Optional. If your Clair deployment is provisioned by {ocp}, you have retrieved and decoded the Clair configuration secret, and saved it to a Clair `config.yaml` file.
+* Optional. If you are configuring standalone Clair on a a disconnected {ocp} cluster, you have deployed Clair.
+*  The `disable_updaters` and `airgap` parameters are set to `true` in your Clair `config.yaml` file.
+
+.Procedure
+
+* From a Clair instance that has access to the internet, use the `clairctl` CLI tool with your configuration file to export the updaters bundle. For example:
++
+[source,terminal]</pre><p>
+					$ ./clairctl --config ./config.yaml export-updaters updates.gz
+				</p><pre class="screen">:leveloffset: 2
+:leveloffset: +3
+
+// Module included in the following assemblies:
+//
+// clair/master.adoc
+
+:_content-type: PROCEDURE
+[id="clair-openshift-airgap-database-standalone"]
+= Configuring access to the Clair database in the disconnected {ocp} cluster
+
+Use the following procedure to configure access to the Clair database in your disconnected {ocp} cluster.
+
+.Prerequisites
+
+* You have installed the `clairctl` command line utility tool.
+* Optional. If your Clair deployment is provisioned by {ocp}, you have retrieved and decoded the Clair configuration secret, and saved it to a Clair `config.yaml` file.
+* Optional. If you are configuring standalone Clair on a a disconnected {ocp} cluster, you have deployed Clair.
+*  The `disable_updaters` and `airgap` parameters are set to `true` in your Clair `config.yaml` file.
+* You have exported the updaters bundle from a Clair instance that has access to the internet.
+
+.Procedure
+
+. Determine your Clair database service by using the `kubectl` CLI tool, for example:
+[source,terminal]
++</pre><p>
+					$ kubectl get svc -n quay-enterprise
+				</p><pre class="screen">+
+.Example output
++
+[source,terminal]</pre><p>
+					NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE example-registry-clair-app ClusterIP 172.30.224.93 &lt;none&gt; 80/TCP,8089/TCP 4d21h example-registry-clair-postgres ClusterIP 172.30.246.88 &lt;none&gt; 5432/TCP 4d21h …​
+				</p><pre class="screen">. Forward the Clair database port so that it is accessible from the local machine. For example:
++
+[source,terminal]</pre><p>
+					$ kubectl port-forward -n quay-enterprise service/example-registry-clair-postgres 5432:5432
+				</p><pre class="screen">. Update your Clair `config.yaml` file, for example:
++
+[source,yaml]</pre><p>
+					indexer: connstring: host=localhost port=5432 dbname=postgres user=postgres password=postgres sslmode=disable &lt;1&gt; scanlock_retry: 10 layer_scan_concurrency: 5 migrations: true scanner: repo: rhel-repository-scanner: repo2cpe_mapping_file: /data/cpe-map.json package: rhel_containerscanner: name2repos_mapping_file: /data/repo-map.json
+				</p><pre class="screen">&lt;1&gt; Replace the value of the `host` in the multiple `connstring` fields with `localhost`.
++
+[NOTE]
+====
+* As an alternative to using `kubectl port-forward`, you can use `kubefwd` instead. With this method, there is no need to modify the `connstring` field in the Clair configuration file to use `localhost`.
+* For more information about the `rhel-repository-scanner` and `rhel_containerscanner` parameters, see "Mapping repositories to Common Product Enumeration information".
+====
+
+:leveloffset: 2
+:leveloffset: +3
+
+// Module included in the following assemblies:
+//
+// clair/master.adoc
+
+:_content-type: PROCEDURE
+[id="clair-openshift-airgap-import-bundle-standalone"]
+= Importing the updaters bundle into the disconnected {ocp} cluster
+
+Use the following procedure to import the updaters bundle into your disconnected {ocp} cluster.
+
+.Prerequisites
+
+* You have installed the `clairctl` command line utility tool.
+* Optional. If your Clair deployment is provisioned by {ocp}, you have retrieved and decoded the Clair configuration secret, and saved it to a Clair `config.yaml` file.
+* Optional. If you are configuring standalone Clair on a a disconnected {ocp} cluster, you have deployed Clair.
+*  The `disable_updaters` and `airgap` parameters are set to `true` in your Clair `config.yaml` file.
+* You have exported the updaters bundle from a Clair instance that has access to the internet.
+* You have transferred the updaters bundle into your disconnected environment.
+
+.Procedure
+
+* Use the `clairctl` CLI tool to import the updaters bundle into the Clair database that is deployed by {ocp}:
++
+[source,terminal]</pre><p>
+					$ ./clairctl --config ./clair-config.yaml import-updaters updates.gz
+				</p><pre class="screen">:leveloffset: 2
+
+:leveloffset: +2
+
+// Module included in the following assemblies:
+//
+// clair/master.adoc
+
+:_content-type: PROCEDURE
+[id="clair-crda-configuration"]
+= Enabling Clair CRDA
+
+Java scanning depends on a public, Red Hat provided API service called Code Ready Dependency Analytics (CRDA). CRDA is only available with internet access and is not enabled by default.
+
+Use the following procedure to integrate the CRDA service with a custom API key and enable CRDA for Java and Python scanning.
+
+.Prerequisites
+
+* {productname} 3.7 or greater
+
+.Procedure
+
+. Submit link:https://developers.redhat.com/content-gateway/link/3872178[the API key request form] to obtain the Quay-specific CRDA remote matcher.
+
+. Set the CRDA configuration in your `clair-config.yaml` file:
++
+[source,terminal]</pre><p>
+					matchers: config: crda: url: <a class="link" href="https://gw.api.openshift.io/api/v2/">https://gw.api.openshift.io/api/v2/</a> key: &lt;CRDA_API_KEY&gt; &lt;1&gt; source: &lt;QUAY_SERVER_HOSTNAME&gt; &lt;2&gt;
+				</p><pre class="screen">+
+&lt;1&gt; Insert the Quay-specific CRDA remote matcher from link:https://developers.redhat.com/content-gateway/link/3872178[the API key request form] here.
+&lt;2&gt; The hostname of your Quay server.
+
+:leveloffset: 2
+:leveloffset: +2
+
+// Module included in the following assemblies:
+//
+// clair/master.adoc
+
+:_content-type: CONCEPT
+[id="mapping-repositories-to-cpe-information"]
+= Mapping repositories to Common Product Enumeration information
+
+Clair's {rhel} scanner relies on a Common Product Enumeration (CPE) file to map RPM packages to the corresponding security data to produce matching results. The CPE file must be present, or access to the file must be allowed, for the scanner to properly process RPM packages. If the file is not present, RPM packages installed in the container image will not be scanned.
+
+.Clair CPE mapping files
+[options="header"]
+|===
+|CPE | Link to JSON mapping file
+| `repos2cpe` | link:https://www.redhat.com/security/data/metrics/repository-to-cpe.json[Red Hat Repository-to-CPE JSON]
+| `names2repos` | link:https://access.redhat.com/security/data/metrics/container-name-repos-map.json[Red Hat Name-to-Repos JSON].
+|===
+
+In addition to uploading CVE information to the database for disconnected Clair installations, you must also make the mapping file available locally:
+
+* For standalone {productname} and Clair deployments, the mapping file must be loaded into the Clair pod.
+
+* For {productname} Operator deployments on {ocp} and Clair deployments, you must set the Clair component to `unamanged`. Then, Clair must be deployed manually, setting the configuration to load a local copy of the mapping file.
+
+[id="mapping-repositories-to-cpe-configuration"]
+== Mapping repositories to Common Product Enumeration example configuration
+
+Use the `repo2cpe_mapping_file` and `name2repos_mapping_file` fields in your Clair configuration to include the CPE JSON mapping files. For example:
+
+[source,yaml]</pre><p>
+					indexer: scanner: repo: rhel-repository-scanner: repo2cpe_mapping_file: /data/cpe-map.json package: rhel_containerscanner: name2repos_mapping_file: /data/repo-map.json
+				</p><pre class="screen">For more information, see link:https://www.redhat.com/en/blog/how-accurately-match-oval-security-data-installed-rpms[How to accurately match OVAL security data to installed RPMs].
+
+:leveloffset: 2</pre></section></section></div><div><div xml:lang="en-US" class="legalnotice" id="idm46768202374528"><h1 class="legalnotice">Legal Notice</h1><div class="para">
+		Copyright <span class="trademark"/>© 2023 Red Hat, Inc.
+	</div><div class="para">
+		The text of and illustrations in this document are licensed by Red Hat under a Creative Commons Attribution–Share Alike 3.0 Unported license ("CC-BY-SA"). An explanation of CC-BY-SA is available at <a class="uri" href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a>. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
+	</div><div class="para">
+		Red Hat, as the licensor of this document, waives the right to enforce, and agrees not to assert, Section 4d of CC-BY-SA to the fullest extent permitted by applicable law.
+	</div><div class="para">
+		Red Hat, Red Hat Enterprise Linux, the Shadowman logo, the Red Hat logo, JBoss, OpenShift, Fedora, the Infinity logo, and RHCE are trademarks of Red Hat, Inc., registered in the United States and other countries.
+	</div><div class="para">
+		<span class="trademark">Linux</span>® is the registered trademark of Linus Torvalds in the United States and other countries.
+	</div><div class="para">
+		<span class="trademark">Java</span>® is a registered trademark of Oracle and/or its affiliates.
+	</div><div class="para">
+		<span class="trademark">XFS</span>® is a trademark of Silicon Graphics International Corp. or its subsidiaries in the United States and/or other countries.
+	</div><div class="para">
+		<span class="trademark">MySQL</span>® is a registered trademark of MySQL AB in the United States, the European Union and other countries.
+	</div><div class="para">
+		<span class="trademark">Node.js</span>® is an official trademark of Joyent. Red Hat is not formally related to or endorsed by the official Joyent Node.js open source or commercial project.
+	</div><div class="para">
+		The <span class="trademark">OpenStack</span>® Word Mark and OpenStack logo are either registered trademarks/service marks or trademarks/service marks of the OpenStack Foundation, in the United States and other countries and are used with the OpenStack Foundation's permission. We are not affiliated with, endorsed or sponsored by the OpenStack Foundation, or the OpenStack community.
+	</div><div class="para">
+		All other trademarks are the property of their respective owners.
+	</div></div></div></div></div></div><script type="text/javascript">
+                        jQuery(document).ready(function() {
+                            initSwitchery();
+                            jQuery('pre[class*="language-"]').each(function(i, block){hljs.highlightBlock(block);});
+                        });
+                    </script></body></html>
