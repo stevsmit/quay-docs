@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Troubleshooting Red Hat Quay</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Troubleshooting Red Hat Quay"/><link rel="next" href="#idm45147174606752" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm45147171163216"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.9</span></div><div><h1 class="title">Troubleshooting Red Hat Quay</h1></div><div><h2 class="subtitle">Troubleshooting Red Hat Quay</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm45147170867536">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
+				Troubleshooting Red Hat Quay
+			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm45147174606752">Preface</a></span></li><li><span class="chapter"><a href="#troubleshooting-quay-standalone">1. Troubleshooting Red Hat Quay standalone deployments</a></span></li><li><span class="chapter"><a href="#troubleshooting-forgotten-passwords">2. Troubleshooting forgotten superuser passwords on Red Hat Quay</a></span><ul><li><span class="section"><a href="#resetting-superuser-password-on-standalone">2.1. Resetting superuser passwords on Red Hat Quay standalone deployments</a></span></li></ul></li><li><span class="chapter"><a href="#troubleshooting-quay-operator">3. Troubleshooting Red Hat Quay Operator deployments</a></span></li><li><span class="chapter"><a href="#resetting-superuser-password-on-operator">4. Resetting superuser passwords on the Red Hat Quay Operator</a></span></li></ul></div><section class="preface" id="idm45147174606752"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div><p>
+			Use the content in this guide to troubleshoot your Red Hat Quay registry on both standalone and Operator based deployments.
+		</p></section><section class="chapter" id="troubleshooting-quay-standalone"><div class="titlepage"><div><div><h1 class="title">Chapter 1. Troubleshooting Red Hat Quay standalone deployments</h1></div></div></div><p>
+			Topics covered here include:
+		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					Resetting a forgotten superuser password on Red Hat Quay
+				</li></ul></div></section><section class="chapter" id="troubleshooting-forgotten-passwords"><div class="titlepage"><div><div><h1 class="title">Chapter 2. Troubleshooting forgotten superuser passwords on Red Hat Quay</h1></div></div></div><p>
+			Use the following procedures to reset superuser passwords on Red Hat Quay.
+		</p><section class="section" id="resetting-superuser-password-on-standalone"><div class="titlepage"><div><div><h2 class="title">2.1. Resetting superuser passwords on Red Hat Quay standalone deployments</h2></div></div></div><p>
+				Use the following procedure to reset a superuser’s password.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have created a Red Hat Quay superuser.
+					</li><li class="listitem">
+						You have installed Python 3.9.
+					</li><li class="listitem">
+						You have installed the <code class="literal">pip</code> package manager for Python.
+					</li><li class="listitem">
+						You have installed the <code class="literal">bcrypt</code> package for <code class="literal">pip</code>.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Generate a secure, hashed password using the <code class="literal">bcrypt</code> package in Python 3.9 by entering the following command:
+					</p><pre class="programlisting language-terminal">$ python3.9 -c 'import bcrypt; print(bcrypt.hashpw(b"newpass1234", bcrypt.gensalt(12)).decode("utf-8"))'</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">$2b$12$T8pkgtOoys3G5ut7FV1She6vXlYgU.6TeoGmbbAVQtN8X8ch4knKm</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Enter the following command to show the container ID of your Red Hat Quay container registry:
+					</p><pre class="programlisting language-terminal">$ sudo podman ps -a</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">CONTAINER ID  IMAGE                                       COMMAND         CREATED         STATUS             PORTS                   NAMES
+70560beda7aa  registry.redhat.io/rhel8/redis-5:1         run-redis       2 hours ago     Up 2 hours ago     0.0.0.0:6379-&gt;6379/tcp                       redis
+8012f4491d10  registry.redhat.io/quay/quay-rhel8:v3.8.2  registry        3 minutes ago   Up 8 seconds ago   0.0.0.0:80-&gt;8080/tcp, 0.0.0.0:443-&gt;8443/tcp  quay
+8b35b493ac05  registry.redhat.io/rhel8/postgresql-10:1   run-postgresql  39 seconds ago  Up 39 seconds ago  0.0.0.0:5432-&gt;5432/tcp                       postgresql-quay</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Execute an interactive shell for the <code class="literal">postgresql</code> container image by entering the following command:
+					</p><pre class="programlisting language-terminal">$ sudo podman exec -it 8b35b493ac05 /bin/bash</pre></li><li class="listitem"><p class="simpara">
+						Re-enter the <code class="literal">quay</code> PostgreSQL database server, specifying the database, username, and host address:
+					</p><pre class="programlisting language-terminal">bash-4.4$ psql -d quay -U quayuser -h 192.168.1.28 -W</pre></li><li class="listitem"><p class="simpara">
+						Update the <code class="literal">password_hash</code> of the superuser admin who lost their password:
+					</p><pre class="programlisting language-terminal">quay=&gt; UPDATE public.user SET password_hash = '$2b$12$T8pkgtOoys3G5ut7FV1She6vXlYgU.6TeoGmbbAVQtN8X8ch4knKm' where username = 'quayadmin';</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">UPDATE 1</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Enter the following to command to ensure that the <code class="literal">password_hash</code> has been updated:
+					</p><pre class="programlisting language-terminal">quay=&gt; select * from public.user;</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">id | uuid | username | password_hash | email | verified | stripe_id | organization | robot | invoice_email | invalid_login_attempts | last_invalid_login |removed_tag_expiration_s | enabled | invoice_email_address | company | family_name | given_name | location | maximum_queued_builds_count | creation_date | last_accessed
+----+--------------------------------------+-----------+--------------------------------------------------------------+-----------------------+---
+-------+-----------+--------------+-------+---------------+------------------------+----------------------------+--------------------------+------
+---+-----------------------+---------+-------------+------------+----------+-----------------------------+----------------------------+-----------
+1 | 73f04ef6-19ba-41d3-b14d-f2f1eed94a4a | quayadmin | $2b$12$T8pkgtOoys3G5ut7FV1She6vXlYgU.6TeoGmbbAVQtN8X8ch4knKm | quayadmin@example.com | t | | f | f | f | 0 | 2023-02-23 07:54:39.116485 | 1209600 | t | | | | | | | 2023-02-23 07:54:39.116492</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Log in to your Red Hat Quay deployment using the new password:
+					</p><pre class="programlisting language-terminal">$ sudo podman login -u quayadmin -p newpass1234 http://quay-server.example.com --tls-verify=false</pre><div class="formalpara"><p class="title"><strong>Example output:</strong></p><p>
+							
+<pre class="programlisting language-terminal">Login Succeeded!</pre>
+						</p></div></li></ol></div></section></section><section class="chapter" id="troubleshooting-quay-operator"><div class="titlepage"><div><div><h1 class="title">Chapter 3. Troubleshooting Red Hat Quay Operator deployments</h1></div></div></div><p>
+			Topics covered here include:
+		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					Resetting a forgotten superuser password on Red Hat Quay
+				</li></ul></div></section><section class="chapter" id="resetting-superuser-password-on-operator"><div class="titlepage"><div><div><h1 class="title">Chapter 4. Resetting superuser passwords on the Red Hat Quay Operator</h1></div></div></div><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+					You have created a Red Hat Quay superuser.
+				</li><li class="listitem">
+					You have installed Python 3.9.
+				</li><li class="listitem">
+					You have installed the <code class="literal">pip</code> package manager for Python.
+				</li><li class="listitem">
+					You have installed the <code class="literal">bcrypt</code> package for <code class="literal">pip</code>.
+				</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+					Log in to your Red Hat Quay deployment.
+				</li><li class="listitem">
+					On the OpenShift Container Platform UI, navigate to <span class="strong strong"><strong>Workloads</strong></span> → <span class="strong strong"><strong>Secrets</strong></span>.
+				</li><li class="listitem">
+					Select the namespace for your Red Hat Quay deployment, for example, <code class="literal">Project quay</code>.
+				</li><li class="listitem">
+					Locate and store the PostgreSQL database credentials.
+				</li><li class="listitem"><p class="simpara">
+					Generate a secure, hashed password using the <code class="literal">bcrypt</code> package in Python 3.9 by entering the following command:
+				</p><pre class="programlisting language-terminal">$ python3.9 -c 'import bcrypt; print(bcrypt.hashpw(b"newpass1234", bcrypt.gensalt(12)).decode("utf-8"))'</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+						
+<pre class="programlisting language-terminal">$2b$12$zoilcTG6XQeAoVuDuIZH0..UpvQEZcKh3V6puksQJaUQupHgJ4.4y</pre>
+					</p></div></li><li class="listitem"><p class="simpara">
+					On the CLI, log in to the database, for example:
+				</p><pre class="programlisting language-terminal">$ oc rsh quayuser-quay-quay-database-669c8998f-v9qsl</pre></li><li class="listitem"><p class="simpara">
+					Enter the following command to open a connection to the <code class="literal">quay</code> PostgreSQL database server, specifying the database, username, and host address:
+				</p><pre class="programlisting language-terminal">sh-4.4$ psql -U quayuser-quay-quay-database -d quayuser-quay-quay-database -W</pre></li><li class="listitem"><p class="simpara">
+					Enter the following command to connect to the default database for the current user:
+				</p><pre class="programlisting language-terminal">quay=&gt; \c</pre></li><li class="listitem"><p class="simpara">
+					Update the <code class="literal">password_hash</code> of the superuser admin who lost their password:
+				</p><pre class="programlisting language-terminal">quay=&gt; UPDATE public.user SET password_hash = '$2b$12$zoilcTG6XQeAoVuDuIZH0..UpvQEZcKh3V6puksQJaUQupHgJ4.4y' where username = 'quayadmin';</pre></li><li class="listitem"><p class="simpara">
+					Enter the following to command to ensure that the <code class="literal">password_hash</code> has been updated:
+				</p><pre class="programlisting language-terminal">quay=&gt; select * from public.user;</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+						
+<pre class="programlisting language-terminal">id | uuid | username | password_hash | email | verified | stripe_id | organization | robot | invoice_email | invalid_login_attempts | last_invalid_login |removed_tag_expiration_s | enabled | invoice_email_address | company | family_name | given_name | location | maximum_queued_builds_count | creation_date | last_accessed
+----+--------------------------------------+-----------+--------------------------------------------------------------+-----------------------+---
+-------+-----------+--------------+-------+---------------+------------------------+----------------------------+--------------------------+------
+---+-----------------------+---------+-------------+------------+----------+-----------------------------+----------------------------+-----------
+1 | 73f04ef6-19ba-41d3-b14d-f2f1eed94a4a | quayadmin | $2b$12$zoilcTG6XQeAoVuDuIZH0..UpvQEZcKh3V6puksQJaUQupHgJ4.4y | quayadmin@example.com | t | | f | f | f | 0 | 2023-02-23 07:54:39.116485 | 1209600 | t | | | | | | | 2023-02-23 07:54:39.116492</pre>
+					</p></div></li><li class="listitem">
+					Navigate to your Red Hat Quay UI on OpenShift Container Platform and log in using the new credentials.
+				</li></ol></div></section><div><div xml:lang="en-US" class="legalnotice" id="idm45147170867536"><h1 class="legalnotice">Legal Notice</h1><div class="para">
+		Copyright <span class="trademark"/>© 2023 Red Hat, Inc.
+	</div><div class="para">
+		The text of and illustrations in this document are licensed by Red Hat under a Creative Commons Attribution–Share Alike 3.0 Unported license ("CC-BY-SA"). An explanation of CC-BY-SA is available at <a class="uri" href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a>. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
+	</div><div class="para">
+		Red Hat, as the licensor of this document, waives the right to enforce, and agrees not to assert, Section 4d of CC-BY-SA to the fullest extent permitted by applicable law.
+	</div><div class="para">
+		Red Hat, Red Hat Enterprise Linux, the Shadowman logo, the Red Hat logo, JBoss, OpenShift, Fedora, the Infinity logo, and RHCE are trademarks of Red Hat, Inc., registered in the United States and other countries.
+	</div><div class="para">
+		<span class="trademark">Linux</span>® is the registered trademark of Linus Torvalds in the United States and other countries.
+	</div><div class="para">
+		<span class="trademark">Java</span>® is a registered trademark of Oracle and/or its affiliates.
+	</div><div class="para">
+		<span class="trademark">XFS</span>® is a trademark of Silicon Graphics International Corp. or its subsidiaries in the United States and/or other countries.
+	</div><div class="para">
+		<span class="trademark">MySQL</span>® is a registered trademark of MySQL AB in the United States, the European Union and other countries.
+	</div><div class="para">
+		<span class="trademark">Node.js</span>® is an official trademark of Joyent. Red Hat is not formally related to or endorsed by the official Joyent Node.js open source or commercial project.
+	</div><div class="para">
+		The <span class="trademark">OpenStack</span>® Word Mark and OpenStack logo are either registered trademarks/service marks or trademarks/service marks of the OpenStack Foundation, in the United States and other countries and are used with the OpenStack Foundation's permission. We are not affiliated with, endorsed or sponsored by the OpenStack Foundation, or the OpenStack community.
+	</div><div class="para">
+		All other trademarks are the property of their respective owners.
+	</div></div></div></div></div></div><script type="text/javascript">
+                        jQuery(document).ready(function() {
+                            initSwitchery();
+                            jQuery('pre[class*="language-"]').each(function(i, block){hljs.highlightBlock(block);});
+                        });
+                    </script></body></html>
