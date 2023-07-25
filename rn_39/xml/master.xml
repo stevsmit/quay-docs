@@ -1,0 +1,781 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE book [
+<!ENTITY % BOOK_ENTITIES SYSTEM "master.ent">
+%BOOK_ENTITIES;
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<book version="5.0" xml:lang="en-US" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<?asciidoc-toc ?><?asciidoc-numbered ?>
+	<info>
+		<title>Red Hat Quay Release Notes</title>
+		<subtitle>Red Hat Quay</subtitle>
+		 <date>2023-07-25</date>
+		<productname>Red Hat Quay</productname>
+		<productnumber>3.9</productnumber>
+		<abstract>
+			<para>
+				Red Hat Quay Release Notes
+			</para>
+		</abstract>
+		<xi:include href="Author_Group.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+		<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+	</info>
+	<preface>
+		<title>Preface</title>
+		<simpara>
+			Red Hat Quay container registry platform provides secure storage, distribution, and governance of containers and cloud-native artifacts on any infrastructure. It is available as a standalone component or as an Operator on OpenShift Container Platform. Red Hat Quay includes the following features and benefits:
+		</simpara>
+		<itemizedlist>
+			<listitem>
+				<simpara>
+					Granular security management
+				</simpara>
+			</listitem>
+			<listitem>
+				<simpara>
+					Fast and robust at any scale
+				</simpara>
+			</listitem>
+			<listitem>
+				<simpara>
+					High velocity CI/CD
+				</simpara>
+			</listitem>
+			<listitem>
+				<simpara>
+					Automated installation and upates
+				</simpara>
+			</listitem>
+			<listitem>
+				<simpara>
+					Enterprise authentication and team-based access control
+				</simpara>
+			</listitem>
+			<listitem>
+				<simpara>
+					OpenShift Container Platform integration
+				</simpara>
+			</listitem>
+		</itemizedlist>
+		<simpara>
+			Red Hat Quay is regularly released, containing new features, bug fixes, and software updates. To upgrade Red Hat Quay for both standalone and OpenShift Container Platform deployments, see <link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.9/html/upgrade_red_hat_quay/index">Upgrade Red Hat Quay</link>.
+		</simpara>
+		<important>
+			<simpara>
+				Red Hat Quay only supports rolling back, or downgrading, to previous z-stream versions, for example, 3.7.2 → 3.7.1. Rolling back to previous y-stream versions (3.7.0 → 3.6.0) is not supported. This is because Red Hat Quay updates might contain database schema upgrades that are applied when upgrading to a new version of Red Hat Quay. Database schema upgrades are not considered backwards compatible.
+			</simpara>
+			<simpara>
+				Downgrading to previous z-streams is neither recommended nor supported by either Operator based deployments or virtual machine based deployments. Downgrading should only be done in extreme circumstances. The decision to rollback your Red Hat Quay deployment must be made in conjunction with the Red Hat Quay support and development teams. For more information, contact Red Hat Quay support.
+			</simpara>
+		</important>
+		<simpara>
+			Documentation for Red Hat Quay is versioned with each release. The latest Red Hat Quay documentation is available from the <link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay">Red Hat Quay Documentation</link> page. Currently, version 3 is the latest major version.
+		</simpara>
+		<note>
+			<simpara>
+				Prior to version 2.9.2, Red Hat Quay was called Quay Enterprise. Documentation for 2.9.2 and prior versions are archived on the <link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/2.9">Product Documentation for Red Hat Quay 2.9</link> page.
+			</simpara>
+		</note>
+	</preface>
+	<chapter xml:id="rn-3-900">
+		<title>RHBA-2022:3256 - Red Hat Quay 3.9.0 release</title>
+		<simpara>
+			Issued 2023-08-XXX
+		</simpara>
+		<simpara>
+			Red Hat Quay release 3.9.0 is now available with Clair XXX. The bug fixes that are included in the update are listed in the <link xlink:href="https://access.redhat.com/errata/RHBA-2023:3256">RHBA-2023:3256</link> advisory.
+		</simpara>
+		<section xml:id="new-features-and-enhancements-39">
+			<title>Red Hat Quay new features and enhancements</title>
+			<simpara>
+				The following updates have been made to Red Hat Quay:
+			</simpara>
+			<section xml:id="single-site-georepl-removal">
+				<title>Removal of a single site in a geo-replicated environment</title>
+				<simpara>
+					Red Hat Quay administrators can now remove a specific site from their geo-replicated environment.
+				</simpara>
+				<simpara>
+					For more information, see <link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#operator-georepl-site-removal">Removing a geo-replicated site from your Red Hat Quay Operator deployment</link>.
+				</simpara>
+			</section>
+			<section xml:id="quota-management-enhancements">
+				<title>Quota management enhancements</title>
+				<itemizedlist>
+					<listitem>
+						<simpara>
+							Prior to Red Hat Quay 3.9, the quota management feature created totals by combining the manifest sizes at the repository and namespace level. This created an issue wherein a single blob could be counted multiple times within the total. For example, in previous versions of Red Hat Quay, if blobs were referenced multiple times within a repository and namespace, the blob was counted towards the allotted quota for every time it was referenced.
+						</simpara>
+						<simpara>
+							With this release, individual blob sizes are summed at the repository and namespace level. For example, if two tags in the same repository reference the same blob, the size of that blob is now only counted once towards the repository total. This enhancement to the quota management feature works by calculating the size of existing repositories and namespace with a backfill worker, and then adding or subtracting from the total for every image that is pushed or garbage collected afterwords. Additionally, the subtraction from the total happens when the manifest is garbage collected, whereas in the past it occurred when the tag was deleted.
+						</simpara>
+						<note>
+							<simpara>
+								Because subtraction occurs from the total when the manifest is garbage collected, there is a delay in the size calculation until it is able to be garbage collected. For more information about Red Hat Quay garbage collection, see <link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#red_hat_quay_garbage_collection">Red Hat Quay garbage collection</link>.
+							</simpara>
+						</note>
+						<simpara>
+							Additionally, manifest list totals are now counted toward the repository total, the total quota consumed when upgrading from a previous version of Red Hat Quay might be reportedly differently in Red Hat Quay 3.9. In some cases, the new total might go over a repository’s previously-set limit. Red Hat Quay administrators might have to adjust the allotted quota of a repository to account for these changes.
+						</simpara>
+						<simpara>
+							Collectively, the quota management feature in Red Hat Quay 3.9 provides a more accurate depiction of storage growth and registry consumption. As a result, users can place quota limits on the namespace and repository sizes based on the actual usage of storage by Red Hat Quay.
+						</simpara>
+						<simpara>
+							For more information, see <link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.9/html-single/manage_red_hat_quay/index?lb_target=stage&amp;check_logged_in=1#red-hat-quay-quota-management-39">Quota management for Red Hat Quay 3.9</link>
+						</simpara>
+					</listitem>
+				</itemizedlist>
+			</section>
+			<section xml:id="configuring-action-log-storage-splunk">
+				<title>Configuring action log storage for Splunk</title>
+				<simpara>
+					With this release, Red Hat Quay administrators can forward logs to a Splunk deployment. This allows administrators to perform log analyses and offload the internal database.
+				</simpara>
+				<simpara>
+					For more information, see <link xlink:href="https://access.redhat.com/https://dxp-docp-prod.apps.ext-waf.spoke.prod.us-west-2.aws.paas.redhat.com/documentation/en-us/red_hat_quay/3.9/html-single/manage_red_hat_quay/index?lb_target=stage&amp;check_logged_in=1#proc_manage-log-storage-splunk">Configuring action log storage for Splunk</link>.
+				</simpara>
+			</section>
+			<section xml:id="quay-ui-v2-enhancements">
+				<title>Red Hat Quay UI v2 enhancements</title>
+				<simpara>
+					In Red Hat Quay 3.8, a new UI was introduced as a technology preview. With Red Hat Quay 3.9, the following enhancements have been made to the UI v2:
+				</simpara>
+				<itemizedlist>
+					<listitem>
+						<simpara>
+							A tab for robot account creation.
+						</simpara>
+					</listitem>
+					<listitem>
+						<simpara>
+							A tab for Organization settings.
+						</simpara>
+					</listitem>
+					<listitem>
+						<simpara>
+							A tab for image tags.
+						</simpara>
+					</listitem>
+					<listitem>
+						<simpara>
+							A tab for Repository settings.
+						</simpara>
+					</listitem>
+					<listitem>
+						<simpara>
+							Overview, Security Reports, and Package vulnerability reports.
+						</simpara>
+					</listitem>
+				</itemizedlist>
+				<simpara>
+					For more information about UI v2 enablement, see <link xlink:href="/documentation/en-us/red_hat_quay/3.9/html-single/manage_red_hat_quay/index?lb_target=stage&amp;check_logged_in=1#using-v2-ui">Using the Red Hat Quay v2 UI</link>.
+				</simpara>
+			</section>
+			<section xml:id="nutanix-object-storage">
+				<title>Nutanix Object Storage</title>
+				<simpara>
+					With this release, Nutanix Object Storage is now supported. For more information, see <link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.9/html-single/configure_red_hat_quay/index?lb_target=stage#config-fields-nutanix">Nutanix Object Storage</link>.
+				</simpara>
+			</section>
+		</section>
+		<section xml:id="new-quay-config-fields">
+			<title>New Red Hat Quay configuration fields</title>
+			<simpara>
+				The following configuration fields have been added to Red Hat Quay 3.9:
+			</simpara>
+			<itemizedlist>
+				<listitem>
+					<simpara>
+						The following configuration fields have been added to the quota management feature:
+					</simpara>
+					<itemizedlist>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">QUOTA_BACKFILL</emphasis>: Enables the quota backfill worker to calculate the size of pre-existing blobs. Because this parameter sums the de-duplicated totals in the database, it might increase database load.
+							</simpara>
+							<simpara>
+								<emphasis role="strong">Default</emphasis>: <literal>True</literal>
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">QUOTA_TOTAL_DELAY_SECONDS</emphasis>:The time delay for starting the quota backfill. Rolling deployments can cause incorrect totals. This field <emphasis role="strong">must</emphasis> be set to a time longer than it takes for the rolling deployment to complete.
+							</simpara>
+							<simpara>
+								<emphasis role="strong">Default</emphasis>: <literal>1800</literal>
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">PERMANENTLY_DELETE_TAGS</emphasis>: Enables functionality related to the removal of tags from the time machine window.
+							</simpara>
+							<simpara>
+								<emphasis role="strong">Default</emphasis>: <literal>False</literal>
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">RESET_CHILD_MANIFEST_EXPIRATION</emphasis>: Resets the expirations of temporary tags targeting the child manifests. With this feature set to <literal>True</literal>, child manifests are immediately garbage collected.
+							</simpara>
+							<simpara>
+								<emphasis role="strong">Default</emphasis>: <literal>False</literal>
+							</simpara>
+						</listitem>
+					</itemizedlist>
+				</listitem>
+			</itemizedlist>
+			<simpara>
+				For more information, see <link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/configure_red_hat_quay/index#config-updates-39">Configuration updates for Red Hat Quay 3.9</link>.
+			</simpara>
+			<itemizedlist>
+				<listitem>
+					<simpara>
+						The following configuration field has been added to enhance the Red Hat Quay security scanner feature:
+					</simpara>
+					<itemizedlist>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">FEATURE_SECURITY_SCANNER_NOTIFY_ON_NEW_INDEX</emphasis>: Whether to allow sending notifications about vulnerabilities for new pushes.
+							</simpara>
+							<simpara>
+								<emphasis role="strong">Default</emphasis>*: <literal>True</literal>
+							</simpara>
+							<simpara>
+								For more information, see <link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/configure_red_hat_quay/index#config-fields-scanner">Security scanner configuration fields</link>.
+							</simpara>
+						</listitem>
+					</itemizedlist>
+				</listitem>
+			</itemizedlist>
+		</section>
+		<section xml:id="quay-operator-updates">
+			<title>Red Hat Quay Operator</title>
+			<simpara>
+				The following updates have been made to the Red Hat Quay Operator:
+			</simpara>
+			<simpara>
+				*
+			</simpara>
+		</section>
+		<section xml:id="notable-changes-39">
+			<title>Red Hat Quay technical changes</title>
+			<simpara>
+				The following sections provide an overview of notable technical changes for Red Hat Quay.
+			</simpara>
+		</section>
+		<section xml:id="known-issues-and-limitations-39">
+			<title>Red Hat Quay 3.9 known issues and limitations</title>
+			<simpara>
+				The following sections note known issues and limitations for Red Hat Quay 3.9.
+			</simpara>
+			<section xml:id="known-issues-39">
+				<title>Known issues:</title>
+				<itemizedlist>
+					<listitem>
+						<simpara>
+							Using <literal>conftest pull</literal> commands to obtain policies might return the following error: <literal>Error: download policies: client get: stat /policy/quayregistry-quay-quay-enterprise-847.apps.quaytest-847.qe.devcluster.openshift.com/conftest/policy:latest: no such file or directory</literal>. As a workaround, you can add the <literal>oci://</literal> prefix on your registry host. For example:
+						</simpara>
+						
+<programlisting language="terminal" linenumbering="unnumbered">$ conftest pull oci://mkoktest.quaydev.org/admin/conftest:v1</programlisting>
+						<simpara>
+							This is a known issue and will be fixed in a future version of Red Hat Quay. (<link xlink:href="https://issues.redhat.com/browse/PROJQUAY-5573"><emphasis role="strong">PROJQUAY-5573</emphasis></link>)
+						</simpara>
+					</listitem>
+					<listitem>
+						<simpara>
+							Red Hat Quay 3.9 introduced changes to the quota management feature. One of these changes is that tags in the time machine window now count towards the quota total of your organization.
+						</simpara>
+						<simpara>
+							There is a known issue when the proxy cache feature is enabled and configured in a new organization with a <link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#quota-management-arch">hard quota check</link> and time machine settings set to longer than <emphasis role="strong">a few seconds</emphasis> under their organization settings. In sum, tags in a proxy organization are all given a tag expiration that defaults to 1 day. If your proxy organization has a time machine policy set to longer than <emphasis role="strong">a few seconds</emphasis> under your organization settings, and the tag expires, it is not immediately available for garbage collection; it must wait to be outside of the time machine window before it can be garbage collected. Because subtraction happens upon garbage collection, and pruned tags are kept within the time frame allotted by your organization’s settings, image tags are not immediately garbage collected. This results in the quota consumption metric not being updated, and runs the risk of your proxy organization going over the allotted quota.
+						</simpara>
+						<simpara>
+							When a hard quota check is configured for a proxy organization, Red Hat Quay administrators will want to reclaim the space taken by tags within the time machine window to prevent organizations from hitting their allotted quota. As a temporary workaround, you can set the time machine expiration for proxy organizations to <emphasis role="strong">a few seconds</emphasis> under <emphasis role="strong">Organizations</emphasis> → <emphasis role="strong">Settings</emphasis> on the Red Hat Quay UI. This immediately removes image tags and allows for more accurate quota consumption metrics.
+						</simpara>
+						<simpara>
+							This is a non-issue for proxy organizations employing a soft quota check and can be ignored.
+						</simpara>
+					</listitem>
+					<listitem>
+						<simpara>
+							When removing a site from your geo-replicated Red Hat Quay deployment, you might receive the following error when running <literal>python -m util.removelocation</literal>: <literal>/app/lib/python3.9/site-packages/tzlocal/unix.py:141: SyntaxWarning: "is not" with a literal. Did you mean "!="? while start is not 0: /app/lib/python3.9/site-packages/netaddr/strategy/{}init{}.py:189: SyntaxWarning: "is not" with a literal. Did you mean "!="? if word_sep is not ''</literal>. You can confirm the deletion of your site by entering <literal>y</literal>. The error is a known issue and will be removed in a future version of Red Hat Quay.
+						</simpara>
+					</listitem>
+				</itemizedlist>
+			</section>
+			<section xml:id="limitations-39">
+				<title>Red Hat Quay 3.9 limitations</title>
+				<itemizedlist>
+					<listitem>
+						<simpara>
+							You must use the Splunk UI to view Red Hat Quay action logs. At this time, viewing Splunk action logs on the Red Hat Quay <emphasis role="strong">Usage Logs</emphasis> page is unsupported, and returns the following message: <literal>Method not implemented. Splunk does not support log lookups</literal>.
+						</simpara>
+					</listitem>
+				</itemizedlist>
+			</section>
+		</section>
+		<section xml:id="bug-fixes-39">
+			<title>Red Hat Quay bug fixes</title>
+			<itemizedlist>
+				<listitem>
+					<simpara>
+						Previously, on Red Hat Quay Lightweight Directory Access Protocol (LDAP) deployments, there was a bug that disallowed referrals from being used with team synchronization and in other circumstances. With this update, referrals can be turned off globally for Red Hat Quay to ensure proper behavior across all components.
+					</simpara>
+				</listitem>
+			</itemizedlist>
+		</section>
+		<section xml:id="quay-feature-tracker">
+			<title>Red Hat Quay feature tracker</title>
+			<simpara>
+				New features have been added to Red Hat Quay, some of which are currently in Technology Preview. Technology Preview features are experimental features and are not intended for production use.
+			</simpara>
+			<simpara>
+				Some features available in previous releases have been deprecated or removed. Deprecated functionality is still included in Red Hat Quay, but is planned for removal in a future release and is not recommended for new deployments. For the most recent list of deprecated and removed functionality in Red Hat Quay, refer to Table 1.1. Additional details for more fine-grained functionality that has been deprecated and removed are listed after the table.
+			</simpara>
+			<table colsep="1" frame="all" rowsep="1">
+				<title>Technology Preview tracker</title>
+				<tgroup cols="4">
+					<colspec colname="col_1" colwidth="57*"></colspec>
+					<colspec colname="col_2" colwidth="14*"></colspec>
+					<colspec colname="col_3" colwidth="14*"></colspec>
+					<colspec colname="col_4" colwidth="14*"></colspec>
+					<thead>
+						<row>
+							<entry align="left" valign="top">Feature</entry>
+							<entry align="left" valign="top">Quay 3.9</entry>
+							<entry align="left" valign="top">Quay 3.8</entry>
+							<entry align="left" valign="top">Quay 3.7</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								link:<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#operator-georepl-site-removal">Single site geo-replication removal</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/https://dxp-docp-prod.apps.ext-waf.spoke.prod.us-west-2.aws.paas.redhat.com/documentation/en-us/red_hat_quay/3.9/html-single/manage_red_hat_quay/index?lb_target=stage&amp;check_logged_in=1#proc_manage-log-storage-splunk">Splunk log forwarding</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								link:<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.9/html-single/configure_red_hat_quay/index?lb_target=stage#config-fields-nutanix">Nutanix Object Storage</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								Docker v1 support
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								Deprecated
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								Deprecated
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.8/html-single/configure_red_hat_quay/index#reference-miscellaneous-v2-ui">FEATURE_UI_V2</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								Technology Preview
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								Technology Preview
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.8/html-single/manage_red_hat_quay/index#proc_manage-ipv6-dual-stack">FEATURE_LISTEN_IP_VERSION</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.8/html-single/manage_red_hat_quay/index#ldap-super-users-enabling">LDAP_SUPERUSER_FILTER</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.8/html-single/manage_red_hat_quay/index#ldap-restricted-users-enabling">LDAP_RESTRICTED_USER_FILTER</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.8/html-single/configure_red_hat_quay/index#configuring-superusers-full-access">FEATURE_SUPERUSERS_FULL_ACCESS</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.8/html-single/configure_red_hat_quay/index#configuring-global-readonly-super-users">GLOBAL_READONLY_SUPER_USERS</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.8/html-single/configure_red_hat_quay/index#configuring-feature-restricted-users">FEATURE_RESTRICTED_USERS</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.8/html-single/configure_red_hat_quay/index#configuring-restricted-users-whitelist">RESTRICTED_USERS_WHITELIST</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								-
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com//documentation/en-us/red_hat_quay/3/html-single/use_red_hat_quay#red-hat-quay-quota-management-and-enforcement">Quota management and enforcement</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/use_red_hat_quay#red-hat-quay-builders-enhancement">Red Hat Quay build enhancements</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/use_red_hat_quay#quay-as-cache-proxy">Red Hat Quay as proxy cache for upstream registries</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								Technology Preview
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/deploy_red_hat_quay_on_openshift_with_the_quay_operator/index">Geo-replication - Red Hat Quay Operator</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.7/html-single/manage_red_hat_quay#unmanaged_clair_configuration">Advanced Clair configuration</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								Support for Microsoft Azure Government (MAG)
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								General Availability
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.8/html-single/manage_red_hat_quay/index#clair-crda-configuration">Java scanning with Clair</link>
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								Technology Preview
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								Technology Preview
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								Technology Preview
+							</simpara>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+			<section xml:id="deprecated-features">
+				<title>Deprecated features</title>
+
+			</section>
+		</section>
+	</chapter>
+</book>
+
