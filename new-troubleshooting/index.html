@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Support overview</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Troubleshooting Red Hat Quay"/><link rel="next" href="#idm44797428448912" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm44797460897184"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.9</span></div><div><h1 class="title">Support overview</h1></div><div><h2 class="subtitle">Troubleshooting Red Hat Quay</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm44797381884176">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
+<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Support overview</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Troubleshooting Red Hat Quay"/><link rel="next" href="#idm45680171728496" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm45680172430144"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.9</span></div><div><h1 class="title">Support overview</h1></div><div><h2 class="subtitle">Troubleshooting Red Hat Quay</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm45680154922944">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
 				Troubleshooting Red Hat Quay
-			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm44797428448912">Preface</a></span></li><li><span class="chapter"><a href="#getting-support">1. Getting support</a></span><ul><li><span class="section"><a href="#support-knowledgebase-about">1.1. About the Red Hat Knowledgebase</a></span></li><li><span class="section"><a href="#support-knowledgebase-search">1.2. Searching the Red Hat Knowledgebase</a></span></li><li><span class="section"><a href="#support-submitting-a-case">1.3. Submitting a support case</a></span></li></ul></li><li><span class="chapter"><a href="#running-quay-debug-mode-intro">2. Running Red Hat Quay in debug mode</a></span><ul><li><span class="section"><a href="#running-standalone-debug-mode">2.1. Running a standalone Red Hat Quay deployment in debug mode</a></span></li><li><span class="section"><a href="#running-operator-debug-mode">2.2. Running the Red Hat Quay Operator in debug mode</a></span></li></ul></li><li><span class="chapter"><a href="#health-check-quay">3. Performing health checks on Red Hat Quay deployments</a></span><ul><li><span class="section"><a href="#health-check-endpoints">3.1. Red Hat Quay health check endpoints</a></span></li><li><span class="section"><a href="#instance-endpoint-quay">3.2. Navigating to a Red Hat Quay health check endpoint</a></span></li></ul></li><li><span class="chapter"><a href="#troubleshooting-components">4. Troubleshooting Red Hat Quay components</a></span><ul><li><span class="section"><a href="#authentication-troubleshooting">4.1. Troubleshooting Red Hat Quay authentication</a></span><ul><li><span class="section"><a href="#authentication-troubleshooting-issues">4.1.1. Troubleshooting Red Hat Quay authentication and authorization issues</a></span></li></ul></li><li><span class="section"><a href="#database-troubleshooting">4.2. Troubleshooting the Red Hat Quay database</a></span><ul><li><span class="section"><a href="#database-troubleshooting-issues">4.2.1. Troubleshooting Red Hat Quay database issues</a></span></li><li><span class="section"><a href="#troubleshooting-forgotten-passwords">4.2.2. Resetting superuser passwords on Red Hat Quay standalone deployments</a></span></li><li><span class="section"><a href="#resetting-superuser-password-on-operator">4.2.3. Resetting superuser passwords on the Red Hat Quay Operator</a></span></li></ul></li><li><span class="section"><a href="#storage-troubleshooting">4.3. Troubleshooting Red Hat Quay object storage</a></span><ul><li><span class="section"><a href="#storage-troubleshooting-issues">4.3.1. Troubleshooting Red Hat Quay object storage issues</a></span></li></ul></li><li><span class="section"><a href="#georepl-intro">4.4. Geo-replication</a></span><ul><li><span class="section"><a href="#arch-georpl-features">4.4.1. Geo-replication features</a></span></li><li><span class="section"><a href="#geo-repl-troubleshooting-issues">4.4.2. Troubleshooting geo-replication for Red Hat Quay</a></span></li></ul></li><li><span class="section"><a href="#arch-mirroring-intro">4.5. Repository mirroring</a></span><ul><li><span class="section"><a href="#repo-mirroring-troubleshooting-issues">4.5.1. Troubleshooting repository mirroring</a></span></li></ul></li><li><span class="section"><a href="#clair-vulnerability-scanner">4.6. Clair for Red Hat Quay</a></span></li><li><span class="section"><a href="#clair-concepts">4.7. Clair concepts</a></span><ul><li><span class="section"><a href="#clair-practice">4.7.1. Clair in practice</a></span></li><li><span class="section"><a href="#clair-troubleshooting-issues">4.7.2. Troubleshooting Clair issue</a></span></li><li><span class="section"><a href="#deleting-user-cli">4.7.3. Deleting a Red Hat Quay user from the command line</a></span></li></ul></li></ul></li></ul></div><section class="preface" id="idm44797428448912"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div><p>
+			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm45680171728496">Preface</a></span></li><li><span class="chapter"><a href="#getting-support">1. Getting support</a></span><ul><li><span class="section"><a href="#support-knowledgebase-about">1.1. About the Red Hat Knowledgebase</a></span></li><li><span class="section"><a href="#support-knowledgebase-search">1.2. Searching the Red Hat Knowledgebase</a></span></li><li><span class="section"><a href="#support-submitting-a-case">1.3. Submitting a support case</a></span></li></ul></li><li><span class="chapter"><a href="#running-quay-debug-mode-intro">2. Running Red Hat Quay in debug mode</a></span><ul><li><span class="section"><a href="#running-standalone-debug-mode">2.1. Running a standalone Red Hat Quay deployment in debug mode</a></span></li><li><span class="section"><a href="#running-operator-debug-mode">2.2. Running the Red Hat Quay Operator in debug mode</a></span></li></ul></li><li><span class="chapter"><a href="#obtaining-quay-logs">3. Log information for Red Hat Quay</a></span><ul><li><span class="section"><a href="#obtaining-log-information-quay">3.1. Obtaining log information for Red Hat Quay</a></span></li><li><span class="section"><a href="#obtaining-verbose-container-pod-logs">3.2. Examining verbose logs</a></span></li></ul></li><li><span class="chapter"><a href="#obtaining-quay-config-information">4. Obtaining Red Hat Quay configuration information</a></span><ul><li><span class="section"><a href="#obtaining-configuration-information-quay">4.1. Obtaining configuration information for Red Hat Quay</a></span></li><li><span class="section"><a href="#obtaining-db-config-info">4.2. Obtaining database configuration information</a></span></li></ul></li><li><span class="chapter"><a href="#health-check-quay">5. Performing health checks on Red Hat Quay deployments</a></span><ul><li><span class="section"><a href="#health-check-endpoints">5.1. Red Hat Quay health check endpoints</a></span></li><li><span class="section"><a href="#instance-endpoint-quay">5.2. Navigating to a Red Hat Quay health check endpoint</a></span></li></ul></li><li><span class="chapter"><a href="#troubleshooting-components">6. Troubleshooting Red Hat Quay components</a></span><ul><li><span class="section"><a href="#authentication-troubleshooting">6.1. Troubleshooting Red Hat Quay authentication</a></span><ul><li><span class="section"><a href="#authentication-troubleshooting-issues">6.1.1. Troubleshooting Red Hat Quay authentication and authorization issues</a></span></li></ul></li><li><span class="section"><a href="#database-troubleshooting">6.2. Troubleshooting the Red Hat Quay database</a></span><ul><li><span class="section"><a href="#database-troubleshooting-issues">6.2.1. Troubleshooting Red Hat Quay database issues</a></span></li><li><span class="section"><a href="#troubleshooting-forgotten-passwords">6.2.2. Resetting superuser passwords on Red Hat Quay standalone deployments</a></span></li><li><span class="section"><a href="#resetting-superuser-password-on-operator">6.2.3. Resetting superuser passwords on the Red Hat Quay Operator</a></span></li></ul></li><li><span class="section"><a href="#storage-troubleshooting">6.3. Troubleshooting Red Hat Quay object storage</a></span><ul><li><span class="section"><a href="#storage-troubleshooting-issues">6.3.1. Troubleshooting Red Hat Quay object storage issues</a></span></li></ul></li><li><span class="section"><a href="#georepl-intro">6.4. Geo-replication</a></span><ul><li><span class="section"><a href="#geo-repl-troubleshooting-issues">6.4.1. Troubleshooting geo-replication for Red Hat Quay</a></span></li></ul></li><li><span class="section"><a href="#arch-mirroring-intro">6.5. Repository mirroring</a></span><ul><li><span class="section"><a href="#repo-mirroring-troubleshooting-issues">6.5.1. Troubleshooting repository mirroring</a></span></li></ul></li><li><span class="section"><a href="#clair-vulnerability-scanner">6.6. Clair for Red Hat Quay</a></span><ul><li><span class="section"><a href="#clair-troubleshooting-issues">6.6.1. Troubleshooting Clair issue</a></span></li></ul></li></ul></li></ul></div><section class="preface" id="idm45680171728496"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div><p>
 			Red Hat offers administrators tools for gathering data for your Red Hat Quay deployment. You can use this data to troubleshoot your Red Hat Quay deployment yourself, or file a support ticket.
 		</p></section><section class="chapter" id="getting-support"><div class="titlepage"><div><div><h1 class="title">Chapter 1. Getting support</h1></div></div></div><p>
 			If you experience difficulty with a procedure described in this documentation, or with Red Hat Quay in general, visit the <a class="link" href="http://access.redhat.com">Red Hat Customer Portal</a>. From the Customer Portal, you can:
@@ -29,7 +29,7 @@
 					</li><li class="listitem"><p class="simpara">
 						In the main Red Hat Customer Portal search field, input keywords and strings relating to the problem, including:
 					</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-								{product-title} components (such as <span class="strong strong"><strong>database</strong></span>)
+								Red Hat Quay components (such as <span class="strong strong"><strong>database</strong></span>)
 							</li><li class="listitem">
 								Related procedure (such as <span class="strong strong"><strong>installation</strong></span>)
 							</li><li class="listitem">
@@ -62,10 +62,8 @@
 						Optional. Drag and drop, paste, or browse to upload a file. This could be debug logs gathered from your Red Hat Quay deployment.
 					</li><li class="listitem">
 						Click <span class="strong strong"><strong>Get support</strong></span> to file your ticket.
-					</li></ol></div><div class="_additional-resources _additional-resources"><p class="title"><strong>Additional resources</strong></p><p>
-					For more information about running Red Hat Quay in debug mode, see "Running Red Hat Quay in debug mode".
-				</p></div></section></section><section class="chapter" id="running-quay-debug-mode-intro"><div class="titlepage"><div><div><h1 class="title">Chapter 2. Running Red Hat Quay in debug mode</h1></div></div></div><p>
-			Red Hat recommends gathering your debugging information when opening a support case. Running Red Hat Quay in debug mode provides verbose logging to help administrators find more information about various issues. Enabling debug mode can speed up the process to reproduce errors and validate a solution. Additionally, it helps the Red Hat Support to perform a root cause analysis.
+					</li></ol></div></section></section><section class="chapter" id="running-quay-debug-mode-intro"><div class="titlepage"><div><div><h1 class="title">Chapter 2. Running Red Hat Quay in debug mode</h1></div></div></div><p>
+			Red Hat recommends gathering your debugging information when opening a support case. Running Red Hat Quay in debug mode provides verbose logging to help administrators find more information about various issues. Enabling debug mode can speed up the process to reproduce errors and validate a solution for things like geo-replication deployments, Operator deployments, standalone Red Hat Quay deployments, object storage issues, and so on. Additionally, it helps the Red Hat Support to perform a root cause analysis.
 		</p><section class="section" id="running-standalone-debug-mode"><div class="titlepage"><div><div><h2 class="title">2.1. Running a standalone Red Hat Quay deployment in debug mode</h2></div></div></div><p>
 				Running Red Hat Quay in debug mode provides verbose logging to help administrators find more information about various issues. Enabling debug mode can speed up the process to reproduce errors and validate a solution.
 			</p><p>
@@ -88,63 +86,187 @@
       - name: DEBUGLOG
         value: "true"</pre></li><li class="listitem">
 						After the Red Hat Quay Operator has restarted with debugging enabled, try pulling an image from the registry. If it is still slow, dump all dogs from all <code class="literal">Quay</code> pods to a file, and check the files for more information.
-					</li></ol></div></section></section><section class="chapter" id="health-check-quay"><div class="titlepage"><div><div><h1 class="title">Chapter 3. Performing health checks on Red Hat Quay deployments</h1></div></div></div><p>
-			Health check mechanisms are designed to assess the health and functionality of a system, service, or component. Health checks help ensure that everything is working correctly, and can be used to identify potential issues before they become critical problems. By monitoring the health of a system, Red Hat Quay administrators can address abnormalities or potential failures, helping to reduce the likelihood of encountering troubleshooting scenarios.
+					</li></ol></div></section></section><section class="chapter" id="obtaining-quay-logs"><div class="titlepage"><div><div><h1 class="title">Chapter 3. Log information for Red Hat Quay</h1></div></div></div><p>
+			Obtaining log information using can be beneficial in various ways for managing, monitoring, and troubleshooting applications running in containers or pods. Some of the reasons why obtaining log information is valuable include the following:
+		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					<span class="strong strong"><strong>Debugging and Troubleshooting</strong></span>: Logs provide insights into what’s happening inside the application, allowing developers and system administrators to identify and resolve issues. By analyzing log messages, one can identify errors, exceptions, warnings, or unexpected behavior that might occur during the application’s execution.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Performance Monitoring</strong></span>: Monitoring logs helps to track the performance of the application and its components. Monitoring metrics like response times, request rates, and resource utilization can help in optimizing and scaling the application to meet the demand.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Security Analysis</strong></span>: Logs can be essential in auditing and detecting potential security breaches. By analyzing logs, suspicious activities, unauthorized access attempts, or any abnormal behavior can be identified, helping in detecting and responding to security threats.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Tracking User Behavior</strong></span>: In some cases, logs can be used to track user activities and behavior. This is particularly important for applications that handle sensitive data, where tracking user actions can be useful for auditing and compliance purposes.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Capacity Planning</strong></span>: Log data can be used to understand resource utilization patterns, which can aid in capacity planning. By analyzing logs, one can identify peak usage periods, anticipate resource needs, and optimize infrastructure accordingly.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Error Analysis</strong></span>: When errors occur, logs can provide valuable context about what happened leading up to the error. This can help in understanding the root cause of the issue and facilitating the debugging process.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Verification of Deployment</strong></span>: Logging during the deployment process can help verify if the application is starting correctly and if all components are functioning as expected.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Continuous Integration/Continuous Deployment (CI/CD)</strong></span>: In CI/CD pipelines, logging is essential to capture build and deployment statuses, allowing teams to monitor the success or failure of each stage.
+				</li></ul></div><section class="section" id="obtaining-log-information-quay"><div class="titlepage"><div><div><h2 class="title">3.1. Obtaining log information for Red Hat Quay</h2></div></div></div><p>
+				Log information can be obtained for all types of Red Hat Quay deployments, including geo-replication deployments, standalone deployments, and Operator deployments. Log information can also be obtained for mirrored repositories. It can help you troubleshoot authentication and authorization issues, and object storage issues. After you have obtained the necessary log information, you can search the <a class="link" href="https://access.redhat.com/knowledgebase">Red Hat Knowledgebase</a> for a solution, or file a support ticket with the Red Hat Support team.
+			</p><p>
+				Use the following procedure to obtain logs for your Red Hat Quay deployment.
+			</p><div class="itemizedlist"><p class="title"><strong>Procedure</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+						If you are using the Red Hat Quay Operator on OpenShift Container Platform, enter the following command to view the logs:
+					</p><pre class="programlisting language-terminal">$ oc logs &lt;quay_pod_name&gt;</pre></li><li class="listitem"><p class="simpara">
+						If you are on a standalone Red Hat Quay deployment, enter the following command:
+					</p><pre class="programlisting language-terminal">$ podman logs &lt;quay_container_name&gt;</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">...
+gunicorn-web stdout | 2023-01-20 15:41:52,071 [205] [DEBUG] [app] Starting request: urn:request:0d88de25-03b0-4cf9-b8bc-87f1ac099429 (/oauth2/azure/callback) {'X-Forwarded-For': '174.91.79.124'}
+...</pre>
+						</p></div></li></ul></div></section><section class="section" id="obtaining-verbose-container-pod-logs"><div class="titlepage"><div><div><h2 class="title">3.2. Examining verbose logs</h2></div></div></div><p>
+				Red Hat Quay does not have verbose logs, however, with the following procedures, you can obtain a detailed status check of your database pod or container.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Enter the following commands to examine verbose database logs.
+					</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
+								If you are using the Red Hat Quay Operator on OpenShift Container Platform, enter the following commands:
+							</p><pre class="programlisting language-terminal">$ oc logs &lt;quay_pod_name&gt; --previous</pre><pre class="programlisting language-terminal">$ oc logs &lt;quay_pod_name&gt; --previous -c &lt;container_name&gt;</pre><pre class="programlisting language-terminal">$ oc cp &lt;quay_pod_name&gt;:/var/lib/pgsql/data/userdata/log/* /path/to/desired_directory_on_host</pre></li><li class="listitem"><p class="simpara">
+								If you are using a standalone deployment of Red Hat Quay, enter the following commands:
+							</p><pre class="programlisting language-terminal">$ podman logs &lt;quay_container_name&gt; --previous</pre><pre class="programlisting language-terminal">$ podman logs &lt;quay_container_name&gt; --previous -c &lt;container_name&gt;</pre><pre class="programlisting language-terminal">$ podman cp &lt;quay_container_name&gt;:/var/lib/pgsql/data/userdata/log/* /path/to/desired_directory_on_host</pre></li></ol></div></li></ol></div></section></section><section class="chapter" id="obtaining-quay-config-information"><div class="titlepage"><div><div><h1 class="title">Chapter 4. Obtaining Red Hat Quay configuration information</h1></div></div></div><p>
+			Checking a configuration YAML can help identify and resolve various issues related to the configuration of Red Hat Quay. Checking the configuration YAML can help you address the following issues:
+		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					<span class="strong strong"><strong>Incorrect Configuration Parameters</strong></span>: If the database is not functioning as expected or is experiencing performance issues, your configuration parameters could be at fault. By checking the configuration YAML, administrators can ensure that all the required parameters are set correctly and match the intended settings for the database.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Resource Limitations</strong></span>: The configuration YAML might specify resource limits for the database, such as memory and CPU limits. If the database is running into resource constraints or experiencing contention with other services, adjusting these limits can help optimize resource allocation and improve overall performance.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Connectivity Issues</strong></span>: Incorrect network settings in the configuration YAML can lead to connectivity problems between the application and the database. Ensuring that the correct network configurations are in place can resolve issues related to connectivity and communication.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Data Storage and Paths</strong></span>: The configuration YAML may include paths for storing data and logs. If the paths are misconfigured or inaccessible, the database may encounter errors while reading or writing data, leading to operational issues.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Authentication and Security</strong></span>: The configuration YAML may contain authentication settings, including usernames, passwords, and access controls. Verifying these settings is crucial for maintaining the security of the database and ensuring only authorized users have access.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Plugin and Extension Settings</strong></span>: Some databases support extensions or plugins that enhance functionality. Issues may arise if these plugins are misconfigured or not loaded correctly. Checking the configuration YAML can help identify any problems with plugin settings.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Replication and High Availability Settings</strong></span>: In clustered or replicated database setups, the configuration YAML may define replication settings and high availability configurations. Incorrect settings can lead to data inconsistency and system instability.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Backup and Recovery Options</strong></span>: The configuration YAML might include backup and recovery options, specifying how data backups are performed and how data can be recovered in case of failures. Validating these settings can ensure data safety and successful recovery processes.
+				</li></ul></div><p>
+			By checking your configuration YAML, Red Hat Quay administrators can detect and resolve these issues before they cause significant disruptions to the application or service relying on the database.
+		</p><section class="section" id="obtaining-configuration-information-quay"><div class="titlepage"><div><div><h2 class="title">4.1. Obtaining configuration information for Red Hat Quay</h2></div></div></div><p>
+				Configuration information can be obtained for all types of Red Hat Quay deployments, include standalone, Operator, and geo-replication deployments. Obtaining configuration information can help you resolve issues with authentication and authorization, your database, object storage, and repository mirroring. After you have obtained the necessary configuration information, you can update your <code class="literal">config.yaml</code> file, search the <a class="link" href="https://access.redhat.com/knowledgebase">Red Hat Knowledgebase</a> for a solution, or file a support ticket with the Red Hat Support team.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						To obtain configuration information on Red Hat Quay Operator deployments, you can use <code class="literal">oc exec</code>, <code class="literal">oc cp</code>, or <code class="literal">oc rsync</code>.
+					</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
+								To use the <code class="literal">oc exec</code> command, enter the following command:
+							</p><pre class="programlisting language-terminal">$ oc exec -it &lt;quay_pod_name&gt; -- cat /conf/stack/config.yaml</pre><p class="simpara">
+								This command returns your <code class="literal">config.yaml</code> file directly to your terminal.
+							</p></li><li class="listitem"><p class="simpara">
+								To use the <code class="literal">oc copy</code> command, enter the following commands:
+							</p><pre class="programlisting language-terminal">$ oc cp &lt;quay_pod_name&gt;:/conf/stack/config.yaml /tmp/config.yaml</pre><p class="simpara">
+								To display this information in your terminal, enter the following command:
+							</p><pre class="programlisting language-terminal">$ cat /tmp/config.yaml</pre></li><li class="listitem"><p class="simpara">
+								To use the <code class="literal">oc rsync</code> command, enter the following commands:
+							</p><pre class="programlisting language-terminal">oc rsync &lt;quay_pod_name&gt;:/conf/stack/ /tmp/local_directory/</pre><p class="simpara">
+								To display this information in your terminal, enter the following command:
+							</p><pre class="programlisting language-terminal">$ cat /tmp/local_directory/config.yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+									
+<pre class="programlisting language-yaml">DISTRIBUTED_STORAGE_CONFIG:
+local_us:
+- RHOCSStorage
+- access_key: redacted
+  bucket_name: lht-quay-datastore-68fff7b8-1b5e-46aa-8110-c4b7ead781f5
+  hostname: s3.openshift-storage.svc.cluster.local
+  is_secure: true
+  port: 443
+  secret_key: redacted
+  storage_path: /datastorage/registry
+DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS:
+- local_us
+DISTRIBUTED_STORAGE_PREFERENCE:
+- local_us</pre>
+								</p></div></li></ol></div></li><li class="listitem"><p class="simpara">
+						To obtain configuration information on standalone Red Hat Quay deployments, you can use <code class="literal">podman cp</code> or <code class="literal">podman exec</code>.
+					</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
+								To use the <code class="literal">podman copy</code> command, enter the following commands:
+							</p><pre class="programlisting language-terminal">$ podman cp &lt;quay_container_id&gt;:/conf/stack/config.yaml /tmp/local_directory/</pre><p class="simpara">
+								To display this information in your terminal, enter the following command:
+							</p><pre class="programlisting language-terminal">$ cat /tmp/local_directory/config.yaml</pre></li><li class="listitem"><p class="simpara">
+								To use <code class="literal">podman exec</code>, enter the following commands:
+							</p><pre class="programlisting language-terminal">$ podman exec -it &lt;quay_container_id&gt; cat /conf/stack/config.yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+									
+<pre class="programlisting language-yaml">BROWSER_API_CALLS_XHR_ONLY: false
+ALLOWED_OCI_ARTIFACT_TYPES:
+    application/vnd.oci.image.config.v1+json:
+        - application/vnd.oci.image.layer.v1.tar+zstd
+    application/vnd.sylabs.sif.config.v1+json:
+        - application/vnd.sylabs.sif.layer.v1+tar
+AUTHENTICATION_TYPE: Database
+AVATAR_KIND: local
+BUILDLOGS_REDIS:
+    host: quay-server.example.com
+    password: strongpassword
+    port: 6379
+DATABASE_SECRET_KEY: 05ee6382-24a6-43c0-b30f-849c8a0f7260
+DB_CONNECTION_ARGS: {}
+---</pre>
+								</p></div></li></ol></div></li></ol></div></section><section class="section" id="obtaining-db-config-info"><div class="titlepage"><div><div><h2 class="title">4.2. Obtaining database configuration information</h2></div></div></div><p>
+				You can obtain configuration information about your database by using the following procedure.
+			</p><div class="admonition warning"><div class="admonition_header">Warning</div><div><p>
+					Interacting with the PostgreSQL database is potentially destructive. It is highly recommended that you perform the following procedure with the help of a Red Hat Quay Support Specialist.
+				</p></div></div><div class="itemizedlist"><p class="title"><strong>Procedure</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+						If you are using the Red Hat Quay Operator on OpenShift Container Platform, enter the following command:
+					</p><pre class="programlisting language-terminal">$ oc exec -it &lt;database_pod&gt; -- cat /var/lib/pgsql/data/userdata/postgresql.conf</pre></li><li class="listitem"><p class="simpara">
+						If you are using a standalone deployment of Red Hat Quay, enter the following command:
+					</p><pre class="programlisting language-terminal">$ podman exec -it &lt;database_container&gt; cat /var/lib/pgsql/data/userdata/postgresql.conf</pre></li></ul></div></section></section><section class="chapter" id="health-check-quay"><div class="titlepage"><div><div><h1 class="title">Chapter 5. Performing health checks on Red Hat Quay deployments</h1></div></div></div><p>
+			Health check mechanisms are designed to assess the health and functionality of a system, service, or component. Health checks help ensure that everything is working correctly, and can be used to identify potential issues before they become critical problems. By monitoring the health of a system, Red Hat Quay administrators can address abnormalities or potential failures for things like geo-replication deployments, Operator deployments, standalone Red Hat Quay deployments, object storage issues, and so on. Performing health checks can also help reduce the likelihood of encountering troubleshooting scenarios.
 		</p><p>
 			Health check mechanisms can play a role in diagnosing issues by providing valuable information about the system’s current state. By comparing health check results with expected benchmarks or predefined thresholds, deviations or anomalies can be identified quicker.
-		</p><section class="section" id="health-check-endpoints"><div class="titlepage"><div><div><h2 class="title">3.1. Red Hat Quay health check endpoints</h2></div></div></div><div class="admonition important"><div class="admonition_header">Important</div><div><p>
+		</p><section class="section" id="health-check-endpoints"><div class="titlepage"><div><div><h2 class="title">5.1. Red Hat Quay health check endpoints</h2></div></div></div><div class="admonition important"><div class="admonition_header">Important</div><div><p>
 					Links contained herein to any external website(s) are provided for convenience only. Red Hat has not reviewed the links and is not responsible for the content or its availability. The inclusion of any link to an external website does not imply endorsement by Red Hat of the website or its entities, products, or services. You agree that Red Hat is not responsible or liable for any loss or expenses that may result due to your use of (or reliance on) the external site or content.
 				</p></div></div><p>
 				Red Hat Quay has several health check endpoints. The following table shows you the health check, a description, an endpoint, and an example output.
-			</p><div class="table" id="idm44797382933808"><p class="title"><strong>Table 3.1. Health check endpoints</strong></p><div class="table-contents"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 13%; " class="col_1"/><col style="width: 38%; " class="col_2"/><col style="width: 25%; " class="col_3"/><col style="width: 25%; " class="col_4"/></colgroup><thead><tr><th align="left" valign="top" id="idm44797377668144" scope="col">Health check</th><th align="left" valign="top" id="idm44797377667280" scope="col">Description</th><th align="left" valign="top" id="idm44797383808048" scope="col">Endpoint</th><th align="left" valign="top" id="idm44797383807184" scope="col">Example output</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm44797377668144">
+			</p><div class="table" id="idm45680154706416"><p class="title"><strong>Table 5.1. Health check endpoints</strong></p><div class="table-contents"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 13%; " class="col_1"/><col style="width: 38%; " class="col_2"/><col style="width: 25%; " class="col_3"/><col style="width: 25%; " class="col_4"/></colgroup><thead><tr><th align="left" valign="top" id="idm45680149780816" scope="col">Health check</th><th align="left" valign="top" id="idm45680149779952" scope="col">Description</th><th align="left" valign="top" id="idm45680149779088" scope="col">Endpoint</th><th align="left" valign="top" id="idm45680155565984" scope="col">Example output</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm45680149780816">
 							<p>
 								<code class="literal">instance</code>
 							</p>
-							</td><td align="left" valign="top" headers="idm44797377667280">
+							</td><td align="left" valign="top" headers="idm45680149779952">
 							<p>
 								The <code class="literal">instance</code> endpoint acquires the entire status of the specific Red Hat Quay instance. Returns a <code class="literal">dict</code> with key-value pairs for the following: <code class="literal">auth</code>, <code class="literal">database</code>, <code class="literal">disk_space</code>, <code class="literal">registry_gunicorn</code>, <code class="literal">service_key</code>, and <code class="literal">web_gunicorn.</code> Returns a number indicating the health check response of either <code class="literal">200</code>, which indicates that the instance is healthy, or <code class="literal">503</code>, which indicates an issue with your deployment.
 							</p>
-							</td><td align="left" valign="top" headers="idm44797383808048">
+							</td><td align="left" valign="top" headers="idm45680149779088">
 							<p>
 								<code class="literal"><a class="link" href="https://{quay-ip-endpoint}/health/instance">https://{quay-ip-endpoint}/health/instance</a></code> <span class="emphasis"><em>or</em></span> <code class="literal"><a class="link" href="https://{quay-ip-endpoint}/health">https://{quay-ip-endpoint}/health</a></code>
 							</p>
-							</td><td align="left" valign="top" headers="idm44797383807184">
+							</td><td align="left" valign="top" headers="idm45680155565984">
 							<p>
 								<code class="literal">{"data":{"services":{"auth":true,"database":true,"disk_space":true,"registry_gunicorn":true,"service_key":true,"web_gunicorn":true}},"status_code":200}</code>
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm44797377668144">
+							</td></tr><tr><td align="left" valign="top" headers="idm45680149780816">
 							<p>
 								<code class="literal">endtoend</code>
 							</p>
-							</td><td align="left" valign="top" headers="idm44797377667280">
+							</td><td align="left" valign="top" headers="idm45680149779952">
 							<p>
 								The <code class="literal">endtoend</code> endpoint conducts checks on all services of your Red Hat Quay instance. Returns a <code class="literal">dict</code> with key-value pairs for the following: <code class="literal">auth</code>, <code class="literal">database</code>, <code class="literal">redis</code>, <code class="literal">storage</code>. Returns a number indicating the health check response of either <code class="literal">200</code>, which indicates that the instance is healthy, or <code class="literal">503</code>, which indicates an issue with your deployment.
 							</p>
-							</td><td align="left" valign="top" headers="idm44797383808048">
+							</td><td align="left" valign="top" headers="idm45680149779088">
 							<p>
 								<code class="literal"><a class="link" href="https://{quay-ip-endpoint}/health/endtoend">https://{quay-ip-endpoint}/health/endtoend</a></code>
 							</p>
-							</td><td align="left" valign="top" headers="idm44797383807184">
+							</td><td align="left" valign="top" headers="idm45680155565984">
 							<p>
 								<code class="literal">{"data":{"services":{"auth":true,"database":true,"redis":true,"storage":true}},"status_code":200}</code>
 							</p>
-							</td></tr><tr><td align="left" valign="top" headers="idm44797377668144">
+							</td></tr><tr><td align="left" valign="top" headers="idm45680149780816">
 							<p>
 								<code class="literal">warning</code>
 							</p>
-							</td><td align="left" valign="top" headers="idm44797377667280">
+							</td><td align="left" valign="top" headers="idm45680149779952">
 							<p>
 								The <code class="literal">warning</code> endpoint conducts a check on the warnings. Returns a <code class="literal">dict</code> with key-value pairs for the following: <code class="literal">disk_space_warning</code>. Returns a number indicating the health check response of either <code class="literal">200</code>, which indicates that the instance is healthy, or <code class="literal">503</code>, which indicates an issue with your deployment.
 							</p>
-							</td><td align="left" valign="top" headers="idm44797383808048">
+							</td><td align="left" valign="top" headers="idm45680149779088">
 							<p>
 								<code class="literal"><a class="link" href="https://{quay-ip-endpoint}/health/warning">https://{quay-ip-endpoint}/health/warning</a></code>
 							</p>
-							</td><td align="left" valign="top" headers="idm44797383807184">
+							</td><td align="left" valign="top" headers="idm45680155565984">
 							<p>
 								<code class="literal">{"data":{"services":{"disk_space_warning":true}},"status_code":503}</code>
 							</p>
-							</td></tr></tbody></table></div></div></section><section class="section" id="instance-endpoint-quay"><div class="titlepage"><div><div><h2 class="title">3.2. Navigating to a Red Hat Quay health check endpoint</h2></div></div></div><p>
+							</td></tr></tbody></table></div></div></section><section class="section" id="instance-endpoint-quay"><div class="titlepage"><div><div><h2 class="title">5.2. Navigating to a Red Hat Quay health check endpoint</h2></div></div></div><p>
 				Use the following procedure to navigate to the <code class="literal">instance</code> endpoint. This procedure can be repeated for <code class="literal">endtoend</code> and <code class="literal">warning</code> endpoints.
 			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
 						On your web browser, navigate to <code class="literal"><a class="link" href="https://{quay-ip-endpoint}/health/instance">https://{quay-ip-endpoint}/health/instance</a></code>.
@@ -152,11 +274,13 @@
 						You are taken to the health instance page, which returns information like the following:
 					</p><pre class="programlisting language-json">{"data":{"services":{"auth":true,"database":true,"disk_space":true,"registry_gunicorn":true,"service_key":true,"web_gunicorn":true}},"status_code":200}</pre><p class="simpara">
 						For Red Hat Quay, <code class="literal">"status_code": 200</code> means that the instance is health. Conversely, if you receive <code class="literal">"status_code": 503</code>, there is an issue with your deployment.
-					</p></li></ol></div></section></section><section class="chapter" id="troubleshooting-components"><div class="titlepage"><div><div><h1 class="title">Chapter 4. Troubleshooting Red Hat Quay components</h1></div></div></div><p>
+					</p></li></ol></div></section></section><section class="chapter" id="troubleshooting-components"><div class="titlepage"><div><div><h1 class="title">Chapter 6. Troubleshooting Red Hat Quay components</h1></div></div></div><p>
 			This document focuses on troubleshooting specific components within Red Hat Quay, providing targeted guidance for resolving issues that might arise. Designed for system administrators, operators, and developers, this resource aims to help diagnose and troubleshoot problems related to individual components of Red Hat Quay.
 		</p><p>
-			By using the following procedures, you are able to troubleshoot common issues. Afterwards, you can search for solutions on the <a class="link" href="https://access.redhat.com/knowledgebase">Red Hat Knowledgebase</a>, or file a support ticket with the Red Hat Support team.
-		</p><section class="section" id="authentication-troubleshooting"><div class="titlepage"><div><div><h2 class="title">4.1. Troubleshooting Red Hat Quay authentication</h2></div></div></div><p>
+			In addition to the following procedures, Red Hat Quay components can also be troubleshot by running Red Hat Quay in debug mode, obtaining log information, obtaining configuration information, and performing health checks on endpoints.
+		</p><p>
+			By using the following procedures, you are able to troubleshoot common component issues. Afterwards, you can search for solutions on the <a class="link" href="https://access.redhat.com/knowledgebase">Red Hat Knowledgebase</a>, or file a support ticket with the Red Hat Support team.
+		</p><section class="section" id="authentication-troubleshooting"><div class="titlepage"><div><div><h2 class="title">6.1. Troubleshooting Red Hat Quay authentication</h2></div></div></div><p>
 				Authentication and authorization is crucial for secure access to Red Hat Quay. Together, they safeguard sensitive container images, verify user identities, enforce access controls, facilitate auditing and accountability, and enable seamless integration with external identity providers. By prioritizing authentication, organizations can bolster the overall security and integrity of their container registry environment.
 			</p><p>
 				The following authentication methods are supported by Red Hat Quay:
@@ -170,28 +294,23 @@
 						<span class="strong strong"><strong>Token-based authentication</strong></span>. Users can obtain unique tokens that grant access to specific resources within Red Hat Quay. Tokens can be obtained through various means, such as OAuth or by generating API tokens within the Red Hat Quay user interface. Token-based authentication is often used for automated or programmatic access to the registry.
 					</li><li class="listitem">
 						<span class="strong strong"><strong>External identity provider</strong></span>. Red Hat Quay can integrate with external identity providers, such as LDAP or AzureAD, for authentication purposes. This integration allows organizations to use their existing identity management infrastructure, enabling centralized user authentication and reducing the need for separate user databases.
-					</li></ul></div><section class="section" id="authentication-troubleshooting-issues"><div class="titlepage"><div><div><h3 class="title">4.1.1. Troubleshooting Red Hat Quay authentication and authorization issues</h3></div></div></div><p>
-					Use the following procedure to troubleshoot authentication and authorization issues.
-				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
-							Run your Red Hat Quay deployment in debug mode. For more information, see "Running Red Hat Quay in debug mode".
-						</li><li class="listitem"><p class="simpara">
-							Examine the authentication provider logs.
-						</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
-									If you are using the Red Hat Quay Operator, enter the following command:
-								</p><pre class="programlisting language-terminal">$ oc logs &lt;quay_pod_name&gt; &amp;&gt; quay.logs</pre></li><li class="listitem"><p class="simpara">
-									If you are on a standalone Red Hat Quay deployment, enter the following command:
-								</p><pre class="programlisting language-terminal">$ podman logs &lt;quay_container&gt; &amp;&gt; quay.logs</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
-										
-<pre class="programlisting language-terminal">...
-gunicorn-web stdout | 2023-01-20 15:41:52,071 [205] [DEBUG] [app] Starting request: urn:request:0d88de25-03b0-4cf9-b8bc-87f1ac099429 (/oauth2/azure/callback) {'X-Forwarded-For': '174.91.79.124'}
-...</pre>
-									</p></div></li></ol></div></li><li class="listitem"><p class="simpara">
-							Review the external authentication configuration from your Red Hat Quay <code class="literal">config.yaml</code> file.
+					</li></ul></div><section class="section" id="authentication-troubleshooting-issues"><div class="titlepage"><div><div><h3 class="title">6.1.1. Troubleshooting Red Hat Quay authentication and authorization issues</h3></div></div></div><p>
+					Use the following procedure to troubleshoot authentication and authorization issues for specific users.
+				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Exec into the Red Hat Quay pod or container.
 						</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
 									If you are using the Red Hat Quay Operator, enter the following command to exec in the <code class="literal">Quay</code> pod:
-								</p><pre class="programlisting language-terminal">$ oc exec -it &lt;quay_pod_name&gt; -- cat /conf/stack/config.yaml</pre></li><li class="listitem"><p class="simpara">
+								</p><pre class="programlisting language-terminal">$ oc exec -it &lt;quay_pod_name&gt; /bin/bash</pre></li><li class="listitem"><p class="simpara">
 									If you are on a standalone Red Hat Quay deployment, enter the following command to exec into the <code class="literal">Quay</code> container:
-								</p><pre class="programlisting language-terminal">$ podman exec -it &lt;quay_container&gt; cat /conf/stack/config.yaml</pre></li></ol></div></li><li class="listitem"><p class="simpara">
+								</p><pre class="programlisting language-terminal">$ podman exec -it &lt;quay_container&gt; /bin/bash</pre></li></ol></div></li><li class="listitem"><p class="simpara">
+							Enter the PostgreSQL shell.
+						</p><div class="admonition warning"><div class="admonition_header">Warning</div><div><p>
+								Interacting with the PostgreSQL database is potentially destructive. It is highly recommended that you perform the following procedure with the help of a Red Hat Quay Support Specialist.
+							</p></div></div><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
+									If you are using the Red Hat Quay Operator, enter the following command to enter the PostgreSQL shell:
+								</p><pre class="programlisting language-terminal">$ oc rsh &lt;quay_pod_name&gt; psql -U your_username -d your_database_name</pre></li><li class="listitem"><p class="simpara">
+									If you are on a standalone Red Hat Quay deployment, enter the following command to enter the PostgreSQL shell:
+								</p><pre class="programlisting language-terminal">bash-4.4$ psql -U your_username -d your_database_name</pre></li></ol></div></li><li class="listitem"><p class="simpara">
 							Enter the following command to show all users for external authentication:
 						</p><pre class="programlisting language-terminal">quay=# select * from federatedlogin;</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
 								
@@ -214,9 +333,7 @@ testuser0 | testuser0@outlook.com
 testuser1  | testuser1@gmail.com
 testuser2  | testuser2@redhat.com
 (3 rows)</pre>
-							</p></div></li></ol></div><div class="_additional-resources _additional-resources"><p class="title"><strong>Additional resources</strong></p><p>
-						For more information, see <a class="link" href="https://access.redhat.com/articles/7018074">Troubleshooting Quay authentication</a>.
-					</p></div></section></section><section class="section" id="database-troubleshooting"><div class="titlepage"><div><div><h2 class="title">4.2. Troubleshooting the Red Hat Quay database</h2></div></div></div><p>
+							</p></div></li></ol></div></section></section><section class="section" id="database-troubleshooting"><div class="titlepage"><div><div><h2 class="title">6.2. Troubleshooting the Red Hat Quay database</h2></div></div></div><p>
 				The PostgreSQL database used for Red Hat Quay store various types of information related to container images and their management. Some of the key pieces of information that the PostgreSQL database stores includes:
 			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 						<span class="strong strong"><strong>Image Metadata</strong></span>. The database stores metadata associated with container images, such as image names, versions, creation timestamps, and the user or organization that owns the image. This information allows for easy identification and organization of container images within the registry.
@@ -246,28 +363,12 @@ testuser2  | testuser2@redhat.com
 						<span class="strong strong"><strong>Checking resource allocation</strong></span>: Monitor resource allocation for the Red Hat Quay deployment, including disk usage and other resource usage.
 					</li><li class="listitem">
 						<span class="strong strong"><strong>Interacting with the Red Hat Quay database</strong></span>: Learn how to interact with the PostgreSQL database, including commands to access and query databases.
-					</li></ul></div><section class="section" id="database-troubleshooting-issues"><div class="titlepage"><div><div><h3 class="title">4.2.1. Troubleshooting Red Hat Quay database issues</h3></div></div></div><p>
+					</li></ul></div><section class="section" id="database-troubleshooting-issues"><div class="titlepage"><div><div><h3 class="title">6.2.1. Troubleshooting Red Hat Quay database issues</h3></div></div></div><p>
 					Use the following procedures to troubleshoot the PostgreSQL database.
-				</p><section class="section" id="checking-deployment-type"><div class="titlepage"><div><div><h4 class="title">4.2.1.1. Checking the type of deployment</h4></div></div></div><p>
-						Check whether your database is deployed as a container on a virtual machine, or deployed on OpenShift Container Platform as a pod.
-					</p></section><section class="section" id="checking-container-pod-status"><div class="titlepage"><div><div><h4 class="title">4.2.1.2. Checking the container or pod status</h4></div></div></div><p>
-						Use the following procedure to check the status of the database pod or container.
+				</p><section class="section" id="troubleshooting-crashloop-backoff-state"><div class="titlepage"><div><div><h4 class="title">6.2.1.1. Troubleshooting crashloopbackoff states</h4></div></div></div><p>
+						Use the following procedure to troueblshoot <code class="literal">crashloopbackoff</code> states.
 					</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
-								Enter the following command to check the status of the pod or container.
-							</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
-										If you are using the Red Hat Quay Operator on OpenShift Container Platform, enter the following command:
-									</p><pre class="programlisting language-terminal">$ oc get pods</pre></li><li class="listitem"><p class="simpara">
-										If you are using a standalone deployment of Red Hat Quay, enter the following command:
-									</p><pre class="programlisting language-terminal">$ podman ps -a</pre></li></ol></div></li></ol></div></section><section class="section" id="examining-container-pod-logs"><div class="titlepage"><div><div><h4 class="title">4.2.1.3. Examining the database container or pod logs</h4></div></div></div><p>
-						Use the following procedure to check the status of the database pod or container.
-					</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
-								Enter the following command to examine the database logs. Note that the Red Hat Quay does not have verbose logs, so all commands must be entered.
-							</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
-										If you are using the Red Hat Quay Operator on OpenShift Container Platform, enter the following commands:
-									</p><pre class="programlisting language-terminal">$ oc logs pod-name --previous</pre><pre class="programlisting language-terminal">$ oc logs pod-name --previous -c &lt;container_name&gt;</pre><pre class="programlisting language-terminal">$ oc cp pod-name:/var/lib/pgsql/data/userdata/log/* /path/to/desired_directory_on_host</pre></li><li class="listitem"><p class="simpara">
-										If you are using a standalone deployment of Red Hat Quay, enter the following commands:
-									</p><pre class="programlisting language-terminal">$ podman logs &lt;container_name&gt; --previous</pre><pre class="programlisting language-terminal">$ podman logs &lt;container_name&gt; --previous -c &lt;container_name&gt;</pre><pre class="programlisting language-terminal">$ podman cp &lt;database_container&gt;:/var/lib/pgsql/data/userdata/log/* /path/to/desired_directory_on_host</pre></li></ol></div></li><li class="listitem"><p class="simpara">
-								Optional. If your container or pod is in a <code class="literal">crashloopbackoff</code> state, you can enter the following commands.
+								If your container or pod is in a <code class="literal">crashloopbackoff</code> state, you can enter the following commands.
 							</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
 										Enter the following command to scale down the Red Hat Quay Operator:
 									</p><pre class="programlisting language-terminal">$ oc scale deployment/quay-operator.v3.8.z  --replicas=0 deployment.apps/quay-operator.v3.8.z scale</pre></li><li class="listitem"><p class="simpara">
@@ -275,7 +376,9 @@ testuser2  | testuser2@redhat.com
 									</p><pre class="programlisting language-terminal">$ oc scale deployment/&lt;quay_database&gt; --replicas=0
 deployment.apps/&lt;quay_database&gt; scaled</pre></li><li class="listitem"><p class="simpara">
 										Enter the following command to edit the Red Hat Quay database:
-									</p><pre class="programlisting language-terminal">$ oc edit deployment &lt;quay_database&gt;</pre><pre class="programlisting language-yaml">...
+									</p><div class="admonition warning"><div class="admonition_header">Warning</div><div><p>
+											Interacting with the PostgreSQL database is potentially destructive. It is highly recommended that you perform the following procedure with the help of a Red Hat Quay Support Specialist.
+										</p></div></div><pre class="programlisting language-terminal">$ oc edit deployment &lt;quay_database&gt;</pre><pre class="programlisting language-yaml">...
  template:
    metadata:
      creationTimestamp: null
@@ -306,7 +409,7 @@ deployment.apps/&lt;quay_database&gt; scaled</pre></li><li class="listitem"><p c
 <pre class="programlisting language-terminal">deployment.apps/&lt;quay_database&gt; edited</pre>
 										</p></div></li><li class="listitem"><p class="simpara">
 										Execute the following command inside of your <code class="literal">&lt;quay_database&gt;</code>:
-									</p><pre class="programlisting language-terminal">$ oc exec -it &lt;quay_database&gt; -- cat /var/lib/pgsql/data/userdata/postgresql/logs/* /path/to/desired_directory_on_host</pre></li></ol></div></li></ol></div></section><section class="section" id="connectivity-networking"><div class="titlepage"><div><div><h4 class="title">4.2.1.4. Checking the connectivity between Red Hat Quay and the database pod</h4></div></div></div><p>
+									</p><pre class="programlisting language-terminal">$ oc exec -it &lt;quay_database&gt; -- cat /var/lib/pgsql/data/userdata/postgresql/logs/* /path/to/desired_directory_on_host</pre></li></ol></div></li></ol></div></section><section class="section" id="connectivity-networking"><div class="titlepage"><div><div><h4 class="title">6.2.1.2. Checking the connectivity between Red Hat Quay and the database pod</h4></div></div></div><p>
 						Use the following procedure to check the connectivity between Red Hat Quay and the database pod
 					</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
 								Check the connectivity between Red Hat Quay and the database pod.
@@ -314,37 +417,11 @@ deployment.apps/&lt;quay_database&gt; scaled</pre></li><li class="listitem"><p c
 										If you are using the Red Hat Quay Operator on OpenShift Container Platform, enter the following command:
 									</p><pre class="programlisting language-terminal">$ oc exec -it _quay_pod_name_ -- curl -v telnet://&lt;database_pod_name&gt;:5432</pre></li><li class="listitem"><p class="simpara">
 										If you are using a standalone deployment of Red Hat Quay, enter the following command:
-									</p><pre class="programlisting language-terminal">$ podman exec -it &lt;quay_container_name &gt;curl -v telnet://&lt;database_container_name&gt;:5432</pre></li></ol></div></li></ol></div></section><section class="section" id="check-database-configuration"><div class="titlepage"><div><div><h4 class="title">4.2.1.5. Checking the database configuration</h4></div></div></div><p>
-						Use the following procedure to check the database configuration
-					</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
-								Check the database configuration.
-							</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
-										On OpenShift Container Platform and at the container level.
-									</p><div class="orderedlist"><ol class="orderedlist" type="i"><li class="listitem"><p class="simpara">
-												If you are using the Red Hat Quay Operator on OpenShift Container Platform, enter the following command:
-											</p><pre class="programlisting language-terminal">$ oc exec -it &lt;quay_pod_name&gt; -- cat /conf/stack/config.yaml</pre></li><li class="listitem"><p class="simpara">
-												If you are using a standalone deployment of Red Hat Quay, enter the following command:
-											</p><pre class="programlisting language-terminal">$ podman exec -it &lt;quay_pod-name&gt; cat /conf/stack/config.yaml</pre></li></ol></div></li><li class="listitem"><p class="simpara">
-										On the PostgreSQL level.
-									</p><div class="orderedlist"><ol class="orderedlist" type="i"><li class="listitem"><p class="simpara">
-												If you are using the Red Hat Quay Operator on OpenShift Container Platform, enter the following command:
-											</p><pre class="programlisting language-terminal">$ oc exec -it &lt;database_pod&gt; -- cat /var/lib/pgsql/data/userdata/postgresql.conf</pre></li><li class="listitem"><p class="simpara">
-												If you are using a standalone deployment of Red Hat Quay, enter the following command:
-											</p><pre class="programlisting language-terminal">$ podman exec -it &lt;database_container&gt; cat /var/lib/pgsql/data/userdata/postgresql.conf</pre></li></ol></div></li><li class="listitem"><p class="simpara">
-										If your container or pod is in a <code class="literal">crashloopbackoff</code> or <code class="literal">error</code> state.
-									</p><div class="orderedlist"><ol class="orderedlist" type="i"><li class="listitem"><p class="simpara">
-												If you are using the Red Hat Quay Operator on OpenShift Container Platform, enter the following command:
-											</p><pre class="programlisting language-terminal">$ oc get secret -n &lt;quay_project&gt; &lt;quay_config_secret&gt; -o "jsonpath={$.data['config\.yaml']}" | base64 -d  &amp;&gt; quay-config.yaml</pre></li><li class="listitem"><p class="simpara">
-												If you are using a standalone deployment of Red Hat Quay, enter the following command:
-											</p><pre class="programlisting language-terminal">$ cat $QUAY/conf/config.yaml</pre></li></ol></div></li></ol></div></li></ol></div></section><section class="section" id="check-resource-allocation"><div class="titlepage"><div><div><h4 class="title">4.2.1.6. Checking resource allocation</h4></div></div></div><p>
+									</p><pre class="programlisting language-terminal">$ podman exec -it &lt;quay_container_name &gt;curl -v telnet://&lt;database_container_name&gt;:5432</pre></li></ol></div></li></ol></div></section><section class="section" id="check-resource-allocation"><div class="titlepage"><div><div><h4 class="title">6.2.1.3. Checking resource allocation</h4></div></div></div><p>
 						Use the following procedure to check resource allocation.
-					</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+					</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
 								Obtain a list of running containers.
-							</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
-										If you are using the Red Hat Quay Operator on OpenShift Container Platform, enter the following command:
-									</p><pre class="programlisting language-terminal">$ oc get pods</pre></li><li class="listitem"><p class="simpara">
-										If you are using a standalone deployment of Red Hat Quay, enter the following command:
-									</p><pre class="programlisting language-terminal">$ podman ps</pre></li></ol></div></li><li class="listitem"><p class="simpara">
+							</li><li class="listitem"><p class="simpara">
 								Monitor disk usage of your Red Hat Quay deployment.
 							</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
 										If you are using the Red Hat Quay Operator on OpenShift Container Platform, enter the following command:
@@ -353,11 +430,13 @@ deployment.apps/&lt;quay_database&gt; scaled</pre></li><li class="listitem"><p c
 									</p><pre class="programlisting language-terminal">$ podman exec -it &lt;quay_database_conatiner_name&gt; df -ah</pre></li></ol></div></li><li class="listitem"><p class="simpara">
 								Monitor other resource usage.
 							</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
-										Enter the following command to check the status of a specific pod:
+										Enter the following command to check resource allocation on a Red Hat Quay Operator deployment:
+									</p><pre class="programlisting language-terminal">$ oc adm top pods</pre></li><li class="listitem"><p class="simpara">
+										Enter the following command to check the status of a specific pod on a standalone deployment of Red Hat Quay:
 									</p><pre class="programlisting language-terminal">$ podman pod stats &lt;pod_name&gt;</pre></li><li class="listitem"><p class="simpara">
-										Enter the following command to check the status of a specific container:
+										Enter the following command to check the status of a specific container on a standalone deployment of Red Hat Quay:
 									</p><pre class="programlisting language-terminal">$ podman stats &lt;container_name&gt;</pre><p class="simpara">
-										The following information is returned from other command:
+										The following information is returned:
 									</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 												<span class="strong strong"><strong>CPU %</strong></span>. The percentage of CPU usage by the container since the last measurement. This value represents the container’s share of the available CPU resources.
 											</li><li class="listitem">
@@ -368,21 +447,21 @@ deployment.apps/&lt;quay_database&gt; scaled</pre></li><li class="listitem"><p c
 												<span class="strong strong"><strong>NET I/O</strong></span>. The network I/O (input/output) statistics of the container. It displays the amount of data transmitted and received by the container over the network. The values are displayed in the format: <code class="literal">transmitted_bytes / received_bytes</code>.
 											</li><li class="listitem">
 												<span class="strong strong"><strong>BLOCK I/O</strong></span>. The block I/O (input/output) statistics of the container. It represents the amount of data read from and written to the block devices (for example, disks) used by the container. The values are displayed in the format <code class="literal">read_bytes / written_bytes</code>.
-											</li></ul></div></li></ol></div></li></ol></div></section><section class="section" id="interact-with-database"><div class="titlepage"><div><div><h4 class="title">4.2.1.7. Interacting with the Red Hat Quay database</h4></div></div></div><p>
+											</li></ul></div></li></ol></div></li></ol></div></section><section class="section" id="interact-with-database"><div class="titlepage"><div><div><h4 class="title">6.2.1.4. Interacting with the Red Hat Quay database</h4></div></div></div><p>
 						Use the following procedure to interact with the PostgreSQL database.
-					</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+					</p><div class="admonition warning"><div class="admonition_header">Warning</div><div><p>
+							Interacting with the PostgreSQL database is potentially destructive. It is highly recommended that you perform the following procedure with the help of a Red Hat Quay Support Specialist.
+						</p></div></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
 								Exec into the Red Hat Quay database.
 							</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
 										Enter the following commands to exec into the Red Hat Quay database pod on OpenShift Container Platform:
 									</p><pre class="programlisting language-terminal">$ oc exec -it &lt;quay_database_pod&gt; -- psql</pre></li><li class="listitem"><p class="simpara">
 										Enter the following command to exec into the Red Hat Quay database on a standalone deployment:
-									</p><pre class="programlisting language-terminal">$ podman stats &lt;container_name&gt;</pre></li></ol></div></li><li class="listitem"><p class="simpara">
+									</p><pre class="programlisting language-terminal">$ sudo podman exec -it &lt;quay_container_name&gt; /bin/bash</pre></li></ol></div></li><li class="listitem"><p class="simpara">
 								Enter the following command to reveal a list of all databases stored, along with their respective sizes:
 							</p><pre class="programlisting language-terminal">postgres=# \l+</pre></li><li class="listitem"><p class="simpara">
 								Enter the following command to connect to the PostgreSQL database:
-							</p><pre class="programlisting language-terminal">postgres=# \c &lt;quay_database_name&gt;;</pre></li></ol></div><div class="_additional-resources _additional-resources"><p class="title"><strong>Additional resources</strong></p><p>
-							For more information, see <a class="link" href="https://access.redhat.com/articles/7018075">Troubleshooting Quay Database</a>.
-						</p></div></section></section><section class="section" id="troubleshooting-forgotten-passwords"><div class="titlepage"><div><div><h3 class="title">4.2.2. Resetting superuser passwords on Red Hat Quay standalone deployments</h3></div></div></div><p>
+							</p><pre class="programlisting language-terminal">postgres=# \c &lt;quay_database_name&gt;;</pre></li></ol></div></section></section><section class="section" id="troubleshooting-forgotten-passwords"><div class="titlepage"><div><div><h3 class="title">6.2.2. Resetting superuser passwords on Red Hat Quay standalone deployments</h3></div></div></div><p>
 					Use the following procedure to reset a superuser’s password.
 				</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
 							You have created a Red Hat Quay superuser.
@@ -430,7 +509,7 @@ deployment.apps/&lt;quay_database&gt; scaled</pre></li><li class="listitem"><p c
 <pre class="programlisting language-terminal">Login Succeeded!</pre>
 							</p></div></li></ol></div><div class="_additional-resources _additional-resources"><p class="title"><strong>Additional resources</strong></p><p>
 						For more information, see <a class="link" href="https://access.redhat.com/solutions/6964805">Resetting Superuser Password for Quay</a>.
-					</p></div></section><section class="section" id="resetting-superuser-password-on-operator"><div class="titlepage"><div><div><h3 class="title">4.2.3. Resetting superuser passwords on the Red Hat Quay Operator</h3></div></div></div><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+					</p></div></section><section class="section" id="resetting-superuser-password-on-operator"><div class="titlepage"><div><div><h3 class="title">6.2.3. Resetting superuser passwords on the Red Hat Quay Operator</h3></div></div></div><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
 							You have created a Red Hat Quay superuser.
 						</li><li class="listitem">
 							You have installed Python 3.9.
@@ -472,109 +551,33 @@ deployment.apps/&lt;quay_database&gt; scaled</pre></li><li class="listitem"><p c
 							Navigate to your Red Hat Quay UI on OpenShift Container Platform and log in using the new credentials.
 						</li></ol></div><div class="_additional-resources _additional-resources"><p class="title"><strong>Additional resources</strong></p><p>
 						For more information, see <a class="link" href="https://access.redhat.com/solutions/6964805">Resetting Superuser Password for Quay</a>.
-					</p></div></section></section><section class="section" id="storage-troubleshooting"><div class="titlepage"><div><div><h2 class="title">4.3. Troubleshooting Red Hat Quay object storage</h2></div></div></div><p>
+					</p></div></section></section><section class="section" id="storage-troubleshooting"><div class="titlepage"><div><div><h2 class="title">6.3. Troubleshooting Red Hat Quay object storage</h2></div></div></div><p>
 				Object storage is a type of data storage architecture that manages data as discrete units called <code class="literal">objects</code>. Unlike traditional file systems that organize data into hierarchical directories and files, object storage treats data as independent entities with unique identifiers. Each object contains the data itself, along with metadata that describes the object and enables efficient retrieval.
 			</p><p>
 				Red Hat Quay uses object storage as the underlying storage mechanism for storing and managing container images. It stores container images as individual objects. Each container image is treated as an object, with its own unique identifier and associated metadata.
-			</p><section class="section" id="storage-troubleshooting-issues"><div class="titlepage"><div><div><h3 class="title">4.3.1. Troubleshooting Red Hat Quay object storage issues</h3></div></div></div><p>
-					Use the following procedure to troubleshoot Red Hat Quay object storage issues
-				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+			</p><section class="section" id="storage-troubleshooting-issues"><div class="titlepage"><div><div><h3 class="title">6.3.1. Troubleshooting Red Hat Quay object storage issues</h3></div></div></div><p>
+					Use the following options to troubleshoot Red Hat Quay object storage issues.
+				</p><div class="itemizedlist"><p class="title"><strong>Procedure</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
 							Enter the following command to see what object storage is used:
-						</p><pre class="programlisting language-terminal">$ oc get quayregistry &lt;quay_registry_name&gt; -o yaml</pre></li><li class="listitem">
+						</p><pre class="programlisting language-terminal">$ oc get quayregistry quay-registry-name -o yaml</pre></li><li class="listitem">
 							Ensure that the object storage you are using is officially supported by Red Hat Quay by checking the <a class="link" href="https://access.redhat.com/articles/4067991">tested integrations</a> page.
 						</li><li class="listitem">
 							Enable debug mode. For more information, see "Running Red Hat Quay in debug mode".
-						</li><li class="listitem"><p class="simpara">
-							Examine storage-related logs in your container or pod to reveal relevant error messages or warning related to object storage.
-						</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
-									If you are running Red Hat Quay on OpenShift Container Platform, enter the following command:
-								</p><pre class="programlisting language-terminal">$ oc logs &lt;quay_pod_name&gt; &amp;&gt; quay.logs</pre></li><li class="listitem"><p class="simpara">
-									If you are running a standalone deployment of Red Hat Quay, enter the following command:
-								</p><pre class="programlisting language-terminal">$ podman logs quay-container &amp;&gt; quay.logs</pre></li></ol></div></li><li class="listitem"><p class="simpara">
+						</li><li class="listitem">
 							Check your object storage configuration in your <code class="literal">config.yaml</code> file. Ensure that it is accurate and matches the settings provided by your object storage provider. You can check information like access credentials, endpoint URLs, bucket and container names, and other relevant configuration parameters.
-						</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
-									If you are running Red Hat Quay on OpenShift Container Platform, enter the following command:
-								</p><pre class="programlisting language-terminal">$ oc exec -it quay-pod-name -- cat /conf/stack/config.yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
-										
-<pre class="programlisting language-yaml">DISTRIBUTED_STORAGE_CONFIG:
-local_us:
-- RHOCSStorage
-- access_key: redacted
-  bucket_name: lht-quay-datastore-68fff7b8-1b5e-46aa-8110-c4b7ead781f5
-  hostname: s3.openshift-storage.svc.cluster.local
-  is_secure: true
-  port: 443
-  secret_key: redacted
-  storage_path: /datastorage/registry
-DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS:
-- local_us
-DISTRIBUTED_STORAGE_PREFERENCE:
-- local_us</pre>
-									</p></div></li><li class="listitem"><p class="simpara">
-									If you are running a standalone deployment of Red Hat Quay, enter the following command:
-								</p><pre class="programlisting language-terminal">$ podman exec -it quay-container cat /conf/stack/config.yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
-										
-<pre class="programlisting language-yaml">DISTRIBUTED_STORAGE_CONFIG:
-local_us:
-- RHOCSStorage
-- access_key: redacted
-  bucket_name: lht-quay-datastore-68fff7b8-1b5e-46aa-8110-c4b7ead781f5
-  hostname: s3.openshift-storage.svc.cluster.local
-  is_secure: true
-  port: 443
-  secret_key: redacted
-  storage_path: /datastorage/registry
-DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS:
-- local_us
-DISTRIBUTED_STORAGE_PREFERENCE:
-- local_us</pre>
-									</p></div></li></ol></div></li><li class="listitem"><p class="simpara">
+						</li><li class="listitem">
 							Ensure that Red Hat Quay has network connectivity to the object storage endpoint. Check the network configurations to ensure that there are no restrictions blocking the communication between Red Hat Quay and the object storage endpoint.
-						</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
-									Enter the following <code class="literal">curl</code> command from inside of your <code class="literal">Quay</code> container or pod to check the connection to the s3 endpoint:
-								</p><pre class="programlisting language-terminal">$ curl -kv http://s3.hostname.com:port</pre></li><li class="listitem"><p class="simpara">
-									Enter the following command to perform health checks from inside of the <code class="literal">Quay</code> pod or container:
-								</p><pre class="programlisting language-terminal">$ curl http://localhost:8080/health/instance</pre><pre class="programlisting language-terminal">$ curl http://localhost:8080/health/endtoend</pre></li><li class="listitem"><p class="simpara">
-									Optional. If <code class="literal">FEATURE_STORAGE_PROXY</code> is enabled, check to see if its download URL is accessible. This can be found in the Red Hat Quay debug logs. For example:
-								</p><pre class="programlisting language-terminal">$ curl -vvv "https://QUAY_HOSTNAME/_storage_proxy/dhaWZKRjlyO......Kuhc=/https/quay.hostname.com/quay-test/datastorage/registry/sha256/0e/0e1d17a1687fa270ba4f52a85c0f0e7958e13d3ded5123c3851a8031a9e55681?AWSAccessKeyId=xxxx&amp;Signature=xxxxxx4%3D&amp;Expires=1676066703"</pre></li></ol></div></li><li class="listitem">
+						</li><li class="listitem"><p class="simpara">
+							If <code class="literal">FEATURE_STORAGE_PROXY</code> is enabled in your <code class="literal">config.yaml</code> file, check to see if its download URL is accessible. This can be found in the Red Hat Quay debug logs. For example:
+						</p><pre class="programlisting language-terminal">$ curl -vvv "https://QUAY_HOSTNAME/_storage_proxy/dhaWZKRjlyO......Kuhc=/https/quay.hostname.com/quay-test/datastorage/registry/sha256/0e/0e1d17a1687fa270ba4f52a85c0f0e7958e13d3ded5123c3851a8031a9e55681?AWSAccessKeyId=xxxx&amp;Signature=xxxxxx4%3D&amp;Expires=1676066703"</pre></li><li class="listitem">
 							Try access the object storage service outside of Red Hat Quay to determine if the issue is specific to your deployment, or the underlying object storage. You can use command line tools like <code class="literal">aws</code>, <code class="literal">gsutil</code>, or <code class="literal">s3cmd</code> provided by the object storage provider to perform basic operations like listing buckets, containers, or uploading and downloading objects. This might help you isolate the problem.
-						</li></ol></div><div class="_additional-resources _additional-resources"><p class="title"><strong>Additional resources</strong></p><p>
-						For more information, see <a class="link" href="https://access.redhat.com/articles/7018076">Troubleshooting Quay Storage</a>.
-					</p></div></section></section><section class="section" id="georepl-intro"><div class="titlepage"><div><div><h2 class="title">4.4. Geo-replication</h2></div></div></div><p>
+						</li></ul></div></section></section><section class="section" id="georepl-intro"><div class="titlepage"><div><div><h2 class="title">6.4. Geo-replication</h2></div></div></div><p>
 				Geo-replication allows multiple, geographically distributed Red Hat Quay deployments to work as a single registry from the perspective of a client or user. It significantly improves push and pull performance in a globally-distributed Red Hat Quay setup. Image data is asynchronously replicated in the background with transparent failover and redirect for clients.
 			</p><p>
 				Deployments of Red Hat Quay with geo-replication is supported on standalone and Operator deployments.
-			</p><section class="section" id="arch-georpl-features"><div class="titlepage"><div><div><h3 class="title">4.4.1. Geo-replication features</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-							When geo-replication is configured, container image pushes will be written to the preferred storage engine for that Red Hat Quay instance. This is typically the nearest storage backend within the region.
-						</li><li class="listitem">
-							After the initial push, image data will be replicated in the background to other storage engines.
-						</li><li class="listitem">
-							The list of replication locations is configurable and those can be different storage backends.
-						</li><li class="listitem">
-							An image pull will always use the closest available storage engine, to maximize pull performance.
-						</li><li class="listitem">
-							If replication has not been completed yet, the pull will use the source storage backend instead.
-						</li></ul></div></section><section class="section" id="geo-repl-troubleshooting-issues"><div class="titlepage"><div><div><h3 class="title">4.4.2. Troubleshooting geo-replication for Red Hat Quay</h3></div></div></div><p>
+			</p><section class="section" id="geo-repl-troubleshooting-issues"><div class="titlepage"><div><div><h3 class="title">6.4.1. Troubleshooting geo-replication for Red Hat Quay</h3></div></div></div><p>
 					Use the following sections to troubleshoot geo-replication for Red Hat Quay.
-				</p><section class="section" id="check-debug-logs-geo-repl"><div class="titlepage"><div><div><h4 class="title">4.4.2.1. Checking debug logs for geo-replication deployments</h4></div></div></div><p>
-						Use the following procedure to check the debug logs for your geo-replication deployment.
-					</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
-								Look for any relevant error messages or warnings related to storage replication.
-							</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
-										If you are using the Red Hat Quay Operator, enter the following command:
-									</p><pre class="programlisting language-terminal">$ oc logs quay-pod</pre></li><li class="listitem"><p class="simpara">
-										If you are using a standalone deployment of Red Hat Quay, enter the following command:
-									</p><pre class="programlisting language-terminal">$ podman logs quay-container</pre></li></ol></div></li></ol></div></section><section class="section" id="check-geo-repl-config"><div class="titlepage"><div><div><h4 class="title">4.4.2.2. Checking the geo-replication configuration</h4></div></div></div><p>
-						Use the following procedure to check your geo-replication configuration in your Red Hat Quay <code class="literal">config.yaml</code> file.
-					</p><div class="admonition important"><div class="admonition_header">Important</div><div><p>
-							The same configuration must be used across all regions.
-						</p></div></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
-								Check your geo-replication configuration.
-							</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
-										If you are using the Red Hat Quay Operator, enter the following command:
-									</p><pre class="programlisting language-terminal">$ oc exec -it quay-pod -- cat /conf/stack/config.yaml</pre></li><li class="listitem"><p class="simpara">
-										If you are using a standalone deployment of Red Hat Quay, enter the following command:
-									</p><pre class="programlisting language-terminal">$ podman exec -it quay-container cat /conf/stack/config.yaml</pre></li></ol></div></li></ol></div></section><section class="section" id="check-data-replication"><div class="titlepage"><div><div><h4 class="title">4.4.2.3. Checking data replication in backend buckets</h4></div></div></div><p>
+				</p><section class="section" id="check-data-replication"><div class="titlepage"><div><div><h4 class="title">6.4.1.1. Checking data replication in backend buckets</h4></div></div></div><p>
 						Use the following procedure to ensure that your data is properly replicated in all backend buckets.
 					</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
 								You have installed the <code class="literal">aws</code> CLI.
@@ -584,7 +587,7 @@ DISTRIBUTED_STORAGE_PREFERENCE:
 									
 <pre class="programlisting language-terminal">Total Objects: 17996
 Total Size: 514.4 GiB</pre>
-								</p></div></li></ol></div></section><section class="section" id="check-backend-storage-running"><div class="titlepage"><div><div><h4 class="title">4.4.2.4. Checking the status of your backend storage</h4></div></div></div><p>
+								</p></div></li></ol></div></section><section class="section" id="check-backend-storage-running"><div class="titlepage"><div><div><h4 class="title">6.4.1.2. Checking the status of your backend storage</h4></div></div></div><p>
 						Use the following resources to check the status of your backend storage.
 					</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
 								<span class="strong strong"><strong>Amazon Web Service Storage (AWS)</strong></span>. Check the AWS S3 service health status on the <a class="link" href="https://health.aws.amazon.com/health/status">AWS Service Health Dashboard</a>. Validate your access to S3 by listing objects in a known bucket using the <code class="literal">aws</code> CLI or SDKs.
@@ -602,9 +605,7 @@ Total Size: 514.4 GiB</pre>
 								<span class="strong strong"><strong>OpenStack Swift</strong></span>. Check the <a class="link" href="https://www.ibm.com/docs/ro/cmwo/4.3.0.0?topic=services-checking-status">OpenStack Status</a> page to verify the status of the OpenStack Swift service. Ensure that the Swift services, like the proxy server, container servers, object servers, are running and accessible. Validate your access to Swift by listing containers or objects using the appropriate Swift CLI or SDK.
 							</li></ul></div><p>
 						After checking the status of your backend storage, ensure that all Red Hat Quay instances have access to all s3 storage backends.
-					</p><div class="_additional-resources _additional-resources"><p class="title"><strong>Additional resources</strong></p><p>
-							For more information, see <a class="link" href="https://access.redhat.com/articles/7018080">Troubleshooting Quay Geo-Replication</a>.
-						</p></div></section></section></section><section class="section" id="arch-mirroring-intro"><div class="titlepage"><div><div><h2 class="title">4.5. Repository mirroring</h2></div></div></div><p>
+					</p></section></section></section><section class="section" id="arch-mirroring-intro"><div class="titlepage"><div><div><h2 class="title">6.5. Repository mirroring</h2></div></div></div><p>
 				Red Hat Quay repository mirroring lets you mirror images from external container registries, or another local registry, into your Red Hat Quay cluster. Using repository mirroring, you can synchronize images to Red Hat Quay based on repository names and tags.
 			</p><p>
 				From your Red Hat Quay cluster with repository mirroring enabled, you can perform the following:
@@ -628,27 +629,9 @@ Total Size: 514.4 GiB</pre>
 						Create mirrored repositories
 					</li></ul></div><p>
 				All repository mirroring configurations can be performed using the configuration tool UI or by the Red Hat Quay API.
-			</p><section class="section" id="repo-mirroring-troubleshooting-issues"><div class="titlepage"><div><div><h3 class="title">4.5.1. Troubleshooting repository mirroring</h3></div></div></div><p>
+			</p><section class="section" id="repo-mirroring-troubleshooting-issues"><div class="titlepage"><div><div><h3 class="title">6.5.1. Troubleshooting repository mirroring</h3></div></div></div><p>
 					Use the following sections to troubleshoot repository mirroring for Red Hat Quay.
-				</p><section class="section" id="reviewing-logs-repo-mirroring"><div class="titlepage"><div><div><h4 class="title">4.5.1.1. Reviewing the logs of your mirrored Red Hat Quay instances</h4></div></div></div><p>
-						Use the following procedure to review the logs of your mirrored instances.
-					</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
-								You have enabled debug mode in your Red Hat Quay <code class="literal">config.yaml</code> file.
-							</li></ul></div><div class="itemizedlist"><p class="title"><strong>Procedure</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
-								Retrieve the logs from all running mirror pods.
-							</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
-										If you are using the Red Hat Quay Operator, enter the following command:
-									</p><pre class="programlisting language-terminal">$ oc logs mirror-pod</pre></li><li class="listitem"><p class="simpara">
-										If you are using a standalone deployment of Red Hat Quay, enter the following command:
-									</p><pre class="programlisting language-terminal">$ podman logs repomirror-container</pre></li></ol></div></li></ul></div></section><section class="section" id="checking-mirror-configuration"><div class="titlepage"><div><div><h4 class="title">4.5.1.2. Checking the mirror configuration</h4></div></div></div><p>
-						Use the following procedure to review the mirror configuration settings in your Red Hat Quay instances.
-					</p><div class="itemizedlist"><p class="title"><strong>Procedure</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
-								Review your <code class="literal">config.yaml</code> settings.
-							</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
-										If you are using the Red Hat Quay Operator, enter the following command:
-									</p><pre class="programlisting language-terminal">$ oc exec -it quay-pod -- cat /conf/stack/config.yaml</pre></li><li class="listitem"><p class="simpara">
-										If you are using a standalone deployment of Red Hat Quay, enter the following command:
-									</p><pre class="programlisting language-terminal">$ podman exec -it quay-container cat /conf/stack/config.yaml</pre></li></ol></div></li></ul></div></section><section class="section" id="verifying-authentication-permissions"><div class="titlepage"><div><div><h4 class="title">4.5.1.3. Verifying authentication and permissions</h4></div></div></div><p>
+				</p><section class="section" id="verifying-authentication-permissions"><div class="titlepage"><div><div><h4 class="title">6.5.1.1. Verifying authentication and permissions</h4></div></div></div><p>
 						Ensure that the authentication credentials used for mirroring have the necessary permissions and access rights on both the source and destination Red Hat Quay instances.
 					</p><p>
 						On the Red Hat Quay UI, check the following settings:
@@ -656,116 +639,17 @@ Total Size: 514.4 GiB</pre>
 								The access control settings. Ensure that the user or service account performing the mirroring operation has the required privileges.
 							</li><li class="listitem">
 								The permissions of your robot account on the Red Hat Quay registry.
-							</li></ul></div></section></section></section><section class="section" id="clair-vulnerability-scanner"><div class="titlepage"><div><div><h2 class="title">4.6. Clair for Red Hat Quay</h2></div></div></div><p>
+							</li></ul></div></section></section></section><section class="section" id="clair-vulnerability-scanner"><div class="titlepage"><div><div><h2 class="title">6.6. Clair for Red Hat Quay</h2></div></div></div><p>
 				Clair v4 (Clair) is an open source application that leverages static code analyses for parsing image content and reporting vulnerabilities affecting the content. Clair is packaged with Red Hat Quay and can be used in both standalone and Operator deployments. It can be run in highly scalable configurations, where components can be scaled separately as appropriate for enterprise environments.
-			</p></section><section class="section" id="clair-concepts"><div class="titlepage"><div><div><h2 class="title">4.7. Clair concepts</h2></div></div></div><p>
-				The following sections provide a conceptual overview of how Clair works.
-			</p><section class="section" id="clair-practice"><div class="titlepage"><div><div><h3 class="title">4.7.1. Clair in practice</h3></div></div></div><p>
-					A Clair analysis is broken down into three distinct parts: indexing, matching, and notification.
-				</p><section class="section" id="clair-indexing-concept"><div class="titlepage"><div><div><h4 class="title">4.7.1.1. Indexing</h4></div></div></div><p>
-						Clair’s indexer service is responsible for indexing a manifest. In Clair, manifests are representations of a container image. The indexer service is the component that Clair uses to understand the contents of layers. Clair leverages the fact that Open Container Initiative (OCI) manifests and layers are content addressed to reduce duplicate work.
-					</p><p>
-						Indexing involves taking a manifest representing a container image and computing its constituent parts. The indexer tries to discover what packages exist in the image, what distribution the image is derived from, and what package repositories are used within the image. When this information is computed, it is persisted into an <code class="literal">IndexReport</code>.
-					</p><p>
-						The <code class="literal">IndexReport</code> is stored in Clair’s database. It can be fed to a <code class="literal">matcher</code> node to compute the vulnerability report.
-					</p><section class="section" id="content-addressability"><div class="titlepage"><div><div><h5 class="title">4.7.1.1.1. Content addressability</h5></div></div></div><p>
-							Clair treats all manifests and layers as <span class="emphasis"><em>content addressable</em></span>. In the context of Clair, content addressable means that when a specific manifest is indexed, it is not indexed again unless it is required; this is the same for individual layers.
-						</p><p>
-							For example, consider how many images in a registry might use <code class="literal">ubuntu:artful</code> as a base layer. If the developers prefer basing their images off of Ubuntu, it could be a large majority of images. Treating the layers and manifests as content addressable means that Clair only fetches and analyzes the base layer one time.
-						</p><p>
-							In some cases, Clair should re-index a manifest. For example, when an internal component such as a package scanner is updated, Clair performs the analysis with the new package scanner. Clair has enough information to determine that a component has changed and that the <code class="literal">IndexReport</code> might be different the second time, and as a result it re-indexes the manifest.
-						</p><p>
-							A client can track Clair’s <code class="literal">index_state</code> endpoint to understand when an internal component has changed, and can subsequently issue re-indexes. See the Clair API guide to learn how to view Clair’s API specification.
-						</p></section></section><section class="section" id="clair-matching-concept"><div class="titlepage"><div><div><h4 class="title">4.7.1.2. Matching</h4></div></div></div><p>
-						With Clair, a matcher node is responsible for matching vulnerabilities to a provided <code class="literal">IndexReport</code>.
-					</p><p>
-						Matchers are responsible for keeping the database of vulnerabilities up to date. Matchers will typically run a set of updaters, which periodically probe their data sources for new content. New vulnerabilities are stored in the database when they are discovered.
-					</p><p>
-						The matcher API is designed to be used often. It is designed to always provide the most recent <code class="literal">VulnerabilityReport</code> when queried. The <code class="literal">VulnerabilityReport</code> summarizes both a manifest’s content and any vulnerabilities affecting the content.
-					</p><section class="section" id="remote-matching"><div class="titlepage"><div><div><h5 class="title">4.7.1.2.1. Remote matching</h5></div></div></div><p>
-							A remote matcher acts similar to a matcher, however remote matchers use API calls to fetch vulnerability data for a provided <code class="literal">IndexReport</code>. Remote matchers are useful when it is impossible to persist data from a given source into the database.
-						</p><p>
-							The CRDA remote matcher is responsible for fetching vulnerabilities from Red Hat Code Ready Dependency Analytics (CRDA). By default, this matcher serves 100 requests per minute. The rate limiting can be lifted by requesting a dedicated API key, which is done by submitting <a class="link" href="https://developers.redhat.com/content-gateway/link/3872178">the API key request form</a>.
-						</p><p>
-							To enable CRDA remote matching, see "Enabling CRDA for Clair".
-						</p></section></section><section class="section" id="clair-notifications-concept"><div class="titlepage"><div><div><h4 class="title">4.7.1.3. Notifications</h4></div></div></div><p>
-						Clair uses a notifier service that keeps track of new security database updates and informs users if new or removed vulnerabilities affect an indexed manifest.
-					</p><p>
-						When the notifier becomes aware of new vulnerabilities affecting a previously indexed manifest, it uses the configured methods in your <code class="literal">config.yaml</code> file to issue notifications about the new changes. Returned notifications express the most severe vulnerability discovered because of the change. This avoids creating excessive notifications for the same security database update.
-					</p><p>
-						When a user receives a notification, it issues a new request against the matcher to receive an up to date vulnerability report.
-					</p><p>
-						The notification schema is the JSON marshalled form of the following types:
-					</p><pre class="programlisting language-json">// Reason indicates the catalyst for a notification
-type Reason string
-const (
-    Added   Reason = "added"
-    Removed Reason = "removed"
-    Changed Reason = "changed"
-)
-type Notification struct {
-    ID            uuid.UUID        `json:"id"`
-    Manifest      claircore.Digest `json:"manifest"`
-    Reason        Reason           `json:"reason"`
-    Vulnerability VulnSummary      `json:"vulnerability"`
-}
-type VulnSummary struct {
-    Name           string                  `json:"name"`
-    Description    string                  `json:"description"`
-    Package        *claircore.Package      `json:"package,omitempty"`
-    Distribution   *claircore.Distribution `json:"distribution,omitempty"`
-    Repo           *claircore.Repository   `json:"repo,omitempty"`
-    Severity       string                  `json:"severity"`
-    FixedInVersion string                  `json:"fixed_in_version"`
-    Links          string                  `json:"links"`
-}</pre><p>
-						You can subscribe to notifications through the following mechanics:
-					</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-								Webhook delivery
-							</li><li class="listitem">
-								AMQP delivery
-							</li><li class="listitem">
-								STOMP delivery
-							</li></ul></div><p>
-						Configuring the notifier is done through the Clair YAML configuration file.
-					</p><section class="section" id="webhook-delivery"><div class="titlepage"><div><div><h5 class="title">4.7.1.3.1. Webhook delivery</h5></div></div></div><p>
-							When you configure the notifier for webhook delivery, you provide the service with the following pieces of information:
-						</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-									A target URL where the webhook will fire.
-								</li><li class="listitem">
-									The callback URL where the notifier might be reached, including its API path. For example, <code class="literal"><a class="link" href="http://clair-notifier/notifier/api/v1/notifications">http://clair-notifier/notifier/api/v1/notifications</a></code>.
-								</li></ul></div><p>
-							When the notifier has determined an updated security database has been changed the affected status of an indexed manifest, it delivers the following JSON body to the configured target:
-						</p><pre class="programlisting language-json">{
-  "notification_id": {uuid_string},
-  "callback": {url_to_notifications}
-}</pre><p>
-							On receipt, the server can browse to the URL provided in the callback field.
-						</p></section><section class="section" id="amqp-delivery"><div class="titlepage"><div><div><h5 class="title">4.7.1.3.2. AMQP delivery</h5></div></div></div><p>
-							The Clair notifier also supports delivering notifications to an AMQP broker. With AMQP delivery, you can control whether a callback is delivered to the broker or whether notifications are directly delivered to the queue. This allows the developer of the AMQP consumer to determine the logic of notification processing.
-						</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
-								AMQP delivery only supports AMQP 0.x protocol (for example, RabbitMQ). If you need to publish notifications to AMQP 1.x message queue (for example, ActiveMQ), you can use STOMP delivery.
-							</p></div></div><section class="section" id="amqp-direct-delivery"><div class="titlepage"><div><div><h6 class="title">4.7.1.3.2.1. AMQP direct delivery</h6></div></div></div><p>
-								If the Clair notifier’s configuration specifies <code class="literal">direct: true</code> for AMQP delivery, notifications are delivered directly to the configured exchange.
-							</p><p>
-								When <code class="literal">direct</code> is set, the <code class="literal">rollup</code> property might be set to instruct the notifier to send a maximum number of notifications in a single AMQP. This provides balance between the size of the message and the number of messages delivered to the queue.
-							</p></section></section><section class="section" id="notifier-testing-development"><div class="titlepage"><div><div><h5 class="title">4.7.1.3.3. Notifier testing and development mode</h5></div></div></div><p>
-							The notifier has a testing and development mode that can be enabled with the <code class="literal">NOTIFIER_TEST_MODE</code> parameter. This parameter can be set to any value.
-						</p><p>
-							When the <code class="literal">NOTIFIER_TEST_MODE</code> parameter is set, the notifier begins sending fake notifications to the configured delivery mechanism every <code class="literal">poll_interval</code> interval. This provides an easy way to implement and test new or existing deliverers.
-						</p><p>
-							The notifier runs in <code class="literal">NOTIFIER_TEST_MODE</code> until the environment variable is cleared and the service is restarted.
-						</p></section><section class="section" id="deleting-notifications"><div class="titlepage"><div><div><h5 class="title">4.7.1.3.4. Deleting notifications</h5></div></div></div><p>
-							To delete the notification, you can use the <code class="literal">DELETE</code> API call. Deleting a notification ID manually cleans up resources in the notifier. If you do not use the <code class="literal">DELETE</code> API call, the notifier waits a predetermined length of time before clearing delivered notifications from its database.
-						</p></section></section></section><section class="section" id="clair-troubleshooting-issues"><div class="titlepage"><div><div><h3 class="title">4.7.2. Troubleshooting Clair issue</h3></div></div></div><p>
+			</p><section class="section" id="clair-troubleshooting-issues"><div class="titlepage"><div><div><h3 class="title">6.6.1. Troubleshooting Clair issue</h3></div></div></div><p>
 					Use the following procedures to troubleshoot Clair.
-				</p><section class="section" id="verify-image-compatibility"><div class="titlepage"><div><div><h4 class="title">4.7.2.1. Verifying image compatibility</h4></div></div></div><p>
+				</p><section class="section" id="verify-image-compatibility"><div class="titlepage"><div><div><h4 class="title">6.6.1.1. Verifying image compatibility</h4></div></div></div><p>
 						If you are using Clair, ensure that the images you are trying to scan are supported by Clair. Clair has certain requirements and does not support all image formats or configurations.
 					</p><p>
 						For more information, see <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/manage_red_hat_quay/clair-vulnerability-scanner#clair-vulnerability-scanner-hosts">Clair vulnerability databases</a>.
-					</p></section><section class="section" id="allowlist-clair-updaters"><div class="titlepage"><div><div><h4 class="title">4.7.2.2. Allowlisting Clair updaters</h4></div></div></div><p>
+					</p></section><section class="section" id="allowlist-clair-updaters"><div class="titlepage"><div><div><h4 class="title">6.6.1.2. Allowlisting Clair updaters</h4></div></div></div><p>
 						If you are using Clair behind a proxy configuration, you must allowlist the updaters in your proxy or firewall configuration. For more information about updater URLs, see <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/vulnerability_reporting_with_clair_on_red_hat_quay/clair-concepts#clair-updater-urls">Clair updater URLs</a>.
-					</p></section><section class="section" id="clair-dependencies-update"><div class="titlepage"><div><div><h4 class="title">4.7.2.3. Updating Clair scanner and its dependencies</h4></div></div></div><p>
+					</p></section><section class="section" id="clair-dependencies-update"><div class="titlepage"><div><div><h4 class="title">6.6.1.3. Updating Clair scanner and its dependencies</h4></div></div></div><p>
 						Ensure that you are using the latest version of Clair security scanner. Outdated versions might lack support for newer image formats, or might have known issues.
 					</p><p>
 						Use the following procedure to check your version of Clair.
@@ -782,7 +666,7 @@ type VulnSummary struct {
 <pre class="programlisting language-terminal">"level":"info",
 "component":"main",
 "version":"v4.5.1",</pre>
-										</p></div></li></ol></div></li></ol></div></section><section class="section" id="enabling-debug-mode-clair"><div class="titlepage"><div><div><h4 class="title">4.7.2.4. Enabling debug mode for Clair</h4></div></div></div><p>
+										</p></div></li></ol></div></li></ol></div></section><section class="section" id="enabling-debug-mode-clair"><div class="titlepage"><div><div><h4 class="title">6.6.1.4. Enabling debug mode for Clair</h4></div></div></div><p>
 						By default, debug mode for Clair is enabled. You can enable debug mode for Clair by updating your Clair <code class="literal">config.yaml</code> file.
 					</p><p>
 						Use the following procedure to enable debug mode for Clair.
@@ -796,29 +680,13 @@ type VulnSummary struct {
 								Update your Clair <code class="literal">config.yaml</code> file to enable debugging:
 							</p><pre class="programlisting language-yaml">http_listen_addr: :8081
 introspection_addr: :8088
-log_level: debug</pre></li></ol></div></section><section class="section" id="checking-clair-configuration"><div class="titlepage"><div><div><h4 class="title">4.7.2.5. Checking Clair configuration</h4></div></div></div><p>
+log_level: debug</pre></li></ol></div></section><section class="section" id="checking-clair-configuration"><div class="titlepage"><div><div><h4 class="title">6.6.1.5. Checking Clair configuration</h4></div></div></div><p>
 						Check your Clair <code class="literal">config.yaml</code> file to ensure that there are no misconfigurations or inconsistencies that could lead to issues. For more information, see <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/vulnerability_reporting_with_clair_on_red_hat_quay/index#config-fields-overview">Clair configuration overview</a>.
-					</p></section><section class="section" id="inspect-image-metadata"><div class="titlepage"><div><div><h4 class="title">4.7.2.6. Inspect image metadata</h4></div></div></div><p>
+					</p></section><section class="section" id="inspect-image-metadata"><div class="titlepage"><div><div><h4 class="title">6.6.1.6. Inspect image metadata</h4></div></div></div><p>
 						In some cases, you might receive an <span class="strong strong"><strong>Unsupported</strong></span> message. This might indicate that the scanner is unable to extract the necessary metadata from the image. Check if the image metadata is properly formatted and accessible.
 					</p><div class="_additional-resources _additional-resources"><p class="title"><strong>Additional resources</strong></p><p>
 							For more information, see <a class="link" href="https://access.redhat.com/articles/7018077">Troubleshooting Clair</a>.
-						</p></div></section></section><section class="section" id="deleting-user-cli"><div class="titlepage"><div><div><h3 class="title">4.7.3. Deleting a Red Hat Quay user from the command line</h3></div></div></div><p>
-					When accessing the <span class="strong strong"><strong>Users</strong></span> tab in the <span class="strong strong"><strong>Superuser Admin</strong></span> panel of the Red Hat Quay UI, you might encounter a situation where no users are listed. Instead, a message appears, indicating that Red Hat Quay is configured to use external authentication, and users can only be created in that system.
-				</p><p>
-					This error occurs for one of two reasons:
-				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-							The web UI times out when loading users. When this happens, users are not accessible to perform any operations on.
-						</li><li class="listitem">
-							On LDAP authentication. When a userID is changed but the associated email is not. Currently, Red Hat Quay does not allow the creation of a new user with an old email address.
-						</li></ul></div><p>
-					Use the following procedure to delete a user from Red Hat Quay when facing this issue.
-				</p><div class="itemizedlist"><p class="title"><strong>Procedure</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
-							Enter the following <code class="literal">curl</code> command to delete a user from the command line:
-						</p><pre class="programlisting language-terminal">$ curl -X DELETE -H "Authorization: Bearer &lt;insert token here&gt;" https://&lt;quay_hostname&gt;/api/v1/superuser/users/&lt;name_of_user&gt;</pre><div class="admonition note"><div class="admonition_header">Note</div><div><p>
-								After deleting the user, any repositories that this user had in his private account become unavailable.
-							</p></div></div></li></ul></div><div class="_additional-resources _additional-resources"><p class="title"><strong>Additional resources</strong></p><p>
-						For more information, see <a class="link" href="https://access.redhat.com/solutions/7012991">In Quay, how to delete a user from command line?</a>
-					</p></div></section></section></section><div><div xml:lang="en-US" class="legalnotice" id="idm44797381884176"><h1 class="legalnotice">Legal Notice</h1><div class="para">
+						</p></div></section></section></section></section><div><div xml:lang="en-US" class="legalnotice" id="idm45680154922944"><h1 class="legalnotice">Legal Notice</h1><div class="para">
 		Copyright <span class="trademark"/>© 2023 Red Hat, Inc.
 	</div><div class="para">
 		The text of and illustrations in this document are licensed by Red Hat under a Creative Commons Attribution–Share Alike 3.0 Unported license ("CC-BY-SA"). An explanation of CC-BY-SA is available at <a class="uri" href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a>. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
