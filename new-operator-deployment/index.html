@@ -1,0 +1,1531 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Deploying the Red Hat Quay Operator on OpenShift Container Platform</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Deploy the Red Hat Quay Operator on an OpenShift Container Platform cluster"/><link rel="next" href="#idm46494948579648" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm46494949433808"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.10</span></div><div><h1 class="title">Deploying the Red Hat Quay Operator on OpenShift Container Platform</h1></div><div><h2 class="subtitle">Deploying the Red Hat Quay Operator on OpenShift Container Platform</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm46494945204288">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
+				Deploy the Red Hat Quay Operator on an OpenShift Container Platform cluster
+			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm46494948579648">Preface</a></span></li><li><span class="chapter"><a href="#operator-concepts">1. Introduction to the Red Hat Quay Operator</a></span><ul><li><span class="section"><a href="#operator-components-intro">1.1. Red Hat Quay Operator components</a></span></li><li><span class="section"><a href="#operator-components-managed">1.2. Using managed components</a></span></li><li><span class="section"><a href="#operator-components-unmanaged">1.3. Using unmanaged components for dependencies</a></span></li><li><span class="section"><a href="#operator-config-bundle-secret">1.4. Config bundle secret</a></span></li><li><span class="section"><a href="#operator-prereq">1.5. Prerequisites for Red Hat Quay on OpenShift Container Platform</a></span><ul><li><span class="section"><a href="#openshift-cluster">1.5.1. OpenShift cluster</a></span></li><li><span class="section"><a href="#resource-requirements">1.5.2. Resource Requirements</a></span></li><li><span class="section"><a href="#object-storage">1.5.3. Object Storage</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#operator-install">2. Installing the Red Hat Quay Operator from the OperatorHub</a></span></li><li><span class="chapter"><a href="#operator-preconfigure">3. Configuring Red Hat Quay before deployment</a></span><ul><li><span class="section"><a href="#config-preconfigure-automation">3.1. Pre-configuring Red Hat Quay for automation</a></span><ul><li><span class="section"><a href="#allowing-the-api-to-create-first-user">3.1.1. Allowing the API to create the first user</a></span></li><li><span class="section"><a href="#enabling-general-api-access">3.1.2. Enabling general API access</a></span></li><li><span class="section"><a href="#adding-super-user">3.1.3. Adding a superuser</a></span></li><li><span class="section"><a href="#restricting-user-creation">3.1.4. Restricting user creation</a></span></li><li><span class="section"><a href="#enabling-new-functionality-310">3.1.5. Enabling new functionality in Red Hat Quay 3.10</a></span></li><li><span class="section"><a href="#suggested-configuration-for-automation">3.1.6. Suggested configuration for automation</a></span></li></ul></li><li><span class="section"><a href="#operator-storage-preconfig">3.2. Configuring object storage</a></span><ul><li><span class="section"><a href="#operator-unmanaged-storage">3.2.1. Using unmanaged storage</a></span></li><li><span class="section"><a href="#operator-unmanaged-storage-noobaa">3.2.2. Using an unmanaged NooBaa instance</a></span></li><li><span class="section"><a href="#operator-managed-storage">3.2.3. Managed storage</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#configuring-traffic-ingress">4. Configuring traffic ingress</a></span><ul><li><span class="section"><a href="#operator-preconfig-tls-routes">4.1. Configuring SSL/TLS and Routes</a></span><ul><li><span class="section"><a href="#creating-config-bundle-secret-tls-cert-key-pair">4.1.1. Creating the config bundle secret with the SSL/TLS cert and key pair</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#configuring-the-database-poc">5. Configuring the database</a></span><ul><li><span class="section"><a href="#operator-unmanaged-postgres">5.1. Using an existing PostgreSQL database</a></span><ul><li><span class="section"><a href="#config-fields-db">5.1.1. Database configuration</a></span></li><li><span class="section"><a href="#operator-managed-postgres">5.1.2. Using the managed PostgreSQL database</a></span></li></ul></li><li><span class="section"><a href="#operator-components-unmanaged-other">5.2. Configuring external Redis</a></span><ul><li><span class="section"><a href="#operator-unmanaged-redis">5.2.1. Using an unmanaged Redis database</a></span></li><li><span class="section"><a href="#operator-unmanaged-hpa">5.2.2. Using unmanaged Horizontal Pod Autoscalers</a></span></li><li><span class="section"><a href="#operator-unmanaged-route">5.2.3. Disabling the Route component</a></span></li><li><span class="section"><a href="#operator-unmanaged-monitoring">5.2.4. Disabling the monitoring component</a></span></li><li><span class="section"><a href="#operator-unmanaged-mirroring">5.2.5. Disabling the mirroring component</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#operator-deploy">6. Deploying the Red Hat Quay Operator</a></span><ul><li><span class="section"><a href="#operator-deploy-cli">6.1. Deploying Red Hat Quay from the command line</a></span><ul><li><span class="section"><a href="#operator-deploy-view-pods-cli">6.1.1. Viewing created components using the command line</a></span></li><li><span class="section"><a href="#operator-deploy-hpa">6.1.2. Horizontal Pod Autoscaling</a></span></li><li><span class="section"><a href="#operator-monitor-deploy-cli">6.1.3. Monitoring and debugging the deployment process</a></span></li></ul></li><li><span class="section"><a href="#operator-deploy-ui">6.2. Deploying Red Hat Quay from the OpenShift Container Platform console</a></span><ul><li><span class="section"><a href="#operator-first-user">6.2.1. Using the Red Hat Quay UI to create the first user</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#operator-quayregistry-status">7. Viewing the status of the QuayRegistry object</a></span><ul><li><span class="section"><a href="#quayregistry-endpoint">7.1. Viewing the registry endpoint</a></span></li><li><span class="section"><a href="#quayregistry-current-version">7.2. Viewing the version of Red Hat Quay in use</a></span></li><li><span class="section"><a href="#quayregistry-conditions">7.3. Viewing the conditions of your Red Hat Quay deployment</a></span></li></ul></li><li><span class="chapter"><a href="#operator-config-cli">8. Configuring Red Hat Quay on OpenShift Container Platform</a></span><ul><li><span class="section"><a href="#editing-config-bundle-secret-in-ocp-console">8.1. Editing the config bundle secret in the OpenShift Container Platform console</a></span></li><li><span class="section"><a href="#operator-config-cli-access">8.2. Determining QuayRegistry endpoints and secrets</a></span></li><li><span class="section"><a href="#operator-config-cli-download">8.3. Downloading the existing configuration</a></span><ul><li><span class="section"><a href="#using-config-bundle-secret">8.3.1. Using the config bundle secret to download the existing configuration</a></span></li></ul></li><li><span class="section"><a href="#operator-custom-ssl-certs-config-bundle">8.4. Using the config bundle to configure custom SSL/TLS certs</a></span></li></ul></li></ul></div><section class="preface" id="idm46494948579648"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div><p>
+			Red Hat Quay is an enterprise-quality container registry. Use Red Hat Quay to build and store container images, then make them available to deploy across your enterprise.
+		</p><p>
+			The Red Hat Quay Operator provides a simple method to deploy and manage Red Hat Quay on an OpenShift cluster.
+		</p><p id="operator-differences">
+			With the release of Red Hat Quay 3.4.0, the Red Hat Quay Operator was re-written to offer an enhanced experience and to add more support for Day 2 operations. As a result, the Red Hat Quay Operator is now simpler to use and is more opinionated. The key difference from versions prior to Red Hat Quay 3.4.0 include the following:
+		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					The <code class="literal">QuayEcosystem</code> custom resource has been replaced with the <code class="literal">QuayRegistry</code> custom resource.
+				</li><li class="listitem"><p class="simpara">
+					The default installation options produces a fully supported Red Hat Quay environment, with all managed dependencies (database, caches, object storage, and so on) supported for production use.
+				</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+						Some components might not be highly available.
+					</p></div></div></li><li class="listitem">
+					A new validation library for Red Hat Quay’s configuration, which is shared by the Red Hat Quay application and config tool for consistency.
+				</li><li class="listitem"><p class="simpara">
+					Object storage can now be managed by the Red Hat Quay Operator using the <code class="literal">ObjectBucketClaim</code> Kubernetes API
+				</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+						Red Hat OpenShift Data Foundation can be used to provide a supported implementation of this API on OpenShift Container Platform.
+					</p></div></div></li><li class="listitem">
+					Customization of the container images used by deployed pods for testing and development scenarios.
+				</li></ul></div></section><section class="chapter" id="operator-concepts"><div class="titlepage"><div><div><h1 class="title">Chapter 1. Introduction to the Red Hat Quay Operator</h1></div></div></div><p>
+			Use the content in this chapter to execute the following:
+		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					Install the Red Hat Quay Operator
+				</li><li class="listitem">
+					Configure managed, or unmanaged, object storage
+				</li><li class="listitem">
+					Configure unmanaged components, such as the database, Redis, routes, TLS, and so on.
+				</li><li class="listitem">
+					Deploy the Red Hat Quay registry on OpenShift Container Platform using the Red Hat Quay Operator
+				</li><li class="listitem">
+					Use advanced features supported by the Red Hat Quay Operator
+				</li><li class="listitem">
+					Upgrade the registry by upgrading the Red Hat Quay Operator
+				</li></ul></div><section class="section" id="operator-components-intro"><div class="titlepage"><div><div><h2 class="title">1.1. Red Hat Quay Operator components</h2></div></div></div><p>
+				Red Hat Quay has a significant number of dependencies. These include a database, object storage, Redis, and others. The Red Hat Quay Operator manages an opinionated deployment of Red Hat Quay and its dependencies on Kubernetes. These dependencies are treated as <span class="emphasis"><em>components</em></span> and are configured through the <code class="literal">QuayRegistry</code> API.
+			</p><p>
+				In the <code class="literal">QuayRegistry</code> custom resource, the <code class="literal">spec.components</code> field configures components. Each component contains two fields: <code class="literal">kind</code> (the name of the component), and <code class="literal">managed</code> (a boolean that addresses whether the component lifecycle is handled by the Red Hat Quay Operator). By default, all components are managed and auto-filled upon reconciliation for visibility:
+			</p><pre class="programlisting language-yaml">spec:
+  components:
+    - kind: quay
+      managed: true
+    - kind: postgres
+      managed: true
+    - kind: clair
+      managed: true
+    - kind: redis
+      managed: true
+    - kind: horizontalpodautoscaler
+      managed: true
+    - kind: objectstorage
+      managed: true
+    - kind: route
+      managed: true
+    - kind: mirror
+      managed: true
+    - kind: monitoring
+      managed: true
+    - kind: tls
+      managed: true
+    - kind: clairpostgres
+      managed: true</pre></section><section class="section" id="operator-components-managed"><div class="titlepage"><div><div><h2 class="title">1.2. Using managed components</h2></div></div></div><p>
+				Unless your <code class="literal">QuayRegistry</code> custom resource specifies otherwise, the Red Hat Quay Operator uses defaults for the following managed components:
+			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+						<span class="strong strong"><strong>quay:</strong></span> Holds overrides for the Red Hat Quay deployment. For example, environment variables and number of replicas. This component is new as of Red Hat Quay 3.7 and cannot be set to unmanaged.
+					</li><li class="listitem"><p class="simpara">
+						<span class="strong strong"><strong>postgres:</strong></span> For storing the registry metadata, As of Red Hat Quay 3.9, uses a version of PostgreSQL 13 from <a class="link" href="https://www.softwarecollections.org/en/">Software Collections</a>.
+					</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+							When upgrading from Red Hat Quay 3.8 → 3.9, the Operator automatically handles upgrading PostgreSQL 10 to PostgreSQL 13. This upgrade is required. PostgreSQL 10 had its final release on November 10, 2022 and is no longer supported.
+						</p></div></div></li><li class="listitem">
+						<span class="strong strong"><strong>clair:</strong></span> Provides image vulnerability scanning.
+					</li><li class="listitem">
+						<span class="strong strong"><strong>redis:</strong></span> Stores live builder logs and the Red Hat Quay tutorial. Also includes the locking mechanism that is required for garbage collection.
+					</li><li class="listitem">
+						<span class="strong strong"><strong>horizontalpodautoscaler:</strong></span> Adjusts the number of <code class="literal">Quay</code> pods depending on memory/cpu consumption.
+					</li><li class="listitem">
+						<span class="strong strong"><strong>objectstorage:</strong></span> For storing image layer blobs, utilizes the <code class="literal">ObjectBucketClaim</code> Kubernetes API which is provided by Noobaa or RHOCS.
+					</li><li class="listitem">
+						<span class="strong strong"><strong>route:</strong></span> Provides an external entrypoint to the Red Hat Quay registry from outside of OpenShift Container Platform.
+					</li><li class="listitem">
+						<span class="strong strong"><strong>mirror:</strong></span> Configures repository mirror workers to support optional repository mirroring.
+					</li><li class="listitem">
+						<span class="strong strong"><strong>monitoring:</strong></span> Features include a Grafana dashboard, access to individual metrics, and alerting to notify for frequently restarting Quay pods.
+					</li><li class="listitem">
+						<span class="strong strong"><strong>tls:</strong></span> Configures whether Red Hat Quay or OpenShift Container Platform handles SSL/TLS.
+					</li><li class="listitem">
+						<span class="strong strong"><strong>clairpostgres:</strong></span> Configures a managed Clair database. This is a separate database than the PostgreSQL database used to deploy Red Hat Quay.
+					</li></ul></div><p>
+				The Red Hat Quay Operator handles any required configuration and installation work needed for Red Hat Quay to use the managed components. If the opinionated deployment performed by the Red Hat Quay Operator is unsuitable for your environment, you can provide the Red Hat Quay Operator with <code class="literal">unmanaged</code> resources (overrides) as described in the following sections.
+			</p></section><section class="section" id="operator-components-unmanaged"><div class="titlepage"><div><div><h2 class="title">1.3. Using unmanaged components for dependencies</h2></div></div></div><p>
+				If you have existing components such as PostgreSQL, Redis, or object storage that you want to use with Red Hat Quay, you first configure them within the Red Hat Quay configuration bundle (<code class="literal">config.yaml</code>). Then, they must be referenced in your <code class="literal">QuayRegistry</code> bundle as a Kubernetes <code class="literal">Secret</code> while indicating which components are unmanaged.
+			</p><div class="admonition note"><div class="admonition_header">Note</div><div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							The Red Hat Quay config editor can also be used to create or modify an existing config bundle and simplifies the process of updating the Kubernetes <code class="literal">Secret</code>, especially for multiple changes. When Red Hat Quay’s configuration is changed by the config editor and sent to the Red Hat Quay Operator, the deployment is updated to reflect the new configuration.
+						</li><li class="listitem">
+							If you are using an unmanaged PostgreSQL database, and the version is PostgreSQL 10, it is highly recommended that you upgrade to PostgreSQL 13. PostgreSQL 10 had its final release on November 10, 2022 and is no longer supported. For more information, see the <a class="link" href="https://www.postgresql.org/support/versioning/">PostgreSQL Versioning Policy</a>.
+						</li></ul></div></div></div><p>
+				See the following sections for configuring unmanaged components:
+			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+						<a class="link" href="#operator-unmanaged-postgres" title="5.1. Using an existing PostgreSQL database">Using an existing PostgreSQL database</a>
+					</li><li class="listitem">
+						<a class="link" href="#operator-unmanaged-hpa" title="5.2.2. Using unmanaged Horizontal Pod Autoscalers">Using unmanaged Horizontal Pod Autoscalers</a>
+					</li><li class="listitem">
+						<a class="link" href="#operator-unmanaged-storage" title="3.2.1. Using unmanaged storage">Using unmanaged storage</a>
+					</li><li class="listitem">
+						<a class="link" href="#operator-unmanaged-storage-noobaa" title="3.2.2. Using an unmanaged NooBaa instance">Using an unmanaged NooBaa instance</a>
+					</li><li class="listitem">
+						<a class="link" href="#operator-unmanaged-redis" title="5.2.1. Using an unmanaged Redis database">Using an unmanaged Redis database</a>
+					</li><li class="listitem">
+						<a class="link" href="#operator-unmanaged-route" title="5.2.3. Disabling the Route component">Disabling the route component</a>
+					</li><li class="listitem">
+						<a class="link" href="#operator-unmanaged-monitoring" title="5.2.4. Disabling the monitoring component">Disabling the monitoring component</a>
+					</li><li class="listitem">
+						<a class="link" href="#operator-unmanaged-mirroring" title="5.2.5. Disabling the mirroring component">Disabling the mirroring component</a>
+					</li></ul></div></section><section class="section" id="operator-config-bundle-secret"><div class="titlepage"><div><div><h2 class="title">1.4. Config bundle secret</h2></div></div></div><p>
+				The <code class="literal">spec.configBundleSecret</code> field is a reference to the <code class="literal">metadata.name</code> of a <code class="literal">Secret</code> in the same namespace as the <code class="literal">QuayRegistry</code>. This <code class="literal">Secret</code> must contain a <code class="literal">config.yaml</code> key/value pair. This <code class="literal">config.yaml</code> file is a Red Hat Quay <code class="literal">config.yaml</code> file. This field is optional, and is auto-filled by the Red Hat Quay Operator if not provided. If provided, it serves as the base set of config fields which are later merged with other fields from any managed components to form a final output <code class="literal">Secret</code>, which is then mounted into the Red Hat Quay application pods.
+			</p></section><section class="section" id="operator-prereq"><div class="titlepage"><div><div><h2 class="title">1.5. Prerequisites for Red Hat Quay on OpenShift Container Platform</h2></div></div></div><p>
+				Before you begin the deployment of Red Hat Quay Operator on OpenShift Container Platform, you should consider the following.
+			</p><section class="section" id="openshift-cluster"><div class="titlepage"><div><div><h3 class="title">1.5.1. OpenShift cluster</h3></div></div></div><p>
+					You need a privileged account to an OpenShift Container Platform 4.5 or later cluster on which to deploy the Red Hat Quay Operator. That account must have the ability to create namespaces at the cluster scope.
+				</p></section><section class="section" id="resource-requirements"><div class="titlepage"><div><div><h3 class="title">1.5.2. Resource Requirements</h3></div></div></div><p>
+					Each Red Hat Quay application pod has the following resource requirements:
+				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							8 Gi of memory
+						</li><li class="listitem">
+							2000 millicores of CPU.
+						</li></ul></div><p>
+					The Red Hat Quay Operator creates at least one application pod per Red Hat Quay deployment it manages. Ensure your OpenShift Container Platform cluster has sufficient compute resources for these requirements.
+				</p></section><section class="section" id="object-storage"><div class="titlepage"><div><div><h3 class="title">1.5.3. Object Storage</h3></div></div></div><p>
+					By default, the Red Hat Quay Operator uses the <code class="literal">ObjectBucketClaim</code> Kubernetes API to provision object storage. Consuming this API decouples the Red Hat Quay Operator from any vendor-specific implementation. Red Hat OpenShift Data Foundation provides this API through its NooBaa component, which will be used in this example.
+				</p><p>
+					Red Hat Quay can be manually configured to use any of the following supported cloud storage options:
+				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							Amazon S3 (see <a class="link" href="https://access.redhat.com/solutions/3680151">S3 IAM Bucket Policy</a> for details on configuring an S3 bucket policy for Red Hat Quay)
+						</li><li class="listitem">
+							MicroShift Azure Blob Storage
+						</li><li class="listitem">
+							Google Cloud Storage
+						</li><li class="listitem">
+							Ceph Object Gateway (RADOS)
+						</li><li class="listitem">
+							OpenStack Swift
+						</li><li class="listitem">
+							CloudFront + S3
+						</li></ul></div></section></section></section><section class="chapter" id="operator-install"><div class="titlepage"><div><div><h1 class="title">Chapter 2. Installing the Red Hat Quay Operator from the OperatorHub</h1></div></div></div><p>
+			Use the following procedure to install the Red Hat Quay Operator from the OpenShift Container Platform OperatorHub.
+		</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+					Using the OpenShift Container Platform console, select <span class="strong strong"><strong>Operators</strong></span> → <span class="strong strong"><strong>OperatorHub</strong></span>.
+				</li><li class="listitem">
+					In the search box, type <span class="strong strong"><strong>Red Hat Quay</strong></span> and select the official Red Hat Quay Operator provided by Red Hat. This directs you to the <span class="strong strong"><strong>Installation</strong></span> page, which outlines the features, prerequisites, and deployment information.
+				</li><li class="listitem">
+					Select <span class="strong strong"><strong>Install</strong></span>. This directs you to the <span class="strong strong"><strong>Operator Installation</strong></span> page.
+				</li><li class="listitem"><p class="simpara">
+					The following choices are available for customizing the installation:
+				</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
+							<span class="strong strong"><strong>Update Channel:</strong></span> Choose the update channel, for example, <code class="literal">stable-3.7</code> for the latest release.
+						</li><li class="listitem"><p class="simpara">
+							<span class="strong strong"><strong>Installation Mode:</strong></span> Choose <code class="literal">All namespaces on the cluster</code> if you want the Red Hat Quay Operator to be available cluster-wide. Choose <code class="literal">A specific namespace on the cluster</code> if you want it deployed only within a single namespace. It is recommended that you install the Red Hat Quay Operator cluster-wide. If you choose a single namespace, the monitoring component will not be available by default.
+						</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+									<span class="strong strong"><strong>Approval Strategy:</strong></span> Choose to approve either automatic or manual updates. Automatic update strategy is recommended.
+								</li></ul></div></li></ol></div></li><li class="listitem">
+					Select <span class="strong strong"><strong>Install</strong></span>.
+				</li></ol></div></section><section class="chapter" id="operator-preconfigure"><div class="titlepage"><div><div><h1 class="title">Chapter 3. Configuring Red Hat Quay before deployment</h1></div></div></div><p>
+			The Red Hat Quay Operator can manage all of the Red Hat Quay components when deployed on OpenShift Container Platform. This is the default configuration, however, you can manage one or more components externally when you want more control over the set up.
+		</p><p>
+			Use the following pattern to configure unmanaged Red Hat Quay components.
+		</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+					Create a <code class="literal">config.yaml</code> configuration file with the appropriate settings.
+				</li><li class="listitem"><p class="simpara">
+					Create a <code class="literal">Secret</code> using the configuration file by entering the following command:
+				</p><pre class="programlisting language-terminal">$ oc create secret generic --from-file config.yaml=./config.yaml config-bundle-secret</pre></li><li class="listitem"><p class="simpara">
+					Create a <code class="literal">quayregistry.yaml</code> file, identifying the unmanaged components and also referencing the created <code class="literal">Secret</code>, for example:
+				</p><div class="formalpara"><p class="title"><strong>Example <code class="literal">QuayRegistry</code> YAML file</strong></p><p>
+						
+<pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: example-registry
+  namespace: quay-enterprise
+spec:
+  configBundleSecret: config-bundle-secret
+  components:
+    - kind: objectstorage
+      managed: false</pre>
+					</p></div></li><li class="listitem"><p class="simpara">
+					Deploy the registry by using the <code class="literal">quayregistry.yaml</code> file:
+				</p><pre class="programlisting language-terminal">$ oc create -n quay-enterprise -f quayregistry.yaml</pre></li></ol></div><section class="section" id="config-preconfigure-automation"><div class="titlepage"><div><div><h2 class="title">3.1. Pre-configuring Red Hat Quay for automation</h2></div></div></div><p>
+				Red Hat Quay supports several configuration options that enable automation. Users can configure these options before deployment to reduce the need for interaction with the user interface.
+			</p><section class="section" id="allowing-the-api-to-create-first-user"><div class="titlepage"><div><div><h3 class="title">3.1.1. Allowing the API to create the first user</h3></div></div></div><p>
+					To create the first user, users need to set the FEATURE_USER_INITIALIZE parameter to true and call the /api/v1/user/initialize API. Unlike all other registry API calls that require an OAuth token generated by an OAuth application in an existing organization, the API endpoint does not require authentication.
+				</p><p>
+					Users can use the API to create a user such as <code class="literal">quayadmin</code> after deploying Red Hat Quay, provided no other users have been created. For more information, see <a class="link" href="#using-the-api-to-create-first-user" title="6.1.2.1. Using the API to create the first user">Using the API to create the first user</a>.
+				</p></section><section class="section" id="enabling-general-api-access"><div class="titlepage"><div><div><h3 class="title">3.1.2. Enabling general API access</h3></div></div></div><p>
+					Users should set the BROWSER_API_CALLS_XHR_ONLY config option to false to allow general access to the Red Hat Quay registry API.
+				</p></section><section class="section" id="adding-super-user"><div class="titlepage"><div><div><h3 class="title">3.1.3. Adding a superuser</h3></div></div></div><p>
+					After deploying Red Hat Quay, users can create a user and give the first user administrator privileges with full permissions. Users can configure full permissions in advance by using the SUPER_USER configuration object. For example:
+				</p><pre class="programlisting language-yaml">...
+SERVER_HOSTNAME: quay-server.example.com
+SETUP_COMPLETE: true
+SUPER_USERS:
+  - quayadmin
+...</pre></section><section class="section" id="restricting-user-creation"><div class="titlepage"><div><div><h3 class="title">3.1.4. Restricting user creation</h3></div></div></div><p>
+					After you have configured a superuser, you can restrict the ability to create new users to the superuser group by setting the <code class="literal">FEATURE_USER_CREATION</code> to <code class="literal">false</code>. For example:
+				</p><pre class="programlisting language-yaml">...
+FEATURE_USER_INITIALIZE: true
+BROWSER_API_CALLS_XHR_ONLY: false
+SUPER_USERS:
+- quayadmin
+FEATURE_USER_CREATION: false
+...</pre></section><section class="section" id="enabling-new-functionality-310"><div class="titlepage"><div><div><h3 class="title">3.1.5. Enabling new functionality in Red Hat Quay 3.10</h3></div></div></div><p>
+					To use new Red Hat Quay 3.8 functions, enable some or all of the following features:
+				</p><pre class="programlisting language-yaml">FEATURE_UI_V2: true
+FEATURE_UI_V2_REPO_SETTINGS: true
+FEATURE_AUTO_PRUNE: true
+ROBOTS_DISALLOW: false</pre></section><section class="section" id="suggested-configuration-for-automation"><div class="titlepage"><div><div><h3 class="title">3.1.6. Suggested configuration for automation</h3></div></div></div><p>
+					The following <code class="literal">config.yaml</code> parameters are suggested for automation:
+				</p><pre class="programlisting language-yaml">...
+FEATURE_USER_INITIALIZE: true
+BROWSER_API_CALLS_XHR_ONLY: false
+SUPER_USERS:
+- quayadmin
+FEATURE_USER_CREATION: false
+...</pre></section></section><section class="section" id="operator-storage-preconfig"><div class="titlepage"><div><div><h2 class="title">3.2. Configuring object storage</h2></div></div></div><p>
+				You need to configure object storage before installing Red Hat Quay, irrespective of whether you are allowing the Red Hat Quay Operator to manage the storage or managing it yourself.
+			</p><p>
+				If you want the Red Hat Quay Operator to be responsible for managing storage, see the section on <a class="link" href="#operator-managed-storage" title="3.2.3. Managed storage">Managed storage</a> for information on installing and configuring NooBaa and the Red Hat OpenShift Data Foundations Operator.
+			</p><p>
+				If you are using a separate storage solution, set <code class="literal">objectstorage</code> as <code class="literal">unmanaged</code> when configuring the Operator. See the following section. <a class="link" href="#operator-unmanaged-storage" title="3.2.1. Using unmanaged storage">Unmanaged storage</a>, for details of configuring existing storage.
+			</p><section class="section" id="operator-unmanaged-storage"><div class="titlepage"><div><div><h3 class="title">3.2.1. Using unmanaged storage</h3></div></div></div><p>
+					This section provides configuration examples for unmanaged storage for your convenience. Refer to the Red Hat Quay configuration guide for complete instructions on how to set up object storage.
+				</p><section class="section" id="aws-s3-storage-example"><div class="titlepage"><div><div><h4 class="title">3.2.1.1. AWS S3 storage</h4></div></div></div><p>
+						Use the following example when configuring AWS S3 storage for your Red Hat Quay deployment.
+					</p><pre class="programlisting language-yaml">DISTRIBUTED_STORAGE_CONFIG:
+  s3Storage:
+    - S3Storage
+    - host: s3.us-east-2.amazonaws.com
+      s3_access_key: ABCDEFGHIJKLMN
+      s3_secret_key: OL3ABCDEFGHIJKLMN
+      s3_bucket: quay_bucket
+      storage_path: /datastorage/registry
+DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
+DISTRIBUTED_STORAGE_PREFERENCE:
+    - s3Storage</pre></section><section class="section" id="gcp-storage-example"><div class="titlepage"><div><div><h4 class="title">3.2.1.2. Google Cloud storage</h4></div></div></div><p>
+						Use the following example when configuring Google Cloud storage for your Red Hat Quay deployment.
+					</p><pre class="programlisting language-yaml">DISTRIBUTED_STORAGE_CONFIG:
+    googleCloudStorage:
+        - GoogleCloudStorage
+        - access_key: GOOGQIMFB3ABCDEFGHIJKLMN
+          bucket_name: quay-bucket
+          secret_key: FhDAYe2HeuAKfvZCAGyOioNaaRABCDEFGHIJKLMN
+          storage_path: /datastorage/registry
+DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
+DISTRIBUTED_STORAGE_PREFERENCE:
+    - googleCloudStorage</pre></section><section class="section" id="azure-storage-example"><div class="titlepage"><div><div><h4 class="title">3.2.1.3. Microsoft Azure storage</h4></div></div></div><p>
+						Use the following example when configuring Microsoft Azure storage for your Red Hat Quay deployment.
+					</p><pre class="programlisting language-yaml">DISTRIBUTED_STORAGE_CONFIG:
+  azureStorage:
+    - AzureStorage
+    - azure_account_name: azure_account_name_here
+      azure_container: azure_container_here
+      storage_path: /datastorage/registry
+      azure_account_key: azure_account_key_here
+      sas_token: some/path/
+      endpoint_url: https://[account-name].blob.core.usgovcloudapi.net <span id="CO1-1"/><span class="callout">1</span>
+DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
+DISTRIBUTED_STORAGE_PREFERENCE:
+    - azureStorage</pre><div class="calloutlist"><dl class="calloutlist"><dt><a href="#CO1-1"><span class="callout">1</span></a> </dt><dd><div class="para">
+								The <code class="literal">endpoint_url</code> parameter for Microsoft Azure storage is optional and can be used with Microsoft Azure Government (MAG) endpoints. If left blank, the <code class="literal">endpoint_url</code> will connect to the normal Microsoft Azure region.
+							</div><p>
+								As of Red Hat Quay 3.7, you must use the Primary endpoint of your MAG Blob service. Using the Secondary endpoint of your MAG Blob service will result in the following error: <code class="literal">AuthenticationErrorDetail:Cannot find the claimed account when trying to GetProperties for the account whusc8-secondary</code>.
+							</p></dd></dl></div></section><section class="section" id="ceph-rados-storage-example"><div class="titlepage"><div><div><h4 class="title">3.2.1.4. Ceph/RadosGW Storage</h4></div></div></div><p>
+						Use the following example when configuring Ceph/RadosGW storage for your Red Hat Quay deployment.
+					</p><pre class="programlisting language-yaml">DISTRIBUTED_STORAGE_CONFIG:
+  radosGWStorage: #storage config name
+    - RadosGWStorage #actual driver
+    - access_key: access_key_here #parameters
+      secret_key: secret_key_here
+      bucket_name: bucket_name_here
+      hostname: hostname_here
+      is_secure: 'true'
+      port: '443'
+      storage_path: /datastorage/registry
+DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
+DISTRIBUTED_STORAGE_PREFERENCE: #must contain name of the storage config
+    - radosGWStorage</pre></section><section class="section" id="swift-storage-example"><div class="titlepage"><div><div><h4 class="title">3.2.1.5. Swift storage</h4></div></div></div><p>
+						Use the following example when configuring Swift storage for your Red Hat Quay deployment.
+					</p><pre class="programlisting language-yaml">DISTRIBUTED_STORAGE_CONFIG:
+  swiftStorage:
+    - SwiftStorage
+    - swift_user: swift_user_here
+      swift_password: swift_password_here
+      swift_container: swift_container_here
+      auth_url: https://example.org/swift/v1/quay
+      auth_version: 1
+      ca_cert_path: /conf/stack/swift.cert"
+      storage_path: /datastorage/registry
+DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
+DISTRIBUTED_STORAGE_PREFERENCE:
+    - swiftStorage</pre></section><section class="section" id="noobaa-unmanaged-storage-example"><div class="titlepage"><div><div><h4 class="title">3.2.1.6. NooBaa unmanaged storage</h4></div></div></div><p>
+						Use the following procedure to deploy NooBaa as your unmanaged storage configuration.
+					</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+								Create a NooBaa Object Bucket Claim in the Red Hat Quay console by navigating to <span class="strong strong"><strong>Storage</strong></span> → <span class="strong strong"><strong>Object Bucket Claims</strong></span>.
+							</li><li class="listitem">
+								Retrieve the Object Bucket Claim Data details, including the Access Key, Bucket Name, Endpoint (hostname), and Secret Key.
+							</li><li class="listitem"><p class="simpara">
+								Create a <code class="literal">config.yaml</code> configuration file that uses the information for the Object Bucket Claim:
+							</p><pre class="programlisting language-yaml">DISTRIBUTED_STORAGE_CONFIG:
+  default:
+    - RHOCSStorage
+    - access_key: WmrXtSGk8B3nABCDEFGH
+      bucket_name: my-noobaa-bucket-claim-8b844191-dc6c-444e-9ea4-87ece0abcdef
+      hostname: s3.openshift-storage.svc.cluster.local
+      is_secure: true
+      port: "443"
+      secret_key: X9P5SDGJtmSuHFCMSLMbdNCMfUABCDEFGH+C5QD
+      storage_path: /datastorage/registry
+DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
+DISTRIBUTED_STORAGE_PREFERENCE:
+  - default</pre></li></ol></div><p>
+						For more information about configuring an Object Bucket Claim, see <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_openshift_container_storage/4.8/html-single/managing_hybrid_and_multicloud_resources/index#object-bucket-claim">Object Bucket Claim</a>.
+					</p></section></section><section class="section" id="operator-unmanaged-storage-noobaa"><div class="titlepage"><div><div><h3 class="title">3.2.2. Using an unmanaged NooBaa instance</h3></div></div></div><p>
+					Use the following procedure to use an unmanaged NooBaa instance for your Red Hat Quay deployment.
+				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+							Create a NooBaa Object Bucket Claim in the console at Storage → Object Bucket Claims.
+						</li><li class="listitem">
+							Retrieve the Object Bucket Claim Data details including the <code class="literal">Access Key</code>, <code class="literal">Bucket Name</code>, <code class="literal">Endpoint (hostname)</code>, and <code class="literal">Secret Key</code>.
+						</li><li class="listitem"><p class="simpara">
+							Create a <code class="literal">config.yaml</code> configuration file using the information for the Object Bucket Claim. For example:
+						</p><pre class="programlisting language-yaml">DISTRIBUTED_STORAGE_CONFIG:
+  default:
+    - RHOCSStorage
+    - access_key: WmrXtSGk8B3nABCDEFGH
+      bucket_name: my-noobaa-bucket-claim-8b844191-dc6c-444e-9ea4-87ece0abcdef
+      hostname: s3.openshift-storage.svc.cluster.local
+      is_secure: true
+      port: "443"
+      secret_key: X9P5SDGJtmSuHFCMSLMbdNCMfUABCDEFGH+C5QD
+      storage_path: /datastorage/registry
+DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
+DISTRIBUTED_STORAGE_PREFERENCE:
+  - default</pre></li></ol></div></section><section class="section" id="operator-managed-storage"><div class="titlepage"><div><div><h3 class="title">3.2.3. Managed storage</h3></div></div></div><p>
+					If you want the Red Hat Quay Operator to manage object storage for Red Hat Quay, your cluster needs to be capable of providing object storage through the <code class="literal">ObjectBucketClaim</code> API. Using the Red Hat OpenShift Data Foundation Operator, there are two supported options available:
+				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+							A standalone instance of the Multi-Cloud Object Gateway backed by a local Kubernetes <code class="literal">PersistentVolume</code> storage
+						</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
+									Not highly available
+								</li><li class="listitem">
+									Included in the Red Hat Quay subscription
+								</li><li class="listitem">
+									Does not require a separate subscription for Red Hat OpenShift Data Foundation
+								</li></ul></div></li><li class="listitem"><p class="simpara">
+							A production deployment of Red Hat OpenShift Data Foundation with scale-out Object Service and Ceph
+						</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
+									Highly available
+								</li><li class="listitem">
+									Requires a separate subscription for Red Hat OpenShift Data Foundation
+								</li></ul></div></li></ul></div><p>
+					To use the standalone instance option, continue reading below. For production deployment of Red Hat OpenShift Data Foundation, please refer to the <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_openshift_container_storage/">official documentation</a>.
+				</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+						Object storage disk space is allocated automatically by the Red Hat Quay Operator with 50 GiB. This number represents a usable amount of storage for most small to medium Red Hat Quay installations but might not be sufficient for your use cases. Resizing the Red Hat OpenShift Data Foundation volume is currently not handled by the Red Hat Quay Operator. See the section below about resizing managed storage for more details.
+					</p></div></div><section class="section" id="operator-standalone-object-gateway"><div class="titlepage"><div><div><h4 class="title">3.2.3.1. Leveraging the Multicloud Object Gateway Component in the Red Hat OpenShift Data Foundation Operator for Red Hat Quay</h4></div></div></div><p>
+						As part of a Red Hat Quay subscription, users are entitled to use the <span class="emphasis"><em>Multicloud Object Gateway</em></span> component of the Red Hat OpenShift Data Foundation Operator (formerly known as OpenShift Container Storage Operator). This gateway component allows you to provide an S3-compatible object storage interface to Red Hat Quay backed by Kubernetes <code class="literal">PersistentVolume</code>-based block storage. The usage is limited to a Red Hat Quay deployment managed by the Operator and to the exact specifications of the multicloud Object Gateway instance as documented below.
+					</p><p>
+						Since Red Hat Quay does not support local filesystem storage, users can leverage the gateway in combination with Kubernetes <code class="literal">PersistentVolume</code> storage instead, to provide a supported deployment. A <code class="literal">PersistentVolume</code> is directly mounted on the gateway instance as a backing store for object storage and any block-based <code class="literal">StorageClass</code> is supported.
+					</p><p>
+						By the nature of <code class="literal">PersistentVolume</code>, this is not a scale-out, highly available solution and does not replace a scale-out storage system like Red Hat OpenShift Data Foundation. Only a single instance of the gateway is running. If the pod running the gateway becomes unavailable due to rescheduling, updates or unplanned downtime, this will cause temporary degradation of the connected Red Hat Quay instances.
+					</p><p>
+						Using the following procedures, you will install the Local Storage Operator, Red Hat OpenShift Data Foundation, and create a standalone Multicloud Object Gateway to deploy Red Hat Quay on OpenShift Container Platform.
+					</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+							The following documentation shares commonality with the official <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.12/html/deploying_openshift_data_foundation_using_bare_metal_infrastructure/deploy-standalone-multicloud-object-gateway#doc-wrapper">Red Hat OpenShift Data Foundation documentation</a>.
+						</p></div></div><section class="section" id="installing-local-storage-operator"><div class="titlepage"><div><div><h5 class="title">3.2.3.1.1. Installing the Local Storage Operator on OpenShift Container Platform</h5></div></div></div><p>
+							Use the following procedure to install the Local Storage Operator from the <span class="strong strong"><strong>Operator Hub</strong></span> before creating Red Hat OpenShift Data Foundation clusters on local storage devices.
+						</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+									Log in to the <span class="strong strong"><strong>OpenShift Web Console</strong></span>.
+								</li><li class="listitem">
+									Click <span class="strong strong"><strong>Operators</strong></span> → <span class="strong strong"><strong>OperatorHub</strong></span>.
+								</li><li class="listitem">
+									Type <span class="strong strong"><strong>local storage</strong></span> into the search box to find the Local Storage Operator from the list of Operators. Click <span class="strong strong"><strong>Local Storage</strong></span>.
+								</li><li class="listitem">
+									Click <span class="strong strong"><strong>Install</strong></span>.
+								</li><li class="listitem"><p class="simpara">
+									Set the following options on the Install Operator page:
+								</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+											For Update channel, select <span class="strong strong"><strong>stable</strong></span>.
+										</li><li class="listitem">
+											For Installation mode, select <span class="strong strong"><strong>A specific namespace on the cluster</strong></span>.
+										</li><li class="listitem">
+											For Installed Namespace, select <span class="strong strong"><strong>Operator recommended namespace openshift-local-storage</strong></span>.
+										</li><li class="listitem">
+											For Update approval, select <span class="strong strong"><strong>Automatic</strong></span>.
+										</li></ul></div></li><li class="listitem">
+									Click <span class="strong strong"><strong>Install</strong></span>.
+								</li></ol></div></section><section class="section" id="installing-odf"><div class="titlepage"><div><div><h5 class="title">3.2.3.1.2. Installing Red Hat OpenShift Data Foundation on OpenShift Container Platform</h5></div></div></div><p>
+							Use the following procedure to install Red Hat OpenShift Data Foundation on OpenShift Container Platform.
+						</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+									Access to an OpenShift Container Platform cluster using an account with <code class="literal">cluster-admin</code> and Operator installation permissions.
+								</li><li class="listitem">
+									You must have at least three worker nodes in the OpenShift Container Platform cluster.
+								</li><li class="listitem">
+									For additional resource requirements, see the <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.12/html-single/planning_your_deployment/index">Planning your deployment</a> guide.
+								</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+									Log in to the <span class="strong strong"><strong>OpenShift Web Console</strong></span>.
+								</li><li class="listitem">
+									Click <span class="strong strong"><strong>Operators</strong></span> → <span class="strong strong"><strong>OperatorHub</strong></span>.
+								</li><li class="listitem">
+									Type <span class="strong strong"><strong>OpenShift Data Foundation</strong></span> in the search box. Click <span class="strong strong"><strong>OpenShift Data Foundation</strong></span>.
+								</li><li class="listitem">
+									Click <span class="strong strong"><strong>Install</strong></span>.
+								</li><li class="listitem"><p class="simpara">
+									Set the following options on the Install Operator page:
+								</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+											For Update channel, select the most recent stable version.
+										</li><li class="listitem">
+											For Installation mode, select <span class="strong strong"><strong>A specific namespace on the cluster</strong></span>.
+										</li><li class="listitem">
+											For Installed Namespace, select <span class="strong strong"><strong>Operator recommended Namespace: openshift-storage</strong></span>.
+										</li><li class="listitem"><p class="simpara">
+											For Update approval, select <span class="strong strong"><strong>Automatic</strong></span> or <span class="strong strong"><strong>Manual</strong></span>.
+										</p><p class="simpara">
+											If you select <span class="strong strong"><strong>Automatic</strong></span> updates, then the Operator Lifecycle Manager (OLM) automatically upgrades the running instance of your Operator without any intervention.
+										</p><p class="simpara">
+											If you select <span class="strong strong"><strong>Manual</strong></span> updates, then the OLM creates an update request. As a cluster administrator, you must then manually approve that update request to update the Operator to a newer version.
+										</p></li><li class="listitem">
+											For Console plugin, select <span class="strong strong"><strong>Enable</strong></span>.
+										</li></ul></div></li><li class="listitem"><p class="simpara">
+									Click <span class="strong strong"><strong>Install</strong></span>.
+								</p><p class="simpara">
+									After the Operator is installed, a pop-up with a message, <code class="literal">Web console update is available</code> appears on the user interface. Click <span class="strong strong"><strong>Refresh web console</strong></span> from this pop-up for the console changes to reflect.
+								</p></li><li class="listitem">
+									Continue to the following section, "Creating a standalone Multicloud Object Gateway", to leverage the Multicloud Object Gateway Component for Red Hat Quay.
+								</li></ol></div></section><section class="section" id="creating-mcg"><div class="titlepage"><div><div><h5 class="title">3.2.3.1.3. Creating a standalone Multicloud Object Gateway using the OpenShift Container Platform UI</h5></div></div></div><p>
+							Use the following procedure to create a standalone Multicloud Object Gateway.
+						</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+									You have installed the Local Storage Operator.
+								</li><li class="listitem">
+									You have installed the Red Hat OpenShift Data Foundation Operator.
+								</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+									In the <span class="strong strong"><strong>OpenShift Web Console</strong></span>, click <span class="strong strong"><strong>Operators</strong></span> → <span class="strong strong"><strong>Installed Operators</strong></span> to view all installed Operators.
+								</p><p class="simpara">
+									Ensure that the namespace is <code class="literal">openshift-storage</code>.
+								</p></li><li class="listitem">
+									Click <span class="strong strong"><strong>Create StorageSystem</strong></span>.
+								</li><li class="listitem"><p class="simpara">
+									On the <span class="strong strong"><strong>Backing storage</strong></span> page, select the following:
+								</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
+											Select <span class="strong strong"><strong>Multicloud Object Gateway</strong></span> for <span class="strong strong"><strong>Deployment type</strong></span>.
+										</li><li class="listitem">
+											Select the <span class="strong strong"><strong>Create a new StorageClass using the local storage devices</strong></span> option.
+										</li><li class="listitem"><p class="simpara">
+											Click <span class="strong strong"><strong>Next</strong></span>.
+										</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+												You are prompted to install the Local Storage Operator if it is not already installed. Click <span class="strong strong"><strong>Install</strong></span>, and follow the procedure as described in "Installing the Local Storage Operator on OpenShift Container Platform".
+											</p></div></div></li></ol></div></li><li class="listitem"><p class="simpara">
+									On the <span class="strong strong"><strong>Create local volume set</strong></span> page, provide the following information:
+								</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
+											Enter a name for the <span class="strong strong"><strong>LocalVolumeSet</strong></span> and the <span class="strong strong"><strong>StorageClass</strong></span>. By default, the local volume set name appears for the storage class name. You can change the name.
+										</li><li class="listitem"><p class="simpara">
+											Choose one of the following:
+										</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+													<span class="strong strong"><strong>Disk on all nodes</strong></span>
+												</p><p class="simpara">
+													Uses the available disks that match the selected filters on all the nodes.
+												</p></li><li class="listitem"><p class="simpara">
+													<span class="strong strong"><strong>Disk on selected nodes</strong></span>
+												</p><p class="simpara">
+													Uses the available disks that match the selected filters only on the selected nodes.
+												</p></li></ul></div></li><li class="listitem">
+											From the available list of <span class="strong strong"><strong>Disk Type</strong></span>, select <span class="strong strong"><strong>SSD/NVMe</strong></span>.
+										</li><li class="listitem"><p class="simpara">
+											Expand the <span class="strong strong"><strong>Advanced</strong></span> section and set the following options:
+										</p><div class="informaltable"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><tbody><tr><td align="left" valign="top">
+														<p>
+															<span class="strong strong"><strong>Volume Mode</strong></span>
+														</p>
+														</td><td align="left" valign="top">
+														<p>
+															Filesystem is selected by default. Always ensure that Filesystem is selected for Volume Mode.
+														</p>
+														</td></tr><tr><td align="left" valign="top">
+														<p>
+															<span class="strong strong"><strong>Device Type</strong></span>
+														</p>
+														</td><td align="left" valign="top">
+														<p>
+															Select one or more device type from the dropdown list.
+														</p>
+														</td></tr><tr><td align="left" valign="top">
+														<p>
+															<span class="strong strong"><strong>Disk Size</strong></span>
+														</p>
+														</td><td align="left" valign="top">
+														<p>
+															Set a minimum size of 100GB for the device and maximum available size of the device that needs to be included.
+														</p>
+														</td></tr><tr><td align="left" valign="top">
+														<p>
+															<span class="strong strong"><strong>Maximum Disks Limit</strong></span>
+														</p>
+														</td><td align="left" valign="top">
+														<p>
+															This indicates the maximum number of PVs that can be created on a node. If this field is left empty, then PVs are created for all the available disks on the matching nodes.
+														</p>
+														</td></tr></tbody></table></div></li><li class="listitem"><p class="simpara">
+											Click <span class="strong strong"><strong>Next</strong></span>
+										</p><p class="simpara">
+											A pop-up to confirm the creation of <code class="literal">LocalVolumeSet</code> is displayed.
+										</p></li><li class="listitem">
+											Click <span class="strong strong"><strong>Yes</strong></span> to continue.
+										</li></ol></div></li><li class="listitem"><p class="simpara">
+									In the <span class="strong strong"><strong>Capacity and nodes</strong></span> page, configure the following:
+								</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
+											<span class="strong strong"><strong>Available raw capacity</strong></span> is populated with the capacity value based on all the attached disks associated with the storage class. This takes some time to show up. The <span class="strong strong"><strong>Selected nodes</strong></span> list shows the nodes based on the storage class.
+										</li><li class="listitem">
+											Click <span class="strong strong"><strong>Next</strong></span> to continue.
+										</li></ol></div></li><li class="listitem"><p class="simpara">
+									Optional. Select the <span class="strong strong"><strong>Connect to an external key management service</strong></span> checkbox. This is optional for cluster-wide encryption.
+								</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
+											From the <span class="strong strong"><strong>Key Management Service Provider</strong></span> drop-down list, either select <span class="strong strong"><strong>Vault</strong></span> or <span class="strong strong"><strong>Thales CipherTrust Manager (using KMIP)</strong></span>. If you selected <span class="strong strong"><strong>Vault</strong></span>, go to the next step. If you selected <span class="strong strong"><strong>Thales CipherTrust Manager (using KMIP)</strong></span>, go to step iii.
+										</li><li class="listitem"><p class="simpara">
+											Select an <span class="strong strong"><strong>Authentication Method</strong></span>.
+										</p><p class="simpara">
+											Using Token Authentication method
+										</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+													Enter a unique <span class="strong strong"><strong>Connection Name</strong></span>, host <span class="strong strong"><strong>Address</strong></span> of the Vault server ('https://&lt;hostname or ip&gt;'), <span class="strong strong"><strong>Port</strong></span> number and <span class="strong strong"><strong>Token</strong></span>.
+												</li><li class="listitem"><p class="simpara">
+													Expand <span class="strong strong"><strong>Advanced Settings</strong></span> to enter additional settings and certificate details based on your <code class="literal">Vault</code> configuration:
+												</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
+															Enter the Key Value secret path in <span class="strong strong"><strong>Backend Path</strong></span> that is dedicated and unique to OpenShift Data Foundation.
+														</li><li class="listitem">
+															Optional: Enter <span class="strong strong"><strong>TLS Server Name</strong></span> and <span class="strong strong"><strong>Vault Enterprise Namespace</strong></span>.
+														</li><li class="listitem">
+															Upload the respective PEM encoded certificate file to provide the <span class="strong strong"><strong>CA Certificate</strong></span>, <span class="strong strong"><strong>Client Certificate,</strong></span> and <span class="strong strong"><strong>Client Private Key</strong></span>.
+														</li><li class="listitem"><p class="simpara">
+															Click <span class="strong strong"><strong>Save</strong></span> and skip to step iv.
+														</p><p class="simpara">
+															Using Kubernetes authentication method
+														</p></li></ul></div></li><li class="listitem">
+													Enter a unique Vault <span class="strong strong"><strong>Connection Name</strong></span>, host <span class="strong strong"><strong>Address</strong></span> of the Vault server ('https://&lt;hostname or ip&gt;'), <span class="strong strong"><strong>Port</strong></span> number and <span class="strong strong"><strong>Role</strong></span> name.
+												</li><li class="listitem"><p class="simpara">
+													Expand <span class="strong strong"><strong>Advanced Settings</strong></span> to enter additional settings and certificate details based on your Vault configuration:
+												</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
+															Enter the Key Value secret path in <span class="strong strong"><strong>Backend Path</strong></span> that is dedicated and unique to Red Hat OpenShift Data Foundation.
+														</li><li class="listitem">
+															Optional: Enter <span class="strong strong"><strong>TLS Server Name</strong></span> and <span class="strong strong"><strong>Authentication Path</strong></span> if applicable.
+														</li><li class="listitem">
+															Upload the respective PEM encoded certificate file to provide the <span class="strong strong"><strong>CA Certificate</strong></span>, <span class="strong strong"><strong>Client Certificate</strong></span>, and <span class="strong strong"><strong>Client Private Key</strong></span>.
+														</li><li class="listitem">
+															Click <span class="strong strong"><strong>Save</strong></span> and skip to step iv.
+														</li></ul></div></li></ul></div></li><li class="listitem"><p class="simpara">
+											To use <span class="strong strong"><strong>Thales CipherTrust Manager (using KMIP)</strong></span> as the KMS provider, follow the steps below:
+										</p><div class="orderedlist"><ol class="orderedlist" type="i"><li class="listitem">
+													Enter a unique <span class="strong strong"><strong>Connection Name</strong></span> for the Key Management service within the project.
+												</li><li class="listitem"><p class="simpara">
+													In the <span class="strong strong"><strong>Address</strong></span> and <span class="strong strong"><strong>Port</strong></span> sections, enter the IP of Thales CipherTrust Manager and the port where the KMIP interface is enabled. For example:
+												</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+															<span class="strong strong"><strong>Address</strong></span>: 123.34.3.2
+														</li><li class="listitem">
+															<span class="strong strong"><strong>Port</strong></span>: 5696
+														</li></ul></div></li><li class="listitem">
+													Upload the <span class="strong strong"><strong>Client Certificate</strong></span>, <span class="strong strong"><strong>CA certificate</strong></span>, and <span class="strong strong"><strong>Client Private Key</strong></span>.
+												</li><li class="listitem">
+													If StorageClass encryption is enabled, enter the Unique Identifier to be used for encryption and decryption generated above.
+												</li><li class="listitem">
+													The <span class="strong strong"><strong>TLS Server</strong></span> field is optional and used when there is no DNS entry for the KMIP endpoint. For example,<code class="literal">kmip_all_&lt;port&gt;.ciphertrustmanager.local</code>.
+												</li></ol></div></li><li class="listitem">
+											Select a <span class="strong strong"><strong>Network</strong></span>.
+										</li><li class="listitem">
+											Click <span class="strong strong"><strong>Next</strong></span>.
+										</li></ol></div></li><li class="listitem">
+									In the <span class="strong strong"><strong>Review and create</strong></span> page, review the configuration details. To modify any configuration settings, click <span class="strong strong"><strong>Back</strong></span>.
+								</li><li class="listitem">
+									Click <span class="strong strong"><strong>Create StorageSystem</strong></span>.
+								</li></ol></div></section><section class="section" id="creating-standalone-object-gateway"><div class="titlepage"><div><div><h5 class="title">3.2.3.1.4. Create A standalone Multicloud Object Gateway using the CLI</h5></div></div></div><p>
+							Use the following procedure to install the Red Hat OpenShift Data Foundation (formerly known as OpenShift Container Storage) Operator and configure a single instance Multi-Cloud Gateway service.
+						</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+								The following configuration cannot be run in parallel on a cluster with Red Hat OpenShift Data Foundation installed.
+							</p></div></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+									On the <span class="strong strong"><strong>OpenShift Web Console</strong></span>, and then select <span class="strong strong"><strong>Operators</strong></span> → <span class="strong strong"><strong>OperatorHub</strong></span>.
+								</li><li class="listitem">
+									Search for <span class="strong strong"><strong>Red Hat OpenShift Data Foundation</strong></span>, and then select <span class="strong strong"><strong>Install</strong></span>.
+								</li><li class="listitem">
+									Accept all default options, and then select <span class="strong strong"><strong>Install</strong></span>.
+								</li><li class="listitem"><p class="simpara">
+									Confirm that the Operator has installed by viewing the <span class="strong strong"><strong>Status</strong></span> column, which should be marked as <span class="strong strong"><strong>Succeeded</strong></span>.
+								</p><div class="admonition warning"><div class="admonition_header">Warning</div><div><p>
+										When the installation of the Red Hat OpenShift Data Foundation Operator is finished, you are prompted to create a storage system. Do not follow this instruction. Instead, create NooBaa object storage as outlined the following steps.
+									</p></div></div></li><li class="listitem"><p class="simpara">
+									On your machine, create a file named <code class="literal">noobaa.yaml</code> with the following information:
+								</p><pre class="programlisting language-yaml">apiVersion: noobaa.io/v1alpha1
+kind: NooBaa
+metadata:
+  name: noobaa
+  namespace: openshift-storage
+spec:
+ dbResources:
+   requests:
+     cpu: '0.1'
+     memory: 1Gi
+ dbType: postgres
+ coreResources:
+   requests:
+     cpu: '0.1'
+     memory: 1Gi</pre><p class="simpara">
+									This creates a single instance deployment of the <span class="emphasis"><em>Multi-cloud Object Gateway</em></span>.
+								</p></li><li class="listitem"><p class="simpara">
+									Apply the configuration with the following command:
+								</p><pre class="programlisting language-terminal">$ oc create -n openshift-storage -f noobaa.yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+										
+<pre class="programlisting language-terminal">noobaa.noobaa.io/noobaa created</pre>
+									</p></div></li><li class="listitem"><p class="simpara">
+									After a few minutes, the <span class="emphasis"><em>Multi-cloud Object Gateway</em></span> should finish provisioning. You can enter the following command to check its status:
+								</p><pre class="programlisting language-terminal">$ oc get -n openshift-storage noobaas noobaa -w</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+										
+<pre class="programlisting language-terminal">NAME     MGMT-ENDPOINTS              S3-ENDPOINTS                IMAGE                                                                                                            PHASE   AGE
+noobaa   [https://10.0.32.3:30318]   [https://10.0.32.3:31958]   registry.redhat.io/ocs4/mcg-core-rhel8@sha256:56624aa7dd4ca178c1887343c7445a9425a841600b1309f6deace37ce6b8678d   Ready   3d18h</pre>
+									</p></div></li><li class="listitem"><p class="simpara">
+									Configure a backing store for the gateway by creating the following YAML file, named <code class="literal">noobaa-pv-backing-store.yaml</code>:
+								</p><pre class="programlisting language-yaml">apiVersion: noobaa.io/v1alpha1
+kind: BackingStore
+metadata:
+  finalizers:
+  - noobaa.io/finalizer
+  labels:
+    app: noobaa
+  name: noobaa-pv-backing-store
+  namespace: openshift-storage
+spec:
+  pvPool:
+    numVolumes: 1
+    resources:
+      requests:
+        storage: 50Gi <span id="CO2-1"/><span class="callout">1</span>
+    storageClass: STORAGE-CLASS-NAME <span id="CO2-2"/><span class="callout">2</span>
+  type: pv-pool</pre><div class="calloutlist"><dl class="calloutlist"><dt><a href="#CO2-1"><span class="callout">1</span></a> </dt><dd><div class="para">
+											The overall capacity of the object storage service. Adjust as needed.
+										</div></dd><dt><a href="#CO2-2"><span class="callout">2</span></a> </dt><dd><div class="para">
+											The <code class="literal">StorageClass</code> to use for the <code class="literal">PersistentVolumes</code> requested. Delete this property to use the cluster default.
+										</div></dd></dl></div></li><li class="listitem"><p class="simpara">
+									Enter the following command to apply the configuration:
+								</p><pre class="programlisting language-terminal">$ oc create -f noobaa-pv-backing-store.yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+										
+<pre class="programlisting language-terminal">backingstore.noobaa.io/noobaa-pv-backing-store created</pre>
+									</p></div><p class="simpara">
+									This creates the backing store configuration for the gateway. All images in Red Hat Quay will be stored as objects through the gateway in a <code class="literal">PersistentVolume</code> created by the above configuration.
+								</p></li><li class="listitem"><p class="simpara">
+									Run the following command to make the <code class="literal">PersistentVolume</code> backing store the default for all <code class="literal">ObjectBucketClaims</code> issued by the Red Hat Quay Operator:
+								</p><pre class="programlisting language-terminal">$ oc patch bucketclass noobaa-default-bucket-class --patch '{"spec":{"placementPolicy":{"tiers":[{"backingStores":["noobaa-pv-backing-store"]}]}}}' --type merge -n openshift-storage</pre></li></ol></div></section></section></section></section></section><section class="chapter" id="configuring-traffic-ingress"><div class="titlepage"><div><div><h1 class="title">Chapter 4. Configuring traffic ingress</h1></div></div></div><section class="section" id="operator-preconfig-tls-routes"><div class="titlepage"><div><div><h2 class="title">4.1. Configuring SSL/TLS and Routes</h2></div></div></div><p>
+				Support for OpenShift Container Platform Edge-Termination Routes has been added by way of a new managed component, <code class="literal">tls</code>. This separates the <code class="literal">route</code> component from SSL/TLS and allows users to configure both separately.
+			</p><p>
+				<code class="literal">EXTERNAL_TLS_TERMINATION: true</code> is the opinionated setting.
+			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+						Managed <code class="literal">tls</code> means that the default cluster wildcard certificate is used.
+					</li><li class="listitem">
+						Unmanaged <code class="literal">tls</code> means that the user provided key and certificate pair is be injected into the <code class="literal">Route</code>.
+					</li></ul></div><p>
+				The <code class="literal">ssl.cert</code> and <code class="literal">ssl.key</code> are now moved to a separate, persistent secret, which ensures that the key and certificate pair are not re-generated upon every reconcile. The key and certificate pair are now formatted as <code class="literal">edge</code> routes and mounted to the same directory in the <code class="literal">Quay</code> container.
+			</p><p>
+				Multiple permutations are possible when configuring SSL/TLS and Routes, but the following rules apply:
+			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+						If SSL/TLS is <code class="literal">managed</code>, then your route must also be <code class="literal">managed</code>
+					</li><li class="listitem">
+						If SSL/TLS is <code class="literal">unmanaged</code> then you must supply certificates, either with the config tool or directly in the config bundle
+					</li></ul></div><p>
+				The following table describes the valid options:
+			</p><div class="table" id="idm46494945698768"><p class="title"><strong>Table 4.1. Valid configuration options for TLS and routes</strong></p><div class="table-contents"><table class="gt-4-cols lt-7-rows"><colgroup><col style="width: 18%; " class="col_1"/><col style="width: 18%; " class="col_2"/><col style="width: 18%; " class="col_3"/><col style="width: 18%; " class="col_4"/><col style="width: 27%; " class="col_5"/></colgroup><thead><tr><th align="left" valign="top" id="idm46494947307824" scope="col">Option</th><th align="left" valign="top" id="idm46494947306736" scope="col">Route</th><th align="left" valign="top" id="idm46494947305648" scope="col">TLS</th><th align="left" valign="top" id="idm46494947304560" scope="col">Certs provided</th><th align="left" valign="top" id="idm46494947303472" scope="col">Result</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm46494947307824">
+							<p>
+								My own load balancer handles TLS
+							</p>
+							</td><td align="left" valign="top" headers="idm46494947306736">
+							<p>
+								Managed
+							</p>
+							</td><td align="left" valign="top" headers="idm46494947305648">
+							<p>
+								Managed
+							</p>
+							</td><td align="left" valign="top" headers="idm46494947304560">
+							<p>
+								No
+							</p>
+							</td><td align="left" valign="top" headers="idm46494947303472">
+							<p>
+								Edge Route with default wildcard cert
+							</p>
+							</td></tr><tr><td align="left" valign="top" headers="idm46494947307824">
+							<p>
+								Red Hat Quay handles TLS
+							</p>
+							</td><td align="left" valign="top" headers="idm46494947306736">
+							<p>
+								Managed
+							</p>
+							</td><td align="left" valign="top" headers="idm46494947305648">
+							<p>
+								Unmanaged
+							</p>
+							</td><td align="left" valign="top" headers="idm46494947304560">
+							<p>
+								Yes
+							</p>
+							</td><td align="left" valign="top" headers="idm46494947303472">
+							<p>
+								Passthrough route with certs mounted inside the pod
+							</p>
+							</td></tr><tr><td align="left" valign="top" headers="idm46494947307824">
+							<p>
+								Red Hat Quay handles TLS
+							</p>
+							</td><td align="left" valign="top" headers="idm46494947306736">
+							<p>
+								Unmanaged
+							</p>
+							</td><td align="left" valign="top" headers="idm46494947305648">
+							<p>
+								Unmanaged
+							</p>
+							</td><td align="left" valign="top" headers="idm46494947304560">
+							<p>
+								Yes
+							</p>
+							</td><td align="left" valign="top" headers="idm46494947303472">
+							<p>
+								Certificates are set inside the quay pod but route must be created manually
+							</p>
+							</td></tr></tbody></table></div></div><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+					Red Hat Quay 3.7 does not support builders when TLS is managed by the Operator.
+				</p></div></div><section class="section" id="creating-config-bundle-secret-tls-cert-key-pair"><div class="titlepage"><div><div><h3 class="title">4.1.1. Creating the config bundle secret with the SSL/TLS cert and key pair</h3></div></div></div><p>
+					Use the following procedure to create a config bundle secret that includes your own SSL/TLS certificate and key pair.
+				</p><div class="itemizedlist"><p class="title"><strong>Procedure</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+							Enter the following command to create config bundle secret that includes your own SSL/TLS certificate and key pair:
+						</p><pre class="programlisting language-terminal">$ oc create secret generic --from-file config.yaml=./config.yaml --from-file ssl.cert=./ssl.cert --from-file ssl.key=./ssl.key config-bundle-secret</pre></li></ul></div></section></section></section><section class="chapter" id="configuring-the-database-poc"><div class="titlepage"><div><div><h1 class="title">Chapter 5. Configuring the database</h1></div></div></div><section class="section" id="operator-unmanaged-postgres"><div class="titlepage"><div><div><h2 class="title">5.1. Using an existing PostgreSQL database</h2></div></div></div><p>
+				If you are using an externally managed PostgreSQL database, you must manually enable the <code class="literal">pg_trgm</code> extension for a successful deployment.
+			</p><p>
+				Use the following procedure to deploy an existing PostgreSQL database.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Create a <code class="literal">config.yaml</code> file with the necessary database fields. For example:
+					</p><div class="formalpara"><p class="title"><strong>Example <code class="literal">config.yaml</code> file:</strong></p><p>
+							
+<pre class="programlisting language-yaml">DB_URI: postgresql://test-quay-database:postgres@test-quay-database:5432/test-quay-database</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Create a <code class="literal">Secret</code> using the configuration file:
+					</p><pre class="screen">$ kubectl create secret generic --from-file config.yaml=./config.yaml config-bundle-secret</pre></li><li class="listitem"><p class="simpara">
+						Create a <code class="literal">QuayRegistry</code> YAML file which marks the <code class="literal">postgres</code> component as <code class="literal">unmanaged</code> and references the created <code class="literal">Secret</code>. For example:
+					</p><div class="formalpara"><p class="title"><strong>Example <code class="literal">quayregistry.yaml</code> file</strong></p><p>
+							
+<pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: example-registry
+  namespace: quay-enterprise
+spec:
+  configBundleSecret: config-bundle-secret
+  components:
+    - kind: postgres
+      managed: false</pre>
+						</p></div></li><li class="listitem">
+						Deploy the registry as detailed in the following sections.
+					</li></ol></div><section class="section" id="config-fields-db"><div class="titlepage"><div><div><h3 class="title">5.1.1. Database configuration</h3></div></div></div><p>
+					This section describes the database configuration fields available for Red Hat Quay deployments.
+				</p><section class="section" id="database-uri"><div class="titlepage"><div><div><h4 class="title">5.1.1.1. Database URI</h4></div></div></div><p>
+						With Red Hat Quay, connection to the database is configured by using the required <code class="literal">DB_URI</code> field.
+					</p><p>
+						The following table describes the <code class="literal">DB_URI</code> configuration field:
+					</p><div class="table" id="idm46494945687312"><p class="title"><strong>Table 5.1. Database URI</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 17%; " class="col_2"/><col style="width: 33%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="top" id="idm46494945681552" scope="col">Field</th><th align="left" valign="top" id="idm46494945680464" scope="col">Type</th><th align="left" valign="top" id="idm46494945679376" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm46494945681552">
+									<p>
+										<span class="strong strong"><strong>DB_URI</strong></span><br/> (Required)
+									</p>
+									</td><td align="left" valign="top" headers="idm46494945680464">
+									<p>
+										String
+									</p>
+									</td><td align="left" valign="top" headers="idm46494945679376">
+									<p>
+										The URI for accessing the database, including any credentials.
+									</p>
+									<p>
+										Example <code class="literal">DB_URI</code> field:
+									</p>
+									<p>
+										<span class="strong strong"><strong>postgresql://quayuser:quaypass@quay-server.example.com:5432/quay</strong></span>
+									</p>
+									</td></tr></tbody></table></div></div></section><section class="section" id="database-connection-arguments"><div class="titlepage"><div><div><h4 class="title">5.1.1.2. Database connection arguments</h4></div></div></div><p>
+						Optional connection arguments are configured by the <code class="literal">DB_CONNECTION_ARGS</code> parameter. Some of the key-value pairs defined under <code class="literal">DB_CONNECTION_ARGS</code> are generic, while others are database specific.
+					</p><p>
+						The following table describes database connection arguments:
+					</p><div class="table" id="idm46494944857744"><p class="title"><strong>Table 5.2. Database connection arguments</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 17%; " class="col_2"/><col style="width: 33%; " class="col_3"/></colgroup><thead><tr><th align="left" valign="top" id="idm46494942879664" scope="col">Field</th><th align="left" valign="top" id="idm46494942878576" scope="col">Type</th><th align="left" valign="top" id="idm46494942877488" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm46494942879664">
+									<p>
+										<span class="strong strong"><strong>DB_CONNECTION_ARGS</strong></span>
+									</p>
+									</td><td align="left" valign="top" headers="idm46494942878576">
+									<p>
+										Object
+									</p>
+									</td><td align="left" valign="top" headers="idm46494942877488">
+									<p>
+										Optional connection arguments for the database, such as timeouts and SSL/TLS.
+									</p>
+									</td></tr><tr><td align="left" valign="top" headers="idm46494942879664">
+									<p>
+										<span class="strong strong"><strong>.autorollback</strong></span>
+									</p>
+									</td><td align="left" valign="top" headers="idm46494942878576">
+									<p>
+										Boolean
+									</p>
+									</td><td align="left" valign="top" headers="idm46494942877488">
+									<p>
+										Whether to use thread-local connections.<br/> Should always be <code class="literal">true</code>
+									</p>
+									</td></tr><tr><td align="left" valign="top" headers="idm46494942879664">
+									<p>
+										<span class="strong strong"><strong>.threadlocals</strong></span>
+									</p>
+									</td><td align="left" valign="top" headers="idm46494942878576">
+									<p>
+										Boolean
+									</p>
+									</td><td align="left" valign="top" headers="idm46494942877488">
+									<p>
+										Whether to use auto-rollback connections.<br/> Should always be <code class="literal">true</code>
+									</p>
+									</td></tr></tbody></table></div></div><section class="section" id="config-fields-postgres"><div class="titlepage"><div><div><h5 class="title">5.1.1.2.1. PostgreSQL SSL/TLS connection arguments</h5></div></div></div><p>
+							With SSL/TLS, configuration depends on the database you are deploying. The following example shows a PostgreSQL SSL/TLS configuration:
+						</p><pre class="programlisting language-yaml">DB_CONNECTION_ARGS:
+  sslmode: verify-ca
+  sslrootcert: /path/to/cacert</pre><p>
+							The <code class="literal">sslmode</code> option determines whether, or with, what priority a secure SSL/TLS TCP/IP connection will be negotiated with the server. There are six modes:
+						</p><div class="table" id="idm46494948531632"><p class="title"><strong>Table 5.3. SSL/TLS options</strong></p><div class="table-contents"><table class="lt-4-cols lt-7-rows"><colgroup><col style="width: 50%; " class="col_1"/><col style="width: 50%; " class="col_2"/></colgroup><thead><tr><th align="left" valign="top" id="idm46494948526800" scope="col">Mode</th><th align="left" valign="top" id="idm46494948525712" scope="col">Description</th></tr></thead><tbody><tr><td align="left" valign="top" headers="idm46494948526800">
+										<p>
+											<span class="strong strong"><strong>disable</strong></span>
+										</p>
+										</td><td align="left" valign="top" headers="idm46494948525712">
+										<p>
+											Your configuration only tries non-SSL/TLS connections.
+										</p>
+										</td></tr><tr><td align="left" valign="top" headers="idm46494948526800">
+										<p>
+											<span class="strong strong"><strong>allow</strong></span>
+										</p>
+										</td><td align="left" valign="top" headers="idm46494948525712">
+										<p>
+											Your configuration first tries a non-SSL/TLS connection. Upon failure, tries an SSL/TLS connection.
+										</p>
+										</td></tr><tr><td align="left" valign="top" headers="idm46494948526800">
+										<p>
+											<span class="strong strong"><strong>prefer</strong></span><br/> (Default)
+										</p>
+										</td><td align="left" valign="top" headers="idm46494948525712">
+										<p>
+											Your configuration first tries an SSL/TLS connection. Upon failure, tries a non-SSL/TLS connection.
+										</p>
+										</td></tr><tr><td align="left" valign="top" headers="idm46494948526800">
+										<p>
+											<span class="strong strong"><strong>require</strong></span>
+										</p>
+										</td><td align="left" valign="top" headers="idm46494948525712">
+										<p>
+											Your configuration only tries an SSL/TLS connection. If a root CA file is present, it verifies the certificate in the same way as if verify-ca was specified.
+										</p>
+										</td></tr><tr><td align="left" valign="top" headers="idm46494948526800">
+										<p>
+											<span class="strong strong"><strong>verify-ca</strong></span>
+										</p>
+										</td><td align="left" valign="top" headers="idm46494948525712">
+										<p>
+											Your configuration only tries an SSL/TLS connection, and verifies that the server certificate is issued by a trusted certificate authority (CA).
+										</p>
+										</td></tr><tr><td align="left" valign="top" headers="idm46494948526800">
+										<p>
+											<span class="strong strong"><strong>verify-full</strong></span>
+										</p>
+										</td><td align="left" valign="top" headers="idm46494948525712">
+										<p>
+											Only tries an SSL/TLS connection, and verifies that the server certificate is issued by a trusted CA and that the requested server hostname matches that in the certificate.
+										</p>
+										</td></tr></tbody></table></div></div><p>
+							For more information on the valid arguments for PostgreSQL, see <a class="link" href="https://www.postgresql.org/docs/current/libpq-connect.html">Database Connection Control Functions</a>.
+						</p></section><section class="section" id="mysql-ssl-connection-arguments"><div class="titlepage"><div><div><h5 class="title">5.1.1.2.2. MySQL SSL/TLS connection arguments</h5></div></div></div><p>
+							The following example shows a sample MySQL SSL/TLS configuration:
+						</p><pre class="screen yaml yaml">DB_CONNECTION_ARGS:
+  ssl:
+    ca: /path/to/cacert</pre><p>
+							Information on the valid connection arguments for MySQL is available at <a class="link" href="https://dev.mysql.com/doc/refman/8.0/en/connecting-using-uri-or-key-value-pairs.html">Connecting to the Server Using URI-Like Strings or Key-Value Pairs</a>.
+						</p></section></section></section><section class="section" id="operator-managed-postgres"><div class="titlepage"><div><div><h3 class="title">5.1.2. Using the managed PostgreSQL database</h3></div></div></div><p>
+					With Red Hat Quay 3.9, if your database is managed by the Red Hat Quay Operator, updating from Red Hat Quay 3.8 → 3.9 automatically handles upgrading PostgreSQL 10 to PostgreSQL 13.
+				</p><div class="admonition important"><div class="admonition_header">Important</div><div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								Users with a managed database are required to upgrade their PostgreSQL database from 10 → 13.
+							</li><li class="listitem">
+								If your Red Hat Quay and Clair databases are managed by the Operator, the database upgrades for each component must succeed for the 3.9.0 upgrade to be successful. If either of the database upgrades fail, the entire Red Hat Quay version upgrade fails. This behavior is expected.
+							</li></ul></div></div></div><p>
+					If you do not want the Red Hat Quay Operator to upgrade your PostgreSQL deployment from PostgreSQL 10 → 13, you must set the PostgreSQL parameter to <code class="literal">managed: false</code> in your <code class="literal">quayregistry.yaml</code> file. For more information about setting your database to unmanaged, see <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/configure_red_hat_quay/index#operator-unmanaged-postgres">Using an existing Postgres database</a>.
+				</p><div class="admonition important"><div class="admonition_header">Important</div><div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								It is highly recommended that you upgrade to PostgreSQL 13. PostgreSQL 10 had its final release on November 10, 2022 and is no longer supported. For more information, see the <a class="link" href="https://www.postgresql.org/support/versioning/">PostgreSQL Versioning Policy</a>.
+							</li></ul></div></div></div><p>
+					If you want your PostgreSQL database to match the same version as your Red Hat Enterprise Linux (RHEL) system, see <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/deploying_different_types_of_servers/using-databases#migrating-to-a-rhel-8-version-of-postgresql_using-postgresql">Migrating to a RHEL 8 version of PostgreSQL</a> for RHEL 8 or <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_using_database_servers/using-postgresql_configuring-and-using-database-servers#migrating-to-a-rhel-9-version-of-postgresql_using-postgresql">Migrating to a RHEL 9 version of PostgreSQL</a> for RHEL 9.
+				</p><p>
+					For more information about the Red Hat Quay 3.8 → 3.9 procedure, see "Updating Red Hat Quay and the Red Hat Quay and Clair PostgreSQL databases on OpenShift Container Platform".
+				</p><section class="section" id="operator-managed-postgres-recommendations"><div class="titlepage"><div><div><h4 class="title">5.1.2.1. PostgreSQL database recommendations</h4></div></div></div><p>
+						The Red Hat Quay team recommends the following for managing your PostgreSQL database.
+					</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								Database backups should be performed regularly using either the supplied tools on the PostgreSQL image or your own backup infrastructure. The Red Hat Quay Operator does not currently ensure that the PostgreSQL database is backed up.
+							</li><li class="listitem">
+								Restoring the PostgreSQL database from a backup must be done using PostgreSQL tools and procedures. Be aware that your <code class="literal">Quay</code> pods should not be running while the database restore is in progress.
+							</li><li class="listitem">
+								Database disk space is allocated automatically by the Red Hat Quay Operator with 50 GiB. This number represents a usable amount of storage for most small to medium Red Hat Quay installations but might not be sufficient for your use cases. Resizing the database volume is currently not handled by the Red Hat Quay Operator.
+							</li></ul></div></section></section></section><section class="section" id="operator-components-unmanaged-other"><div class="titlepage"><div><div><h2 class="title">5.2. Configuring external Redis</h2></div></div></div><p>
+				Use the content in this section to set up an external Redis deployment.
+			</p><section class="section" id="operator-unmanaged-redis"><div class="titlepage"><div><div><h3 class="title">5.2.1. Using an unmanaged Redis database</h3></div></div></div><p>
+					Use the following procedure to set up an external Redis database.
+				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Create a <code class="literal">config.yaml</code> file using the following Redis fields:
+						</p><pre class="programlisting language-yaml">BUILDLOGS_REDIS:
+    host: quay-server.example.com
+    port: 6379
+    ssl: false
+
+USER_EVENTS_REDIS:
+    host: quay-server.example.com
+    port: 6379
+    ssl: false</pre></li><li class="listitem"><p class="simpara">
+							Enter the following command to create a secret using the configuration file:
+						</p><pre class="programlisting language-terminal">$ oc create secret generic --from-file config.yaml=./config.yaml config-bundle-secret</pre></li><li class="listitem"><p class="simpara">
+							Create a <code class="literal">quayregistry.yaml</code> file that sets the Redis component to <code class="literal">unmanaged</code> and references the created secret:
+						</p><pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: example-registry
+  namespace: quay-enterprise
+spec:
+  configBundleSecret: config-bundle-secret
+  components:
+    - kind: redis
+      managed: false</pre></li><li class="listitem">
+							Deploy the Red Hat Quay registry.
+						</li></ol></div><div class="_additional-resources _additional-resources"><p class="title"><strong>Additional resources</strong></p><p>
+						<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/configure_red_hat_quay/index#config-fields-redis">Redis configuration fields</a>
+					</p></div></section><section class="section" id="operator-unmanaged-hpa"><div class="titlepage"><div><div><h3 class="title">5.2.2. Using unmanaged Horizontal Pod Autoscalers</h3></div></div></div><p>
+					Horizontal Pod Autoscalers (HPAs) are now included with the <code class="literal">Clair</code>, <code class="literal">Quay</code>, and <code class="literal">Mirror</code> pods, so that they now automatically scale during load spikes.
+				</p><p>
+					As HPA is configured by default to be managed, the number of <code class="literal">Clair</code>, <code class="literal">Quay</code>, and <code class="literal">Mirror</code> pods is set to two. This facilitates the avoidance of downtime when updating or reconfiguring Red Hat Quay by the Operator or during rescheduling events.
+				</p><section class="section" id="operator-disabling-hpa"><div class="titlepage"><div><div><h4 class="title">5.2.2.1. Disabling the Horizontal Pod Autoscaler</h4></div></div></div><p>
+						To disable autoscaling or create your own <code class="literal">HorizontalPodAutoscaler</code>, specify the component as <code class="literal">unmanaged</code> in the <code class="literal">QuayRegistry</code> instance. For example:
+					</p><pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: example-registry
+  namespace: quay-enterprise
+spec:
+  components:
+    - kind: horizontalpodautoscaler
+      managed: false</pre></section></section><section class="section" id="operator-unmanaged-route"><div class="titlepage"><div><div><h3 class="title">5.2.3. Disabling the Route component</h3></div></div></div><p>
+					Use the following procedure to prevent the Red Hat Quay Operator from creating a route.
+				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Set the component as <code class="literal">managed: false</code> in the <code class="literal">quayregistry.yaml</code> file:
+						</p><pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: example-registry
+  namespace: quay-enterprise
+spec:
+  components:
+    - kind: route
+      managed: false</pre></li><li class="listitem"><p class="simpara">
+							Edit the <code class="literal">config.yaml</code> file to specify that Red Hat Quay handles SSL/TLS. For example:
+						</p><pre class="programlisting language-yaml">...
+EXTERNAL_TLS_TERMINATION: false
+...
+SERVER_HOSTNAME: example-registry-quay-quay-enterprise.apps.user1.example.com
+...
+PREFERRED_URL_SCHEME: https
+...</pre><p class="simpara">
+							If you do not configure the unmanaged route correctly, the following error is returned:
+						</p><pre class="programlisting language-json">{
+  {
+    "kind":"QuayRegistry",
+    "namespace":"quay-enterprise",
+    "name":"example-registry",
+    "uid":"d5879ba5-cc92-406c-ba62-8b19cf56d4aa",
+    "apiVersion":"quay.redhat.com/v1",
+    "resourceVersion":"2418527"
+  },
+  "reason":"ConfigInvalid",
+  "message":"required component `route` marked as unmanaged, but `configBundleSecret` is missing necessary fields"
+}</pre></li></ol></div><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+						Disabling the default route means you are now responsible for creating a <code class="literal">Route</code>, <code class="literal">Service</code>, or <code class="literal">Ingress</code> in order to access the Red Hat Quay instance. Additionally, whatever DNS you use must match the <code class="literal">SERVER_HOSTNAME</code> in the Red Hat Quay config.
+					</p></div></div></section><section class="section" id="operator-unmanaged-monitoring"><div class="titlepage"><div><div><h3 class="title">5.2.4. Disabling the monitoring component</h3></div></div></div><p>
+					If you install the Red Hat Quay Operator in a single namespace, the monitoring component is automatically set to <code class="literal">managed: false</code>. Use the following reference to explicitly disable monitoring.
+				</p><div class="formalpara"><p class="title"><strong>Unmanaged monitoring</strong></p><p>
+						
+<pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: example-registry
+  namespace: quay-enterprise
+spec:
+  components:
+    - kind: monitoring
+      managed: false</pre>
+					</p></div><p>
+					To enable monitoring in this scenario, see <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/deploy_red_hat_quay_on_openshift_with_the_quay_operator/index#monitoring-single-namespace">Enabling monitoring when the Red Hat Quay Operator is installed in a single namespace</a>.
+				</p></section><section class="section" id="operator-unmanaged-mirroring"><div class="titlepage"><div><div><h3 class="title">5.2.5. Disabling the mirroring component</h3></div></div></div><p>
+					To disable mirroring explicitly, use the following YAML configuration:
+				</p><div class="formalpara"><p class="title"><strong>Unmanaged mirroring example YAML configuration</strong></p><p>
+						
+<pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: example-registry
+  namespace: quay-enterprise
+spec:
+  components:
+    - kind: mirroring
+      managed: false</pre>
+					</p></div></section></section></section><section class="chapter" id="operator-deploy"><div class="titlepage"><div><div><h1 class="title">Chapter 6. Deploying the Red Hat Quay Operator</h1></div></div></div><p>
+			The Red Hat Quay Operator can be deployed from the command line or from the OpenShift Container Platform console, however the steps are fundamentally the same.
+		</p><section class="section" id="operator-deploy-cli"><div class="titlepage"><div><div><h2 class="title">6.1. Deploying Red Hat Quay from the command line</h2></div></div></div><p>
+				Use the following procedure to deploy Red Hat Quay from using the command-line interface (CLI).
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have logged into OpenShift Container Platform using the CLI.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Create a namespace, for example, <code class="literal">quay-enterprise</code>, by entering the following command:
+					</p><pre class="programlisting language-terminal">$ oc new-project quay-enterprise</pre></li><li class="listitem"><p class="simpara">
+						Optional. If you want to pre-configure any aspects of your Red Hat Quay deployment, create a <code class="literal">Secret</code> for the config bundle:
+					</p><pre class="programlisting language-terminal">$ oc create secret generic quay-enterprise-config-bundle --from-file=config-bundle.tar.gz=/path/to/config-bundle.tar.gz</pre></li><li class="listitem"><p class="simpara">
+						Create a <code class="literal">QuayRegistry</code> custom resource in a file called <code class="literal">quayregistry.yaml</code>
+					</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
+								For a minimal deployment, using all the defaults:
+							</p><div class="formalpara"><p class="title"><strong>quayregistry.yaml:</strong></p><p>
+									
+<pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: example-registry
+  namespace: quay-enterprise</pre>
+								</p></div></li><li class="listitem"><p class="simpara">
+								Optional. If you want to have some components unmanaged, add this information in the <code class="literal">spec</code> field. A minimal deployment might look like the following example:
+							</p><div class="formalpara"><p class="title"><strong>Example quayregistry.yaml with unmanaged components</strong></p><p>
+									
+<pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: example-registry
+  namespace: quay-enterprise
+spec:
+  components:
+    - kind: clair
+      managed: false
+    - kind: horizontalpodautoscaler
+      managed: false
+    - kind: mirror
+      managed: false
+    - kind: monitoring
+      managed: false</pre>
+								</p></div></li><li class="listitem"><p class="simpara">
+								Optional. If you have created a config bundle, for example, <code class="literal">init-config-bundle-secret</code>, reference it in the <code class="literal">quayregistry.yaml</code> file:
+							</p><div class="formalpara"><p class="title"><strong>Example quayregistry.yaml with a config bundle</strong></p><p>
+									
+<pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: example-registry
+  namespace: quay-enterprise
+spec:
+  configBundleSecret: init-config-bundle-secret</pre>
+								</p></div></li><li class="listitem"><p class="simpara">
+								Optional. If you have a proxy configured, you can add the information using overrides for Red Hat Quay, Clair, and mirroring:
+							</p><div class="formalpara"><p class="title"><strong>Example quayregistry.yaml with proxy configured</strong></p><p>
+									
+<pre class="programlisting language-yaml">  kind: QuayRegistry
+  metadata:
+    name: quay37
+  spec:
+    configBundleSecret: config-bundle-secret
+    components:
+      - kind: objectstorage
+        managed: false
+      - kind: route
+        managed: true
+      - kind: mirror
+        managed: true
+        overrides:
+          env:
+            - name: DEBUGLOG
+              value: "true"
+            - name: HTTP_PROXY
+              value: quayproxy.qe.devcluster.openshift.com:3128
+            - name: HTTPS_PROXY
+              value: quayproxy.qe.devcluster.openshift.com:3128
+            - name: NO_PROXY
+              value: svc.cluster.local,localhost,quay370.apps.quayperf370.perfscale.devcluster.openshift.com
+      - kind: tls
+        managed: false
+      - kind: clair
+        managed: true
+        overrides:
+          env:
+            - name: HTTP_PROXY
+              value: quayproxy.qe.devcluster.openshift.com:3128
+            - name: HTTPS_PROXY
+              value: quayproxy.qe.devcluster.openshift.com:3128
+            - name: NO_PROXY
+              value: svc.cluster.local,localhost,quay370.apps.quayperf370.perfscale.devcluster.openshift.com
+      - kind: quay
+        managed: true
+        overrides:
+          env:
+            - name: DEBUGLOG
+              value: "true"
+            - name: NO_PROXY
+              value: svc.cluster.local,localhost,quay370.apps.quayperf370.perfscale.devcluster.openshift.com
+            - name: HTTP_PROXY
+              value: quayproxy.qe.devcluster.openshift.com:3128
+            - name: HTTPS_PROXY
+              value: quayproxy.qe.devcluster.openshift.com:3128</pre>
+								</p></div></li></ol></div></li><li class="listitem"><p class="simpara">
+						Create the <code class="literal">QuayRegistry</code> in specified namespace:
+					</p><pre class="programlisting language-terminal">$ oc create -n quay-enterprise -f quayregistry.yaml</pre></li><li class="listitem"><p class="simpara">
+						Enter the following command to see when the <code class="literal">status.registryEndpoint</code> is populated:
+					</p><pre class="programlisting language-terminal">$ oc get quayregistry -n quay-enterprise example-registry -o jsonpath="{.status.registryEndpoint}" -w</pre></li></ol></div><div class="itemizedlist"><p class="title"><strong>Additional resources</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						For more information about how to track the progress of your Red Hat Quay deployment, see <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/deploy_red_hat_quay_on_openshift_with_the_quay_operator/operator-deploy#operator-monitor-deploy-cli">Monitoring and debugging the deployment process</a>.
+					</li></ul></div><section class="section" id="operator-deploy-view-pods-cli"><div class="titlepage"><div><div><h3 class="title">6.1.1. Viewing created components using the command line</h3></div></div></div><p>
+					Use the following procedure to view deployed Red Hat Quay components.
+				</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+							You have deployed the Red Hat Quay Operator on {ocp.}
+						</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Enter the following command to view the deployed components:
+						</p><pre class="programlisting language-terminal">$ oc get pods -n quay-enterprise</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal">NAME                                                   READY   STATUS      RESTARTS   AGE
+example-registry-clair-app-5ffc9f77d6-jwr9s            1/1     Running     0          3m42s
+example-registry-clair-app-5ffc9f77d6-wgp7d            1/1     Running     0          3m41s
+example-registry-clair-postgres-54956d6d9c-rgs8l       1/1     Running     0          3m5s
+example-registry-quay-app-79c6b86c7b-8qnr2             1/1     Running     4          3m42s
+example-registry-quay-app-79c6b86c7b-xk85f             1/1     Running     4          3m41s
+example-registry-quay-app-upgrade-5kl5r                0/1     Completed   4          3m50s
+example-registry-quay-database-b466fc4d7-tfrnx         1/1     Running     2          3m42s
+example-registry-quay-mirror-6d9bd78756-6lj6p          1/1     Running     0          2m58s
+example-registry-quay-mirror-6d9bd78756-bv6gq          1/1     Running     0          2m58s
+example-registry-quay-postgres-init-dzbmx              0/1     Completed   0          3m43s
+example-registry-quay-redis-8bd67b647-skgqx            1/1     Running     0          3m42s</pre>
+							</p></div></li></ol></div></section><section class="section" id="operator-deploy-hpa"><div class="titlepage"><div><div><h3 class="title">6.1.2. Horizontal Pod Autoscaling</h3></div></div></div><p>
+					A default deployment shows the following running pods:
+				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							Two pods for the Red Hat Quay application itself (<code class="literal">example-registry-quay-app-*`</code>)
+						</li><li class="listitem">
+							One Redis pod for Red Hat Quay logging (<code class="literal">example-registry-quay-redis-*</code>)
+						</li><li class="listitem">
+							One database pod for PostgreSQL used by Red Hat Quay for metadata storage (<code class="literal">example-registry-quay-database-*</code>)
+						</li><li class="listitem">
+							Two <code class="literal">Quay</code> mirroring pods (<code class="literal">example-registry-quay-mirror-*</code>)
+						</li><li class="listitem">
+							Two pods for the Clair application (<code class="literal">example-registry-clair-app-*</code>)
+						</li><li class="listitem">
+							One PostgreSQL pod for Clair (<code class="literal">example-registry-clair-postgres-*</code>)
+						</li></ul></div><p>
+					Horizontal PPod Autoscaling is configured by default to be <code class="literal">managed</code>, and the number of pods for Quay, Clair and repository mirroring is set to two. This facilitates the avoidance of downtime when updating or reconfiguring Red Hat Quay through the Red Hat Quay Operator or during rescheduling events. You can enter the following command to view information about HPA objects:
+				</p><pre class="programlisting language-terminal">$ oc get hpa -n quay-enterprise</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+						
+<pre class="programlisting language-terminal">NAME                           REFERENCE                                 TARGETS           MINPODS   MAXPODS   REPLICAS   AGE
+example-registry-clair-app     Deployment/example-registry-clair-app     16%/90%, 0%/90%   2         10        2          13d
+example-registry-quay-app      Deployment/example-registry-quay-app      31%/90%, 1%/90%   2         20        2          13d
+example-registry-quay-mirror   Deployment/example-registry-quay-mirror   27%/90%, 0%/90%   2         20        2          13d</pre>
+					</p></div><section class="section" id="using-the-api-to-create-first-user"><div class="titlepage"><div><div><h4 class="title">6.1.2.1. Using the API to create the first user</h4></div></div></div><p>
+						Use the following procedure to create the first user in your Red Hat Quay organization.
+					</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+								The config option <code class="literal">FEATURE_USER_INITIALIZE</code> must be set to <code class="literal">true</code>.
+							</li><li class="listitem">
+								No users can already exist in the database.
+							</li></ul></div><div class="admonition note"><div class="admonition_header">Procedure</div><div><p>
+							This procedure requests an OAuth token by specifying <code class="literal">"access_token": true</code>.
+						</p></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+								As the root user, install <code class="literal">python39</code> by entering the following command:
+							</p><pre class="programlisting language-terminal">$ sudo yum install python39</pre></li><li class="listitem"><p class="simpara">
+								Upgrade the <code class="literal">pip</code> package manager for Python 3.9:
+							</p><pre class="programlisting language-terminal">$ python3.9 -m pip install --upgrade pip</pre></li><li class="listitem"><p class="simpara">
+								Use the <code class="literal">pip</code> package manager to install the <code class="literal">bcrypt</code> package:
+							</p><pre class="programlisting language-terminal">$ pip install bcrypt</pre></li><li class="listitem"><p class="simpara">
+								Generate a secure, hashed password using the <code class="literal">bcrypt</code> package in Python 3.9 by entering the following command:
+							</p><pre class="programlisting language-terminal">$ python3.9 -c 'import bcrypt; print(bcrypt.hashpw(b"subquay12345", bcrypt.gensalt(12)).decode("utf-8"))'</pre></li><li class="listitem"><p class="simpara">
+								Open your Red Hat Quay configuration file and update the following configuration fields:
+							</p><pre class="programlisting language-yaml">FEATURE_USER_INITIALIZE: true
+SUPER_USERS:
+     -  quayadmin</pre></li><li class="listitem"><p class="simpara">
+								Stop the Red Hat Quay service by entering the following command:
+							</p><pre class="programlisting language-terminal">$ sudo podman stop quay</pre></li><li class="listitem"><p class="simpara">
+								Start the Red Hat Quay service by entering the following command:
+							</p><pre class="programlisting language-terminal">$ sudo podman run -d -p 80:8080 -p 443:8443 --name=quay -v $QUAY/config:/conf/stack:Z  -v $QUAY/storage:/datastorage:Z {productrepo}/{quayimage}:{productminv}</pre></li><li class="listitem"><p class="simpara">
+								Run the following <code class="literal">CURL</code> command to generate a new user with a username, password, email, and access token:
+							</p><pre class="programlisting language-terminal">$ curl -X POST -k  http://quay-server.example.com/api/v1/user/initialize --header 'Content-Type: application/json' --data '{ "username": "quayadmin", "password":"quaypass12345", "email": "quayadmin@example.com", "access_token": true}'</pre><p class="simpara">
+								If successful, the command returns an object with the username, email, and encrypted password. For example:
+							</p><pre class="programlisting language-yaml">{"access_token":"6B4QTRSTSD1HMIG915VPX7BMEZBVB9GPNY2FC2ED", "email":"quayadmin@example.com","encrypted_password":"1nZMLH57RIE5UGdL/yYpDOHLqiNCgimb6W9kfF8MjZ1xrfDpRyRs9NUnUuNuAitW","username":"quayadmin"} # gitleaks:allow</pre><p class="simpara">
+								If a user already exists in the database, an error is returned:
+							</p><pre class="programlisting language-terminal">{"message":"Cannot initialize user in a non-empty database"}</pre><p class="simpara">
+								If your password is not at least eight characters or contains whitespace, an error is returned:
+							</p><pre class="programlisting language-terminal">{"message":"Failed to initialize user: Invalid password, password must be at least 8 characters and contain no whitespace."}</pre></li><li class="listitem"><p class="simpara">
+								Log in to your Red Hat Quay deployment by entering the following command:
+							</p><pre class="programlisting language-terminal">$ sudo podman login -u quayadmin -p quaypass12345 http://quay-server.example.com --tls-verify=false</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+									
+<pre class="programlisting language-terminal">Login Succeeded!</pre>
+								</p></div></li></ol></div><div class="_additional-resources _additional-resources"><p class="title"><strong>Additional resources</strong></p><p>
+							For more information on pre-configuring your Red Hat Quay deployment, see the section <a class="link" href="#config-preconfigure-automation" title="3.1. Pre-configuring Red Hat Quay for automation">Pre-configuring Red Hat Quay for automation</a>
+						</p></div></section></section><section class="section" id="operator-monitor-deploy-cli"><div class="titlepage"><div><div><h3 class="title">6.1.3. Monitoring and debugging the deployment process</h3></div></div></div><p>
+					Users can now troubleshoot problems during the deployment phase. The status in the <code class="literal">QuayRegistry</code> object can help you monitor the health of the components during the deployment an help you debug any problems that may arise.
+				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Enter the following command to check the status of your deployment:
+						</p><pre class="programlisting language-terminal">$ oc get quayregistry -n quay-enterprise -o yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								Immediately after deployment, the <code class="literal">QuayRegistry</code> object will show the basic configuration:
+							</p></div><pre class="programlisting language-yaml">apiVersion: v1
+items:
+- apiVersion: quay.redhat.com/v1
+  kind: QuayRegistry
+  metadata:
+    creationTimestamp: "2021-09-14T10:51:22Z"
+    generation: 3
+    name: example-registry
+    namespace: quay-enterprise
+    resourceVersion: "50147"
+    selfLink: /apis/quay.redhat.com/v1/namespaces/quay-enterprise/quayregistries/example-registry
+    uid: e3fc82ba-e716-4646-bb0f-63c26d05e00e
+  spec:
+    components:
+    - kind: postgres
+      managed: true
+    - kind: clair
+      managed: true
+    - kind: redis
+      managed: true
+    - kind: horizontalpodautoscaler
+      managed: true
+    - kind: objectstorage
+      managed: true
+    - kind: route
+      managed: true
+    - kind: mirror
+      managed: true
+    - kind: monitoring
+      managed: true
+    - kind: tls
+      managed: true
+    configBundleSecret: example-registry-config-bundle-kt55s
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""</pre></li><li class="listitem"><p class="simpara">
+							Use the <code class="literal">oc get pods</code> command to view the current state of the deployed components:
+						</p><pre class="programlisting language-terminal">$ oc get pods -n quay-enterprise</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal">NAME                                                   READY   STATUS              RESTARTS   AGE
+example-registry-clair-app-86554c6b49-ds7bl            0/1     ContainerCreating   0          2s
+example-registry-clair-app-86554c6b49-hxp5s            0/1     Running             1          17s
+example-registry-clair-postgres-68d8857899-lbc5n       0/1     ContainerCreating   0          17s
+example-registry-quay-app-upgrade-h2v7h                0/1     ContainerCreating   0          9s
+example-registry-quay-database-66f495c9bc-wqsjf        0/1     ContainerCreating   0          17s
+example-registry-quay-mirror-854c88457b-d845g          0/1     Init:0/1            0          2s
+example-registry-quay-mirror-854c88457b-fghxv          0/1     Init:0/1            0          17s
+example-registry-quay-postgres-init-bktdt              0/1     Terminating         0          17s
+example-registry-quay-redis-f9b9d44bf-4htpz            0/1     ContainerCreating   0          17s</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							While the deployment is in progress, the <code class="literal">QuayRegistry</code> object will show the current status. In this instance, database migrations are taking place, and other components are waiting until completion:
+						</p><pre class="programlisting language-terminal">  status:
+    conditions:
+    - lastTransitionTime: "2021-09-14T10:52:04Z"
+      lastUpdateTime: "2021-09-14T10:52:04Z"
+      message: all objects created/updated successfully
+      reason: ComponentsCreationSuccess
+      status: "False"
+      type: RolloutBlocked
+    - lastTransitionTime: "2021-09-14T10:52:05Z"
+      lastUpdateTime: "2021-09-14T10:52:05Z"
+      message: running database migrations
+      reason: MigrationsInProgress
+      status: "False"
+      type: Available
+    lastUpdated: 2021-09-14 10:52:05.371425635 +0000 UTC
+    unhealthyComponents:
+      clair:
+      - lastTransitionTime: "2021-09-14T10:51:32Z"
+        lastUpdateTime: "2021-09-14T10:51:32Z"
+        message: 'Deployment example-registry-clair-postgres: Deployment does not have minimum availability.'
+        reason: MinimumReplicasUnavailable
+        status: "False"
+        type: Available
+      - lastTransitionTime: "2021-09-14T10:51:32Z"
+        lastUpdateTime: "2021-09-14T10:51:32Z"
+        message: 'Deployment example-registry-clair-app: Deployment does not have minimum availability.'
+        reason: MinimumReplicasUnavailable
+        status: "False"
+        type: Available
+      mirror:
+      - lastTransitionTime: "2021-09-14T10:51:32Z"
+        lastUpdateTime: "2021-09-14T10:51:32Z"
+        message: 'Deployment example-registry-quay-mirror: Deployment does not have minimum availability.'
+        reason: MinimumReplicasUnavailable
+        status: "False"
+        type: Available</pre></li><li class="listitem"><p class="simpara">
+							When the deployment process finishes successfully, the status in the <code class="literal">QuayRegistry</code> object shows no unhealthy components:
+						</p><pre class="programlisting language-terminal">  status:
+    conditions:
+    - lastTransitionTime: "2021-09-14T10:52:36Z"
+      lastUpdateTime: "2021-09-14T10:52:36Z"
+      message: all registry component healthchecks passing
+      reason: HealthChecksPassing
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2021-09-14T10:52:46Z"
+      lastUpdateTime: "2021-09-14T10:52:46Z"
+      message: all objects created/updated successfully
+      reason: ComponentsCreationSuccess
+      status: "False"
+      type: RolloutBlocked
+    currentVersion: {producty}
+    lastUpdated: 2021-09-14 10:52:46.104181633 +0000 UTC
+    registryEndpoint: https://example-registry-quay-quay-enterprise.apps.docs.quayteam.org
+    unhealthyComponents: {}</pre></li></ol></div></section></section><section class="section" id="operator-deploy-ui"><div class="titlepage"><div><div><h2 class="title">6.2. Deploying Red Hat Quay from the OpenShift Container Platform console</h2></div></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+						Create a namespace, for example, <code class="literal">quay-enterprise</code>.
+					</li><li class="listitem">
+						Select <span class="strong strong"><strong>Operators</strong></span> → <span class="strong strong"><strong>Installed Operators</strong></span>, then select the Quay Operator to navigate to the Operator detail view.
+					</li><li class="listitem">
+						Click 'Create Instance' on the 'Quay Registry' tile under 'Provided APIs'.
+					</li><li class="listitem">
+						Optionally change the 'Name' of the <code class="literal">QuayRegistry</code>. This will affect the hostname of the registry. All other fields have been populated with defaults.
+					</li><li class="listitem">
+						Click 'Create' to submit the <code class="literal">QuayRegistry</code> to be deployed by the Quay Operator.
+					</li><li class="listitem">
+						You should be redirected to the <code class="literal">QuayRegistry</code> list view. Click on the <code class="literal">QuayRegistry</code> you just created to see the details view.
+					</li><li class="listitem">
+						Once the 'Registry Endpoint' has a value, click it to access your new Quay registry via the UI. You can now select 'Create Account' to create a user and sign in.
+					</li></ol></div><section class="section" id="operator-first-user"><div class="titlepage"><div><div><h3 class="title">6.2.1. Using the Red Hat Quay UI to create the first user</h3></div></div></div><p>
+					Use the following procedure to create the first user by the Red Hat Quay UI.
+				</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+						This procedure assumes that the <code class="literal">FEATURE_USER_CREATION</code> config option has not been set to <code class="literal">false.</code> If it is <code class="literal">false</code>, the <code class="literal">Create Account</code> functionality on the UI will be disabled, and you will have to use the API to create the first user.
+					</p></div></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+							In the OpenShift Container Platform console, navigate to <span class="strong strong"><strong>Operators</strong></span> → <span class="strong strong"><strong>Installed Operators</strong></span>, with the appropriate namespace / project.
+						</li><li class="listitem"><p class="simpara">
+							Click on the newly installed <code class="literal">QuayRegistry</code> object to view the details. For example:
+						</p><p class="simpara">
+							<span class="inlinemediaobject"><img src="images/config-editor-details-operator-36.png" alt="QuayRegistry details"/></span>
+						</p></li><li class="listitem">
+							After the <code class="literal">Registry Endpoint</code> has a value, navigate to this URL in your browser.
+						</li><li class="listitem"><p class="simpara">
+							Select <span class="strong strong"><strong>Create Account</strong></span> in the Red Hat Quay registry UI to create a user. For example:
+						</p><p class="simpara">
+							<span class="inlinemediaobject"><img src="images/create-account-1.png" alt="Create Account"/></span>
+						</p></li><li class="listitem"><p class="simpara">
+							Enter the details for <span class="strong strong"><strong>Username</strong></span>, <span class="strong strong"><strong>Password</strong></span>, <span class="strong strong"><strong>Email</strong></span>, and then click <span class="strong strong"><strong>Create Account</strong></span>. For example:
+						</p><p class="simpara">
+							<span class="inlinemediaobject"><img src="images/create-account-2.png" alt="Enter account details"/></span>
+						</p></li></ol></div><p>
+					After creating the first user, you are automatically logged in to the Red Hat Quay registry. For example:
+				</p><p>
+					<span class="inlinemediaobject"><img src="images/create-account-3.png" alt="Initial log in"/></span>
+				</p></section></section></section><section class="chapter" id="operator-quayregistry-status"><div class="titlepage"><div><div><h1 class="title">Chapter 7. Viewing the status of the QuayRegistry object</h1></div></div></div><p>
+			Lifecycle observability for a given Red Hat Quay deployment is reported in the <code class="literal">status</code> section of the corresponding <code class="literal">QuayRegistry</code> object. The Red Hat Quay Operator constantly updates this section, and this should be the first place to look for any problems or state changes in Red Hat Quay or its managed dependencies.
+		</p><section class="section" id="quayregistry-endpoint"><div class="titlepage"><div><div><h2 class="title">7.1. Viewing the registry endpoint</h2></div></div></div><p>
+				Once Red Hat Quay is ready to be used, the <code class="literal">status.registryEndpoint</code> field will be populated with the publicly available hostname of the registry.
+			</p></section><section class="section" id="quayregistry-current-version"><div class="titlepage"><div><div><h2 class="title">7.2. Viewing the version of Red Hat Quay in use</h2></div></div></div><p>
+				The current version of Red Hat Quay that is running will be reported in <code class="literal">status.currentVersion</code>.
+			</p></section><section class="section" id="quayregistry-conditions"><div class="titlepage"><div><div><h2 class="title">7.3. Viewing the conditions of your Red Hat Quay deployment</h2></div></div></div><p>
+				Certain conditions will be reported in <code class="literal">status.conditions</code>.
+			</p></section></section><section class="chapter" id="operator-config-cli"><div class="titlepage"><div><div><h1 class="title">Chapter 8. Configuring Red Hat Quay on OpenShift Container Platform</h1></div></div></div><p>
+			After deployment, you can configure the Red Hat Quay application by editing the Red Hat Quay configuration bundle secret <code class="literal">spec.configBundleSecret</code>. You can also change the managed status of components in the <code class="literal">spec.components</code> object of the <code class="literal">QuayRegistry</code> resource.
+		</p><section class="section" id="editing-config-bundle-secret-in-ocp-console"><div class="titlepage"><div><div><h2 class="title">8.1. Editing the config bundle secret in the OpenShift Container Platform console</h2></div></div></div><p>
+				Use the following procedure to edit the config bundle secret in the OpenShift Container Platform console.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						On the Red Hat Quay Registry overview screen, click the link for the <span class="strong strong"><strong>Config Bundle Secret</strong></span>.
+					</p><p class="simpara">
+						<span class="inlinemediaobject"><img src="images/operator-quay-registry-overview.png" alt="Red Hat Quay Registry overview"/></span>
+					</p></li><li class="listitem"><p class="simpara">
+						To edit the secret, click <span class="strong strong"><strong>Actions</strong></span> → <span class="strong strong"><strong>Edit Secret</strong></span>.
+					</p><p class="simpara">
+						<span class="inlinemediaobject"><img src="images/operator-config-bundle-edit-secret.png" alt="Edit secret"/></span>
+					</p></li><li class="listitem"><p class="simpara">
+						Modify the configuration and save the changes.
+					</p><p class="simpara">
+						<span class="inlinemediaobject"><img src="images/operator-save-config-changes.png" alt="Save changes"/></span>
+					</p></li><li class="listitem">
+						Monitor the deployment to ensure successful completion and that the configuration changes have taken effect.
+					</li></ol></div></section><section class="section" id="operator-config-cli-access"><div class="titlepage"><div><div><h2 class="title">8.2. Determining QuayRegistry endpoints and secrets</h2></div></div></div><p>
+				Use the following procedure to find <code class="literal">QuayRegistry</code> endpoints and secrets.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						You can examine the <code class="literal">QuayRegistry</code> resource, using <code class="literal">oc describe quayregistry</code> or <code class="literal">oc get quayregistry -o yaml</code>, to find the current endpoints and secrets by entering the following command:
+					</p><pre class="programlisting language-terminal">$ oc get quayregistry example-registry -n quay-enterprise -o yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  ...
+  name: example-registry
+  namespace: quay-enterprise
+  ...
+spec:
+  components:
+  - kind: quay
+    managed: true
+  ...
+  - kind: clairpostgres
+    managed: true
+  configBundleSecret: init-config-bundle-secret <span id="CO3-1"/><span class="callout">1</span>
+status:
+  currentVersion: 3.7.0
+  lastUpdated: 2022-05-11 13:28:38.199476938 +0000 UTC
+  registryEndpoint: https://example-registry-quay-quay-enterprise.apps.docs.gcp.quaydev.org <span id="CO3-2"/><span class="callout">2</span></pre>
+						</p></div><div class="calloutlist"><dl class="calloutlist"><dt><a href="#CO3-1"><span class="callout">1</span></a> </dt><dd><div class="para">
+								The config bundle secret, containing the <code class="literal">config.yaml</code> file and any SSL/TLS certificates.
+							</div></dd><dt><a href="#CO3-2"><span class="callout">2</span></a> </dt><dd><div class="para">
+								The URL for your registry, for browser access to the registry UI, and for the registry API endpoint.
+							</div></dd></dl></div></li></ol></div></section><section class="section" id="operator-config-cli-download"><div class="titlepage"><div><div><h2 class="title">8.3. Downloading the existing configuration</h2></div></div></div><p>
+				The following procedures detail how to download the existing configuration using different strategies.
+			</p><section class="section" id="using-config-bundle-secret"><div class="titlepage"><div><div><h3 class="title">8.3.1. Using the config bundle secret to download the existing configuration</h3></div></div></div><p>
+					You can use the config bundle secret to download the existing configuration.
+				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Obtain the secret data by entering the following command:
+						</p><pre class="programlisting language-terminal">$ oc get secret -n quay-enterprise init-config-bundle-secret -o jsonpath='{.data}'</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-yaml">{
+    "config.yaml": "RkVBVFVSRV9VU0 ... MDAwMAo="
+}</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							Enter the following command to decode the data:
+						</p><pre class="programlisting language-terminal">$ echo 'RkVBVFVSRV9VU0 ... MDAwMAo=' | base64 --decode</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-yaml">FEATURE_USER_INITIALIZE: true
+BROWSER_API_CALLS_XHR_ONLY: false
+SUPER_USERS:
+- quayadmin
+FEATURE_USER_CREATION: false
+FEATURE_QUOTA_MANAGEMENT: true
+FEATURE_PROXY_CACHE: true
+FEATURE_BUILD_SUPPORT: true
+DEFAULT_SYSTEM_REJECT_QUOTA_BYTES: 102400000</pre>
+							</p></div></li></ol></div></section></section><section class="section" id="operator-custom-ssl-certs-config-bundle"><div class="titlepage"><div><div><h2 class="title">8.4. Using the config bundle to configure custom SSL/TLS certs</h2></div></div></div><p>
+				You can configure custom SSL/TLS certificates before the initial deployment, or after Red Hat Quay is deployed on OpenShift Container Platform. This is done by creating or updating the config bundle secret.
+			</p><p>
+				If you are adding the certificates to an existing deployment, you must include the existing <code class="literal">config.yaml</code> file in the new config bundle secret, even if you are not making any configuration changes.
+			</p><p>
+				Use the following procedure to add custom SSL/TLS certificates.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						In your <code class="literal">QuayRegistry</code> YAML file, set <code class="literal">kind: tls</code> to <code class="literal">managed:false</code>, for example:
+					</p><pre class="programlisting language-yaml">  - kind: tls
+    managed: false</pre></li><li class="listitem"><p class="simpara">
+						Navigate to the <span class="strong strong"><strong>Events</strong></span> page, which should reveal that the change is blocked until you set up the appropriate config. For example:
+					</p><pre class="programlisting language-yaml">    - lastTransitionTime: '2022-03-28T12:56:49Z'
+      lastUpdateTime: '2022-03-28T12:56:49Z'
+      message: &gt;-
+        required component `tls` marked as unmanaged, but `configBundleSecret`
+        is missing necessary fields
+      reason: ConfigInvalid
+      status: 'True'</pre></li><li class="listitem"><p class="simpara">
+						Create the secret using embedded data or by using files.
+					</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
+								Embed the configuration details directly in the <code class="literal">Secret</code> resource YAML file. For example:
+							</p><div class="formalpara"><p class="title"><strong>custom-ssl-config-bundle.yaml</strong></p><p>
+									
+<pre class="programlisting language-yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: custom-ssl-config-bundle-secret
+  namespace: quay-enterprise
+data:
+  config.yaml: |
+    FEATURE_USER_INITIALIZE: true
+    BROWSER_API_CALLS_XHR_ONLY: false
+    SUPER_USERS:
+    - quayadmin
+    FEATURE_USER_CREATION: false
+    FEATURE_QUOTA_MANAGEMENT: true
+    FEATURE_PROXY_CACHE: true
+    FEATURE_BUILD_SUPPORT: true
+    DEFAULT_SYSTEM_REJECT_QUOTA_BYTES: 102400000
+  extra_ca_cert_my-custom-ssl.crt: |
+    -----BEGIN CERTIFICATE-----
+    MIIDsDCCApigAwIBAgIUCqlzkHjF5i5TXLFy+sepFrZr/UswDQYJKoZIhvcNAQEL
+    BQAwbzELMAkGA1UEBhMCSUUxDzANBgNVBAgMBkdBTFdBWTEPMA0GA1UEBwwGR0FM
+    ....
+    -----END CERTIFICATE-----</pre>
+								</p></div></li><li class="listitem"><p class="simpara">
+								Create the secret from the YAML file:
+							</p><pre class="screen">$ oc create  -f custom-ssl-config-bundle.yaml</pre><p class="simpara">
+								..
+							</p></li></ol></div></li><li class="listitem"><p class="simpara">
+						Alternatively, you can create files containing the desired information, and then create the secret from those files.
+					</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
+								Enter the following command to create a generic <code class="literal">Secret</code> object that contains the <code class="literal">config.yaml</code> file and a <code class="literal">custom-ssl.crt</code> file:
+							</p><pre class="screen">$ oc create secret generic custom-ssl-config-bundle-secret \
+  --from-file=config.yaml \
+  --from-file=extra_ca_cert_my-custom-ssl.crt=my-custom-ssl.crt</pre></li><li class="listitem"><p class="simpara">
+								Create or update the <code class="literal">QuayRegistry</code> YAML file, referencing the created <code class="literal">Secret</code>, for example:
+							</p><div class="formalpara"><p class="title"><strong>Example <code class="literal">QuayRegistry</code> YAML file</strong></p><p>
+									
+<pre class="programlisting language-yaml">apiVersion: quay.redhat.com/v1
+kind: QuayRegistry
+metadata:
+  name: example-registry
+  namespace: quay-enterprise
+spec:
+  configBundleSecret: custom-ssl-config-bundle-secret</pre>
+								</p></div></li><li class="listitem"><p class="simpara">
+								Deploy or update the registry using the YAML file by entering the following command:
+							</p><pre class="screen">oc apply -f quayregistry.yaml</pre></li></ol></div></li></ol></div><div class="itemizedlist quay-next-steps"><p class="title"><strong>Next steps</strong></p><ul class="itemizedlist quay-next-steps" type="disc"><li class="listitem">
+						<a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_operator_features/">Red Hat Quay features</a>
+					</li></ul></div></section></section><div><div xml:lang="en-US" class="legalnotice" id="idm46494945204288"><h1 class="legalnotice">Legal Notice</h1><div class="para">
+		Copyright <span class="trademark"/>© 2023 Red Hat, Inc.
+	</div><div class="para">
+		The text of and illustrations in this document are licensed by Red Hat under a Creative Commons Attribution–Share Alike 3.0 Unported license ("CC-BY-SA"). An explanation of CC-BY-SA is available at <a class="uri" href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a>. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
+	</div><div class="para">
+		Red Hat, as the licensor of this document, waives the right to enforce, and agrees not to assert, Section 4d of CC-BY-SA to the fullest extent permitted by applicable law.
+	</div><div class="para">
+		Red Hat, Red Hat Enterprise Linux, the Shadowman logo, the Red Hat logo, JBoss, OpenShift, Fedora, the Infinity logo, and RHCE are trademarks of Red Hat, Inc., registered in the United States and other countries.
+	</div><div class="para">
+		<span class="trademark">Linux</span>® is the registered trademark of Linus Torvalds in the United States and other countries.
+	</div><div class="para">
+		<span class="trademark">Java</span>® is a registered trademark of Oracle and/or its affiliates.
+	</div><div class="para">
+		<span class="trademark">XFS</span>® is a trademark of Silicon Graphics International Corp. or its subsidiaries in the United States and/or other countries.
+	</div><div class="para">
+		<span class="trademark">MySQL</span>® is a registered trademark of MySQL AB in the United States, the European Union and other countries.
+	</div><div class="para">
+		<span class="trademark">Node.js</span>® is an official trademark of Joyent. Red Hat is not formally related to or endorsed by the official Joyent Node.js open source or commercial project.
+	</div><div class="para">
+		The <span class="trademark">OpenStack</span>® Word Mark and OpenStack logo are either registered trademarks/service marks or trademarks/service marks of the OpenStack Foundation, in the United States and other countries and are used with the OpenStack Foundation's permission. We are not affiliated with, endorsed or sponsored by the OpenStack Foundation, or the OpenStack community.
+	</div><div class="para">
+		All other trademarks are the property of their respective owners.
+	</div></div></div></div></div></div><script type="text/javascript">
+                        jQuery(document).ready(function() {
+                            initSwitchery();
+                            jQuery('pre[class*="language-"]').each(function(i, block){hljs.highlightBlock(block);});
+                        });
+                    </script></body></html>
