@@ -23,6 +23,8 @@
 | **LDAP_URI** | String | The LDAP URI.
 | **LDAP_USER_FILTER** | String | The user filter for LDAP authentication.
 | **LDAP_USER_RDN** | Array of String|  The user RDN for LDAP authentication.
+| **LDAP_SECONDARY_USER_RDNS** | Array of String | Provide Secondary User Relative DNs if there are multiple Organizational Units where user objects are located.
+
 | **TEAM_RESYNC_STALE_TIME**  | String | If team syncing is enabled for a team, how often to check its membership and resync if necessary. + 
  + 
 **Pattern:** + 
@@ -42,11 +44,11 @@ This field requires that your `AUTHENTICATION_TYPE` is set to `LDAP`.
 
 This field requires that your `AUTHENTICATION_TYPE` is set to `LDAP`. 
 
-| **LDAP_TIMEOUT** |Integer | Determines the maximum time period. in seconds, allowed for establishing a connection to the Lightweight Directory Access Protocol (LDAP) server. +
+| **LDAP_TIMEOUT** |Integer | Specifies the time limit, in seconds, for LDAP operations. This limits the amount of time an LDAP search, bind, or other operation can take. Similar to the `-l` option in `ldapsearch`, it sets a client-side operation timeout. +
  +
 **Default:** `10`
 
-| **LDAP_NETWORK_TIMEOUT** |Integer | Defines the maximum time duration, in seconds, that {productname} waits for a response from the Lightweight Directory Access Protocol (LDAP) server during network operations. +
+| **LDAP_NETWORK_TIMEOUT** |Integer | Specifies the time limit, in seconds, for establishing a connection to the LDAP server. This is the maximum time {productname} waits for a response during network operations, similar to the `-o nettimeout` option in `ldapsearch`. +
  +
 **Default:** `10`
 
@@ -83,6 +85,11 @@ LDAP_USER_RDN: <10>
     - o=<organization_id>
     - dc=<example_domain_component>
     - dc=com
+LDAP_SECONDARY_USER_RDNS: <11>
+    - ou=<example_organization_unit_one>
+    - ou=<example_organization_unit_two>
+    - ou=<example_organization_unit_three>
+    - ou=<example_organization_unit_four>
 ----
 <1> Required. Must be set to `LDAP`.
 <2> Required. The admin DN for LDAP authentication.
@@ -94,6 +101,7 @@ LDAP_USER_RDN: <10>
 <8> Required. The LDAP URI.
 <9> Required. The user filter for LDAP authentication.
 <10> Required. The user RDN for LDAP authentication.
+<11> Optional. Secondary User Relative DNs if there are multiple Organizational Units where user objects are located.
 
 [id="reference-ldap-restricted-user"]
 === LDAP restricted user configuration
