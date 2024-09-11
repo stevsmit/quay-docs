@@ -1,0 +1,842 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Red Hat Quay security enhancements</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Using SSL/TLS with Red Hat Quay"/><link rel="next" href="#idm46105797264672" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm46105791792208"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.13</span></div><div><h1 class="title">Red Hat Quay security enhancements</h1></div><div><h2 class="subtitle">Configuring SSL/TLS for Red Hat Quay</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm46105795385408">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
+				Using SSL/TLS with Red Hat Quay
+			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm46105797264672">Preface</a></span></li><li><span class="chapter"><a href="#role-based-access-control">1. Red Hat Quay permissions model</a></span><ul><li><span class="section"><a href="#teams-overview">1.1. Red Hat Quay teams overview</a></span><ul><li><span class="section"><a href="#set-team-role">1.1.1. Setting a team role by using the UI</a></span></li><li><span class="section"><a href="#setting-role-of-team-within-organization-api">1.1.2. Setting the role of a team within an organization by using the API</a></span></li></ul></li><li><span class="section"><a href="#default-permissions-v2-ui">1.2. Creating and managing default permissions by using the UI</a></span></li><li><span class="section"><a href="#default-permissions-api">1.3. Creating and managing default permissions by using the API</a></span></li><li><span class="section"><a href="#allow-access-user-repo">1.4. Adjusting access settings for a repository by using the UI</a></span></li><li><span class="section"><a href="#adjust-access-user-repo-api">1.5. Adjusting access settings for a repository by using the API</a></span></li></ul></li><li><span class="chapter"><a href="#use-quay-create-repo">2. Red Hat Quay repository overview</a></span><ul><li><span class="section"><a href="#adjusting-image-repository-visibility-the-ui">2.1. Adjusting repository visibility by using the UI</a></span></li><li><span class="section"><a href="#adjusting-image-repository-visibility-the-api">2.2. Adjusting repository visibility by using the API</a></span></li></ul></li><li><span class="chapter"><a href="#allow-robot-access-user-repo">3. Red Hat Quay Robot Account overview</a></span><ul><li><span class="section"><a href="#creating-robot-account-v2-ui">3.1. Creating a robot account by using the UI</a></span></li><li><span class="section"><a href="#creating-robot-account-api">3.2. Creating a robot account by using the Red Hat Quay API</a></span></li><li><span class="section"><a href="#managing-robot-account-permissions-v2-ui">3.3. Bulk managing robot account repository access</a></span></li><li><span class="section"><a href="#disabling-robot-account">3.4. Disabling robot accounts by using the UI</a></span></li><li><span class="section"><a href="#regenerating-robot-account-api">3.5. Regenerating a robot account token by using the Red Hat Quay API</a></span></li><li><span class="section"><a href="#deleting-robot-account-ui">3.6. Deleting a robot account by using the UI</a></span></li><li><span class="section"><a href="#deleting-robot-account-api">3.7. Deleting a robot account by using the Red Hat Quay API</a></span></li></ul></li><li><span class="chapter"><a href="#ssl-tls-quay-overview">4. SSL and TLS for Red Hat Quay</a></span><ul><li><span class="section"><a href="#creating-a-certificate-authority">4.1. Creating a Certificate Authority</a></span></li><li><span class="section"><a href="#configuring-ssl-tls">4.2. Configuring SSL/TLS for standalone Red Hat Quay deployments</a></span><ul><li><span class="section"><a href="#configuring-ssl-using-cli">4.2.1. Configuring custom SSL/TLS certificates by using the command line interface</a></span></li><li><span class="section"><a href="#configuring-podman-trust-ca">4.2.2. Configuring Podman to trust the Certificate Authority</a></span></li><li><span class="section"><a href="#configuring-system-trust-ca">4.2.3. Configuring the system to trust the certificate authority</a></span></li></ul></li><li><span class="section"><a href="#operator-custom-ssl-certs-config-bundle">4.3. Configuring custom SSL/TLS certificates for Red Hat Quay on OpenShift Container Platform</a></span><ul><li><span class="section"><a href="#creating-custom-ssl-certs-config-bundle">4.3.1. Creating a custom SSL/TLS configBundleSecret resource</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#config-extra-ca-certs-quay">5. Adding additional Certificate Authorities for Red Hat Quay</a></span><ul><li><span class="section"><a href="#config-extra-ca-certs-standalone">5.1. Adding additional Certificate Authorities to the Red Hat Quay container</a></span></li><li><span class="section"><a href="#config-additional-cas-ocp">5.2. Adding additional Certificate Authorities to Red Hat Quay on OpenShift Container Platform</a></span><ul><li><span class="section"><a href="#operator-config-cli-download">5.2.1. Downloading the existing configuration</a></span></li><li><span class="section"><a href="#adding-ca-certs-to-config">5.2.2. Adding additional Certificate Authorities to Red Hat Quay on OpenShift Container Platform</a></span></li></ul></li><li><span class="section"><a href="#config-custom-ssl-cert-kubernetes">5.3. Adding custom SSL/TLS certificates when Red Hat Quay is deployed on Kubernetes</a></span></li></ul></li><li><span class="chapter"><a href="#clair-vulnerability-scanner">6. Clair security scanner</a></span></li></ul></div><section class="preface" id="idm46105797264672"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div><p>
+			Red Hat Quay is built for enterprise use cases where content governance and security are two major focus areas.
+		</p><p>
+			This guide provides guidance for enhancing the security of your Red Hat Quay deployment. The following topics are covered:
+		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					Adjusting repository visibility
+				</li><li class="listitem">
+					Creating and managing robot accounts
+				</li><li class="listitem">
+					Creating self-signed Certificate Authorities
+				</li><li class="listitem">
+					Configuring custom SSL/TLS certificates for standalone Red Hat Quay deployments
+				</li><li class="listitem">
+					Configuring custom SSL/TLS certificates for Red Hat Quay on OpenShift Container Platform
+				</li><li class="listitem">
+					Adding additional Certificate Authorities to the Red Hat Quay container
+				</li><li class="listitem">
+					Adding additional Certificate Authorities to Red Hat Quay on OpenShift Container Platform
+				</li><li class="listitem">
+					Clair vulnerability reporting
+				</li></ul></div></section><section class="chapter" id="role-based-access-control"><div class="titlepage"><div><div><h1 class="title">Chapter 1. Red Hat Quay permissions model</h1></div></div></div><p>
+			Red Hat Quay’s permission model provides fine-grained access control over repositories and the content of those repositories, helping ensure secure collaboration and automation. Red Hat Quay administrators can grant users and robot accounts one of the following levels of access:
+		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					<span class="strong strong"><strong>Read</strong></span>: Allows users, robots, and teams to pull images.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Write</strong></span>: Allows users, robots, and teams to push images.
+				</li><li class="listitem">
+					<span class="strong strong"><strong>Admin</strong></span>: Provides users, robots, and teams administrative privileges.
+				</li></ul></div><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+				Administrative users can delegate new permissions for existing users and teams, change existing permissions, and revoke permissions when necessary
+			</p></div></div><p>
+			Collectively, these levels of access provide users or robot accounts the ability to perform specific tasks, like pulling images, pushing new versions of an image into the registry, or managing the settings of a repository. These permissions can be delegated across the entire organization and on specific repositories. For example, <span class="strong strong"><strong>Read</strong></span> permissions can be set to a specific team within the organization, while <span class="strong strong"><strong>Admin</strong></span> permissions can be given to all users across all repositories within the organization.
+		</p><section class="section" id="teams-overview"><div class="titlepage"><div><div><h2 class="title">1.1. Red Hat Quay teams overview</h2></div></div></div><p>
+				In Red Hat Quay a <span class="emphasis"><em>team</em></span> is a group of users with shared permissions, allowing for efficient management and collaboration on projects. Teams can help streamline access control and project management within organizations and repositories. They can be assigned designated permissions and help ensure that members have the appropriate level of access to their repositories based on their roles and responsibilities.
+			</p><section class="section" id="set-team-role"><div class="titlepage"><div><div><h3 class="title">1.1.1. Setting a team role by using the UI</h3></div></div></div><p>
+					After you have created a team, you can set the role of that team within the Organization.
+				</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+							You have created a team.
+						</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+							On the Red Hat Quay landing page, click the name of your Organization.
+						</li><li class="listitem">
+							In the navigation pane, click <span class="strong strong"><strong>Teams and Membership</strong></span>.
+						</li><li class="listitem"><p class="simpara">
+							Select the <span class="strong strong"><strong>TEAM ROLE</strong></span> drop-down menu, as shown in the following figure:
+						</p><p class="simpara">
+							<span class="inlinemediaobject"><img src="images/set-team-role.png" alt="Set the role that a team has within an organization"/></span>
+						</p></li><li class="listitem"><p class="simpara">
+							For the selected team, choose one of the following roles:
+						</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+									<span class="strong strong"><strong>Admin</strong></span>. Full administrative access to the organization, including the ability to create teams, add members, and set permissions.
+								</li><li class="listitem">
+									<span class="strong strong"><strong>Member</strong></span>. Inherits all permissions set for the team.
+								</li><li class="listitem">
+									<span class="strong strong"><strong>Creator</strong></span>. All member permissions, plus the ability to create new repositories.
+								</li></ul></div></li></ol></div><section class="section" id="managing-team-members-repo-permissions-ui"><div class="titlepage"><div><div><h4 class="title">1.1.1.1. Managing team members and repository permissions</h4></div></div></div><p>
+						Use the following procedure to manage team members and set repository permissions.
+					</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+								On the <span class="strong strong"><strong>Teams and membership</strong></span> page of your organization, you can also manage team members and set repository permissions.
+							</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
+										Click the kebab menu, and select one of the following options:
+									</li><li class="listitem">
+										<span class="strong strong"><strong>Manage Team Members</strong></span>. On this page, you can view all members, team members, robot accounts, or users who have been invited. You can also add a new team member by clicking <span class="strong strong"><strong>Add new member</strong></span>.
+									</li><li class="listitem"><p class="simpara">
+										<span class="strong strong"><strong>Set repository permissions</strong></span>. On this page, you can set the repository permissions to one of the following:
+									</p><div class="itemizedlist"><ul class="itemizedlist" type="square"><li class="listitem">
+												<span class="strong strong"><strong>None</strong></span>. Team members have no permission to the repository.
+											</li><li class="listitem">
+												<span class="strong strong"><strong>Read</strong></span>. Team members can view and pull from the repository.
+											</li><li class="listitem">
+												<span class="strong strong"><strong>Write</strong></span>. Team members can read (pull) from and write (push) to the repository.
+											</li><li class="listitem">
+												<span class="strong strong"><strong>Admin</strong></span>. Full access to pull from, and push to, the repository, plus the ability to do administrative tasks associated with the repository.
+											</li></ul></div></li><li class="listitem">
+										<span class="strong strong"><strong>Delete</strong></span>. This popup windows allows you to delete the team by clicking <span class="strong strong"><strong>Delete</strong></span>.
+									</li></ul></div></li></ul></div></section></section><section class="section" id="setting-role-of-team-within-organization-api"><div class="titlepage"><div><div><h3 class="title">1.1.2. Setting the role of a team within an organization by using the API</h3></div></div></div><p>
+					Use the following procedure to view and set the role a team within an organization using the API.
+				</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+							You have <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#creating-oauth-access-token">Created an OAuth access token</a>.
+						</li><li class="listitem">
+							You have set <code class="literal">BROWSER_API_CALLS_XHR_ONLY: false</code> in your <code class="literal">config.yaml</code> file.
+						</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Enter the following <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3.12/html-single/red_hat_quay_api_guide/index#getorganizationteampermissions"><code class="literal">GET /api/v1/organization/{orgname}/team/{teamname}/permissions</code></a> command to return a list of repository permissions for the organization’s team. Note that your team must have been added to a repository for this command to return information.
+						</p><pre class="programlisting language-terminal">$ curl -X GET \
+  -H "Authorization: Bearer &lt;your_access_token&gt;" \
+  "&lt;quay-server.example.com&gt;/api/v1/organization/&lt;organization_name&gt;/team/&lt;team_name&gt;/permissions"</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal">{"permissions": [{"repository": {"name": "api-repo", "is_public": true}, "role": "admin"}]}</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							You can create or update a team within an organization to have a specified role of <span class="strong strong"><strong>admin</strong></span>, <span class="strong strong"><strong>member</strong></span>, or <span class="strong strong"><strong>creator</strong></span> using the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3.12/html-single/red_hat_quay_api_guide/index#updateorganizationteam"><code class="literal">PUT /api/v1/organization/{orgname}/team/{teamname}</code></a> command. For example:
+						</p><pre class="programlisting language-terminal">$ curl -X PUT \
+  -H "Authorization: Bearer &lt;your_access_token&gt;" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "role": "&lt;role&gt;"
+  }' \
+  "&lt;quay-server.example.com&gt;/api/v1/organization/&lt;organization_name&gt;/team/&lt;team_name&gt;"</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal">{"name": "testteam", "description": "", "can_view": true, "role": "creator", "avatar": {"name": "testteam", "hash": "827f8c5762148d7e85402495b126e0a18b9b168170416ed04b49aae551099dc8", "color": "#ff7f0e", "kind": "team"}, "new_team": false}</pre>
+							</p></div></li></ol></div></section></section><section class="section" id="default-permissions-v2-ui"><div class="titlepage"><div><div><h2 class="title">1.2. Creating and managing default permissions by using the UI</h2></div></div></div><p>
+				Default permissions define permissions that should be granted automatically to a repository when it is created, in addition to the default of the repository’s creator. Permissions are assigned based on the user who created the repository.
+			</p><p>
+				Use the following procedure to create default permissions using the Red Hat Quay v2 UI.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+						Click the name of an organization.
+					</li><li class="listitem">
+						Click <span class="strong strong"><strong>Default permissions</strong></span>.
+					</li><li class="listitem">
+						Click <span class="strong strong"><strong>Create default permissions</strong></span>. A toggle drawer appears.
+					</li><li class="listitem"><p class="simpara">
+						Select either <span class="strong strong"><strong>Anyone</strong></span> or <span class="strong strong"><strong>Specific user</strong></span> to create a default permission when a repository is created.
+					</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
+								If selecting <span class="strong strong"><strong>Anyone</strong></span>, the following information must be provided:
+							</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+										<span class="strong strong"><strong>Applied to</strong></span>. Search, invite, or add a user/robot/team.
+									</li><li class="listitem">
+										<span class="strong strong"><strong>Permission</strong></span>. Set the permission to one of <span class="strong strong"><strong>Read</strong></span>, <span class="strong strong"><strong>Write</strong></span>, or <span class="strong strong"><strong>Admin</strong></span>.
+									</li></ul></div></li><li class="listitem"><p class="simpara">
+								If selecting <span class="strong strong"><strong>Specific user</strong></span>, the following information must be provided:
+							</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+										<span class="strong strong"><strong>Repository creator</strong></span>. Provide either a user or robot account.
+									</li><li class="listitem">
+										<span class="strong strong"><strong>Applied to</strong></span>. Provide a username, robot account, or team name.
+									</li><li class="listitem">
+										<span class="strong strong"><strong>Permission</strong></span>. Set the permission to one of <span class="strong strong"><strong>Read</strong></span>, <span class="strong strong"><strong>Write</strong></span>, or <span class="strong strong"><strong>Admin</strong></span>.
+									</li></ul></div></li></ol></div></li><li class="listitem">
+						Click <span class="strong strong"><strong>Create default permission</strong></span>. A confirmation box appears, returning the following alert: <span class="strong strong"><strong>Successfully created default permission for creator</strong></span>.
+					</li></ol></div></section><section class="section" id="default-permissions-api"><div class="titlepage"><div><div><h2 class="title">1.3. Creating and managing default permissions by using the API</h2></div></div></div><p>
+				Use the following procedures to manage default permissions using the Red Hat Quay API.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#creating-oauth-access-token">Created an OAuth access token</a>.
+					</li><li class="listitem">
+						You have set <code class="literal">BROWSER_API_CALLS_XHR_ONLY: false</code> in your <code class="literal">config.yaml</code> file.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Enter the following command to create a default permission with the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#createorganizationprototypepermission"><code class="literal">POST /api/v1/organization/{orgname}/prototypes</code></a> endpoint:
+					</p><pre class="programlisting language-terminal">$ curl -X POST   -H "Authorization: Bearer &lt;bearer_token&gt;"   -H "Content-Type: application/json"   --data '{
+    "role": "&lt;admin_read_or_write&gt;",
+    "delegate": {
+      "name": "&lt;username&gt;",
+      "kind": "user"
+    },
+    "activating_user": {
+      "name": "&lt;robot_name&gt;"
+    }
+  }'   https://&lt;quay-server.example.com&gt;/api/v1/organization/&lt;organization_name&gt;/prototypes</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">{"activating_user": {"name": "test-org+test", "is_robot": true, "kind": "user", "is_org_member": true, "avatar": {"name": "test-org+test", "hash": "aa85264436fe9839e7160bf349100a9b71403a5e9ec684d5b5e9571f6c821370", "color": "#8c564b", "kind": "robot"}}, "delegate": {"name": "testuser", "is_robot": false, "kind": "user", "is_org_member": false, "avatar": {"name": "testuser", "hash": "f660ab912ec121d1b1e928a0bb4bc61b15f5ad44d5efdc4e1c92a25e99b8e44a", "color": "#6b6ecf", "kind": "user"}}, "role": "admin", "id": "977dc2bc-bc75-411d-82b3-604e5b79a493"}</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Enter the following command to update a default permission using the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#updateorganizationprototypepermission"><code class="literal">PUT /api/v1/organization/{orgname}/prototypes/{prototypeid}</code></a> endpoint, for example, if you want to change the permission type. You must include the ID that was returned when you created the policy.
+					</p><pre class="programlisting language-terminal">$ curl -X PUT \
+  -H "Authorization: Bearer &lt;bearer_token&gt;" \
+  -H "Content-Type: application/json" \
+  --data '{
+    "role": "write"
+  }' \
+  https://&lt;quay-server.example.com&gt;/api/v1/organization/&lt;organization_name&gt;/prototypes/&lt;prototypeid&gt;</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">{"activating_user": {"name": "test-org+test", "is_robot": true, "kind": "user", "is_org_member": true, "avatar": {"name": "test-org+test", "hash": "aa85264436fe9839e7160bf349100a9b71403a5e9ec684d5b5e9571f6c821370", "color": "#8c564b", "kind": "robot"}}, "delegate": {"name": "testuser", "is_robot": false, "kind": "user", "is_org_member": false, "avatar": {"name": "testuser", "hash": "f660ab912ec121d1b1e928a0bb4bc61b15f5ad44d5efdc4e1c92a25e99b8e44a", "color": "#6b6ecf", "kind": "user"}}, "role": "write", "id": "977dc2bc-bc75-411d-82b3-604e5b79a493"}</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						You can delete the permission by entering the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#deleteorganizationprototypepermission"><code class="literal">DELETE /api/v1/organization/{orgname}/prototypes/{prototypeid}</code></a> command:
+					</p><pre class="programlisting language-terminal">curl -X DELETE \
+  -H "Authorization: Bearer &lt;bearer_token&gt;" \
+  -H "Accept: application/json" \
+  https://&lt;quay-server.example.com&gt;/api/v1/organization/&lt;organization_name&gt;/prototypes/&lt;prototype_id&gt;</pre><p class="simpara">
+						This command does not return an output. Instead, you can obtain a list of all permissions by entering the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#getorganizationprototypepermissions"><code class="literal">GET /api/v1/organization/{orgname}/prototypes</code></a> command:
+					</p><pre class="programlisting language-terminal">$ curl -X GET \
+  -H "Authorization: Bearer &lt;bearer_token&gt;" \
+  -H "Accept: application/json" \
+  https://&lt;quay-server.example.com&gt;/api/v1/organization/&lt;organization_name&gt;/prototypes</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">{"prototypes": []}</pre>
+						</p></div></li></ol></div></section><section class="section" id="allow-access-user-repo"><div class="titlepage"><div><div><h2 class="title">1.4. Adjusting access settings for a repository by using the UI</h2></div></div></div><p>
+				Use the following procedure to adjust access settings for a user or robot account for a repository using the v2 UI.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have created a user account or robot account.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+						Log into Red Hat Quay.
+					</li><li class="listitem">
+						On the v2 UI, click <span class="strong strong"><strong>Repositories</strong></span>.
+					</li><li class="listitem">
+						Click the name of a repository, for example, <code class="literal">quayadmin/busybox</code>.
+					</li><li class="listitem">
+						Click the <span class="strong strong"><strong>Settings</strong></span> tab.
+					</li><li class="listitem"><p class="simpara">
+						Optional. Click <span class="strong strong"><strong>User and robot permissions</strong></span>. You can adjust the settings for a user or robot account by clicking the dropdown menu option under <span class="strong strong"><strong>Permissions</strong></span>. You can change the settings to <span class="strong strong"><strong>Read</strong></span>, <span class="strong strong"><strong>Write</strong></span>, or <span class="strong strong"><strong>Admin</strong></span>.
+					</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								<span class="strong strong"><strong>Read</strong></span>. The User or Robot Account can view and pull from the repository.
+							</li><li class="listitem">
+								<span class="strong strong"><strong>Write</strong></span>. The User or Robot Account can read (pull) from and write (push) to the repository.
+							</li><li class="listitem">
+								<span class="strong strong"><strong>Admin</strong></span>. The User or Robot account has access to pull from, and push to, the repository, plus the ability to do administrative tasks associated with the repository.
+							</li></ul></div></li></ol></div></section><section class="section" id="adjust-access-user-repo-api"><div class="titlepage"><div><div><h2 class="title">1.5. Adjusting access settings for a repository by using the API</h2></div></div></div><p>
+				Use the following procedure to adjust access settings for a user or robot account for a repository by using the API.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have created a user account or robot account.
+					</li><li class="listitem">
+						You have <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#creating-oauth-access-token">Created an OAuth access token</a>.
+					</li><li class="listitem">
+						You have set <code class="literal">BROWSER_API_CALLS_XHR_ONLY: false</code> in your <code class="literal">config.yaml</code> file.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Enter the following <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#changeuserpermissions"><code class="literal">PUT /api/v1/repository/{repository}/permissions/user/{username}</code></a> command to change the permissions of a user:
+					</p><pre class="programlisting language-terminal">$ curl -X PUT \
+  -H "Authorization: Bearer &lt;bearer_token&gt;" \
+  -H "Content-Type: application/json" \
+  -d '{"role": "admin"}' \
+  https://&lt;quay-server.example.com&gt;/api/v1/repository/&lt;namespace&gt;/&lt;repository&gt;/permissions/user/&lt;username&gt;</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">{"role": "admin", "name": "quayadmin+test", "is_robot": true, "avatar": {"name": "quayadmin+test", "hash": "ca9afae0a9d3ca322fc8a7a866e8476dd6c98de543decd186ae090e420a88feb", "color": "#8c564b", "kind": "robot"}}</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						To delete the current permission, you can enter the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#deleteuserpermissions"><code class="literal">DELETE /api/v1/repository/{repository}/permissions/user/{username}</code></a> command:
+					</p><pre class="programlisting language-terminal">$ curl -X DELETE \
+  -H "Authorization: Bearer &lt;bearer_token&gt;" \
+  -H "Accept: application/json" \
+  https://&lt;quay-server.example.com&gt;/api/v1/repository/&lt;namespace&gt;/&lt;repository&gt;/permissions/user/&lt;username&gt;</pre><p class="simpara">
+						This command does not return any output in the CLI. Instead, you can check that the permissions were deleted by entering the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#listrepouserpermissions"><code class="literal">GET /api/v1/repository/{repository}/permissions/user/</code></a> command:
+					</p><pre class="programlisting language-terminal">$ curl -X GET \
+  -H "Authorization: Bearer &lt;bearer_token&gt;" \
+  -H "Accept: application/json" \
+  https://&lt;quay-server.example.com&gt;/api/v1/repository/&lt;namespace&gt;/&lt;repository&gt;/permissions/user/&lt;username&gt;/</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">{"message":"User does not have permission for repo."}</pre>
+						</p></div></li></ol></div></section></section><section class="chapter" id="use-quay-create-repo"><div class="titlepage"><div><div><h1 class="title">Chapter 2. Red Hat Quay repository overview</h1></div></div></div><p>
+			A repository provides a central location for storing a related set of container images. These images can be used to build applications along with their dependencies in a standardized format.
+		</p><p>
+			Repositories are organized by namespaces. Each namespace can have multiple repositories. For example, you might have a namespace for your personal projects, one for your company, or one for a specific team within your organization.
+		</p><p>
+			Private repositories provide control over the users that have access to your images by allowing you to define users or teams who can push to, or pull from, the repository, thereby enhancing the security of your registry.
+		</p><section class="section" id="adjusting-image-repository-visibility-the-ui"><div class="titlepage"><div><div><h2 class="title">2.1. Adjusting repository visibility by using the UI</h2></div></div></div><p>
+				You can adjust the visibility of a repository to make it either public of private by using the Red Hat Quay UI.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+						On the Red Hat Quay UI, click <span class="strong strong"><strong>Repositories</strong></span> in the navigation pane.
+					</li><li class="listitem">
+						Click the name of a repository.
+					</li><li class="listitem">
+						Click <span class="strong strong"><strong>Settings</strong></span> in the navigation pane.
+					</li><li class="listitem">
+						Click <span class="strong strong"><strong>Repository visibility</strong></span>.
+					</li><li class="listitem">
+						Click <span class="strong strong"><strong>Make private</strong></span>. The repository is made private, and only users on the permissions list can view and interact with it.
+					</li></ol></div></section><section class="section" id="adjusting-image-repository-visibility-the-api"><div class="titlepage"><div><div><h2 class="title">2.2. Adjusting repository visibility by using the API</h2></div></div></div><p>
+				The visibility of your repository can be set to <code class="literal">private</code> or <code class="literal">public</code> by using the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3.12/html-single/red_hat_quay_api_guide/index#changerepovisibility"><code class="literal">POST /api/v1/repository/{repository}/changevisibility</code></a> command.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#creating-oauth-access-token">Created an OAuth access token</a>.
+					</li><li class="listitem">
+						You have set <code class="literal">BROWSER_API_CALLS_XHR_ONLY: false</code> in your <code class="literal">config.yaml</code> file.
+					</li><li class="listitem">
+						You have created a repository.
+					</li></ul></div><div class="itemizedlist"><p class="title"><strong>Procedure</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+						You can change the visibility of your repository to public or private by specifying the desired option in the <code class="literal">visibility</code> schema. For example:
+					</p><pre class="programlisting language-terminal">$ curl -X POST \
+  -H "Authorization: Bearer GCczXwaZ5i21p8hOO09uZqjZSsTYGKteu5PC5UuA" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "visibility": "private"
+  }' \
+  "https://quay-server.example.com/api/v1/repository/my_namespace/test_repo_three/changevisibility"</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">{"success": true}</pre>
+						</p></div></li></ul></div></section></section><section class="chapter" id="allow-robot-access-user-repo"><div class="titlepage"><div><div><h1 class="title">Chapter 3. Red Hat Quay Robot Account overview</h1></div></div></div><p>
+			Robot Accounts are used to set up automated access to the repositories in your Red Hat Quay. registry. They are similar to OpenShift Container Platform service accounts.
+		</p><p>
+			Setting up a Robot Account results in the following:
+		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					Credentials are generated that are associated with the Robot Account.
+				</li><li class="listitem">
+					Repositories and images that the Robot Account can push and pull images from are identified.
+				</li><li class="listitem">
+					Generated credentials can be copied and pasted to use with different container clients, such as Docker, Podman, Kubernetes, Mesos, and so on, to access each defined repository.
+				</li></ul></div><p>
+			Robot Accounts can help secure your Red Hat Quay registry by offering various security advantages, such as the following:
+		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					Specifying repository access.
+				</li><li class="listitem">
+					Granular permissions, such as <code class="literal">Read</code> (pull) or <code class="literal">Write</code> (push) access. They can also be equipped with <code class="literal">Admin</code> permissions if warranted.
+				</li><li class="listitem">
+					Designed for CI/CD pipelines, system integrations, and other automation tasks, helping avoid credential exposure in scripts, pipelines, or other environment variables.
+				</li><li class="listitem">
+					Robot Accounts use tokens instead of passwords, which provides the ability for an administrator to revoke the token in the event that it is compromised.
+				</li></ul></div><p>
+			Each Robot Account is limited to a single user namespace or Organization. For example, the Robot Account could provide access to all repositories for the user <code class="literal">quayadmin</code>. However, it cannot provide access to repositories that are not in the user’s list of repositories.
+		</p><p>
+			Robot Accounts can be created using the Red Hat Quay UI, or through the CLI using the Red Hat Quay API.
+		</p><section class="section" id="creating-robot-account-v2-ui"><div class="titlepage"><div><div><h2 class="title">3.1. Creating a robot account by using the UI</h2></div></div></div><p>
+				Use the following procedure to create a robot account using the v2 UI.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+						On the v2 UI, click <span class="strong strong"><strong>Organizations</strong></span>.
+					</li><li class="listitem">
+						Click the name of the organization that you will create the robot account for, for example, <code class="literal">test-org</code>.
+					</li><li class="listitem">
+						Click the <span class="strong strong"><strong>Robot accounts</strong></span> tab → <span class="strong strong"><strong>Create robot account</strong></span>.
+					</li><li class="listitem">
+						In the <span class="strong strong"><strong>Provide a name for your robot account</strong></span> box, enter a name, for example, <code class="literal">robot1</code>. The name of your Robot Account becomes a combination of your username plus the name of the robot, for example, <code class="literal">quayadmin+robot1</code>
+					</li><li class="listitem"><p class="simpara">
+						Optional. The following options are available if desired:
+					</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
+								Add the robot account to a team.
+							</li><li class="listitem">
+								Add the robot account to a repository.
+							</li><li class="listitem">
+								Adjust the robot account’s permissions.
+							</li></ol></div></li><li class="listitem"><p class="simpara">
+						On the <span class="strong strong"><strong>Review and finish</strong></span> page, review the information you have provided, then click <span class="strong strong"><strong>Review and finish</strong></span>. The following alert appears: <span class="strong strong"><strong>Successfully created robot account with robot name: &lt;organization_name&gt; + &lt;robot_name&gt;</strong></span>.
+					</p><p class="simpara">
+						Alternatively, if you tried to create a robot account with the same name as another robot account, you might receive the following error message: <span class="strong strong"><strong>Error creating robot account</strong></span>.
+					</p></li><li class="listitem">
+						Optional. You can click <span class="strong strong"><strong>Expand</strong></span> or <span class="strong strong"><strong>Collapse</strong></span> to reveal descriptive information about the robot account.
+					</li><li class="listitem">
+						Optional. You can change permissions of the robot account by clicking the kebab menu → <span class="strong strong"><strong>Set repository permissions</strong></span>. The following message appears: <span class="strong strong"><strong>Successfully updated repository permission</strong></span>.
+					</li><li class="listitem"><p class="simpara">
+						Optional. You can click the name of your robot account to obtain the following information:
+					</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								<span class="strong strong"><strong>Robot Account</strong></span>: Select this obtain the robot account token. You can regenerate the token by clicking <span class="strong strong"><strong>Regenerate token now</strong></span>.
+							</li><li class="listitem">
+								<span class="strong strong"><strong>Kubernetes Secret</strong></span>: Select this to download credentials in the form of a Kubernetes pull secret YAML file.
+							</li><li class="listitem">
+								<span class="strong strong"><strong>Podman</strong></span>: Select this to copy a full <code class="literal">podman login</code> command line that includes the credentials.
+							</li><li class="listitem">
+								<span class="strong strong"><strong>Docker Configuration</strong></span>: Select this to copy a full <code class="literal">docker login</code> command line that includes the credentials.
+							</li></ul></div></li></ol></div></section><section class="section" id="creating-robot-account-api"><div class="titlepage"><div><div><h2 class="title">3.2. Creating a robot account by using the Red Hat Quay API</h2></div></div></div><p>
+				Use the following procedure to create a robot account using the Red Hat Quay API.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#creating-oauth-access-token">Created an OAuth access token</a>.
+					</li><li class="listitem">
+						You have set <code class="literal">BROWSER_API_CALLS_XHR_ONLY: false</code> in your <code class="literal">config.yaml</code> file.
+					</li></ul></div><div class="itemizedlist"><p class="title"><strong>Procedure</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+						Enter the following command to create a new robot account for an organization using the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#createorgrobot"><code class="literal">PUT /api/v1/organization/{orgname}/robots/{robot_shortname}</code></a> endpoint:
+					</p><pre class="programlisting language-terminal">$ curl -X PUT   -H "Authorization: Bearer &lt;bearer_token&gt;" "https://&lt;quay-server.example.com&gt;/api/v1/organization/&lt;organization_name&gt;/robots/&lt;robot_name&gt;"</pre><p class="simpara">
+						Example output
+					</p><pre class="programlisting language-terminal">{"name": "orgname+robot-name", "created": "Fri, 10 May 2024 15:11:00 -0000", "last_accessed": null, "description": "", "token": "WB4FUG4PP2278KK579EN4NDP150CPYOG6DN42MP6JF8IAJ4PON4RC7DIOH5UEFBP", "unstructured_metadata": null}</pre></li><li class="listitem"><p class="simpara">
+						Enter the following command to create a new robot account for the current user with the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#createuserrobot"><code class="literal">PUT /api/v1/user/robots/{robot_shortname}</code></a> endpoint:
+					</p><pre class="programlisting language-terminal">$ curl -X PUT   -H "Authorization: Bearer &lt;bearer_token&gt;" "https://&lt;quay-server.example.com&gt;/api/v1/user/robots/&lt;robot_name&gt;"</pre><p class="simpara">
+						Example output
+					</p><pre class="programlisting language-terminal">{"name": "quayadmin+robot-name", "created": "Fri, 10 May 2024 15:24:57 -0000", "last_accessed": null, "description": "", "token": "MXFE7NSOWPN33O7UC3THY0BN03DW940CMWTLRBE2EPTI8JPX0B0CWIIDGTI4YTJ6", "unstructured_metadata": null}</pre></li></ul></div></section><section class="section" id="managing-robot-account-permissions-v2-ui"><div class="titlepage"><div><div><h2 class="title">3.3. Bulk managing robot account repository access</h2></div></div></div><p>
+				Use the following procedure to manage, in bulk, robot account repository access by using the Red Hat Quay v2 UI.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have created a robot account.
+					</li><li class="listitem">
+						You have created multiple repositories under a single organization.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+						On the Red Hat Quay v2 UI landing page, click <span class="strong strong"><strong>Organizations</strong></span> in the navigation pane.
+					</li><li class="listitem">
+						On the <span class="strong strong"><strong>Organizations</strong></span> page, select the name of the organization that has multiple repositories. The number of repositories under a single organization can be found under the <span class="strong strong"><strong>Repo Count</strong></span> column.
+					</li><li class="listitem">
+						On your organization’s page, click <span class="strong strong"><strong>Robot accounts</strong></span>.
+					</li><li class="listitem">
+						For the robot account that will be added to multiple repositories, click the kebab icon → <span class="strong strong"><strong>Set repository permissions</strong></span>.
+					</li><li class="listitem"><p class="simpara">
+						On the <span class="strong strong"><strong>Set repository permissions</strong></span> page, check the boxes of the repositories that the robot account will be added to. For example:
+					</p><p class="simpara">
+						<span class="inlinemediaobject"><img src="images/set-repository-permissions-robot-account.png" alt="Set repository permissions"/></span>
+					</p></li><li class="listitem">
+						Set the permissions for the robot account, for example, <span class="strong strong"><strong>None</strong></span>, <span class="strong strong"><strong>Read</strong></span>, <span class="strong strong"><strong>Write</strong></span>, <span class="strong strong"><strong>Admin</strong></span>.
+					</li><li class="listitem">
+						Click <span class="strong strong"><strong>save</strong></span>. An alert that says <span class="strong strong"><strong>Success alert: Successfully updated repository permission</strong></span> appears on the <span class="strong strong"><strong>Set repository permissions</strong></span> page, confirming the changes.
+					</li><li class="listitem">
+						Return to the <span class="strong strong"><strong>Organizations</strong></span> → <span class="strong strong"><strong>Robot accounts</strong></span> page. Now, the <span class="strong strong"><strong>Repositories</strong></span> column of your robot account shows the number of repositories that the robot account has been added to.
+					</li></ol></div></section><section class="section" id="disabling-robot-account"><div class="titlepage"><div><div><h2 class="title">3.4. Disabling robot accounts by using the UI</h2></div></div></div><p>
+				Red Hat Quay administrators can manage robot accounts by disallowing users to create new robot accounts.
+			</p><div class="admonition important"><div class="admonition_header">Important</div><div><p>
+					Robot accounts are mandatory for repository mirroring. Setting the <code class="literal">ROBOTS_DISALLOW</code> configuration field to <code class="literal">true</code> breaks mirroring configurations. Users mirroring repositories should not set <code class="literal">ROBOTS_DISALLOW</code> to <code class="literal">true</code> in their <code class="literal">config.yaml</code> file. This is a known issue and will be fixed in a future release of Red Hat Quay.
+				</p></div></div><p>
+				Use the following procedure to disable robot account creation.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have created multiple robot accounts.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Update your <code class="literal">config.yaml</code> field to add the <code class="literal">ROBOTS_DISALLOW</code> variable, for example:
+					</p><pre class="programlisting language-yaml">ROBOTS_DISALLOW: true</pre></li><li class="listitem">
+						Restart your Red Hat Quay deployment.
+					</li></ol></div><div class="orderedlist"><p class="title"><strong>Verification: Creating a new robot account</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+						Navigate to your Red Hat Quay repository.
+					</li><li class="listitem">
+						Click the name of a repository.
+					</li><li class="listitem">
+						In the navigation pane, click <span class="strong strong"><strong>Robot Accounts</strong></span>.
+					</li><li class="listitem">
+						Click <span class="strong strong"><strong>Create Robot Account</strong></span>.
+					</li><li class="listitem">
+						Enter a name for the robot account, for example, <code class="literal">&lt;organization-name/username&gt;+&lt;robot-name&gt;</code>.
+					</li><li class="listitem">
+						Click <span class="strong strong"><strong>Create robot account</strong></span> to confirm creation. The following message appears: <code class="literal">Cannot create robot account. Robot accounts have been disabled. Please contact your administrator.</code>
+					</li></ol></div><div class="orderedlist"><p class="title"><strong>Verification: Logging into a robot account</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						On the command-line interface (CLI), attempt to log in as one of the robot accounts by entering the following command:
+					</p><pre class="programlisting language-terminal">$ podman login -u="&lt;organization-name/username&gt;+&lt;robot-name&gt;" -p="KETJ6VN0WT8YLLNXUJJ4454ZI6TZJ98NV41OE02PC2IQXVXRFQ1EJ36V12345678" &lt;quay-server.example.com&gt;</pre><p class="simpara">
+						The following error message is returned:
+					</p><pre class="programlisting language-terminal">Error: logging into "&lt;quay-server.example.com&gt;": invalid username/password</pre></li><li class="listitem"><p class="simpara">
+						You can pass in the <code class="literal">log-level=debug</code> flag to confirm that robot accounts have been deactivated:
+					</p><pre class="programlisting language-terminal">$ podman login -u="&lt;organization-name/username&gt;+&lt;robot-name&gt;" -p="KETJ6VN0WT8YLLNXUJJ4454ZI6TZJ98NV41OE02PC2IQXVXRFQ1EJ36V12345678" --log-level=debug &lt;quay-server.example.com&gt;</pre><pre class="programlisting language-terminal">...
+DEBU[0000] error logging into "quay-server.example.com": unable to retrieve auth token: invalid username/password: unauthorized: Robot accounts have been disabled. Please contact your administrator.</pre></li></ol></div></section><section class="section" id="regenerating-robot-account-api"><div class="titlepage"><div><div><h2 class="title">3.5. Regenerating a robot account token by using the Red Hat Quay API</h2></div></div></div><p>
+				Use the following procedure to regenerate a robot account token using the Red Hat Quay API.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#creating-oauth-access-token">Created an OAuth access token</a>.
+					</li><li class="listitem">
+						You have set <code class="literal">BROWSER_API_CALLS_XHR_ONLY: false</code> in your <code class="literal">config.yaml</code> file.
+					</li></ul></div><div class="itemizedlist"><p class="title"><strong>Procedure</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+						Enter the following command to regenerate a robot account token for an organization using the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#regenerateorgrobottoken"><code class="literal">POST /api/v1/organization/{orgname}/robots/{robot_shortname}/regenerate</code></a> endpoint:
+					</p><pre class="programlisting language-terminal">$ curl -X POST \
+  -H "Authorization: Bearer &lt;bearer_token&gt;" \
+  "&lt;quay-server.example.com&gt;/api/v1/organization/&lt;orgname&gt;/robots/&lt;robot_shortname&gt;/regenerate"</pre><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+								Example output
+							</p><pre class="programlisting language-terminal">{"name": "test-org+test", "created": "Fri, 10 May 2024 17:46:02 -0000", "last_accessed": null, "description": "", "token": "MXZ9DATUWRD8WCMT8AZIPYE0IEZHJJ1B8P8ZEIXC0W552DUMMTNJJH02HFGXTOVG"}</pre></li></ol></div></li><li class="listitem"><p class="simpara">
+						Enter the following command to regenerate a robot account token for the current user with the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#regenerateuserrobottoken"><code class="literal">POST /api/v1/user/robots/{robot_shortname}/regenerate</code></a> endpoint:
+					</p><pre class="programlisting language-terminal">$ curl -X POST \
+  -H "Authorization: Bearer &lt;bearer_token&gt;" \
+  "&lt;quay-server.example.com&gt;/api/v1/user/robots/&lt;robot_shortname&gt;/regenerate"</pre><p class="simpara">
+						Example output
+					</p><pre class="programlisting language-terminal">{"name": "quayadmin+test", "created": "Fri, 10 May 2024 14:12:11 -0000", "last_accessed": null, "description": "", "token": "CWLBVAODE61IXNDJ40GERFOZPB3ARZDRCP4X70ID1NB28AI0OOJBTR9S4M0ACYMD"}</pre></li></ul></div></section><section class="section" id="deleting-robot-account-ui"><div class="titlepage"><div><div><h2 class="title">3.6. Deleting a robot account by using the UI</h2></div></div></div><p>
+				Use the following procedure to delete a robot account using the Red Hat Quay UI.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+						Log into your Red Hat Quay registry:
+					</li><li class="listitem">
+						Click the name of the Organization that has the robot account.
+					</li><li class="listitem">
+						Click <span class="strong strong"><strong>Robot accounts</strong></span>.
+					</li><li class="listitem">
+						Check the box of the robot account to be deleted.
+					</li><li class="listitem">
+						Click the kebab menu.
+					</li><li class="listitem">
+						Click <span class="strong strong"><strong>Delete</strong></span>.
+					</li><li class="listitem">
+						Type <code class="literal">confirm</code> into the textbox, then click <span class="strong strong"><strong>Delete</strong></span>.
+					</li></ol></div></section><section class="section" id="deleting-robot-account-api"><div class="titlepage"><div><div><h2 class="title">3.7. Deleting a robot account by using the Red Hat Quay API</h2></div></div></div><p>
+				Use the following procedure to delete a robot account using the Red Hat Quay API.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#creating-oauth-access-token">Created an OAuth access token</a>.
+					</li><li class="listitem">
+						You have set <code class="literal">BROWSER_API_CALLS_XHR_ONLY: false</code> in your <code class="literal">config.yaml</code> file.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Enter the following command to delete a robot account for an organization using the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#deleteorgrobot"><code class="literal">DELETE /api/v1/organization/{orgname}/robots/{robot_shortname}</code></a> endpoint:
+					</p><pre class="programlisting language-terminal">curl -X DELETE \
+  -H "Authorization: Bearer &lt;bearer_token&gt;" \
+  "&lt;quay-server.example.com&gt;/api/v1/organization/&lt;organization_name&gt;/robots/&lt;robot_shortname&gt;"</pre></li><li class="listitem"><p class="simpara">
+						The CLI does not return information when deleting a robot account with the API. To confirm deletion, you can check the Red Hat Quay UI, or you can enter the following <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#getorgrobots"><code class="literal">GET /api/v1/organization/{orgname}/robots</code></a> command to see if details are returned for the robot account:
+					</p><pre class="programlisting language-terminal">$ curl -X GET   -H "Authorization: Bearer &lt;bearer_token&gt;"   "https://&lt;quay-server.example.com&gt;/api/v1/organization/&lt;organization_name&gt;/robots"</pre><p class="simpara">
+						Example output
+					</p><pre class="programlisting language-terminal">{"robots": []}</pre></li><li class="listitem"><p class="simpara">
+						Enter the following command to delete a robot account for the current user with the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#deleteuserrobot"><code class="literal">DELETE /api/v1/user/robots/{robot_shortname}</code></a> endpoint:
+					</p><pre class="programlisting language-terminal">$ curl -X DELETE \
+  -H "Authorization: Bearer &lt;bearer_token&gt;" \
+  "&lt;quay-server.example.com&gt;/api/v1/user/robots/&lt;robot_shortname&gt;"</pre></li><li class="listitem"><p class="simpara">
+						The CLI does not return information when deleting a robot account for the current user with the API. To confirm deletion, you can check the Red Hat Quay UI, or you can enter the following <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index#getuserrobot"><code class="literal">GET /api/v1/user/robots/{robot_shortname}</code></a> command to see if details are returned for the robot account:
+					</p><pre class="programlisting language-terminal">$ curl -X GET \
+  -H "Authorization: Bearer &lt;bearer_token&gt;" \
+  "&lt;quay-server.example.com&gt;/api/v1/user/robots/&lt;robot_shortname&gt;"</pre><p class="simpara">
+						Example output
+					</p><pre class="programlisting language-terminal">{"message":"Could not find robot with specified username"}</pre></li></ol></div></section></section><section class="chapter" id="ssl-tls-quay-overview"><div class="titlepage"><div><div><h1 class="title">Chapter 4. SSL and TLS for Red Hat Quay</h1></div></div></div><p>
+			The Secure Sockets Layer (SSL) protocol was originally developed by Netscape Corporation to provide a mechanism for secure communication over the Internet. Subsequently, the protocol was adopted by the Internet Engineering Task Force (IETF) and renamed to Transport Layer Security (TLS).
+		</p><p>
+			TLS (Transport Layer Security) is a cryptographic protocol used to secure network communications. When hardening system security settings by configuring preferred key-exchange protocols, authentication methods, and encryption algorithms, it is necessary to bear in mind that the broader the range of supported clients, the lower the resulting security. Conversely, strict security settings lead to limited compatibility with clients, which can result in some users being locked out of the system. Be sure to target the strictest available configuration and only relax it when it is required for compatibility reasons.
+		</p><p>
+			Red Hat Quay can be configured to use SSL/TLS certificates to ensure secure communication between clients and the Red Hat Quay server. This configuration involves the use of valid SSL/TLS certificates, which can be obtained from a trusted Certificate Authority (CA) or generated as self-signed certificates for internal use.
+		</p><section class="section" id="creating-a-certificate-authority"><div class="titlepage"><div><div><h2 class="title">4.1. Creating a Certificate Authority</h2></div></div></div><p>
+				Use the following procedure to set up your own CA and use it to issue a server certificate for your domain. This allows you to secure communications with SSL/TLS using your own certificates.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Generate the root CA key by entering the following command:
+					</p><pre class="programlisting language-terminal">$ openssl genrsa -out rootCA.key 2048</pre></li><li class="listitem"><p class="simpara">
+						Generate the root CA certificate by entering the following command:
+					</p><pre class="programlisting language-terminal">$ openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem</pre></li><li class="listitem"><p class="simpara">
+						Enter the information that will be incorporated into your certificate request, including the server hostname, for example:
+					</p><pre class="programlisting language-terminal">Country Name (2 letter code) [XX]:IE
+State or Province Name (full name) []:GALWAY
+Locality Name (eg, city) [Default City]:GALWAY
+Organization Name (eg, company) [Default Company Ltd]:QUAY
+Organizational Unit Name (eg, section) []:DOCS
+Common Name (eg, your name or your server's hostname) []:quay-server.example.com</pre></li><li class="listitem"><p class="simpara">
+						Generate the server key by entering the following command:
+					</p><pre class="programlisting language-terminal">$ openssl genrsa -out ssl.key 2048</pre></li><li class="listitem"><p class="simpara">
+						Generate a signing request by entering the following command:
+					</p><pre class="programlisting language-terminal">$ openssl req -new -key ssl.key -out ssl.csr</pre></li><li class="listitem"><p class="simpara">
+						Enter the information that will be incorporated into your certificate request, including the server hostname, for example:
+					</p><pre class="programlisting language-terminal">Country Name (2 letter code) [XX]:IE
+State or Province Name (full name) []:GALWAY
+Locality Name (eg, city) [Default City]:GALWAY
+Organization Name (eg, company) [Default Company Ltd]:QUAY
+Organizational Unit Name (eg, section) []:DOCS
+Common Name (eg, your name or your server's hostname) []:quay-server.example.com
+Email Address []:</pre></li><li class="listitem"><p class="simpara">
+						Create a configuration file <code class="literal">openssl.cnf</code>, specifying the server hostname, for example:
+					</p><div class="formalpara"><p class="title"><strong>Example <code class="literal">openssl.cnf</code> file</strong></p><p>
+							
+<pre class="programlisting language-terminal">[req]
+req_extensions = v3_req
+distinguished_name = req_distinguished_name
+[req_distinguished_name]
+[ v3_req ]
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = &lt;quay-server.example.com&gt;
+IP.1 = 192.168.1.112</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Use the configuration file to generate the certificate <code class="literal">ssl.cert</code>:
+					</p><pre class="programlisting language-terminal">$ openssl x509 -req -in ssl.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out ssl.cert -days 356 -extensions v3_req -extfile openssl.cnf</pre></li><li class="listitem"><p class="simpara">
+						Confirm your created certificates and files by entering the following command:
+					</p><pre class="programlisting language-terminal">$ ls /path/to/certificates</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">rootCA.key ssl-bundle.cert ssl.key custom-ssl-config-bundle-secret.yaml rootCA.pem ssl.cert
+openssl.cnf rootCA.srl  ssl.csr</pre>
+						</p></div></li></ol></div></section><section class="section" id="configuring-ssl-tls"><div class="titlepage"><div><div><h2 class="title">4.2. Configuring SSL/TLS for standalone Red Hat Quay deployments</h2></div></div></div><p>
+				For standalone Red Hat Quay deployments, SSL/TLS certificates must be configured by using the command-line interface and by updating your <code class="literal">config.yaml</code> file manually.
+			</p><section class="section" id="configuring-ssl-using-cli"><div class="titlepage"><div><div><h3 class="title">4.2.1. Configuring custom SSL/TLS certificates by using the command line interface</h3></div></div></div><p>
+					SSL/TLS must be configured by using the command-line interface (CLI) and updating your <code class="literal">config.yaml</code> file manually.
+				</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+							You have created a certificate authority and signed the certificate.
+						</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Copy the certificate file and primary key file to your configuration directory, ensuring they are named <code class="literal">ssl.cert</code> and <code class="literal">ssl.key</code> respectively:
+						</p><pre class="programlisting language-terminal">cp ~/ssl.cert ~/ssl.key /path/to/configuration_directory</pre></li><li class="listitem"><p class="simpara">
+							Navigate to the configuration directory by entering the following command:
+						</p><pre class="programlisting language-terminal">$ cd /path/to/configuration_directory</pre></li><li class="listitem"><p class="simpara">
+							Edit the <code class="literal">config.yaml</code> file and specify that you want Red Hat Quay to handle SSL/TLS:
+						</p><div class="formalpara"><p class="title"><strong>Example <code class="literal">config.yaml</code> file</strong></p><p>
+								
+<pre class="programlisting language-yaml"># ...
+SERVER_HOSTNAME: &lt;quay-server.example.com&gt;
+...
+PREFERRED_URL_SCHEME: https
+# ...</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							Optional: Append the contents of the <code class="literal">rootCA.pem</code> file to the end of the <code class="literal">ssl.cert</code> file by entering the following command:
+						</p><pre class="programlisting language-terminal">$ cat rootCA.pem &gt;&gt; ssl.cert</pre></li><li class="listitem"><p class="simpara">
+							Stop the <code class="literal">Quay</code> container by entering the following command:
+						</p><pre class="programlisting language-terminal">$ sudo podman stop &lt;quay_container_name&gt;</pre></li><li class="listitem"><p class="simpara">
+							Restart the registry by entering the following command:
+						</p><pre class="screen">$ sudo podman run -d --rm -p 80:8080 -p 443:8443 \
+  --name=quay \
+  -v $QUAY/config:/conf/stack:Z \
+  -v $QUAY/storage:/datastorage:Z \
+  registry.redhat.io/quay/quay-rhel8:v3.13</pre></li></ol></div></section><section class="section" id="configuring-podman-trust-ca"><div class="titlepage"><div><div><h3 class="title">4.2.2. Configuring Podman to trust the Certificate Authority</h3></div></div></div><p>
+					Podman uses two paths to locate the Certificate Authority (CA) file: <code class="literal">/etc/containers/certs.d/</code> and <code class="literal">/etc/docker/certs.d/</code>. Use the following procedure to configure Podman to trust the CA.
+				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Copy the root CA file to one of <code class="literal">/etc/containers/certs.d/</code> or <code class="literal">/etc/docker/certs.d/</code>. Use the exact path determined by the server hostname, and name the file <code class="literal">ca.crt</code>:
+						</p><pre class="programlisting language-terminal">$ sudo cp rootCA.pem /etc/containers/certs.d/quay-server.example.com/ca.crt</pre></li><li class="listitem"><p class="simpara">
+							Verify that you no longer need to use the <code class="literal">--tls-verify=false</code> option when logging in to your Red Hat Quay registry:
+						</p><pre class="programlisting language-terminal">$ sudo podman login quay-server.example.com</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal">Login Succeeded!</pre>
+							</p></div></li></ol></div></section><section class="section" id="configuring-system-trust-ca"><div class="titlepage"><div><div><h3 class="title">4.2.3. Configuring the system to trust the certificate authority</h3></div></div></div><p>
+					Use the following procedure to configure your system to trust the certificate authority.
+				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Enter the following command to copy the <code class="literal">rootCA.pem</code> file to the consolidated system-wide trust store:
+						</p><pre class="programlisting language-terminal">$ sudo cp rootCA.pem /etc/pki/ca-trust/source/anchors/</pre></li><li class="listitem"><p class="simpara">
+							Enter the following command to update the system-wide trust store configuration:
+						</p><pre class="programlisting language-terminal">$ sudo update-ca-trust extract</pre></li><li class="listitem"><p class="simpara">
+							Optional. You can use the <code class="literal">trust list</code> command to ensure that the <code class="literal">Quay</code> server has been configured:
+						</p><pre class="programlisting language-terminal">$ trust list | grep quay
+    label: quay-server.example.com</pre><p class="simpara">
+							Now, when you browse to the registry at <code class="literal"><a class="link" href="https://quay-server.example.com">https://quay-server.example.com</a></code>, the lock icon shows that the connection is secure:
+						</p><p class="simpara">
+							<span class="inlinemediaobject"><img src="images/ssl-connection-secure.png" alt="Connection not secure"/></span>
+						</p></li><li class="listitem"><p class="simpara">
+							To remove the <code class="literal">rootCA.pem</code> file from system-wide trust, delete the file and update the configuration:
+						</p><pre class="programlisting language-terminal">$ sudo rm /etc/pki/ca-trust/source/anchors/rootCA.pem</pre><pre class="programlisting language-terminal">$ sudo update-ca-trust extract</pre><pre class="programlisting language-terminal">$ trust list | grep quay</pre></li></ol></div><p>
+					More information can be found in the RHEL 9 documentation in the chapter <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/securing_networks/index#using-shared-system-certificates_securing-networks">Using shared system certificates</a>.
+				</p></section></section><section class="section" id="operator-custom-ssl-certs-config-bundle"><div class="titlepage"><div><div><h2 class="title">4.3. Configuring custom SSL/TLS certificates for Red Hat Quay on OpenShift Container Platform</h2></div></div></div><p>
+				When Red Hat Quay is deployed on OpenShift Container Platform, the <code class="literal">tls</code> component of the <code class="literal">QuayRegistry</code> custom resource definition (CRD) is set to <code class="literal">managed</code> by default. As a result, OpenShift Container Platform’s Certificate Authority is used to create HTTPS endpoints and to rotate SSL/TLS certificates.
+			</p><p>
+				You can configure custom SSL/TLS certificates before or after the initial deployment of Red Hat Quay on OpenShift Container Platform. This process involves creating or updating the <code class="literal">configBundleSecret</code> resource within the <code class="literal">QuayRegistry</code> YAML file to integrate your custom certificates and setting the <code class="literal">tls</code> component to <code class="literal">unmanaged</code>.
+			</p><div class="admonition important"><div class="admonition_header">Important</div><div><p>
+					When configuring custom SSL/TLS certificates for Red Hat Quay, administrators are responsible for certificate rotation.
+				</p></div></div><p>
+				The following procedures enable you to apply custom SSL/TLS certificates to ensure secure communication and meet specific security requirements for your Red Hat Quay on OpenShift Container Platform deployment. These steps assumed you have already created a Certificate Authority (CA) bundle or an <code class="literal">ssl.key</code>, and an <code class="literal">ssl.cert</code>. The procedure then shows you how to integrate those files into your Red Hat Quay on OpenShift Container Platform deployment, which ensures that your registry operates with the specified security settings and conforms to your organization’s SSL/TLS policies.
+			</p><div class="admonition note"><div class="admonition_header">Note</div><div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							The following procedure is used for securing Red Hat Quay with an HTTPS certificate. Note that this differs from managing Certificate Authority Trust Bundles. CA Trust Bundles are used by system processes within the <code class="literal">Quay</code> container to verify certificates against trusted CAs, and ensure that services like LDAP, storage backend, and OIDC connections are trusted.
+						</li><li class="listitem">
+							If you are adding the certificates to an existing deployment, you must include the existing <code class="literal">config.yaml</code> file in the new config bundle secret, even if you are not making any configuration changes.
+						</li></ul></div></div></div><section class="section" id="creating-custom-ssl-certs-config-bundle"><div class="titlepage"><div><div><h3 class="title">4.3.1. Creating a custom SSL/TLS configBundleSecret resource</h3></div></div></div><p>
+					After creating your custom SSL/TLS certificates, you can create a custom <code class="literal">configBundleSecret</code> resource for Red Hat Quay on OpenShift Container Platform, which allows you to upload <code class="literal">ssl.cert</code> and <code class="literal">ssl.key</code> files.
+				</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+							You have base64 decoded the original config bundle into a <code class="literal">config.yaml</code> file.
+						</li><li class="listitem">
+							You have generated custom SSL certificates and keys.
+						</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Create a new YAML file, for example, <code class="literal">custom-ssl-config-bundle-secret.yaml</code>:
+						</p><pre class="programlisting language-terminal">$ touch custom-ssl-config-bundle-secret.yaml</pre></li><li class="listitem"><p class="simpara">
+							Create the <code class="literal">custom-ssl-config-bundle-secret</code> resource.
+						</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
+									Create the resource by entering the following command:
+								</p><pre class="programlisting language-terminal">$ oc -n &lt;namespace&gt; create secret generic custom-ssl-config-bundle-secret \
+  --from-file=config.yaml=&lt;/path/to/config.yaml&gt; \ <span id="CO1-1"/><span class="callout">1</span>
+  --from-file=ssl.cert=&lt;/path/to/ssl.cert&gt; \ <span id="CO1-2"/><span class="callout">2</span>
+  --from-file=extra_ca_cert=&lt;/path/to/ca.cert&gt; \ <span id="CO1-3"/><span class="callout">3</span>
+  --from-file=ssl.key=&lt;/path/to/ssl.key&gt; \ <span id="CO1-4"/><span class="callout">4</span>
+  --dry-run=client -o yaml &gt; custom-ssl-config-bundle-secret.yaml</pre><div class="calloutlist"><dl class="calloutlist"><dt><a href="#CO1-1"><span class="callout">1</span></a> </dt><dd><div class="para">
+											Where <code class="literal">&lt;config.yaml&gt;</code> is your <code class="literal">base64 decoded</code> <code class="literal">config.yaml</code> file.
+										</div></dd><dt><a href="#CO1-2"><span class="callout">2</span></a> </dt><dd><div class="para">
+											Where <code class="literal">&lt;ssl.cert&gt;</code> is your <code class="literal">ssl.cert</code> file.
+										</div></dd><dt><a href="#CO1-3"><span class="callout">3</span></a> </dt><dd><div class="para">
+											Optional. The <code class="literal">--from-file=extra_ca_cert=&lt;ca.cert&gt;</code> field allows Red Hat Quay to recognize custom Certificate Authority (CA) files. If you are using LDAP, OIDC, or another service that uses custom CAs, you must add them via the <code class="literal">extra_ca_cert</code> path. For more information, see "Adding additional Certificate Authorities to Red Hat Quay on OpenShift Container Platform."
+										</div></dd><dt><a href="#CO1-4"><span class="callout">4</span></a> </dt><dd><div class="para">
+											Where <code class="literal">&lt;ssl.key&gt;</code> is your <code class="literal">ssl.key</code> file.
+										</div></dd></dl></div></li></ol></div></li><li class="listitem"><p class="simpara">
+							Optional. You can check the content of the <code class="literal">custom-ssl-config-bundle-secret.yaml</code> file by entering the following command:
+						</p><pre class="programlisting language-terminal">$ cat custom-ssl-config-bundle-secret.yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal">apiVersion: v1
+data:
+  config.yaml: QUxMT1dfUFVMTFNfV0lUSE9VVF9TVFJJQ1RfTE9HR0lORzogZmFsc2UKQVVUSEVOVElDQVRJT05fVFlQRTogRGF0YWJhc2UKREVGQVVMVF9UQUdfRVhQSVJBVElPTjogMncKRElTVFJJQlVURURfU1R...
+  ssl.cert: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVYakNDQTBhZ0F3SUJBZ0lVTUFBRk1YVWlWVHNoMGxNTWI3U1l0eFV5eTJjd0RRWUpLb1pJaHZjTkFRRUwKQlFBd2dZZ3hDekFKQmdOVkJBWVR...
+  extra_ca_cert:LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVYakNDQTBhZ0F3SUJBZ0lVTUFBRk1YVWlWVHNoMGxNTWI3U1l0eFV5eTJjd0RRWUpLb1pJaHZjTkFRRUwKQlFBd2dZZ3hDe...
+  ssl.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2UUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktjd2dnU2pBZ0VBQW9JQkFRQ2c0VWxZOVV1SVJPY1oKcFhpZk9MVEdqaS9neUxQMlpiMXQ...
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: custom-ssl-config-bundle-secret
+  namespace: &lt;namespace&gt;</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							Create the <code class="literal">configBundleSecret</code> resource by entering the following command:
+						</p><pre class="programlisting language-terminal">$ oc create -n &lt;namespace&gt; -f custom-ssl-config-bundle-secret.yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal">secret/custom-ssl-config-bundle-secret created</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							Update the <code class="literal">QuayRegistry</code> YAML file to reference the <code class="literal">custom-ssl-config-bundle-secret</code> object by entering the following command:
+						</p><pre class="programlisting language-terminal">$ oc patch quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; --type=merge -p '{"spec":{"configBundleSecret":"custom-ssl-config-bundle-secret"}}'</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal">quayregistry.quay.redhat.com/example-registry patched</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							Set the <code class="literal">tls</code> component of the <code class="literal">QuayRegistry</code> YAML to <code class="literal">false</code> by entering the following command:
+						</p><pre class="programlisting language-terminal">$ oc patch quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; --type=merge -p '{"spec":{"components":[{"kind":"tls","managed":false}]}}'</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal">quayregistry.quay.redhat.com/example-registry patched</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							Ensure that your <code class="literal">QuayRegistry</code> YAML file has been updated to use the custom SSL <code class="literal">configBundleSecret</code> resource, and that your and <code class="literal">tls</code> resource is set to <code class="literal">false</code> by entering the following command:
+						</p><pre class="programlisting language-terminal">$ oc get quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; -o yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal"># ...
+  configBundleSecret: custom-ssl-config-bundle-secret
+# ...
+spec:
+  components:
+  - kind: tls
+    managed: false
+# ...</pre>
+							</p></div></li></ol></div><div class="itemizedlist"><p class="title"><strong>Verification</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+							Confirm a TLS connection to the server and port by entering the following command:
+						</p><pre class="programlisting language-terminal">$  openssl s_client -connect &lt;quay-server.example.com&gt;:443</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal"># ...
+SSL-Session:
+    Protocol  : TLSv1.3
+    Cipher    : TLS_AES_256_GCM_SHA384
+    Session-ID: 0E995850DC3A8EB1A838E2FF06CE56DBA81BD8443E7FA05895FBD6FBDE9FE737
+    Session-ID-ctx:
+    Resumption PSK: 1EA68F33C65A0F0FA2655BF9C1FE906152C6E3FEEE3AEB6B1B99BA7C41F06077989352C58E07CD2FBDC363FA8A542975
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+
+# ...</pre>
+							</p></div></li></ul></div></section></section></section><section class="chapter" id="config-extra-ca-certs-quay"><div class="titlepage"><div><div><h1 class="title">Chapter 5. Adding additional Certificate Authorities for Red Hat Quay</h1></div></div></div><p>
+			Certificate Authorities (CAs) are used by Red Hat Quay to verify SSL/TLS connections with external services, like ODIC providers, LDAP providers, storage providers, and so on.
+		</p><p>
+			The following sections provide information about uploading additional CAs to Red Hat Quay depending on your deployment type.
+		</p><section class="section" id="config-extra-ca-certs-standalone"><div class="titlepage"><div><div><h2 class="title">5.1. Adding additional Certificate Authorities to the Red Hat Quay container</h2></div></div></div><p>
+				The <code class="literal">extra_ca_certs</code> directory is the directory where additional Certificate Authorities (CAs) can be stored to extend the set of trusted certificates. These certificates are used by Red Hat Quay to verify SSL/TLS connections with external services. When deploying Red Hat Quay, you can place the necessary CAs in this directory to ensure that connections to services like LDAP, OIDC, and storage systems are properly secured and validated.
+			</p><p>
+				For standalone Red Hat Quay deployments, you must create this directory and copy the additional CA certificates into that directory.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have a CA for the desired service.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						View the certificate to be added to the container by entering the following command:
+					</p><pre class="programlisting language-terminal">$ cat storage.crt</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">-----BEGIN CERTIFICATE-----
+MIIDTTCCAjWgAwIBAgIJAMVr9ngjJhzbMA0GCSqGSIb3DQEBCwUAMD0xCzAJBgNV...
+-----END CERTIFICATE-----</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Create the <code class="literal">extra_ca_certs</code> in the <code class="literal">/config</code> folder of your Red Hat Quay directory by entering the following command:
+					</p><pre class="programlisting language-terminal">$ mkdir -p /path/to/quay_config_folder/extra_ca_certs</pre></li><li class="listitem"><p class="simpara">
+						Copy the CA file to the <code class="literal">extra_ca_certs</code> folder. For example:
+					</p><pre class="programlisting language-terminal">$ cp storage.crt /path/to/quay_config_folder/extra_ca_certs/</pre></li><li class="listitem"><p class="simpara">
+						Ensure that the <code class="literal">storage.crt</code> file exists within the <code class="literal">extra_ca_certs</code> folder by entering the following command:
+					</p><pre class="programlisting language-terminal">$ tree /path/to/quay_config_folder/extra_ca_certs</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">/path/to/quay_config_folder/extra_ca_certs
+├── storage.crt----</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Obtain the <code class="literal">CONTAINER ID</code> of your <code class="literal">Quay</code> consider by entering the following command:
+					</p><pre class="programlisting language-terminal">$ podman ps</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">CONTAINER ID        IMAGE                                COMMAND                  CREATED             STATUS              PORTS
+5a3e82c4a75f        &lt;registry&gt;/&lt;repo&gt;/quay:{productminv} "/sbin/my_init"          24 hours ago        Up 18 hours         0.0.0.0:80-&gt;80/tcp, 0.0.0.0:443-&gt;443/tcp, 443/tcp   grave_keller</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Restart the container by entering the following command
+					</p><pre class="programlisting language-terminal">$ podman restart 5a3e82c4a75f</pre></li><li class="listitem"><p class="simpara">
+						Confirm that the certificate was copied into the container namespace by running the following command:
+					</p><pre class="programlisting language-terminal">$ podman exec -it 5a3e82c4a75f cat /etc/ssl/certs/storage.pem</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">-----BEGIN CERTIFICATE-----
+MIIDTTCCAjWgAwIBAgIJAMVr9ngjJhzbMA0GCSqGSIb3DQEBCwUAMD0xCzAJBgNV...
+-----END CERTIFICATE-----</pre>
+						</p></div></li></ol></div></section><section class="section" id="config-additional-cas-ocp"><div class="titlepage"><div><div><h2 class="title">5.2. Adding additional Certificate Authorities to Red Hat Quay on OpenShift Container Platform</h2></div></div></div><p>
+				On Red Hat Quay on OpenShift Container Platform, the <code class="literal">extra_ca_certs</code> configuration field is is used to populate additional Certificate Authorities (CAs) into the CA directory, which then adds the CAs into the system trust bundle. These certificates are used by Red Hat Quay to verify SSL/TLS connections with external services like LDAP, OIDC, and storage systems.
+			</p><p>
+				When deploying or redeploying Red Hat Quay on OpenShift Container Platform, you can add one, or multiple, CAs into the CA directory to ensure that external services are properly secured and validated. On Red Hat Quay on OpenShift Container Platform deployments, you must manually add the <code class="literal">extra_ca_certs</code> configuration field to your <code class="literal">config.yaml</code> file and re-upload the <code class="literal">config.yaml</code> to OpenShift Container Platform.
+			</p><p>
+				The following procedures show you how to download your existing configuration file, add additional CAs to your Red Hat Quay on OpenShift Container Platform deployment, and then re-upload the configuration file.
+			</p><section class="section" id="operator-config-cli-download"><div class="titlepage"><div><div><h3 class="title">5.2.1. Downloading the existing configuration</h3></div></div></div><p>
+					The following procedure shows you how to download the existing configuration by locating the <code class="literal">Config Bundle Secret</code>.
+				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Describe the <code class="literal">QuayRegistry</code> resource by entering the following command:
+						</p><pre class="programlisting language-terminal">$ oc describe quayregistry -n &lt;quay_namespace&gt;</pre><pre class="programlisting language-terminal"># ...
+  Config Bundle Secret:  example-registry-config-bundle-v123x
+# ...</pre></li><li class="listitem"><p class="simpara">
+							Obtain the secret data by entering the following command:
+						</p><pre class="programlisting language-terminal">$ oc get secret -n &lt;quay_namespace&gt; &lt;example-registry-config-bundle-v123x&gt; -o jsonpath='{.data}'</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-yaml">{
+    "config.yaml": "RkVBVFVSRV9VU0 ... MDAwMAo="
+}</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							Decode the data by entering the following command:
+						</p><pre class="programlisting language-terminal">$ echo 'RkVBVFVSRV9VU0 ... MDAwMAo=' | base64 --decode</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-yaml">FEATURE_USER_INITIALIZE: true
+BROWSER_API_CALLS_XHR_ONLY: false
+SUPER_USERS:
+- quayadmin
+FEATURE_USER_CREATION: false
+FEATURE_QUOTA_MANAGEMENT: true
+FEATURE_PROXY_CACHE: true
+FEATURE_BUILD_SUPPORT: true
+DEFAULT_SYSTEM_REJECT_QUOTA_BYTES: 102400000</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							Optional. You can export the data into a YAML file into the current directory by passing in the <code class="literal">&gt;&gt; config.yaml</code> flag. For example:
+						</p><pre class="programlisting language-terminal">$ echo 'RkVBVFVSRV9VU0 ... MDAwMAo=' | base64 --decode &gt;&gt; config.yaml</pre></li></ol></div></section><section class="section" id="adding-ca-certs-to-config"><div class="titlepage"><div><div><h3 class="title">5.2.2. Adding additional Certificate Authorities to Red Hat Quay on OpenShift Container Platform</h3></div></div></div><p>
+					The following example shows you how to add additional Certificate Authorities to your Red Hat Quay on OpenShift Container Platform deployment.
+				</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+							You have base64 decoded the original config bundle into a <code class="literal">config.yaml</code> file.
+						</li><li class="listitem">
+							You have a Certificate Authority (CA) file or files.
+						</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Create a new YAML file, for example, <code class="literal">extra-ca-certificate-config-bundle-secret.yaml</code>:
+						</p><pre class="programlisting language-terminal">$ touch extra-ca-certificate-config-bundle-secret.yaml</pre></li><li class="listitem"><p class="simpara">
+							Create the <code class="literal">extra-ca-certificate-config-bundle-secret</code> resource.
+						</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
+									Create the resource by entering the following command:
+								</p><pre class="programlisting language-terminal">$ oc -n &lt;namespace&gt; create secret generic extra-ca-certificate-config-bundle-secret \
+  --from-file=config.yaml=&lt;/path/to/config.yaml&gt; \ <span id="CO2-1"/><span class="callout">1</span>
+  --from-file=extra_ca_cert_&lt;certificate-one&gt;=&lt;path/to/certificate_one&gt; \ <span id="CO2-2"/><span class="callout">2</span>
+  --from-file=extra_ca_cert_&lt;certificate-two&gt;=&lt;path/to/certificate_two&gt; \ <span id="CO2-3"/><span class="callout">3</span>
+  --from-file=extra_ca_cert_&lt;certificate-three&gt;=&lt;path/to/certificate_three&gt; \ <span id="CO2-4"/><span class="callout">4</span>
+  --dry-run=client -o yaml &gt; extra-ca-certificate-config-bundle-secret.yaml</pre><div class="calloutlist"><dl class="calloutlist"><dt><a href="#CO2-1"><span class="callout">1</span></a> </dt><dd><div class="para">
+											Where <code class="literal">&lt;config.yaml&gt;</code> is your <code class="literal">base64 decoded</code> <code class="literal">config.yaml</code> file.
+										</div></dd><dt><a href="#CO2-2"><span class="callout">2</span></a> </dt><dd><div class="para">
+											The extra CA file to be added to into the system trust bundle.
+										</div></dd><dt><a href="#CO2-3"><span class="callout">3</span></a> </dt><dd><div class="para">
+											Optional. A second CA file to be added into the system trust bundle.
+										</div></dd><dt><a href="#CO2-4"><span class="callout">4</span></a> </dt><dd><div class="para">
+											Optional. A third CA file to be added into the system trust bundle.
+										</div></dd></dl></div></li></ol></div></li><li class="listitem"><p class="simpara">
+							Optional. You can check the content of the <code class="literal">extra-ca-certificate-config-bundle-secret.yaml</code> file by entering the following command:
+						</p><pre class="programlisting language-terminal">$ cat extra-ca-certificate-config-bundle-secret.yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal">apiVersion: v1
+data:
+  config.yaml: QUxMT1dfUFVMTFNfV0lUSE9VVF9TVFJJQ1RfTE9HR0lORzogZmFsc2UKQVVUSEVOVElDQVRJT05fVFlQRTogRGF0YWJhc2UKREVGQVVMVF9UQUdfRVhQSVJBVElPTjogMncKUFJFRkVSU...
+  extra_ca_cert_certificate-one: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUQyVENDQXNHZ0F3SUJBZ0lVS2xOai90VUJBZHBkNURjYkdRQUo4anRuKzd3d0RRWUpLb1pJaHZjTkFRRUwKQlFBd2ZERUxNQWtHQ...
+  extra_ca_cert_certificate-three: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUQ0ekNDQXN1Z0F3SUJBZ0lVQmJpTXNUeExjM0s4ODNWby9GTThsWXlOS2lFd0RRWUpLb1pJaHZjTkFRRUwKQlFBd2ZERUxNQWtHQ...
+  extra_ca_cert_certificate-two: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUQ0ekNDQXN1Z0F3SUJBZ0lVVFVPTXZ2YVdFOFRYV3djYTNoWlBCTnV2QjYwd0RRWUpLb1pJaHZjTkFRRUwKQlFBd2ZERUxNQWtHQ...
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: custom-ssl-config-bundle-secret
+  namespace: &lt;namespace&gt;</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							Create the <code class="literal">configBundleSecret</code> resource by entering the following command:
+						</p><pre class="programlisting language-terminal">$ oc create -n &lt;namespace&gt; -f extra-ca-certificate-config-bundle-secret.yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal">secret/extra-ca-certificate-config-bundle-secret created</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							Update the <code class="literal">QuayRegistry</code> YAML file to reference the <code class="literal">extra-ca-certificate-config-bundle-secret</code> object by entering the following command:
+						</p><pre class="programlisting language-terminal">$ oc patch quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; --type=merge -p '{"spec":{"configBundleSecret":"extra-ca-certificate-config-bundle-secret"}}'</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal">quayregistry.quay.redhat.com/example-registry patched</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							Ensure that your <code class="literal">QuayRegistry</code> YAML file has been updated to use the extra CA certificate <code class="literal">configBundleSecret</code> resource by entering the following command:
+						</p><pre class="programlisting language-terminal">$ oc get quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; -o yaml</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal"># ...
+  configBundleSecret: extra-ca-certificate-config-bundle-secret
+# ...</pre>
+							</p></div></li></ol></div></section></section><section class="section" id="config-custom-ssl-cert-kubernetes"><div class="titlepage"><div><div><h2 class="title">5.3. Adding custom SSL/TLS certificates when Red Hat Quay is deployed on Kubernetes</h2></div></div></div><p>
+				When deployed on Kubernetes, Red Hat Quay mounts in a secret as a volume to store config assets. Currently, this breaks the upload certificate function of the superuser panel.
+			</p><p>
+				As a temporary workaround, <code class="literal">base64</code> encoded certificates can be added to the secret <span class="emphasis"><em>after</em></span> Red Hat Quay has been deployed.
+			</p><p>
+				Use the following procedure to add custom SSL/TLS certificates when Red Hat Quay is deployed on Kubernetes.
+			</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						Red Hat Quay has been deployed.
+					</li><li class="listitem">
+						You have a custom <code class="literal">ca.crt</code> file.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Base64 encode the contents of an SSL/TLS certificate by entering the following command:
+					</p><pre class="programlisting language-terminal">$ cat ca.crt | base64 -w 0</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">...c1psWGpqeGlPQmNEWkJPMjJ5d0pDemVnR2QNCnRsbW9JdEF4YnFSdVd3PT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Enter the following <code class="literal">kubectl</code> command to edit the <code class="literal">quay-enterprise-config-secret</code> file:
+					</p><pre class="programlisting language-terminal">$ kubectl --namespace quay-enterprise edit secret/quay-enterprise-config-secret</pre></li><li class="listitem"><p class="simpara">
+						Add an entry for the certificate and paste the full <code class="literal">base64</code> encoded stringer under the entry. For example:
+					</p><pre class="programlisting language-terminal">  custom-cert.crt:
+c1psWGpqeGlPQmNEWkJPMjJ5d0pDemVnR2QNCnRsbW9JdEF4YnFSdVd3PT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=</pre></li><li class="listitem"><p class="simpara">
+						Use the <code class="literal">kubectl delete</code> command to remove all Red Hat Quay pods. For example:
+					</p><pre class="programlisting language-terminal">$ kubectl delete pod quay-operator.v3.7.1-6f9d859bd-p5ftc quayregistry-clair-postgres-7487f5bd86-xnxpr quayregistry-quay-app-upgrade-xq2v6  quayregistry-quay-database-859d5445ff-cqthr quayregistry-quay-redis-84f888776f-hhgms</pre><p class="simpara">
+						Afterwards, the Red Hat Quay deployment automatically schedules replace pods with the new certificate data.
+					</p></li></ol></div></section></section><section class="chapter" id="clair-vulnerability-scanner"><div class="titlepage"><div><div><h1 class="title">Chapter 6. Clair security scanner</h1></div></div></div><p>
+			Clair v4 (Clair) is an open source application that leverages static code analyses for parsing image content and reporting vulnerabilities affecting the content. Clair is packaged with Red Hat Quay and can be used in both standalone and Operator deployments. It can be run in highly scalable configurations, where components can be scaled separately as appropriate for enterprise environments.
+		</p><p>
+			For more information about Clair security scanner, see <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3.13/html-single/vulnerability_reporting_with_clair_on_red_hat_quay/index">Vulnerability reporting with Clair on Red Hat Quay</a>.
+		</p></section><div><div xml:lang="en-US" class="legalnotice" id="idm46105795385408"><h1 class="legalnotice">Legal Notice</h1><div class="para">
+		Copyright <span class="trademark"/>© 2024 Red Hat, Inc.
+	</div><div class="para">
+		The text of and illustrations in this document are licensed by Red Hat under a Creative Commons Attribution–Share Alike 3.0 Unported license ("CC-BY-SA"). An explanation of CC-BY-SA is available at <a class="uri" href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a>. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
+	</div><div class="para">
+		Red Hat, as the licensor of this document, waives the right to enforce, and agrees not to assert, Section 4d of CC-BY-SA to the fullest extent permitted by applicable law.
+	</div><div class="para">
+		Red Hat, Red Hat Enterprise Linux, the Shadowman logo, the Red Hat logo, JBoss, OpenShift, Fedora, the Infinity logo, and RHCE are trademarks of Red Hat, Inc., registered in the United States and other countries.
+	</div><div class="para">
+		<span class="trademark">Linux</span>® is the registered trademark of Linus Torvalds in the United States and other countries.
+	</div><div class="para">
+		<span class="trademark">Java</span>® is a registered trademark of Oracle and/or its affiliates.
+	</div><div class="para">
+		<span class="trademark">XFS</span>® is a trademark of Silicon Graphics International Corp. or its subsidiaries in the United States and/or other countries.
+	</div><div class="para">
+		<span class="trademark">MySQL</span>® is a registered trademark of MySQL AB in the United States, the European Union and other countries.
+	</div><div class="para">
+		<span class="trademark">Node.js</span>® is an official trademark of Joyent. Red Hat is not formally related to or endorsed by the official Joyent Node.js open source or commercial project.
+	</div><div class="para">
+		The <span class="trademark">OpenStack</span>® Word Mark and OpenStack logo are either registered trademarks/service marks or trademarks/service marks of the OpenStack Foundation, in the United States and other countries and are used with the OpenStack Foundation's permission. We are not affiliated with, endorsed or sponsored by the OpenStack Foundation, or the OpenStack community.
+	</div><div class="para">
+		All other trademarks are the property of their respective owners.
+	</div></div></div></div></div></div><script type="text/javascript">
+                        jQuery(document).ready(function() {
+                            initSwitchery();
+                            jQuery('pre[class*="language-"]').each(function(i, block){hljs.highlightBlock(block);});
+                        });
+                    </script></body></html>
