@@ -1,0 +1,705 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="chrometwo"><head><title>Builders and image automation</title><link rel="stylesheet" type="text/css" href="Common_Content/css/default.css"/><meta name="generator" content="publican v4.3.2"/><meta name="description" content="Understand builders and their role in automating image builds."/><link rel="next" href="#idm45673392905760" title="Preface"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><script type="text/javascript" src="Common_Content/scripts/jquery-1.7.1.min.js"> </script><script type="text/javascript" src="Common_Content/scripts/utils.js"> </script><script type="text/javascript" src="Common_Content/scripts/highlight.js/highlight.pack.js"> </script></head><body><div id="chrometwo"><div id="main"><div xml:lang="en-US" class="book" id="idm45673392691344"><div class="titlepage"><div><div class="producttitle"><span class="productname">Red Hat Quay</span> <span class="productnumber">3.13</span></div><div><h1 class="title">Builders and image automation</h1></div><div><h2 class="subtitle">Builders and image automation</h2></div><div><div xml:lang="en-US" class="authorgroup"><span class="orgname">Red Hat OpenShift Documentation Team</span></div></div><div><a href="#idm45673371609728">Legal Notice</a></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><div class="para">
+				Understand builders and their role in automating image builds.
+			</div></div></div></div><hr/></div><div class="toc"><ul class="toc"><li><span class="preface"><a href="#idm45673392905760">Preface</a></span></li><li><span class="chapter"><a href="#builds-overview">1. Red Hat Quay builds overview</a></span><ul><li><span class="section"><a href="#building-dockerfiles">1.1. Building container images</a></span><ul><li><span class="section"><a href="#build-contexts">1.1.1. Build contexts</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#configuring-openshift-tls-component-builds">2. Configuring the OpenShift Container Platform TLS component for builds</a></span></li><li><span class="chapter"><a href="#bare-metal-builds">3. Bare metal builds with Red Hat Quay on OpenShift Container Platform</a></span><ul><li><span class="section"><a href="#prepare-ocp-for-bare-metal-builds">3.1. Configuring bare metal builds for Red Hat Quay on OpenShift Container Platform</a></span><ul><li><span class="section"><a href="#openshift-routes-limitations">3.1.1. Red Hat Quay on OpenShift Container Platform <span class="emphasis"><em>builds</em></span> limitations with self-managed <span class="emphasis"><em>routes</em></span></a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#red-hat-quay-builders-enhancement">4. Virtual builds with Red Hat Quay on OpenShift Container Platform</a></span><ul><li><span class="section"><a href="#quay-builds-limitations">4.1. Virtual builds limitations</a></span></li><li><span class="section"><a href="#builders-virtual-environment">4.2. Configuring virtual builds for Red Hat Quay on OpenShift Container Platform</a></span><ul><li><span class="section"><a href="#red-hat-quay-s3-bucket-modify">4.2.1. Modifying your AWS S3 storage bucket</a></span></li><li><span class="section"><a href="#red-hat-quay-gcp-bucket-modify">4.2.2. Modifying your Google Cloud Platform object bucket</a></span></li></ul></li></ul></li><li><span class="chapter"><a href="#build-trigger-overview">5. Build triggers</a></span><ul><li><span class="section"><a href="#creating-a-build-trigger">5.1. Creating a build trigger</a></span><ul><li><span class="section"><a href="#understanding-tag-naming-build-triggers">5.1.1. Tag naming for build triggers</a></span></li><li><span class="section"><a href="#skipping-source-control-triggered-build">5.1.2. Skipping a source control-triggered build</a></span></li></ul></li><li><span class="section"><a href="#manually-triggering-a-build-trigger">5.2. Manually triggering a build</a></span></li></ul></li><li><span class="chapter"><a href="#starting-a-build">6. Starting a new build by uploading a Dockerfile</a></span></li><li><span class="chapter"><a href="#troubleshooting-builds">7. Troubleshooting Builds</a></span><ul><li><span class="section"><a href="#debug-config-flag">7.1. DEBUG config flag</a></span></li><li><span class="section"><a href="#openshift-kubernetes-troubleshooting">7.2. Troubleshooting OpenShift Container Platform and Kubernetes Builds</a></span></li></ul></li></ul></div><section class="preface" id="idm45673392905760"><div class="titlepage"><div><div><h1 class="title">Preface</h1></div></div></div><p>
+			The following guide shows you how to configure the Red Hat Quay <span class="emphasis"><em>builds</em></span> feature on both bare metal and virtual machines.
+		</p></section><section class="chapter" id="builds-overview"><div class="titlepage"><div><div><h1 class="title">Chapter 1. Red Hat Quay builds overview</h1></div></div></div><p>
+			<span class="emphasis"><em>Red Hat Quay builds</em></span>, or just <span class="emphasis"><em>builds</em></span>, are a feature that enable the automation of container image builds. The <span class="emphasis"><em>builds</em></span> feature uses worker nodes to build images from Dockerfiles or other build specifications. These builds can be triggered manually or automatically via webhooks from repositories like GitHub, allowing users to integrate continuous integration (CI) and continuous delivery (CD) pipelines into their workflow.
+		</p><p>
+			The <span class="emphasis"><em>builds</em></span> feature is supported on Red Hat Quay on OpenShift Container Platform and Kubernetes clusters. For Operator-based deployments and Kubernetes clusters, <span class="emphasis"><em>builds</em></span> are created by using a <span class="emphasis"><em>build manager</em></span> that coordinates and handles the build jobs. <span class="emphasis"><em>Builds</em></span> support building Dockerfile on both bare metal platforms and on virtualized platforms with <span class="emphasis"><em>virtual builders</em></span>. This versatility allows organizations to adapt to existing infrastructure while leveraging Red Hat Quay’s container image build capabilities.
+		</p><p>
+			The key features of <span class="emphasis"><em>Red Hat Quay builds</em></span> feature include:
+		</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+					Automated builds triggered by code commits or version control events
+				</li><li class="listitem">
+					Support for Docker and Podman container images
+				</li><li class="listitem">
+					Fine-grained control over build environments and resources
+				</li><li class="listitem">
+					Integration with Kubernetes and OpenShift Container Platform for scalable builds
+				</li><li class="listitem">
+					Compatibility with bare metal and virtualized infrastructure
+				</li></ul></div><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+				Running <span class="emphasis"><em>builds</em></span> directly in a container on bare metal platforms does not have the same isolation as when using virtual machines, however, it still provides good protection.
+			</p></div></div><p>
+			<span class="emphasis"><em>Builds</em></span> are highly complex, and administrators are encouraged to review the <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3.13/html-single/red_hat_quay_architecture/index#arch-intro-build-automation">Build automation</a> architecture guide before continuing.
+		</p><section class="section" id="building-dockerfiles"><div class="titlepage"><div><div><h2 class="title">1.1. Building container images</h2></div></div></div><p>
+				Building container images involves creating a blueprint for a containerized application. Blueprints rely on base images from other public repositories that define how the application should be installed and configured.
+			</p><p>
+				Red Hat Quay supports the ability to build Docker and Podman container images. This functionality is valuable for developers and organizations who rely on container and container orchestration.
+			</p><section class="section" id="build-contexts"><div class="titlepage"><div><div><h3 class="title">1.1.1. Build contexts</h3></div></div></div><p>
+					When building an image with Docker or Podman, a directory is specified to become the <span class="emphasis"><em>build context</em></span>. This is true for both manual Builds and Build triggers, because the Build that is created by is not different than running <code class="literal">docker build</code> or <code class="literal">podman build</code> on your local machine.
+				</p><p>
+					Build contexts are always specified in the <span class="emphasis"><em>subdirectory</em></span> from the Build setup, and fallback to the root of the Build source if a directory is not specified.
+				</p><p>
+					When a build is triggered, Build workers clone the Git repository to the worker machine, and then enter the Build context before conducting a Build.
+				</p><p>
+					For Builds based on <code class="literal">.tar</code> archives, Build workers extract the archive and enter the Build context. For example:
+				</p><div class="formalpara"><p class="title"><strong>Extracted Build archive</strong></p><p>
+						
+<pre class="programlisting language-terminal">example
+├── .git
+├── Dockerfile
+├── file
+└── subdir
+    └── Dockerfile</pre>
+					</p></div><p>
+					Imagine that the <span class="emphasis"><em>Extracted Build archive</em></span> is the directory structure got a Github repository called <span class="strong strong"><strong>example.</strong></span> If no subdirectory is specified in the Build trigger setup, or when manually starting the Build, the Build operates in the example directory.
+				</p><p>
+					If a subdirectory is specified in the Build trigger setup, for example, <code class="literal">subdir</code>, only the Dockerfile within it is visible to the Build. This means that you cannot use the <code class="literal">ADD</code> command in the Dockerfile to add <code class="literal">file</code>, because it is outside of the Build context.
+				</p><p>
+					Unlike Docker Hub, the Dockerfile is part of the Build context on As a result, it must not appear in the <code class="literal">.dockerignore</code> file.
+				</p></section></section></section><section class="chapter" id="configuring-openshift-tls-component-builds"><div class="titlepage"><div><div><h1 class="title">Chapter 2. Configuring the OpenShift Container Platform TLS component for builds</h1></div></div></div><p>
+			The <code class="literal">tls</code> component of the <code class="literal">QuayRegistry</code> custom resource definition (CRD) allows you to control whether SSL/TLS are managed by the Red Hat Quay Operator, or self managed. In its current state, Red Hat Quay does not support the <span class="emphasis"><em>builds</em></span> feature, or the <span class="emphasis"><em>builder</em></span> workers, when the <code class="literal">tls</code> component is managed by the Red Hat Quay Operator.
+		</p><p>
+			When setting the <code class="literal">tls</code> component to <code class="literal">unmanaged</code>, you must supply your own <code class="literal">ssl.cert</code> and <code class="literal">ssl.key</code> files. Additionally, if you want your cluster to support <span class="emphasis"><em>builders</em></span>, or the worker nodes that are responsible for building images, you must add both the <code class="literal">Quay</code> route and the <code class="literal">builder</code> route name to the SAN list in the certificate. Alternatively, however, you could use a wildcard.
+		</p><p>
+			The following procedure shows you how to add the <span class="emphasis"><em>builder</em></span> route.
+		</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+					You have set the <code class="literal">tls</code> component to <code class="literal">unmanaged</code> and uploaded custom SSL/TLS certificates to the Red Hat Quay Operator. For more information, see <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3.13/html-single/securing_red_hat_quay/index#ssl-tls-quay-overview">SSL and TLS for Red Hat Quay</a>.
+				</li></ul></div><div class="itemizedlist"><p class="title"><strong>Procedure</strong></p><ul class="itemizedlist" type="disc"><li class="listitem"><p class="simpara">
+					In the configuration file that defines your SSL/TLS certificate parameters, for example, <code class="literal">openssl.cnf</code>, add the following information to the certificate’s Subject Alternative Name (SAN) field. For example:
+				</p><pre class="programlisting language-yaml"># ...
+[alt_names]
+&lt;quayregistry-name&gt;-quay-builder-&lt;namespace&gt;.&lt;domain-name&gt;:443
+# ...</pre><p class="simpara">
+					For example:
+				</p><pre class="programlisting language-yaml"># ...
+[alt_names]
+example-registry-quay-builder-quay-enterprise.apps.cluster-new.gcp.quaydev.org:443
+# ...</pre></li></ul></div></section><section class="chapter" id="bare-metal-builds"><div class="titlepage"><div><div><h1 class="title">Chapter 3. Bare metal builds with Red Hat Quay on OpenShift Container Platform</h1></div></div></div><p>
+			The procedures in this section explain how to create an environment for <span class="emphasis"><em>bare metal builds</em></span> for Red Hat Quay on OpenShift Container Platform.
+		</p><section class="section" id="prepare-ocp-for-bare-metal-builds"><div class="titlepage"><div><div><h2 class="title">3.1. Configuring bare metal builds for Red Hat Quay on OpenShift Container Platform</h2></div></div></div><p>
+				Use the following procedure to configure <span class="emphasis"><em>bare metal builds</em></span> for Red Hat Quay on OpenShift Container Platform.
+			</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+					If you are using the Red Hat Quay Operator on OpenShift Container Platform with a managed <code class="literal">route</code> component in your <code class="literal">QuayRegistry</code> CRD, see "Red Hat Quay on OpenShift Container Platform <span class="emphasis"><em>builds</em></span> limitations with self-managed <span class="emphasis"><em>routes</em></span>".
+				</p></div></div><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have an OpenShift Container Platform cluster provisioned with the Red Hat Quay Operator running.
+					</li><li class="listitem">
+						You have set the <code class="literal">tls</code> component to <code class="literal">unmanaged</code> and uploaded custom SSL/TLS certificates to the Red Hat Quay Operator. For more information, see <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3.13/html-single/securing_red_hat_quay/index#ssl-tls-quay-overview">SSL and TLS for Red Hat Quay</a>.
+					</li><li class="listitem">
+						You are logged into OpenShift Container Platform as a cluster administrator.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Enter the following command to create a project where Builds will be run, for example, <code class="literal">bare-metal-builder</code>:
+					</p><pre class="programlisting language-terminal">$ oc new-project bare-metal-builder</pre></li><li class="listitem"><p class="simpara">
+						Create a new <code class="literal">ServiceAccount</code> in the the <code class="literal">bare-metal-builder</code> namespace by entering the following command:
+					</p><pre class="programlisting language-terminal">$ oc create sa -n bare-metal-builder quay-builder</pre></li><li class="listitem"><p class="simpara">
+						Enter the following command to grant a user the <code class="literal">edit</code> role within the <code class="literal">bare-metal-builder</code> namespace:
+					</p><pre class="programlisting language-terminal">$ oc policy add-role-to-user -n bare-metal-builder edit system:serviceaccount:builder:quay-builder</pre></li><li class="listitem"><p class="simpara">
+						Enter the following command to retrieve a token associated with the <code class="literal">quay-builder</code> service account in the <code class="literal">bare-metal-builder</code> namespace. This token is used to authenticate and interact with the OpenShift Container Platform cluster’s API server.
+					</p><pre class="programlisting language-terminal">$ oc sa get-token -n bare-metal-builder quay-builder</pre></li><li class="listitem">
+						Identify the URL for the OpenShift Container Platform cluster’s API server. This can be found in the OpenShift Container Platform web console.
+					</li><li class="listitem"><p class="simpara">
+						Identify a worker node label to be used when scheduling <span class="emphasis"><em>build jobs</em></span>. Because <span class="emphasis"><em>build pods</em></span> must run on bare metal worker nodes, typically these are identified with specific labels.
+					</p><p class="simpara">
+						Check with your cluster administrator to determine exactly which node label should be used.
+					</p></li><li class="listitem"><p class="simpara">
+						Obtain the Kube API Server’s certificate authority (CA) to add to Red Hat Quay’s extra certificates.
+					</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p class="simpara">
+								Enter the following command to obtain the name of the secret containing the CA:
+							</p><pre class="programlisting language-terminal">$ oc get sa openshift-apiserver-sa --namespace=openshift-apiserver -o json | jq '.secrets[] | select(.name | contains("openshift-apiserver-sa-token"))'.name</pre></li><li class="listitem">
+								Obtain the <code class="literal">ca.crt</code> key value from the secret in the OpenShift Container Platform Web Console. The value begins with <span class="strong strong"><strong>"-----BEGIN CERTIFICATE-----"`</strong></span>.
+							</li><li class="listitem">
+								Import the CA to Red Hat Quay. Ensure that the name of this file matches the <code class="literal">K8S_API_TLS_CA</code> field used in Step 9.
+							</li></ol></div></li><li class="listitem"><p class="simpara">
+						Create the following <code class="literal">SecurityContextConstraints</code> resource for the <code class="literal">ServiceAccount</code>:
+					</p><pre class="programlisting language-yaml">apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: quay-builder
+priority: null
+readOnlyRootFilesystem: false
+requiredDropCapabilities: null
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+seccompProfiles:
+- '*'
+supplementalGroups:
+  type: RunAsAny
+volumes:
+- '*'
+allowHostDirVolumePlugin: true
+allowHostIPC: true
+allowHostNetwork: true
+allowHostPID: true
+allowHostPorts: true
+allowPrivilegeEscalation: true
+allowPrivilegedContainer: true
+allowedCapabilities:
+- '*'
+allowedUnsafeSysctls:
+- '*'
+defaultAddCapabilities: null
+fsGroup:
+  type: RunAsAny
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: quay-builder-scc
+  namespace: builder
+rules:
+- apiGroups:
+  - security.openshift.io
+  resourceNames:
+  - quay-builder
+  resources:
+  - securitycontextconstraints
+  verbs:
+  - use
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: quay-builder-scc
+  namespace: builder
+subjects:
+- kind: ServiceAccount
+  name: quay-builder
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: quay-builder-scc</pre></li><li class="listitem"><p class="simpara">
+						Update the <code class="literal">config.yaml</code> file of your Red Hat Quay on OpenShift Container Platform deployment to include an appropriate <span class="emphasis"><em>bare metal builds</em></span> configuration by using the OpenShift Container Platform web console.
+					</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
+								Click <span class="strong strong"><strong>Operators</strong></span> → <span class="strong strong"><strong>Installed Operators</strong></span> → <span class="strong strong"><strong>Red Hat Quay</strong></span> → <span class="strong strong"><strong>Quay Registry</strong></span>.
+							</li><li class="listitem">
+								Click the name of your registry, for example, <span class="strong strong"><strong>example-registry</strong></span>.
+							</li><li class="listitem">
+								Under <span class="strong strong"><strong>Config Bundle Secret</strong></span>, click the name of your configuration bundle, for example, <span class="strong strong"><strong>extra-ca-certificate-config-bundle-secret</strong></span>.
+							</li><li class="listitem">
+								Click <span class="strong strong"><strong>Actions</strong></span> → <span class="strong strong"><strong>Edit Secret</strong></span>.
+							</li><li class="listitem"><p class="simpara">
+								Add the following information to your Red Hat Quay <code class="literal">config.yaml</code> file, replacing each value with information that is relevant to your specific installation:
+							</p><pre class="programlisting language-yaml">FEATURE_USER_INITIALIZE: true
+BROWSER_API_CALLS_XHR_ONLY: false
+SUPER_USERS:
+- &lt;superusername&gt;
+FEATURE_USER_CREATION: false
+FEATURE_QUOTA_MANAGEMENT: true
+FEATURE_BUILD_SUPPORT: True
+BUILD_MANAGER:
+- ephemeral
+- ALLOWED_WORKER_COUNT: 1
+  ORCHESTRATOR_PREFIX: buildman/production/
+    ORCHESTRATOR:
+      REDIS_HOST: &lt;sample_redis_hostname&gt; <span id="CO1-1"/><span class="callout">1</span>
+      REDIS_PASSWORD: ""
+      REDIS_SSL: false
+      REDIS_SKIP_KEYSPACE_EVENT_SETUP: false
+  EXECUTORS:
+  - EXECUTOR: kubernetes
+    BUILDER_NAMESPACE: &lt;sample_builder_namespace&gt; <span id="CO1-2"/><span class="callout">2</span>
+    K8S_API_SERVER: &lt;sample_k8s_api_server&gt; <span id="CO1-3"/><span class="callout">3</span>
+    K8S_API_TLS_CA: &lt;sample_crt_file&gt; <span id="CO1-4"/><span class="callout">4</span>
+    VOLUME_SIZE: 8G
+    KUBERNETES_DISTRIBUTION: openshift
+    CONTAINER_MEMORY_LIMITS: 1G <span id="CO1-5"/><span class="callout">5</span>
+    CONTAINER_CPU_LIMITS: 300m <span id="CO1-6"/><span class="callout">6</span>
+    CONTAINER_MEMORY_REQUEST: 1G <span id="CO1-7"/><span class="callout">7</span>
+    CONTAINER_CPU_REQUEST: 300m <span id="CO1-8"/><span class="callout">8</span>
+    NODE_SELECTOR_LABEL_KEY: beta.kubernetes.io/instance-type
+    NODE_SELECTOR_LABEL_VALUE: n1-standard-4
+    CONTAINER_RUNTIME: podman
+    SERVICE_ACCOUNT_NAME: &lt;sample_service_account_name&gt;
+    SERVICE_ACCOUNT_TOKEN: &lt;sample_account_token&gt; <span id="CO1-9"/><span class="callout">9</span>
+    QUAY_USERNAME: &lt;quay_username&gt;
+    QUAY_PASSWORD: &lt;quay_password&gt;
+    WORKER_IMAGE: &lt;registry&gt;/quay-quay-builder
+    WORKER_TAG: &lt;some_tag&gt;
+    BUILDER_VM_CONTAINER_IMAGE: quay.io/quay/quay-builder-qemu-fedoracoreos:latest
+    SETUP_TIME: 180
+    MINIMUM_RETRY_THRESHOLD: 0
+    SSH_AUTHORIZED_KEYS:
+    - &lt;ssh-rsa 12345 someuser@email.com&gt;
+    - &lt;ssh-rsa 67890 someuser2@email.com&gt;</pre><div class="calloutlist"><dl class="calloutlist"><dt><a href="#CO1-1"><span class="callout">1</span></a> </dt><dd><div class="para">
+										The hostname for your Redis service.
+									</div></dd><dt><a href="#CO1-2"><span class="callout">2</span></a> </dt><dd><div class="para">
+										Set to match the name of your <span class="emphasis"><em>bare metal builds</em></span> namespace. This example used <code class="literal">bare-metal-builder</code>.
+									</div></dd><dt><a href="#CO1-3"><span class="callout">3</span></a> </dt><dd><div class="para">
+										The <code class="literal">K8S_API_SERVER</code> is obtained by running <code class="literal">$ oc cluster-info</code>.
+									</div></dd><dt><a href="#CO1-4"><span class="callout">4</span></a> </dt><dd><div class="para">
+										You must manually create and add your custom CA cert, for example, <code class="literal">K8S_API_TLS_CA: /conf/stack/extra_ca_certs/build_cluster.crt</code>.
+									</div></dd><dt><a href="#CO1-5"><span class="callout">5</span></a> </dt><dd><div class="para">
+										Defaults to <code class="literal">5120Mi</code> if left unspecified.
+									</div></dd><dt><a href="#CO1-6"><span class="callout">6</span></a> </dt><dd><div class="para">
+										Defaults to <code class="literal">1000m</code> if left unspecified.
+									</div></dd><dt><a href="#CO1-7"><span class="callout">7</span></a> </dt><dd><div class="para">
+										Defaults to <code class="literal">3968Mi</code> if left unspecified.
+									</div></dd><dt><a href="#CO1-8"><span class="callout">8</span></a> </dt><dd><div class="para">
+										Defaults to <code class="literal">500m</code> if left unspecified.
+									</div></dd><dt><a href="#CO1-9"><span class="callout">9</span></a> </dt><dd><div class="para">
+										Obtained when running <code class="literal">$ oc create sa</code>.
+									</div></dd></dl></div></li></ol></div></li><li class="listitem">
+						Restart your Red Hat Quay registry to enable the <span class="emphasis"><em>builds</em></span> feature.
+					</li></ol></div><section class="section" id="openshift-routes-limitations"><div class="titlepage"><div><div><h3 class="title">3.1.1. Red Hat Quay on OpenShift Container Platform <span class="emphasis"><em>builds</em></span> limitations with self-managed <span class="emphasis"><em>routes</em></span></h3></div></div></div><p>
+					The following limitations apply when you are using the Red Hat Quay Operator on OpenShift Container Platform with a managed <code class="literal">route</code> component:
+				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							Currently, OpenShift Container Platform <span class="emphasis"><em>routes</em></span> are only able to serve traffic to a single port. Additional steps are required to set up Red Hat Quay Builds.
+						</li><li class="listitem">
+							Ensure that your <code class="literal">kubectl</code> or <code class="literal">oc</code> CLI tool is configured to work with the cluster where the Red Hat Quay Operator is installed and that your <code class="literal">QuayRegistry</code> exists; the <code class="literal">QuayRegistry</code> does not have to be on the same bare metal cluster where <span class="emphasis"><em>builders</em></span> run.
+						</li><li class="listitem">
+							Ensure that HTTP/2 ingress is enabled on the OpenShift cluster by following <a class="link" href="https://docs.openshift.com/container-platform/4.14/networking/ingress-operator.html#nw-http2-haproxy_configuring-ingress">these steps</a>.
+						</li><li class="listitem"><p class="simpara">
+							The Red Hat Quay Operator creates a <code class="literal">Route</code> resource that directs gRPC traffic to the Build manager server running inside of the existing <code class="literal">Quay</code> pod, or pods. If you want to use a custom hostname, or a subdomain like <code class="literal">&lt;builder-registry.example.com&gt;</code>, ensure that you create a CNAME record with your DNS provider that points to the <code class="literal">status.ingress[0].host</code> of the create <code class="literal">Route</code> resource. For example:
+						</p><pre class="screen">$ kubectl get -n &lt;namespace&gt; route &lt;quayregistry-name&gt;-quay-builder -o jsonpath={.status.ingress[0].host}</pre></li><li class="listitem"><p class="simpara">
+							Using the OpenShift Container Platform UI or CLI, update the <code class="literal">Secret</code> referenced by <code class="literal">spec.configBundleSecret</code> of the <code class="literal">QuayRegistry</code> with the <span class="emphasis"><em>build</em></span> cluster CA certificate. Name the key <code class="literal">extra_ca_cert_build_cluster.cert</code>. Update the <code class="literal">config.yaml</code> file entry with the correct values referenced in the <span class="emphasis"><em>build</em></span> configuration that you created when you configured Red Hat Quay <span class="emphasis"><em>builds</em></span>, and add the <code class="literal">BUILDMAN_HOSTNAME</code> CONFIGURATION FIELD:
+						</p><pre class="programlisting language-yaml">BUILDMAN_HOSTNAME: &lt;build-manager-hostname&gt; <span id="CO2-1"/><span class="callout">1</span>
+BUILD_MANAGER:
+- ephemeral
+- ALLOWED_WORKER_COUNT: 1
+  ORCHESTRATOR_PREFIX: buildman/production/
+  JOB_REGISTRATION_TIMEOUT: 600
+  ORCHESTRATOR:
+    REDIS_HOST: &lt;quay_redis_host
+    REDIS_PASSWORD: &lt;quay_redis_password&gt;
+    REDIS_SSL: true
+    REDIS_SKIP_KEYSPACE_EVENT_SETUP: false
+  EXECUTORS:
+  - EXECUTOR: kubernetes
+    BUILDER_NAMESPACE: builder
+    ...</pre><div class="calloutlist"><dl class="calloutlist"><dt><a href="#CO2-1"><span class="callout">1</span></a> </dt><dd><div class="para">
+									The externally accessible server hostname which the <span class="emphasis"><em>build jobs</em></span> use to communicate back to the <span class="emphasis"><em>build manager</em></span>. Default is the same as <code class="literal">SERVER_HOSTNAME</code>. For an OpenShift <code class="literal">route</code> resource, it is either <code class="literal">status.ingress[0].host</code> or the CNAME entry if using a custom hostname. <code class="literal">BUILDMAN_HOSTNAME</code> must include the port number, for example, <code class="literal">somehost:443</code> for an OpenShift Container Platform <code class="literal">route</code> resource, as the gRPC client used to communicate with the <span class="emphasis"><em>build manager</em></span> does not infer any port if omitted.
+								</div></dd></dl></div></li></ul></div></section></section></section><section class="chapter" id="red-hat-quay-builders-enhancement"><div class="titlepage"><div><div><h1 class="title">Chapter 4. Virtual builds with Red Hat Quay on OpenShift Container Platform</h1></div></div></div><p>
+			<span class="emphasis"><em>Virtual builds</em></span> can be run on virtualized machines with Red Hat Quay on OpenShift Container Platform. With this method, the <span class="emphasis"><em>build manager</em></span> first creates the <code class="literal">Job Object</code> resource. Then, the <code class="literal">Job Object</code> creates a pod using the <code class="literal">quay-builder-image</code>. The <code class="literal">quay-builder-image</code> contains the <code class="literal">quay-builder</code> binary and the Podman service. The created pod runs as <code class="literal">unprivileged</code>. The <code class="literal">quay-builder</code> binary then builds the image while communicating status and retrieving build information from the <span class="emphasis"><em>build manager</em></span>.
+		</p><section class="section" id="quay-builds-limitations"><div class="titlepage"><div><div><h2 class="title">4.1. Virtual builds limitations</h2></div></div></div><p>
+				The following limitations apply to the <span class="emphasis"><em>virtual builds</em></span> feature:
+			</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+						Running <span class="emphasis"><em>virtual builds</em></span> with Red Hat Quay on OpenShift Container Platform in an unprivileged context might cause some commands that were working under the previous build strategy to fail. Attempts to change the build strategy could potentially cause performance issues and reliability with the build.
+					</li><li class="listitem">
+						Running <span class="emphasis"><em>virtual builds</em></span> directly in a container does not have the same isolation as using virtual machines. Changing the build environment might also cause builds that were previously working to fail.
+					</li></ul></div></section><section class="section" id="builders-virtual-environment"><div class="titlepage"><div><div><h2 class="title">4.2. Configuring virtual builds for Red Hat Quay on OpenShift Container Platform</h2></div></div></div><p>
+				The procedures in this section explain how to create an environment for <span class="emphasis"><em>virtual builds</em></span> for Red Hat Quay on OpenShift Container Platform.
+			</p><div class="admonition note"><div class="admonition_header">Note</div><div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							If you are using Amazon Web Service (AWS) S3 storage, you must modify your storage bucket in the AWS console, prior to running builders. See "Modifying your AWS S3 storage bucket" in the following section for the required parameters.
+						</li><li class="listitem">
+							If you are using a Google Cloud Platform (GCP) object bucket, you must configure cross-origin resource sharing (CORS) to enable <span class="emphasis"><em>virtual builds</em></span>.
+						</li></ul></div></div></div><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						You have an OpenShift Container Platform cluster provisioned with the Red Hat Quay Operator running.
+					</li><li class="listitem">
+						You have set the <code class="literal">tls</code> component to <code class="literal">unmanaged</code> and uploaded custom SSL/TLS certificates to the Red Hat Quay Operator. For more information, see <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3.13/html-single/securing_red_hat_quay/index#ssl-tls-quay-overview">SSL and TLS for Red Hat Quay</a>.
+					</li><li class="listitem">
+						You have configured the OpenShift Container Platform TLS component for builds.
+					</li><li class="listitem">
+						You are logged into OpenShift Container Platform as a cluster administrator.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Create a new project where your virtual builders will be run, for example, <code class="literal">virtual-builders</code>, by running the following command:
+					</p><pre class="programlisting language-terminal">$ oc new-project virtual-builders</pre></li><li class="listitem"><p class="simpara">
+						Create a <code class="literal">ServiceAccount</code> in the project that will be used to run <span class="emphasis"><em>builds</em></span> by entering the following command:
+					</p><pre class="programlisting language-terminal">$ oc create sa -n virtual-builders quay-builder</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">serviceaccount/quay-builder created</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Provide the created service account with editing permissions so that it can run a <span class="emphasis"><em>build</em></span>:
+					</p><pre class="programlisting language-terminal">$ oc adm policy -n virtual-builders add-role-to-user edit system:serviceaccount:virtual-builders:quay-builder</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">clusterrole.rbac.authorization.k8s.io/edit added: "system:serviceaccount:virtual-builders:quay-builder"</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Grant the <span class="emphasis"><em>builder</em></span> worker <code class="literal">anyuid scc</code> permissions by entering the following command. This requires cluster administrator privileges, which is required because <span class="emphasis"><em>builders</em></span> must run as the Podman user for unprivileged or rootless builds to work.
+					</p><pre class="programlisting language-terminal">$ oc adm policy -n virtual-builders add-scc-to-user anyuid -z quay-builder</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">clusterrole.rbac.authorization.k8s.io/system:openshift:scc:anyuid added: "quay-builder"</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Obtain the token for the <span class="emphasis"><em>builder</em></span> service account by entering the following command:
+					</p><pre class="programlisting language-terminal">$ oc create token quay-builder -n virtual-builders</pre><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+							When the token expires you will need to request a new token. Optionally, you can also add a custom expiration. For example, specify <code class="literal">--duration 20160m</code> to retain the token for two weeks.
+						</p></div></div><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">eyJhbGciOiJSUzI1NiIsImtpZCI6IldfQUJkaDVmb3ltTHZ0dGZMYjhIWnYxZTQzN2dJVEJxcDJscldSdEUtYWsifQ...</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Determine the <span class="emphasis"><em>builder</em></span> route by entering the following command:
+					</p><pre class="programlisting language-terminal">$ oc get route -n quay-enterprise</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">NAME: example-registry-quay-builder
+HOST/PORT: example-registry-quay-builder-quay-enterprise.apps.stevsmit-cluster-new.gcp.quaydev.org
+PATH:
+SERVICES: example-registry-quay-app
+PORT: grpc
+TERMINATION: passthrough/Redirect
+WILDCARD: None</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Generate a self-signed SSL/TlS certificate with the <code class="literal">.crt</code> extension by entering the following command:
+					</p><pre class="programlisting language-terminal">$ oc extract cm/kube-root-ca.crt -n openshift-apiserver</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+							
+<pre class="programlisting language-terminal">ca.crt</pre>
+						</p></div></li><li class="listitem"><p class="simpara">
+						Rename the <code class="literal">ca.crt</code> file to <code class="literal">build-cluster.crt</code> by entering the following command:
+					</p><pre class="programlisting language-terminal">$ mv ca.crt build-cluster.crt</pre></li><li class="listitem"><p class="simpara">
+						Update the <code class="literal">config.yaml</code> file of your Red Hat Quay on OpenShift Container Platform deployment to include an appropriate <span class="emphasis"><em>virtual builds</em></span> configuration by using the OpenShift Container Platform web console.
+					</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
+								Click <span class="strong strong"><strong>Operators</strong></span> → <span class="strong strong"><strong>Installed Operators</strong></span> → <span class="strong strong"><strong>Red Hat Quay</strong></span> → <span class="strong strong"><strong>Quay Registry</strong></span>.
+							</li><li class="listitem">
+								Click the name of your registry, for example, <span class="strong strong"><strong>example-registry</strong></span>.
+							</li><li class="listitem">
+								Under <span class="strong strong"><strong>Config Bundle Secret</strong></span>, click the name of your configuration bundle, for example, <span class="strong strong"><strong>extra-ca-certificate-config-bundle-secret</strong></span>.
+							</li><li class="listitem">
+								Click <span class="strong strong"><strong>Actions</strong></span> → <span class="strong strong"><strong>Edit Secret</strong></span>.
+							</li><li class="listitem"><p class="simpara">
+								Add an appropriate <span class="emphasis"><em>virtual builds</em></span> configuration with the following reference:
+							</p><pre class="programlisting language-yaml">FEATURE_USER_INITIALIZE: true
+BROWSER_API_CALLS_XHR_ONLY: false
+SUPER_USERS:
+- &lt;superusername&gt;
+FEATURE_USER_CREATION: false
+FEATURE_QUOTA_MANAGEMENT: true
+FEATURE_BUILD_SUPPORT: True
+BUILDMAN_HOSTNAME: &lt;sample_build_route&gt; <span id="CO3-1"/><span class="callout">1</span>
+BUILD_MANAGER:
+  - ephemeral
+  - ALLOWED_WORKER_COUNT: 1
+    ORCHESTRATOR_PREFIX: buildman/production/
+    JOB_REGISTRATION_TIMEOUT: 3600 <span id="CO3-2"/><span class="callout">2</span>
+    ORCHESTRATOR:
+      REDIS_HOST: &lt;sample_redis_hostname&gt; <span id="CO3-3"/><span class="callout">3</span>
+      REDIS_PASSWORD: ""
+      REDIS_SSL: false
+      REDIS_SKIP_KEYSPACE_EVENT_SETUP: false
+    EXECUTORS:
+      - EXECUTOR: kubernetesPodman
+        NAME: openshift
+        BUILDER_NAMESPACE: &lt;sample_builder_namespace&gt; <span id="CO3-4"/><span class="callout">4</span>
+        SETUP_TIME: 180
+        MINIMUM_RETRY_THRESHOLD: 0
+        BUILDER_CONTAINER_IMAGE: quay.io/projectquay/quay-builder:{producty}
+        # Kubernetes resource options
+        K8S_API_SERVER: &lt;sample_k8s_api_server&gt; <span id="CO3-5"/><span class="callout">5</span>
+        K8S_API_TLS_CA: &lt;sample_crt_file&gt; <span id="CO3-6"/><span class="callout">6</span>
+        VOLUME_SIZE: 8G
+        KUBERNETES_DISTRIBUTION: openshift
+        CONTAINER_MEMORY_LIMITS: 1G <span id="CO3-7"/><span class="callout">7</span>
+        CONTAINER_CPU_LIMITS: 300m <span id="CO3-8"/><span class="callout">8</span>
+        CONTAINER_MEMORY_REQUEST: 1G <span id="CO3-9"/><span class="callout">9</span>
+        CONTAINER_CPU_REQUEST: 300m <span id="CO3-10"/><span class="callout">10</span>
+        NODE_SELECTOR_LABEL_KEY: ""
+        NODE_SELECTOR_LABEL_VALUE: ""
+        SERVICE_ACCOUNT_NAME: &lt;sample_service_account_name&gt;
+        SERVICE_ACCOUNT_TOKEN: &lt;sample_account_token&gt; <span id="CO3-11"/><span class="callout">11</span></pre><div class="calloutlist"><dl class="calloutlist"><dt><a href="#CO3-1"><span class="callout">1</span></a> </dt><dd><div class="para">
+										The build route is obtained by running <code class="literal">$ oc get route -n</code> with the namespace of your Red Hat Quay on OpenShift Container Platform deployment. A port must be provided at the end of the route, and it should use the following format: <code class="literal">[quayregistry-cr-name]-quay-builder-[ocp-namespace].[ocp-domain-name]:443</code>.
+									</div></dd><dt><a href="#CO3-2"><span class="callout">2</span></a> </dt><dd><div class="para">
+										If the <code class="literal">JOB_REGISTRATION_TIMEOUT</code> parameter is set too low, you might receive the following error: <code class="literal">failed to register job to build manager: rpc error: code = Unauthenticated desc = Invalid build token: Signature has expired</code>. This parameter should be set to at least <code class="literal">240</code>.
+									</div></dd><dt><a href="#CO3-3"><span class="callout">3</span></a> </dt><dd><div class="para">
+										If your Redis host has a password or SSL/TLS certificates, you must update this field accordingly.
+									</div></dd><dt><a href="#CO3-4"><span class="callout">4</span></a> </dt><dd><div class="para">
+										Set to match the name of your <span class="emphasis"><em>virtual builds</em></span> namespace. This example used <code class="literal">virtual-builders</code>.
+									</div></dd><dt><a href="#CO3-5"><span class="callout">5</span></a> </dt><dd><div class="para">
+										The <code class="literal">K8S_API_SERVER</code> is obtained by running <code class="literal">$ oc cluster-info</code>.
+									</div></dd><dt><a href="#CO3-6"><span class="callout">6</span></a> </dt><dd><div class="para">
+										You must manually create and add your custom CA cert, for example, <code class="literal">K8S_API_TLS_CA: /conf/stack/extra_ca_certs/build_cluster.crt</code>.
+									</div></dd><dt><a href="#CO3-7"><span class="callout">7</span></a> </dt><dd><div class="para">
+										Defaults to <code class="literal">5120Mi</code> if left unspecified.
+									</div></dd><dt><a href="#CO3-8"><span class="callout">8</span></a> </dt><dd><div class="para">
+										For <span class="emphasis"><em>virtual builds</em></span>, you must ensure that there are enough resources in your cluster. Defaults to <code class="literal">1000m</code> if left unspecified.
+									</div></dd><dt><a href="#CO3-9"><span class="callout">9</span></a> </dt><dd><div class="para">
+										Defaults to <code class="literal">3968Mi</code> if left unspecified.
+									</div></dd><dt><a href="#CO3-10"><span class="callout">10</span></a> </dt><dd><div class="para">
+										Defaults to <code class="literal">500m</code> if left unspecified.
+									</div></dd><dt><a href="#CO3-11"><span class="callout">11</span></a> </dt><dd><div class="para">
+										Obtained when running <code class="literal">$ oc create sa</code>.
+									</div></dd></dl></div><div class="formalpara"><p class="title"><strong>Example <span class="emphasis"><em>virtual builds</em></span> configuration</strong></p><p>
+									
+<pre class="programlisting language-yaml">FEATURE_USER_INITIALIZE: true
+BROWSER_API_CALLS_XHR_ONLY: false
+SUPER_USERS:
+- quayadmin
+FEATURE_USER_CREATION: false
+FEATURE_QUOTA_MANAGEMENT: true
+FEATURE_BUILD_SUPPORT: True
+BUILDMAN_HOSTNAME: example-registry-quay-builder-quay-enterprise.apps.docs.quayteam.org:443
+BUILD_MANAGER:
+  - ephemeral
+  - ALLOWED_WORKER_COUNT: 1
+    ORCHESTRATOR_PREFIX: buildman/production/
+    JOB_REGISTRATION_TIMEOUT: 3600
+    ORCHESTRATOR:
+      REDIS_HOST: example-registry-quay-redis
+      REDIS_PASSWORD: ""
+      REDIS_SSL: false
+      REDIS_SKIP_KEYSPACE_EVENT_SETUP: false
+    EXECUTORS:
+      - EXECUTOR: kubernetesPodman
+        NAME: openshift
+        BUILDER_NAMESPACE: virtual-builders
+        SETUP_TIME: 180
+        MINIMUM_RETRY_THRESHOLD: 0
+        BUILDER_CONTAINER_IMAGE: quay.io/projectquay/quay-builder:{producty}
+        # Kubernetes resource options
+        K8S_API_SERVER: api.docs.quayteam.org:6443
+        K8S_API_TLS_CA: /conf/stack/extra_ca_certs/build_cluster.crt
+        VOLUME_SIZE: 8G
+        KUBERNETES_DISTRIBUTION: openshift
+        CONTAINER_MEMORY_LIMITS: 1G
+        CONTAINER_CPU_LIMITS: 300m
+        CONTAINER_MEMORY_REQUEST: 1G
+        CONTAINER_CPU_REQUEST: 300m
+        NODE_SELECTOR_LABEL_KEY: ""
+        NODE_SELECTOR_LABEL_VALUE: ""
+        SERVICE_ACCOUNT_NAME: quay-builder
+        SERVICE_ACCOUNT_TOKEN: "eyJhbGciOiJSUzI1NiIsImtpZCI6IldfQUJkaDVmb3ltTHZ0dGZMYjhIWnYxZTQzN2dJVEJxcDJscldSdEUtYWsifQ"</pre>
+								</p></div></li><li class="listitem">
+								Click <span class="strong strong"><strong>Save</strong></span> on the <span class="strong strong"><strong>Edit Secret</strong></span> page.
+							</li></ol></div></li><li class="listitem">
+						Restart your Red Hat Quay on OpenShift Container Platform registry with the new configuration.
+					</li></ol></div><section class="section" id="red-hat-quay-s3-bucket-modify"><div class="titlepage"><div><div><h3 class="title">4.2.1. Modifying your AWS S3 storage bucket</h3></div></div></div><p>
+					If you are using AWS S3 storage, you must change your storage bucket in the AWS console prior to starting a <span class="emphasis"><em>build</em></span>.
+				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+							Log in to your AWS console at <a class="link" href="https://s3.console.aws.amazon.com">s3.console.aws.com</a>.
+						</li><li class="listitem">
+							In the search bar, search for <code class="literal">S3</code> and then click <span class="strong strong"><strong>S3</strong></span>.
+						</li><li class="listitem">
+							Click the name of your bucket, for example, <code class="literal">myawsbucket</code>.
+						</li><li class="listitem">
+							Click the <span class="strong strong"><strong>Permissions</strong></span> tab.
+						</li><li class="listitem"><p class="simpara">
+							Under <span class="strong strong"><strong>Cross-origin resource sharing (CORS)</strong></span>, include the following parameters:
+						</p><pre class="programlisting language-yaml">  [
+      {
+          "AllowedHeaders": [
+              "Authorization"
+          ],
+          "AllowedMethods": [
+              "GET"
+          ],
+          "AllowedOrigins": [
+              "*"
+          ],
+          "ExposeHeaders": [],
+          "MaxAgeSeconds": 3000
+      },
+      {
+          "AllowedHeaders": [
+              "Content-Type",
+              "x-amz-acl",
+              "origin"
+          ],
+          "AllowedMethods": [
+              "PUT"
+          ],
+          "AllowedOrigins": [
+              "*"
+          ],
+          "ExposeHeaders": [],
+          "MaxAgeSeconds": 3000
+      }
+  ]</pre></li></ol></div></section><section class="section" id="red-hat-quay-gcp-bucket-modify"><div class="titlepage"><div><div><h3 class="title">4.2.2. Modifying your Google Cloud Platform object bucket</h3></div></div></div><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+						Currently, modifying your Google Cloud Platform object bucket is not supported on IBM Power and IBM Z.
+					</p></div></div><p>
+					Use the following procedure to configure cross-origin resource sharing (CORS) for virtual builders. Without CORS configuration, uploading a build Dockerfile fails.
+				</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+							Use the following reference to create a JSON file for your specific CORS needs. For example:
+						</p><pre class="programlisting language-terminal">$ cat gcp_cors.json</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-yaml">[
+    {
+      "origin": ["*"],
+      "method": ["GET"],
+      "responseHeader": ["Authorization"],
+      "maxAgeSeconds": 3600
+    },
+    {
+      "origin": ["*"],
+      "method": ["PUT"],
+      "responseHeader": [
+              "Content-Type",
+              "x-goog-acl",
+              "origin"],
+      "maxAgeSeconds": 3600
+    }
+]</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							Enter the following command to update your GCP storage bucket:
+						</p><pre class="programlisting language-terminal">$ gcloud storage buckets update gs://&lt;bucket_name&gt; --cors-file=./gcp_cors.json</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-terminal">Updating
+  Completed 1</pre>
+							</p></div></li><li class="listitem"><p class="simpara">
+							You can display the updated CORS configuration of your GCP bucket by running the following command:
+						</p><pre class="programlisting language-terminal">$ gcloud storage buckets describe gs://&lt;bucket_name&gt;  --format="default(cors)"</pre><div class="formalpara"><p class="title"><strong>Example output</strong></p><p>
+								
+<pre class="programlisting language-yaml">cors:
+- maxAgeSeconds: 3600
+  method:
+  - GET
+  origin:
+  - '*'
+  responseHeader:
+  - Authorization
+- maxAgeSeconds: 3600
+  method:
+  - PUT
+  origin:
+  - '*'
+  responseHeader:
+  - Content-Type
+  - x-goog-acl
+  - origin</pre>
+							</p></div></li></ol></div></section></section></section><section class="chapter" id="build-trigger-overview"><div class="titlepage"><div><div><h1 class="title">Chapter 5. Build triggers</h1></div></div></div><p>
+			<span class="emphasis"><em>Build triggers</em></span> are automated mechanisms that start a container image build when specific conditions are met, such as changes to source code, updates to dependencies, or <a class="link" href="https://access.redhat.com/documentation/en-us/red_hat_quay/3.13/html-single/use_red_hat_quay/#webhook">creating a webhook call</a>. These triggers help automate the image-building process and ensure that the container images are always up-to-date without manual intervention.
+		</p><p>
+			The following sections cover content related to creating a build trigger, tag naming conventions, how to skip a source control-triggered build, starting a <span class="emphasis"><em>build</em></span>, or manually triggering a <span class="emphasis"><em>build</em></span>.
+		</p><section class="section" id="creating-a-build-trigger"><div class="titlepage"><div><div><h2 class="title">5.1. Creating a build trigger</h2></div></div></div><p>
+				Use the following procedure to create a <span class="emphasis"><em>build trigger</em></span> using a custom Git repository.
+			</p><div class="admonition note"><div class="admonition_header">Note</div><div><p>
+					The following procedure assumes that you have not included Github credentials in your <code class="literal">config.yaml</code> file.
+				</p></div></div><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+						For Red Hat Quay on OpenShift Container Platform deployments, you have configured your OpenShift Container Platform environment for either <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3.13/html-single/builders_and_image_automation/build/tmp/en-US/html-single/index#bare-metal-builds">bare metal builds</a> or <a class="link" href="https://docs.redhat.com/en/documentation/red_hat_quay/3.13/html-single/builders_and_image_automation/build/tmp/en-US/html-single/index#red-hat-quay-builders-enhancement">virtual builds</a>.
+					</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+						Log in to your Red Hat Quay registry.
+					</li><li class="listitem">
+						In the navigation pane, click <span class="strong strong"><strong>Repositories</strong></span>.
+					</li><li class="listitem">
+						Click <span class="strong strong"><strong>Create Repository</strong></span>.
+					</li><li class="listitem">
+						Click the <span class="strong strong"><strong>Builds</strong></span> tab.
+					</li><li class="listitem">
+						On the <span class="strong strong"><strong>Builds</strong></span> page, click <span class="strong strong"><strong>Create Build Trigger</strong></span>.
+					</li><li class="listitem">
+						Select the desired platform, for example, <span class="strong strong"><strong>Github</strong></span>, <span class="strong strong"><strong>BitBucket</strong></span>, <span class="strong strong"><strong>Gitlab</strong></span>, or use a custom Git repository. For this example, click <span class="strong strong"><strong>Custom Git Repository Push</strong></span>.
+					</li><li class="listitem">
+						Enter a custom Git repository name, for example, <code class="literal">git@github.com:&lt;username&gt;/&lt;repo&gt;.git</code>. Then, click <span class="strong strong"><strong>Next</strong></span>.
+					</li><li class="listitem"><p class="simpara">
+						When prompted, configure the tagging options by selecting one of, or both of, the following options:
+					</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								<span class="strong strong"><strong>Tag manifest with the branch or tag name</strong></span>. When selecting this option, the built manifest the name of the branch or tag for the git commit are tagged.
+							</li><li class="listitem"><p class="simpara">
+								<span class="strong strong"><strong>Add <code class="literal">latest</code> tag if on default branch</strong></span>. When selecting this option, the built manifest with latest if the build occurred on the default branch for the repository are tagged.
+							</p><p class="simpara">
+								Optionally, you can add a custom tagging template. There are multiple tag templates that you can enter here, including using short SHA IDs, timestamps, author names, committer, and branch names from the commit as tags. For more information, see "Tag naming for build triggers".
+							</p><p class="simpara">
+								After you have configured tagging, click <span class="strong strong"><strong>Next</strong></span>.
+							</p></li></ul></div></li><li class="listitem">
+						When prompted, select the location of the Dockerfile to be built when the trigger is invoked. If the Dockerfile is located at the root of the git repository and named Dockerfile, enter <span class="strong strong"><strong>/Dockerfile</strong></span> as the Dockerfile path. Then, click <span class="strong strong"><strong>Next</strong></span>.
+					</li><li class="listitem">
+						When prompted, select the context for the Docker build. If the Dockerfile is located at the root of the Git repository, enter <code class="literal">/</code> as the build context directory. Then, click <span class="strong strong"><strong>Next</strong></span>.
+					</li><li class="listitem">
+						Optional. Choose an optional robot account. This allows you to pull a private base image during the build process. If you know that a private base image is not used, you can skip this step.
+					</li><li class="listitem">
+						Click <span class="strong strong"><strong>Next</strong></span>. Check for any verification warnings. If necessary, fix the issues before clicking <span class="strong strong"><strong>Finish</strong></span>.
+					</li><li class="listitem"><p class="simpara">
+						You are alerted that the trigger has been successfully activated. Note that using this trigger requires the following actions:
+					</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								You must give the following public key read access to the git repository.
+							</li><li class="listitem"><p class="simpara">
+								You must set your repository to <code class="literal">POST</code> to the following URL to trigger a build.
+							</p><p class="simpara">
+								Save the SSH Public Key, then click <span class="strong strong"><strong>Return to &lt;organization_name&gt;/&lt;repository_name&gt;</strong></span>. You are redirected to the <span class="strong strong"><strong>Builds</strong></span> page of your repository.
+							</p></li></ul></div></li><li class="listitem"><p class="simpara">
+						On the <span class="strong strong"><strong>Builds</strong></span> page, you now have a <span class="emphasis"><em>build trigger</em></span>. For example:
+					</p><p class="simpara">
+						<span class="inlinemediaobject"><img src="images/build-trigger-example.png" alt="Example Build trigger"/></span>
+					</p></li></ol></div><section class="section" id="understanding-tag-naming-build-triggers"><div class="titlepage"><div><div><h3 class="title">5.1.1. Tag naming for build triggers</h3></div></div></div><p>
+					Custom tags are available for use in Red Hat Quay.
+				</p><p>
+					One option is to include any string of characters assigned as a tag for each built image. Alternatively, you can use the following tag templates on the <span class="strong strong"><strong>Configure Tagging</strong></span> section of the build trigger to tag images with information from each commit:
+				</p><p>
+					<span class="inlinemediaobject"><img src="images/custom-tagging.png" alt="Configure Tagging"/></span>
+				</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+							<span class="strong strong"><strong>${commit}</strong></span>: Full SHA of the issued commit
+						</li><li class="listitem">
+							<span class="strong strong"><strong>${parsed_ref.branch}</strong></span>: Branch information (if available)
+						</li><li class="listitem">
+							<span class="strong strong"><strong>${parsed_ref.tag}</strong></span>: Tag information (if available)
+						</li><li class="listitem">
+							<span class="strong strong"><strong>${parsed_ref.remote}</strong></span>: The remote name
+						</li><li class="listitem">
+							<span class="strong strong"><strong>${commit_info.date}</strong></span>: Date when the commit was issued
+						</li><li class="listitem">
+							<span class="strong strong"><strong>${commit_info.author.username}</strong></span>: Username of the author of the commit
+						</li><li class="listitem">
+							<span class="strong strong"><strong>${commit_info.short_sha}</strong></span>: First 7 characters of the commit SHA
+						</li><li class="listitem">
+							<span class="strong strong"><strong>${committer.properties.username}</strong></span>: Username of the committer
+						</li></ul></div><p>
+					This list is not complete, but does contain the most useful options for tagging purposes. You can find the complete tag template schema on <a class="link" href="https://github.com/quay/quay/blob/abfde5b9d2cf7d7145e68a00c9274011b4fe0661/buildtrigger/basehandler.py#L96-L195">this page</a>.
+				</p><p>
+					For more information, see <a class="link" href="https://access.redhat.com/solutions/7033393">Set up custom tag templates in build triggers for Red Hat Quay and Quay.io</a>.
+				</p></section><section class="section" id="skipping-source-control-triggered-build"><div class="titlepage"><div><div><h3 class="title">5.1.2. Skipping a source control-triggered build</h3></div></div></div><p>
+					To specify that a commit should be ignored by the build system, add the text <code class="literal">[skip build]</code> or <code class="literal">[build skip]</code> anywhere in your commit message.
+				</p></section></section><section class="section" id="manually-triggering-a-build-trigger"><div class="titlepage"><div><div><h2 class="title">5.2. Manually triggering a build</h2></div></div></div><p>
+				<span class="emphasis"><em>Builds</em></span> can be triggered manually by using the following procedure.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+						On the <span class="strong strong"><strong>Builds</strong></span> page, <span class="strong strong"><strong>Start new build</strong></span>.
+					</li><li class="listitem">
+						When prompted, select <span class="strong strong"><strong>Invoke Build Trigger</strong></span>.
+					</li><li class="listitem">
+						Click <span class="strong strong"><strong>Run Trigger Now</strong></span> to manually start the process.
+					</li><li class="listitem"><p class="simpara">
+						Enter a commit ID from which to initiate the build, for example, <code class="literal">1c002dd</code>.
+					</p><p class="simpara">
+						After the build starts, you can see the <span class="emphasis"><em>build ID</em></span> on the <span class="strong strong"><strong>Repository Builds</strong></span> page.
+					</p></li></ol></div></section></section><section class="chapter" id="starting-a-build"><div class="titlepage"><div><div><h1 class="title">Chapter 6. Starting a new build by uploading a Dockerfile</h1></div></div></div><p>
+			Use the following procedure to start a new <span class="emphasis"><em>build</em></span> by uploading a Dockerfile.
+		</p><div class="itemizedlist"><p class="title"><strong>Prerequisites</strong></p><ul class="itemizedlist" type="disc"><li class="listitem">
+					You have navigated to the <span class="strong strong"><strong>Builds</strong></span> page of your repository.
+				</li></ul></div><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem">
+					On the <span class="strong strong"><strong>Builds</strong></span> page, click <span class="strong strong"><strong>Start New Build</strong></span>.
+				</li><li class="listitem">
+					When prompted, click <span class="strong strong"><strong>Upload Dockerfile</strong></span> to upload a Dockerfile or an archive that contains a Dockerfile at the root directory.
+				</li><li class="listitem"><p class="simpara">
+					Click <span class="strong strong"><strong>Start Build</strong></span>.
+				</p><div class="admonition note"><div class="admonition_header">Note</div><div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+								Currently, users cannot specify the Docker build context when manually starting a build.
+							</li><li class="listitem">
+								Currently, BitBucket is unsupported on the Red Hat Quay v2 UI.
+							</li></ul></div></div></div></li><li class="listitem">
+					You are redirected to the Build, which can be viewed in real-time. Wait for the Dockerfile Build to be completed and pushed.
+				</li><li class="listitem">
+					Optional. you can click <span class="strong strong"><strong>Download Logs</strong></span> to download the logs, or <span class="strong strong"><strong>Copy Logs</strong></span> to copy the logs.
+				</li><li class="listitem"><p class="simpara">
+					Click the back button to return to the <span class="strong strong"><strong>Repository Builds</strong></span> page, where you can view the Build History.
+				</p><p class="simpara">
+					<span class="inlinemediaobject"><img src="images/build-history.png" alt="Build history v2 UI"/></span>
+				</p></li></ol></div></section><section class="chapter" id="troubleshooting-builds"><div class="titlepage"><div><div><h1 class="title">Chapter 7. Troubleshooting Builds</h1></div></div></div><p>
+			The <span class="emphasis"><em>builder</em></span> instances started by the <span class="emphasis"><em>build manager</em></span> are ephemeral. This means that they will either get shut down by Red Hat Quay on timeouts or failure, or garbage collected by the control plane (EC2/K8s). In order to obtain the <span class="emphasis"><em>builds</em></span> logs, you must do so while the <span class="emphasis"><em>builds</em></span> are running.
+		</p><section class="section" id="debug-config-flag"><div class="titlepage"><div><div><h2 class="title">7.1. DEBUG config flag</h2></div></div></div><p>
+				The <code class="literal">DEBUG</code> flag can be set to <code class="literal">true</code> in order to prevent the <span class="emphasis"><em>builder</em></span> instances from getting cleaned up after completion or failure. For example:
+			</p><pre class="programlisting language-yaml">  EXECUTORS:
+    - EXECUTOR: ec2
+      DEBUG: true
+      ...
+    - EXECUTOR: kubernetes
+      DEBUG: true
+      ...</pre><p>
+				When set to <code class="literal">true</code>, the debug feature prevents the <span class="emphasis"><em>build nodes</em></span> from shutting down after the <code class="literal">quay-builder</code> service is done or fails. It also prevents the <span class="emphasis"><em>build manager</em></span> from cleaning up the instances by terminating EC2 instances or deleting Kubernetes jobs. This allows debugging <span class="emphasis"><em>builder node</em></span> issues.
+			</p><p>
+				Debugging should not be set in a production cycle. The lifetime service still exists; for example, the instance still shuts down after approximately two hours. When this happens, EC2 instances are terminated and Kubernetes jobs are completed.
+			</p><p>
+				Enabling debug also affects the <code class="literal">ALLOWED_WORKER_COUNT</code> because the unterminated instances and jobs still count toward the total number of running workers. As a result, the existing <span class="emphasis"><em>builder workers</em></span> must be manually deleted if <code class="literal">ALLOWED_WORKER_COUNT</code> is reached to be able to schedule new <span class="emphasis"><em>builds</em></span>.
+			</p></section><section class="section" id="openshift-kubernetes-troubleshooting"><div class="titlepage"><div><div><h2 class="title">7.2. Troubleshooting OpenShift Container Platform and Kubernetes Builds</h2></div></div></div><p>
+				Use the following procedure to troubleshooting OpenShift Container Platform Kubernetes Builds.
+			</p><div class="orderedlist"><p class="title"><strong>Procedure</strong></p><ol class="orderedlist" type="1"><li class="listitem"><p class="simpara">
+						Create a port forwarding tunnel between your local machine and a pod running with either an OpenShift Container Platform cluster or a Kubernetes cluster by entering the following command:
+					</p><pre class="programlisting language-terminal">$ oc port-forward &lt;builder_pod&gt; 9999:2222</pre></li><li class="listitem"><p class="simpara">
+						Establish an SSH connection to the remote host using a specified SSH key and port, for example:
+					</p><pre class="programlisting language-terminal">$ ssh -i /path/to/ssh/key/set/in/ssh_authorized_keys -p 9999 core@localhost</pre></li><li class="listitem"><p class="simpara">
+						Obtain the <code class="literal">quay-builder</code> service logs by entering the following commands:
+					</p><pre class="programlisting language-terminal">$ systemctl status quay-builder</pre><pre class="programlisting language-terminal">$ journalctl -f -u quay-builder</pre></li></ol></div></section></section><div><div xml:lang="en-US" class="legalnotice" id="idm45673371609728"><h1 class="legalnotice">Legal Notice</h1><div class="para">
+		Copyright <span class="trademark"/>© 2024 Red Hat, Inc.
+	</div><div class="para">
+		The text of and illustrations in this document are licensed by Red Hat under a Creative Commons Attribution–Share Alike 3.0 Unported license ("CC-BY-SA"). An explanation of CC-BY-SA is available at <a class="uri" href="http://creativecommons.org/licenses/by-sa/3.0/">http://creativecommons.org/licenses/by-sa/3.0/</a>. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
+	</div><div class="para">
+		Red Hat, as the licensor of this document, waives the right to enforce, and agrees not to assert, Section 4d of CC-BY-SA to the fullest extent permitted by applicable law.
+	</div><div class="para">
+		Red Hat, Red Hat Enterprise Linux, the Shadowman logo, the Red Hat logo, JBoss, OpenShift, Fedora, the Infinity logo, and RHCE are trademarks of Red Hat, Inc., registered in the United States and other countries.
+	</div><div class="para">
+		<span class="trademark">Linux</span>® is the registered trademark of Linus Torvalds in the United States and other countries.
+	</div><div class="para">
+		<span class="trademark">Java</span>® is a registered trademark of Oracle and/or its affiliates.
+	</div><div class="para">
+		<span class="trademark">XFS</span>® is a trademark of Silicon Graphics International Corp. or its subsidiaries in the United States and/or other countries.
+	</div><div class="para">
+		<span class="trademark">MySQL</span>® is a registered trademark of MySQL AB in the United States, the European Union and other countries.
+	</div><div class="para">
+		<span class="trademark">Node.js</span>® is an official trademark of Joyent. Red Hat is not formally related to or endorsed by the official Joyent Node.js open source or commercial project.
+	</div><div class="para">
+		The <span class="trademark">OpenStack</span>® Word Mark and OpenStack logo are either registered trademarks/service marks or trademarks/service marks of the OpenStack Foundation, in the United States and other countries and are used with the OpenStack Foundation's permission. We are not affiliated with, endorsed or sponsored by the OpenStack Foundation, or the OpenStack community.
+	</div><div class="para">
+		All other trademarks are the property of their respective owners.
+	</div></div></div></div></div></div><script type="text/javascript">
+                        jQuery(document).ready(function() {
+                            initSwitchery();
+                            jQuery('pre[class*="language-"]').each(function(i, block){hljs.highlightBlock(block);});
+                        });
+                    </script></body></html>
