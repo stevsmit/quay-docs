@@ -110,7 +110,13 @@ With this release, NetApp ONTAP S3 object storage is now supported. For more inf
 [id="known-issues-312-1"]
 === {productname} 3.12.1 known issues
 
-When using NetApp ONTAP S3 object storage, images with large layer sizes fail to push. This is a known issue and will be fixed in a future version of {productname}. (link:https://issues.redhat.com/browse/PROJQUAY-7462[*PROJQUAY-7462*]). 
+* When using NetApp ONTAP S3 object storage, images with large layer sizes fail to push. This is a known issue and will be fixed in a future version of {productname}. (link:https://issues.redhat.com/browse/PROJQUAY-7462[*PROJQUAY-7462*]).
+
+* In {ocp} clusters with multiple ingress controllers defined, the {productname} Operator iterates through the list of available ingress controllers are uses the first one that it encounters to determine the cluster hostname. However, the order of ingress controllers in this list is not guaranteed to be consistent across reconciliation cycles. Consequently, the Operator might pick a different ingress controller, leading it to detect a change in the cluster hostname and initiate a new reconciliation process. This can lead to instability in `quay` pods and your {productname-ocp} deployment.
++
+To avoid this issue, you can set the `route` and `tls` components of the `QuayRegistry` resource to be unmanaged (`managed: false`), and create a custom Route for {productname}. 
++
+For more information about creating a custom Route, see link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/deploying_the_red_hat_quay_operator_on_openshift_container_platform/index#operator-unmanaged-route[Disabling the Route component].
 
 [id="bug-fixes-312-1"]
 === {productname} 3.12.1 bug fixes
