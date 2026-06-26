@@ -4,6 +4,13 @@
 
 The following sections detail _y_ and _z_ stream release information.
 
+[id="rn-3-12-19"]
+== RHSA-2026:XXXXX - {productname} 3.12.19 release
+
+Issued YYYY-MM-DD
+
+{productname} release 3.12.19 is now available with Clair {clairproductminv}. The bug fixes that are included in the update are listed in the link:https://access.redhat.com/errata/RHSA-2026:XXXXX[RHSA-2026:XXXXX] advisory.
+
 [id="rn-3-12-18"]
 == RHSA-2026:22629 - {productname} 3.12.18 release
 
