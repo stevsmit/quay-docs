@@ -4,7 +4,7 @@
 :context: plan_red_hat_quay_prerequisites_and_supporting_infrastructure
 
 [role="_abstract"]
-To provision the right supporting infrastructure, you can understand required storage, database, and Redis backends.
+Before you deploy Red Hat Quay, review supported options for image storage, database, and Redis backends.
 
 include::modules/core-prereqs-storage.adoc[leveloffset=+1]
 
