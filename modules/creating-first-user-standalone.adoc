@@ -12,7 +12,7 @@ To create the first user account on a standalone {productname} registry, you can
 
 .Prerequisites
 
-* You have deployed a proof-of-concept, standalone, or high availability {productname} registry.
+* You have deployed a proof of concept, standalone, or high availability {productname} registry.
 * You can reach the registry UI, for example, `\http://quay-server.example.com`.
 
 .Procedure

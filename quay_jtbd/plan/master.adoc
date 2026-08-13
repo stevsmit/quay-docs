@@ -23,14 +23,11 @@ include::plan-a-deployment-topology.adoc[leveloffset=+1]
 // Job: Choose a Quay.io plan
 include::choose-a-quay-io-plan.adoc[leveloffset=+1]
 
-// Job: Plan a proof-of-concept Quay deployment
+// Job: Plan a proof of concept Quay deployment
 include::plan-a-proof-of-concept-quay-deployment.adoc[leveloffset=+1]
 
-// Job: Understand Quay Operator components
-include::understand-quay-operator-components.adoc[leveloffset=+1]
-
-// Job: Plan Quay Operator cluster and storage requirements
-include::plan-quay-operator-cluster-and-storage-requirements.adoc[leveloffset=+1]
+// Job: Plan a Red Hat Quay on OpenShift Container Platform
+include::plan-a-red-hat-quay-on-openshift-container-platform.adoc[leveloffset=+1]
 
 // Job: Plan a high availability Quay deployment
 include::plan-a-high-availability-quay-deployment.adoc[leveloffset=+1]

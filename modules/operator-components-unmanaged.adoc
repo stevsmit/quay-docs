@@ -10,4 +10,9 @@ Unmanaged components are {productname} dependencies such as PostgreSQL, Redis, o
 If you are using an unmanaged PostgreSQL database, and the version is PostgreSQL 10, it is highly recommended that you upgrade to PostgreSQL 13. PostgreSQL 10 had its final release on November 10, 2022 and is no longer supported. For more information, see the link:https://www.postgresql.org/support/versioning/[PostgreSQL Versioning Policy]. 
 ====
 
-For more information about unmanaged components, see "Advanced configurations".
+ifeval::["{context}" == "plan_a_red_hat_quay_on_openshift_container_platform"]
+For more information about configuring unmanaged components, see link:quay_jtbd-configure.html#operator-unmanaged-postgres[Configure the database and Redis for Red Hat Quay], link:quay_jtbd-configure.html#operator-custom-ingress[Configure networking for Red Hat Quay], link:quay_jtbd-configure.html#about-hpa[Tune Operator autoscaling and component resources], and link:quay_jtbd-configure.html#operator-unmanaged-monitoring[Configure Operator-managed registry components].
+endif::[]
+ifeval::["{context}" == "quay-operator"]
+For more information about unmanaged components, see <<advanced-configuration>>.
+endif::[]
