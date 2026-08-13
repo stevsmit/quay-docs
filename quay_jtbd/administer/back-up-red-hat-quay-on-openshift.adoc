@@ -6,8 +6,6 @@
 [role="_abstract"]
 To preserve Operator-managed data before maintenance or disaster recovery, you can back up the registry, configuration, database, and object storage.
 
-include::modules/backing-up-and-restoring-intro.adoc[leveloffset=+1]
-
 include::modules/optional-enabling-read-only-mode-backup-restore-ocp.adoc[leveloffset=+1]
 
 include::modules/creating-service-keys-quay-ocp.adoc[leveloffset=+1]

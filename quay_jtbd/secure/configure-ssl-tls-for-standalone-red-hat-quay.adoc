@@ -6,8 +6,6 @@
 [role="_abstract"]
 To ensure clients connect over encrypted, trusted channels, you can create certificates and configure SSL/TLS.
 
-include::modules/ssl-tls-quay-overview.adoc[leveloffset=+1]
-
 include::modules/ssl-create-certs.adoc[leveloffset=+1]
 
 include::modules/ssl-config-cli.adoc[leveloffset=+1]

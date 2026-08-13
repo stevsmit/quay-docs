@@ -6,8 +6,6 @@
 [role="_abstract"]
 To ensure Red Hat Quay on OpenShift matches your preferred operational model, you can edit the config bundle and enable or disable managed components.
 
-include::modules/operator-components-intro.adoc[leveloffset=+1]
-
 include::modules/operator-config-bundle-secret.adoc[leveloffset=+1]
 
 include::modules/modifying-config-bundle-secret-ui.adoc[leveloffset=+1]

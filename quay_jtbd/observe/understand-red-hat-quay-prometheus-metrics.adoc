@@ -6,8 +6,6 @@
 [role="_abstract"]
 To interpret registry health and performance, you can understand available metrics for queues, garbage collection, and push/pull activity.
 
-include::modules/metrics-intro.adoc[leveloffset=+1]
-
 include::modules/metrics-general-registry-stats.adoc[leveloffset=+1]
 
 include::modules/metrics-queue-items.adoc[leveloffset=+1]

@@ -6,8 +6,6 @@
 [role="_abstract"]
 To build a valid configuration file, you can use required configuration field references.
 
-include::modules/con_schema.adoc[leveloffset=+1]
-
 include::modules/understanding-configuration-file.adoc[leveloffset=+1]
 
 include::modules/config-file-minimal.adoc[leveloffset=+1]

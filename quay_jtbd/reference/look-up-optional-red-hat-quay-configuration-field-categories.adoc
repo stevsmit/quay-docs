@@ -6,8 +6,6 @@
 [role="_abstract"]
 To find the right field groups to edit, you can use optional configuration category overviews.
 
-include::modules/ux-ui-configuration-overview.adoc[leveloffset=+1]
-
 include::modules/user-access-mgmt-configuration-overview.adoc[leveloffset=+1]
 
 include::modules/repo-namespace-configuration-overview.adoc[leveloffset=+1]

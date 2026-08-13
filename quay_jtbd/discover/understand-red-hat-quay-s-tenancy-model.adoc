@@ -6,9 +6,7 @@
 [role="_abstract"]
 To plan how you will structure ownership and access, you can understand how users, organizations, repositories, robots, and teams relate.
 
-include::modules/user-org-intro.adoc[leveloffset=+1]
-
-include::modules/tenancy-model.adoc[leveloffset=+2]
+include::modules/tenancy-model.adoc[leveloffset=+1]
 
 include::modules/user-create.adoc[leveloffset=+1]
 

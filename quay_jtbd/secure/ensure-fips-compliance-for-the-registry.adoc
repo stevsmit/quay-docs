@@ -6,6 +6,4 @@
 [role="_abstract"]
 To ensure cryptographic modules meet government and industry mandates, you can enable FIPS compliance for Red Hat Quay/Clair.
 
-include::modules/fips-overview.adoc[leveloffset=+1]
-
 include::modules/enabling-fips-compliance.adoc[leveloffset=+1]

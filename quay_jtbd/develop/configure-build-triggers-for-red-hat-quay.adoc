@@ -6,8 +6,6 @@
 [role="_abstract"]
 To ensure images rebuild automatically from your repositories, you can configure Git, webhook, and GitHub App triggers.
 
-include::modules/build-trigger-overview.adoc[leveloffset=+1]
-
 include::modules/proc_use-quay-git-trigger.adoc[leveloffset=+1]
 
 include::modules/obtaining-build-trigger-credentials.adoc[leveloffset=+1]
