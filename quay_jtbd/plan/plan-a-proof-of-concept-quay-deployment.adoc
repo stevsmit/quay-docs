@@ -1,0 +1,9 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="plan-a-proof-of-concept-quay-deployment_{context}"]
+= Plan a proof-of-concept Quay deployment
+:context: plan_a_proof_of_concept_quay_deployment
+
+[role="_abstract"]
+To size a short trial before Install and Get started, you can know proof-of-concept prerequisites.
+
+include::modules/con_quay_single_prereq.adoc[leveloffset=+1]

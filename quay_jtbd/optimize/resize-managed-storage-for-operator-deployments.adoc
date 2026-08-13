@@ -1,0 +1,13 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="resize-managed-storage-for-operator-deployments_{context}"]
+= Resize managed storage for Operator deployments
+:context: resize_managed_storage_for_operator_deployments
+
+[role="_abstract"]
+To ensure Red Hat Quay and Clair keep enough capacity for growth, you can resize storage and apply volume overrides.
+
+include::modules/operator-resize-storage.adoc[leveloffset=+1]
+
+include::modules/operator-volume-size-overrides.adoc[leveloffset=+1]
+
+include::modules/clair-ephemeral-storage-overrides.adoc[leveloffset=+1]

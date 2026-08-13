@@ -1,0 +1,9 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="troubleshoot-operator-managed-postgresql-tls_{context}"]
+= Troubleshoot Operator-managed PostgreSQL TLS
+:context: troubleshoot_operator_managed_postgresql_tls
+
+[role="_abstract"]
+To restore secure database connectivity, you can follow PostgreSQL TLS troubleshooting steps.
+
+include::modules/operator-managed-postgres-tls-troubleshooting.adoc[leveloffset=+1]

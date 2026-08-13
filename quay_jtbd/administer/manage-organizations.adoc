@@ -1,0 +1,17 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="manage-organizations_{context}"]
+= Manage organizations
+:context: manage_organizations
+
+[role="_abstract"]
+To ensure repositories are grouped by team or project, you can create and manage organizations.
+
+include::modules/org-create.adoc[leveloffset=+1]
+
+include::modules/org-create-api.adoc[leveloffset=+1]
+
+include::modules/organization-settings-v2-ui.adoc[leveloffset=+1]
+
+include::modules/org-delete.adoc[leveloffset=+1]
+
+include::modules/org-delete-api.adoc[leveloffset=+1]

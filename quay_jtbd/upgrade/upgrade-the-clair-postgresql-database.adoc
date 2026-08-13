@@ -1,0 +1,9 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="upgrade-the-clair-postgresql-database_{context}"]
+= Upgrade the Clair PostgreSQL database
+:context: upgrade_the_clair_postgresql_database
+
+[role="_abstract"]
+To ensure scanning continues after the Red Hat Quay upgrade path requires it, you can a guided database upgrade.
+
+include::modules/clair-postgresql-database-update.adoc[leveloffset=+1]

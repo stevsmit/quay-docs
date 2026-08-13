@@ -1,0 +1,9 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="upgrade-the-quay-bridge-operator_{context}"]
+= Upgrade the Quay Bridge Operator
+:context: upgrade_the_quay_bridge_operator
+
+[role="_abstract"]
+To ensure OpenShift–Red Hat Quay integration stays compatible, you can upgrade it safely.
+
+include::modules/qbo-operator-upgrade.adoc[leveloffset=+1]

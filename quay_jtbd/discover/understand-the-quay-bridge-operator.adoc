@@ -1,0 +1,9 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="understand-the-quay-bridge-operator_{context}"]
+= Understand the Quay Bridge Operator
+:context: understand_the_quay_bridge_operator
+
+[role="_abstract"]
+To decide whether to integrate cluster builds with your registry, you can understand what the Quay Bridge Operator does.
+
+include::modules/con_quay-bridge-operator-features.adoc[leveloffset=+1]

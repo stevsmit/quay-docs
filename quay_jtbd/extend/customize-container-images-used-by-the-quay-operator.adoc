@@ -1,0 +1,13 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="customize-container-images-used-by-the-quay-operator_{context}"]
+= Customize container images used by the Quay Operator
+:context: customize_container_images_used_by_the_quay_operator
+
+[role="_abstract"]
+To ensure Red Hat Quay runs the container variants your environment requires, you can override Operator-managed images.
+
+include::modules/operator-customize-images.adoc[leveloffset=+1]
+
+include::modules/custom-environment-variables.adoc[leveloffset=+1]
+
+include::modules/applying-overrides-to-running-operator.adoc[leveloffset=+1]

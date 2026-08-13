@@ -1,0 +1,17 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="enforce-quota-limits-and-reclaim-storage_{context}"]
+= Enforce quota limits and reclaim storage
+:context: enforce_quota_limits_and_reclaim_storage
+
+[role="_abstract"]
+To enforce limits and free storage, you can monitor usage, set reject and warning limits, and permanently delete tags.
+
+include::modules/setting-reject-warning-limits.adoc[leveloffset=+1]
+
+include::modules/viewing-reject-warning-limits.adoc[leveloffset=+1]
+
+include::modules/quota-management-query-39.adoc[leveloffset=+1]
+
+include::modules/deleting-tag-permanently.adoc[leveloffset=+1]
+
+include::modules/permanently-deleting-image-tag-v2-ui.adoc[leveloffset=+1]

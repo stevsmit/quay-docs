@@ -1,0 +1,19 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="manage-geo-replicated-sites-day-to-day_{context}"]
+= Manage geo-replicated sites day-to-day
+:context: manage_geo_replicated_sites_day_to_day
+
+[role="_abstract"]
+To ensure multi-site distribution stays correct day to day, you can enable replication preferences and add or remove sites.
+
+include::modules/georepl-intro.adoc[leveloffset=+1]
+
+include::modules/config-envvar-georepl.adoc[leveloffset=+1]
+
+include::modules/config-ui-storage-georepl.adoc[leveloffset=+1]
+
+include::modules/georepl-deploy-standalone.adoc[leveloffset=+1]
+
+include::modules/standalone-georepl-site-removal.adoc[leveloffset=+1]
+
+include::modules/operator-georepl-site-removal.adoc[leveloffset=+1]

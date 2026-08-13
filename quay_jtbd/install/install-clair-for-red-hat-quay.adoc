@@ -1,0 +1,13 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="install-clair-for-red-hat-quay_{context}"]
+= Install Clair for Red Hat Quay
+:context: install_clair_for_red_hat_quay
+
+[role="_abstract"]
+To enable images to be scanned after install, you can set up Clair for standalone or OpenShift Quay. After Clair is running, confirm scanning in Get started by viewing your first Clair scan.
+
+include::modules/clair-standalone-configure.adoc[leveloffset=+1]
+
+include::modules/clair-openshift.adoc[leveloffset=+1]
+
+include::modules/clair-ephemeral-storage-overrides.adoc[leveloffset=+2]

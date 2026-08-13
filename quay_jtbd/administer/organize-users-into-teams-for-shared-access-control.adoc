@@ -1,0 +1,25 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="organize-users-into-teams-for-shared-access-control_{context}"]
+= Organize users into teams for shared access control
+:context: organize_users_into_teams_for_shared_access_control
+
+[role="_abstract"]
+To ensure access control scales without per-user grants everywhere, you can organize them into teams with roles.
+
+include::modules/creating-a-team-ui.adoc[leveloffset=+1]
+
+include::modules/creating-a-team-api.adoc[leveloffset=+1]
+
+include::modules/add-users-to-team.adoc[leveloffset=+1]
+
+include::modules/set-team-role.adoc[leveloffset=+1]
+
+include::modules/managing-team-members-repo-permissions-ui.adoc[leveloffset=+1]
+
+include::modules/viewing-additional-info-about-team-ui.adoc[leveloffset=+1]
+
+include::modules/managing-team-members-api.adoc[leveloffset=+1]
+
+include::modules/setting-role-of-team-within-organization-api.adoc[leveloffset=+1]
+
+include::modules/deleting-team-within-organization-api.adoc[leveloffset=+1]

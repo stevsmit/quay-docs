@@ -1,0 +1,9 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="troubleshoot-clair-scanning-issues_{context}"]
+= Troubleshoot Clair scanning issues
+:context: troubleshoot_clair_scanning_issues
+
+[role="_abstract"]
+To ensure scanning resumes correctly, you can follow Clair troubleshooting guidance.
+
+include::modules/clair-troubleshooting-issues.adoc[leveloffset=+1]

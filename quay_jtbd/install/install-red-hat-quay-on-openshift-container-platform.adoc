@@ -1,0 +1,23 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="install-red-hat-quay-on-openshift-container-platform_{context}"]
+= Install Red Hat Quay on OpenShift Container Platform
+:context: install_red_hat_quay_on_openshift_container_platform
+
+[role="_abstract"]
+To ensure a supported registry is running on your cluster, you can install the Operator and create a QuayRegistry (including infrastructure-node options).
+
+include::modules/operator-install.adoc[leveloffset=+1]
+
+include::modules/registry-deploy-console.adoc[leveloffset=+1]
+
+include::modules/registry-deploy-cli.adoc[leveloffset=+1]
+
+include::modules/operator-deploy-infrastructure.adoc[leveloffset=+1]
+
+include::modules/labeling-taint-nodes-for-infrastructure-use.adoc[leveloffset=+2]
+
+include::modules/creating-project-node-selector-toleration.adoc[leveloffset=+2]
+
+include::modules/installing-quay-operator-namespace.adoc[leveloffset=+2]
+
+include::modules/creating-registry-infra-node.adoc[leveloffset=+2]

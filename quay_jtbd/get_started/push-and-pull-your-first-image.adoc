@@ -1,0 +1,9 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="push-and-pull-your-first-image_{context}"]
+= Push and pull your first image
+:context: push_and_pull_your_first_image
+
+[role="_abstract"]
+To know your registry accepts content from the CLI, you can push and pull an image with Podman.
+
+include::modules/pushing-pulling-first-image.adoc[leveloffset=+1]

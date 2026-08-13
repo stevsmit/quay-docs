@@ -1,0 +1,19 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="manage-image-repositories_{context}"]
+= Manage image repositories
+:context: manage_image_repositories
+
+[role="_abstract"]
+To ensure registry content stays organized and current, you can create and delete repositories.
+
+include::modules/creating-an-image-repository-via-the-ui.adoc[leveloffset=+1]
+
+include::modules/creating-an-image-repository-via-docker.adoc[leveloffset=+1]
+
+include::modules/creating-an-image-repository-via-skopeo-copy.adoc[leveloffset=+1]
+
+include::modules/creating-an-image-repository-via-the-api.adoc[leveloffset=+1]
+
+include::modules/deleting-an-image-repository-via-ui.adoc[leveloffset=+1]
+
+include::modules/deleting-an-image-repository-via-the-api.adoc[leveloffset=+1]

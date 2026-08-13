@@ -1,0 +1,23 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="configure-object-storage-features-and-aws-sts_{context}"]
+= Configure object storage features and AWS STS
+:context: configure_object_storage_features_and_aws_sts
+
+[role="_abstract"]
+To ensure Red Hat Quay stores blobs on the system your organization supports, you can configure remaining storage providers, storage features, and AWS STS.
+
+include::modules/config-fields-nutanix.adoc[leveloffset=+1]
+
+include::modules/config-fields-ibmcloudstorage.adoc[leveloffset=+1]
+
+include::modules/config-fields-netapp-ontap-s3.adoc[leveloffset=+1]
+
+include::modules/config-fields-hcp.adoc[leveloffset=+1]
+
+include::modules/storage-data-configuration-overview.adoc[leveloffset=+1]
+
+include::modules/config-fields-storage-features.adoc[leveloffset=+1]
+
+include::modules/configuring-aws-sts-quay.adoc[leveloffset=+1]
+
+include::modules/configuring-quay-standalone-aws-sts.adoc[leveloffset=+1]

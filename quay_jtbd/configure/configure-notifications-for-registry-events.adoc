@@ -1,0 +1,21 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="configure-notifications-for-registry-events_{context}"]
+= Configure notifications for registry events
+:context: configure_notifications_for_registry_events
+
+[role="_abstract"]
+To ensure image, quota, and repository events reach the right people automatically, you can configure notifications and email routing.
+
+include::modules/proc_use-quay-notifications.adoc[leveloffset=+1]
+
+include::modules/creating-notifications.adoc[leveloffset=+1]
+
+include::modules/creating-image-expiration-notification.adoc[leveloffset=+1]
+
+include::modules/creating-notifications-api.adoc[leveloffset=+1]
+
+include::modules/creating-quota-notifications-api.adoc[leveloffset=+1]
+
+include::modules/configuring-email-routing-contact-email.adoc[leveloffset=+1]
+
+include::modules/repository-events.adoc[leveloffset=+1]

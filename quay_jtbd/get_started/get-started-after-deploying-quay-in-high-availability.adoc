@@ -1,0 +1,9 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="get-started-after-deploying-quay-in-high-availability_{context}"]
+= Get started after deploying Quay in high availability
+:context: get_started_after_deploying_quay_in_high_availability
+
+[role="_abstract"]
+After deploying Red Hat Quay in high availability, you can create the first user and confirm that you can reach the registry.
+
+include::modules/creating-first-user-standalone.adoc[leveloffset=+1]
