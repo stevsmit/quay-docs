@@ -4,7 +4,7 @@
 :context: install_clair_for_red_hat_quay
 
 [role="_abstract"]
-Install Clair for standalone or OpenShift Red Hat Quay deployments, including ephemeral storage for managed Clair.
+Install Clair for standalone, including ephemeral storage for managed Clair. Clair for {productname-ocp} is automatically configured.
 
 include::modules/clair-standalone-configure.adoc[leveloffset=+1]
 
