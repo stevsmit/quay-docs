@@ -4,7 +4,7 @@
 :context: evaluate_quay_io_as_a_hosted_registry_option
 
 [role="_abstract"]
-To choose Red Hat Quay, you can understand what Quay.io offers, how support works, and how pricing and plans compare. io versus self-managed Red Hat Quay.
+Compare Quay.io hosted registry capabilities, support, and plan tiers with self-managed Red Hat Quay to decide whether a hosted option fits your organization.
 
 include::modules/quayio-overview.adoc[leveloffset=+1]
 

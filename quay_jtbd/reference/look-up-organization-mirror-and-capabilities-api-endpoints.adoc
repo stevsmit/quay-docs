@@ -4,7 +4,7 @@
 :context: look_up_organization_mirror_and_capabilities_api_endpoints
 
 [role="_abstract"]
-To call the correct methods with the right parameters, you can use API endpoint references for this area.
+Reference organization mirror and capabilities API endpoints to configure and sync mirrored content.
 
 include::modules/api-org_mirror.adoc[leveloffset=+1]
 

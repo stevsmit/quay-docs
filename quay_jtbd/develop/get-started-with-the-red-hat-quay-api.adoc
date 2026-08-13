@@ -4,7 +4,7 @@
 :context: get_started_with_the_red_hat_quay_api
 
 [role="_abstract"]
-To make your first successful API calls, you can enable the API, explore Swagger, and handle errors.
+Enable the Red Hat Quay API, explore Swagger, authenticate requests, and handle common API errors for your first automation workflows.
 
 include::modules/enabling-using-the-api.adoc[leveloffset=+1]
 

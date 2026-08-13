@@ -4,7 +4,7 @@
 :context: troubleshoot_quay_database_and_authentication_issues
 
 [role="_abstract"]
-To restore login and data access, you can follow component-specific troubleshooting steps.
+Troubleshoot Red Hat Quay database, authentication, and superuser password reset issues on standalone or Operator deployments.
 
 include::modules/troubleshooting-components.adoc[leveloffset=+1]
 

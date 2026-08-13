@@ -4,7 +4,7 @@
 :context: deploy_quay_proof_of_concept_and_configure_tls
 
 [role="_abstract"]
-To validate the registry in a test environment, you can deploy Red Hat Quay with local storage and configure SSL/TLS.
+Deploy a proof-of-concept Red Hat Quay registry with local storage, prepare `config.yaml`, and configure SSL/TLS certificates.
 
 include::modules/proc_deploy_quay_poc_run.adoc[leveloffset=+1]
 

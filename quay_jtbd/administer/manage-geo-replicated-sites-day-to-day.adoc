@@ -4,7 +4,7 @@
 :context: manage_geo_replicated_sites_day_to_day
 
 [role="_abstract"]
-To ensure multi-site distribution stays correct day to day, you can enable replication preferences and add or remove sites.
+Manage geo-replicated sites by enabling storage preferences, running with replication settings, and adding or removing sites on standalone or OpenShift deployments.
 
 include::modules/georepl-intro.adoc[leveloffset=+1]
 

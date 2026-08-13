@@ -4,7 +4,7 @@
 :context: get_help_from_red_hat_support
 
 [role="_abstract"]
-To get help from Red Hat efficiently, you can follow Knowledgebase search and support-case guidance.
+Search the Red Hat Knowledgebase and submit a support case when you need help with Red Hat Quay.
 
 include::modules/getting-support.adoc[leveloffset=+1]
 

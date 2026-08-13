@@ -4,7 +4,7 @@
 :context: organize_users_into_teams_for_shared_access_control
 
 [role="_abstract"]
-To ensure access control scales without per-user grants everywhere, you can organize them into teams with roles.
+Create teams, add members, set team roles, and manage repository permissions by using the UI or API.
 
 include::modules/creating-a-team-ui.adoc[leveloffset=+1]
 

@@ -4,7 +4,7 @@
 :context: look_up_ldap_configuration_field_reference
 
 [role="_abstract"]
-To connect Red Hat Quay to my directory service, you can use LDAP configuration field references.
+Reference LDAP configuration fields for directory authentication in Red Hat Quay.
 
 include::modules/config-fields-ldap.adoc[leveloffset=+1]
 

@@ -4,7 +4,7 @@
 :context: look_up_robot_api_endpoints_part_1
 
 [role="_abstract"]
-To call the correct methods with the right parameters, you can use API endpoint references for this area.
+Reference robot API endpoints to create, delete, and regenerate organization and user robot accounts.
 
 include::modules/api-robot.adoc[leveloffset=+1]
 

@@ -4,7 +4,7 @@
 :context: view_and_manage_image_tag_information
 
 [role="_abstract"]
-To find and organize the right image versions, you can view, add, label, and trace tag history.
+View, add, label, and trace image tag history by using the Red Hat Quay UI or API.
 
 include::modules/viewing-and-modifying-tags.adoc[leveloffset=+1]
 

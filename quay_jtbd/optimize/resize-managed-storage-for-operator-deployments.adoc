@@ -4,7 +4,7 @@
 :context: resize_managed_storage_for_operator_deployments
 
 [role="_abstract"]
-To ensure Red Hat Quay and Clair keep enough capacity for growth, you can resize storage and apply volume overrides.
+Resize managed storage for Red Hat Quay and Clair, apply volume size overrides, and configure ephemeral storage for managed Clair.
 
 include::modules/operator-resize-storage.adoc[leveloffset=+1]
 

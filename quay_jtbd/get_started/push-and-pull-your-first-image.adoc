@@ -4,6 +4,6 @@
 :context: push_and_pull_your_first_image
 
 [role="_abstract"]
-To know your registry accepts content from the CLI, you can push and pull an image with Podman.
+Push and pull your first container image with Podman to confirm your registry accepts content from the CLI.
 
 include::modules/pushing-pulling-first-image.adoc[leveloffset=+1]

@@ -4,7 +4,7 @@
 :context: enforce_quota_limits_and_reclaim_storage
 
 [role="_abstract"]
-To enforce limits and free storage, you can monitor usage, set reject and warning limits, and permanently delete tags.
+Set reject and warning limits, calculate total registry size, and permanently delete image tags to enforce quotas and reclaim storage.
 
 include::modules/setting-reject-warning-limits.adoc[leveloffset=+1]
 

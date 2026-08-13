@@ -4,7 +4,7 @@
 :context: manage_bootstrap_token_lifecycle
 
 [role="_abstract"]
-To ensure programmatic onboarding stays secure, you can provision, renew, and revoke bootstrap tokens.
+Provision, renew, and revoke programmatic OAuth bootstrap tokens and review security considerations for automated onboarding.
 
 include::modules/programmatic-oauth-token-provisioning.adoc[leveloffset=+1]
 

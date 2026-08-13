@@ -4,12 +4,7 @@
 :context: prepare_a_rhel_host_for_quay_proof_of_concept
 
 [role="_abstract"]
-To deploy Red Hat Quay on a single machine, you can prepare a RHEL host with Podman, networking, and supporting services.
-
-[IMPORTANT]
-====
-The following proof of concept deployment method is unsupported for production purposes. This deployment type uses local storage. Local storage is not guaranteed to provide the required read-after-write consistency and data integrity guarantees during parallel access that a storage registry like {productname} requires. Do not use this deployment type for production purposes. Use it for testing purposes only.
-====
+Prepare a RHEL host with Podman, firewall, networking, and supporting services for a proof-of-concept Red Hat Quay deployment.
 
 include::modules/poc-installing-podman.adoc[leveloffset=+1]
 

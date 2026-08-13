@@ -4,7 +4,7 @@
 :context: look_up_object_storage_backend_configuration_fields
 
 [role="_abstract"]
-To configure object storage correctly in `config.yaml`, you can use field references for each supported provider.
+Look up object storage configuration fields for local, Ceph, AWS, Google Cloud, Azure, and Swift backends.
 
 include::modules/config-fields-storage-fields.adoc[leveloffset=+1]
 

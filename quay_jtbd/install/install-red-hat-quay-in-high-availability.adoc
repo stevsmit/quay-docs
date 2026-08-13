@@ -4,7 +4,7 @@
 :context: install_red_hat_quay_in_high_availability
 
 [role="_abstract"]
-To ensure the registry stays available across failures, you can prepare hosts and supporting services and deploy Red Hat Quay nodes.
+Prepare hosts, HAProxy, PostgreSQL, Ceph, Redis, and Red Hat Quay nodes for a high availability deployment.
 
 include::modules/con_quay_ha_prereq.adoc[leveloffset=+1]
 

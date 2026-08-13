@@ -4,7 +4,7 @@
 :context: create_automatic_tag_pruning_policies
 
 [role="_abstract"]
-To ensure stale tags are removed on a schedule you define, you can create registry-wide, organization, and repository policies.
+Create registry-wide, organization, and repository auto-pruning policies by using the Red Hat Quay UI or API.
 
 include::modules/creating-registry-wide-auto-pruning-policy.adoc[leveloffset=+1]
 

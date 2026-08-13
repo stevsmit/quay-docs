@@ -4,7 +4,7 @@
 :context: tune_registry_runtime_performance
 
 [role="_abstract"]
-To ensure the registry stays performant under your traffic profile, you can tune rate limits, connection pools, workers, and large-artifact settings.
+Tune rate limits, HTTP connections, worker processes, and large-artifact settings to match your traffic profile.
 
 include::modules/config-fields-rate-limit-performance.adoc[leveloffset=+1]
 

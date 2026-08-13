@@ -4,7 +4,7 @@
 :context: configure_object_storage_features_and_aws_sts
 
 [role="_abstract"]
-To ensure Red Hat Quay stores blobs on the system your organization supports, you can configure remaining storage providers, storage features, and AWS STS.
+Configure object storage providers, image storage features, and AWS STS for supported S3-compatible backends.
 
 include::modules/config-fields-nutanix.adoc[leveloffset=+1]
 

@@ -4,7 +4,7 @@
 :context: configure_organization_storage_quotas
 
 [role="_abstract"]
-To ensure no single tenant exhausts registry capacity, you can set organization quotas and notifications.
+Configure organization storage quotas, system defaults, notifications, and API limits to prevent any tenant from exhausting registry capacity.
 
 include::modules/quota-management-and-enforcement.adoc[leveloffset=+1]
 

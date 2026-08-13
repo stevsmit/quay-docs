@@ -4,7 +4,7 @@
 :context: prepare_the_registry_for_large_artifacts_and_branding
 
 [role="_abstract"]
-To ensure the registry matches organizational presentation and capacity needs, you can those operational controls.
+Prepare your registry for large artifacts, customize branding on the legacy UI, and subscribe to release notifications.
 
 include::modules/preparing-registry-large-artifacts.adoc[leveloffset=+1]
 

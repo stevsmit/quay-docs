@@ -4,7 +4,7 @@
 :context: configure_user_access_and_automation_defaults
 
 [role="_abstract"]
-To ensure new organizations and repositories start with the right permissions, you can configure access management and preconfigured automation fields.
+Configure user, robot account, app token, programmatic bootstrap, and preconfigured automation defaults in your Red Hat Quay configuration.
 
 include::modules/config-preconfigure-automation.adoc[leveloffset=+1]
 

@@ -4,7 +4,7 @@
 :context: get_started_with_quay_io
 
 [role="_abstract"]
-To get started with Quay.io, you can create an account, sign in, and optionally subscribe to a plan. After setting up your account, you can create an organization and push your first image.
+Create a Quay.io account, sign in, review plan and billing options, and prepare to create an organization and push your first image.
 
 include::modules/creating-quayio-account.adoc[leveloffset=+1]
 

@@ -4,7 +4,7 @@
 :context: expose_prometheus_metrics_for_red_hat_quay
 
 [role="_abstract"]
-To enable monitoring systems to scrape registry performance data, you can expose Prometheus metrics from standalone and Operator deployments.
+Expose Prometheus metrics from standalone and Operator Red Hat Quay deployments and configure Prometheus and DNS for scraping.
 
 include::modules/proc_manage-quay-prometheus.adoc[leveloffset=+1]
 

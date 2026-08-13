@@ -4,7 +4,7 @@
 :context: authenticate_users_with_ldap
 
 [role="_abstract"]
-To enable users to sign in with enterprise directory credentials, you can configure LDAP authentication and filters.
+Configure LDAP authentication, restricted user and superuser filters, and troubleshoot common directory integration issues.
 
 include::modules/proc_manage-ldap-setup.adoc[leveloffset=+1]
 

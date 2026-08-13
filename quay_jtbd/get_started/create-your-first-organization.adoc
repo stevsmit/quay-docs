@@ -4,6 +4,6 @@
 :context: create_your_first_organization
 
 [role="_abstract"]
-To have a shared namespace for repositories and teams, you can create an organization.
+Create your first organization by using the Red Hat Quay UI to group repositories and teams.
 
 include::modules/org-create.adoc[leveloffset=+1]

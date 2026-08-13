@@ -4,7 +4,7 @@
 :context: understand_red_hat_quay_s_tenancy_model
 
 [role="_abstract"]
-To plan how you will structure ownership and access, you can understand how users, organizations, repositories, robots, and teams relate.
+Review how users, organizations, repositories, robot accounts, and teams relate in the Red Hat Quay tenancy model before you structure ownership and access.
 
 include::modules/tenancy-model.adoc[leveloffset=+1]
 

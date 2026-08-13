@@ -4,7 +4,7 @@
 :context: look_up_manifest_api_endpoints
 
 [role="_abstract"]
-To call the correct methods with the right parameters, you can use API endpoint references for this area.
+Reference manifest API endpoints to manage labels and retrieve repository manifests.
 
 include::modules/api-manifest.adoc[leveloffset=+1]
 

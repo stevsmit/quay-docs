@@ -4,7 +4,7 @@
 :context: install_clair_for_red_hat_quay
 
 [role="_abstract"]
-To enable images to be scanned after install, you can set up Clair for standalone or OpenShift Quay. After Clair is running, confirm scanning in Get started by viewing your first Clair scan.
+Install Clair for standalone or OpenShift Red Hat Quay deployments, including ephemeral storage for managed Clair.
 
 include::modules/clair-standalone-configure.adoc[leveloffset=+1]
 

@@ -4,6 +4,6 @@
 :context: upgrade_the_clair_postgresql_database
 
 [role="_abstract"]
-To ensure scanning continues after the Red Hat Quay upgrade path requires it, you can a guided database upgrade.
+Migrate the Clair PostgreSQL database from version 13 to 15 when required by your Red Hat Quay upgrade path.
 
 include::modules/clair-postgresql-database-update.adoc[leveloffset=+1]

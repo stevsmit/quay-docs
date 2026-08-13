@@ -4,7 +4,7 @@
 :context: verify_and_retrieve_red_hat_quay_configuration
 
 [role="_abstract"]
-To ensure changes are valid before you restart Red Hat Quay, you can verify the configuration file and retrieve settings from the API.
+Verify your configuration file, retrieve settings by using the API, and obtain configuration information for standalone or OpenShift deployments.
 
 include::modules/config-file-verification.adoc[leveloffset=+1]
 

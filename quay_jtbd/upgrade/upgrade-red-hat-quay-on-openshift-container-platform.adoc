@@ -4,7 +4,7 @@
 :context: upgrade_red_hat_quay_on_openshift_container_platform
 
 [role="_abstract"]
-To ensure production upgrades do not disrupt the registry, you can follow a safe OCP upgrade path that preserves TLS and applies database migrations correctly.
+Upgrade the Red Hat Quay Operator and QuayRegistry on OpenShift, preserve TLS settings, and apply database migrations safely.
 
 include::modules/operator-upgrade.adoc[leveloffset=+1]
 

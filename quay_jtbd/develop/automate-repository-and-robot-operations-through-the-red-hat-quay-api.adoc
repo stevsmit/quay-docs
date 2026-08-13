@@ -4,7 +4,7 @@
 :context: automate_repository_and_robot_operations_through_the_red_hat_quay_api
 
 [role="_abstract"]
-To configure registry content through automation, you can use API examples for permissions, policies, and proxy cache settings.
+Automate repository permissions, proxy cache settings, auto-prune policies, and robot operations by using Red Hat Quay API examples.
 
 include::modules/org-team-member-api.adoc[leveloffset=+1]
 

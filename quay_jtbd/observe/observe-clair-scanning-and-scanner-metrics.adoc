@@ -4,7 +4,7 @@
 :context: observe_clair_scanning_and_scanner_metrics
 
 [role="_abstract"]
-To tell whether scanners and GC are working, you can use Clair scan views plus Clair and garbage-collection metrics.
+View Clair scan results and review Clair trace and garbage collection metrics to confirm scanning is working.
 
 include::modules/security-scanning-ui.adoc[leveloffset=+1]
 
