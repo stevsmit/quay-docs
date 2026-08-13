@@ -18,4 +18,6 @@ include::modules/new-api-endpoints-318.adoc[leveloffset=+2]
 
 include::modules/bug-fixes-318.adoc[leveloffset=+2]
 
+include::modules/known-issues-and-limitations-318.adoc[leveloffset=+2]
+
 include::modules/quay-feature-tracker.adoc[leveloffset=+2]

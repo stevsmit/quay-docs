@@ -1,6 +1,6 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="plan-a-public-cloud-deployment_{context}"]
-= Plan a public cloud deployment
+= Plan a {productname} public cloud deployment
 :context: plan_a_public_cloud_deployment
 
 [role="_abstract"]
