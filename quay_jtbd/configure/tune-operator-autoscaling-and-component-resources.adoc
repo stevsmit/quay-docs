@@ -4,7 +4,7 @@
 :context: tune_operator_autoscaling_and_component_resources
 
 [role="_abstract"]
-To ensure performance matches your workload without wasting capacity, you can tune HPA and component resource requests.
+Tune Horizontal Pod Autoscaling and QuayRegistry component resource requests by using the OpenShift web console or CLI.
 
 include::modules/about-hpa.adoc[leveloffset=+1]
 

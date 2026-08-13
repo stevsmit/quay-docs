@@ -4,7 +4,7 @@
 :context: view_and_export_registry_usage_logs
 
 [role="_abstract"]
-To investigate activity, you can view and export usage logs from the UI and API.
+View and export usage logs from the Red Hat Quay UI and API, including aggregated and detailed log views.
 
 include::modules/proc_use-quay-view-export-logs.adoc[leveloffset=+1]
 

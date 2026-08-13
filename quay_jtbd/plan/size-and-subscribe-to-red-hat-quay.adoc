@@ -4,7 +4,7 @@
 :context: size_and_subscribe_to_red_hat_quay
 
 [role="_abstract"]
-To budget and right-size the deployment, you can follow sample capacity guidance and subscription options.
+Review sample deployment sizes, minimum requirements, and subscription options to budget and right-size your Red Hat Quay deployment.
 
 include::modules/sizing-intro.adoc[leveloffset=+1]
 

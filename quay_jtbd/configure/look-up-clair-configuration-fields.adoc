@@ -4,7 +4,7 @@
 :context: look_up_clair_configuration_fields
 
 [role="_abstract"]
-To configure scanning behavior without guessing parameter names, you can use an authoritative field reference for Clair components.
+Look up Clair indexer, matcher, updater, notifier, authorization, and trace configuration fields.
 
 include::modules/config-fields-general-clair.adoc[leveloffset=+1]
 

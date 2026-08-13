@@ -4,7 +4,7 @@
 :context: manage_oauth_access_tokens_for_the_red_hat_quay_api
 
 [role="_abstract"]
-To ensure API requests authenticate with the right user and scope, you can create and manage OAuth access tokens.
+Create, reassign, revoke, and rotate OAuth 2 access tokens, including OCI referrers tokens, for API authentication.
 
 include::modules/token-overview.adoc[leveloffset=+1]
 

@@ -4,6 +4,6 @@
 :context: upgrade_the_quay_bridge_operator
 
 [role="_abstract"]
-To ensure OpenShift–Red Hat Quay integration stays compatible, you can upgrade it safely.
+Change the Quay Bridge Operator update channel to upgrade OpenShift–Red Hat Quay integration safely.
 
 include::modules/qbo-operator-upgrade.adoc[leveloffset=+1]

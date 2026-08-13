@@ -4,7 +4,7 @@
 :context: right_size_operator_component_resources_and_autoscaling
 
 [role="_abstract"]
-To ensure performance matches your workload without wasting capacity, you can tune HPA and component resource requests.
+Right-size QuayRegistry component resources and Horizontal Pod Autoscaling by using the OpenShift web console or CLI.
 
 include::modules/about-hpa.adoc[leveloffset=+1]
 

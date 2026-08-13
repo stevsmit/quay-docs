@@ -4,7 +4,7 @@
 :context: plan_quay_operator_cluster_and_storage_requirements
 
 [role="_abstract"]
-To ensure the deployment meets capacity and performance needs, you can size the cluster and choose storage options.
+Plan OpenShift cluster resources and object storage for a Quay Operator deployment, including managed, unmanaged, and StorageClass options.
 
 include::modules/openshift-cluster.adoc[leveloffset=+1]
 

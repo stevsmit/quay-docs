@@ -4,7 +4,7 @@
 :context: upgrade_a_standalone_red_hat_quay_deployment
 
 [role="_abstract"]
-To stay current without breaking the deployment, you can upgrade to a supported newer version using the correct images.
+Review supported standalone upgrade paths and access the correct Red Hat Quay container images for your target version.
 
 include::modules/proc_upgrade_standalone.adoc[leveloffset=+1]
 

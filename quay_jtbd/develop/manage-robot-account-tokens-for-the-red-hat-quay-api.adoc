@@ -4,7 +4,7 @@
 :context: manage_robot_account_tokens_for_the_red_hat_quay_api
 
 [role="_abstract"]
-To enable CI/CD and clients to pull and push without user credentials, you can create and rotate robot and OCI referrer tokens.
+Create and regenerate robot account tokens and OCI referrers OAuth tokens for CI/CD pull and push access.
 
 include::modules/robot-account-tokens.adoc[leveloffset=+1]
 

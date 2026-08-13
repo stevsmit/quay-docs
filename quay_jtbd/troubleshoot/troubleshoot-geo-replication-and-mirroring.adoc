@@ -4,7 +4,7 @@
 :context: troubleshoot_geo_replication_and_mirroring
 
 [role="_abstract"]
-To ensure content distribution works again, you can follow geo-replication and mirroring diagnostics.
+Troubleshoot geo-replication and repository mirroring, including backend bucket checks, authentication, and Clair scanner status.
 
 include::modules/georepl-intro.adoc[leveloffset=+1]
 

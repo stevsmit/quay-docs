@@ -4,7 +4,7 @@
 :context: look_up_repository_api_endpoints
 
 [role="_abstract"]
-To call the correct methods with the right parameters, you can use API endpoint references for this area.
+Reference repository API endpoints to list, update, change visibility, and delete repositories.
 
 include::modules/api-repository.adoc[leveloffset=+1]
 

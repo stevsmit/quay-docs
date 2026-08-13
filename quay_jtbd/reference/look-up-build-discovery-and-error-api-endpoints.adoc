@@ -4,7 +4,7 @@
 :context: look_up_build_discovery_and_error_api_endpoints
 
 [role="_abstract"]
-To call the correct methods with the right parameters, you can use API endpoint references for this area.
+Reference build, discovery, and error API endpoints for Red Hat Quay automation.
 
 include::modules/api-build.adoc[leveloffset=+1]
 

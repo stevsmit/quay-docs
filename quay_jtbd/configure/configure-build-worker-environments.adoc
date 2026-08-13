@@ -4,7 +4,7 @@
 :context: configure_build_worker_environments
 
 [role="_abstract"]
-To enable developers to trigger builds against a correctly wired builder pool, you can configure OpenShift, AWS, and bare-metal build workers.
+Configure OpenShift, AWS EC2, bare-metal, and virtual build workers, including TLS and managed route settings.
 
 include::modules/configuring-openshift-tls-component-builds.adoc[leveloffset=+1]
 

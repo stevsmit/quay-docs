@@ -4,7 +4,7 @@
 :context: secure_database_connections_with_tls
 
 [role="_abstract"]
-To ensure registry metadata is protected in transit, you can certificate-based TLS between Red Hat Quay and the database.
+Configure certificate-based TLS between Red Hat Quay and PostgreSQL, including Operator-managed database TLS settings.
 
 include::modules/ssl-tls-sql.adoc[leveloffset=+1]
 

@@ -4,7 +4,7 @@
 :context: manage_user_accounts_in_the_registry
 
 [role="_abstract"]
-To enable the right people to access Red Hat Quay over time, you can create and remove user accounts.
+Create and delete user accounts by using the Red Hat Quay UI or API.
 
 include::modules/creating-user-account-quay-ui.adoc[leveloffset=+1]
 

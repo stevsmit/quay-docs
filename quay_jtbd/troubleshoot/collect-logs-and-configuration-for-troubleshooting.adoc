@@ -4,7 +4,7 @@
 :context: collect_logs_and_configuration_for_troubleshooting
 
 [role="_abstract"]
-To analyze the failure or share evidence with support, you can collect Red Hat Quay logs and configuration details.
+Collect Red Hat Quay logs, verbose output, and configuration details to diagnose failures or share evidence with support.
 
 include::modules/obtaining-quay-logs.adoc[leveloffset=+1]
 

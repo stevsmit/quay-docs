@@ -4,7 +4,7 @@
 :context: plan_content_distribution_and_geo_replication
 
 [role="_abstract"]
-To pick the right content-distribution approach and understand tradeoffs, you can compare mirroring, geo-replication, and disconnected options.
+Compare repository mirroring, geo-replication, and air-gapped distribution options, including architecture and capacity tradeoffs for standalone and Operator deployments.
 
 include::modules/mirroring-intro.adoc[leveloffset=+1]
 

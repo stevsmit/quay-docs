@@ -4,7 +4,7 @@
 :context: administer_the_registry_as_a_superuser
 
 [role="_abstract"]
-To administer the whole deployment and regain access if needed, you can use privileged API and recovery actions.
+Use superuser API endpoints to manage organizations, quotas, build information, service keys, and recovery actions across the deployment.
 
 include::modules/superuser-manage-api.adoc[leveloffset=+1]
 

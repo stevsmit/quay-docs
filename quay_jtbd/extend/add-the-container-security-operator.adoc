@@ -4,7 +4,7 @@
 :context: add_the_container_security_operator
 
 [role="_abstract"]
-To ensure security findings appear in the cluster console and CLI, you can install the Container Security Operator.
+Install the Container Security Operator on OpenShift to view image vulnerabilities in the console and CLI.
 
 include::modules/proc_container-security-operator-setup.adoc[leveloffset=+1]
 

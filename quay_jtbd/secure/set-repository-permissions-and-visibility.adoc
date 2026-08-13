@@ -4,7 +4,7 @@
 :context: set_repository_permissions_and_visibility
 
 [role="_abstract"]
-To enable only authorized users to read or change images, you can set default permissions, grant user access, and control repository visibility.
+Set default permissions, adjust repository access, and control repository visibility by using the UI or API.
 
 include::modules/default-permissions-v2-ui.adoc[leveloffset=+1]
 

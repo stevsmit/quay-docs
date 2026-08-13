@@ -4,7 +4,7 @@
 :context: automate_tags_teams_and_builds_through_the_red_hat_quay_api
 
 [role="_abstract"]
-To complete common workflows without the UI, you can use API examples for robot permissions, search, tags, and teams.
+Automate tag management, team operations, robot permissions, and registry search by using Red Hat Quay API examples.
 
 include::modules/robot-account-permissions-api.adoc[leveloffset=+1]
 

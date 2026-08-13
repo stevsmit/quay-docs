@@ -4,7 +4,7 @@
 :context: look_up_policy_and_prototype_and_referrers_api_endpoints
 
 [role="_abstract"]
-To call the correct methods with the right parameters, you can use API endpoint references for this area.
+Reference auto-prune policy, prototype permission, and OCI referrers API endpoints.
 
 include::modules/api-policy-createUserAutoPrunePolicy.adoc[leveloffset=+1]
 

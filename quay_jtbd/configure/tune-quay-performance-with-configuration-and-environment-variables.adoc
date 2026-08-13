@@ -4,7 +4,7 @@
 :context: tune_quay_performance_with_configuration_and_environment_variables
 
 [role="_abstract"]
-To ensure the registry meets your performance targets, you can tune rate limits, geo-replication, database pool, and worker environment variables.
+Tune rate limits, geo-replication, database connection pooling, HTTP connections, and worker process counts for registry performance.
 
 include::modules/config-fields-rate-limit-performance.adoc[leveloffset=+1]
 

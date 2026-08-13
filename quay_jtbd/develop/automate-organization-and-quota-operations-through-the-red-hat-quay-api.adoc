@@ -4,7 +4,7 @@
 :context: automate_organization_and_quota_operations_through_the_red_hat_quay_api
 
 [role="_abstract"]
-To script admin operations, you can use API examples for organizations, quotas, mirroring, and global messages.
+Automate organization management, quota limits, mirroring, and global messages by using Red Hat Quay API examples.
 
 include::modules/quay-api-examples.adoc[leveloffset=+1]
 

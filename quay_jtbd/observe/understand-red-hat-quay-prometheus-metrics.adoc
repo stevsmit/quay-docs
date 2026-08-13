@@ -4,9 +4,7 @@
 :context: understand_red_hat_quay_prometheus_metrics
 
 [role="_abstract"]
-To interpret registry health and performance, you can understand available metrics for queues, garbage collection, and push/pull activity.
-
-include::modules/metrics-intro.adoc[leveloffset=+1]
+Review Prometheus metrics for registry queues, garbage collection, push and pull activity, and authentication.
 
 include::modules/metrics-general-registry-stats.adoc[leveloffset=+1]
 

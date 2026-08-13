@@ -4,7 +4,7 @@
 :context: configure_the_database_and_redis_for_red_hat_quay
 
 [role="_abstract"]
-To ensure metadata, logs, and events persist on the services you operate, you can configure database and Redis settings (including external Operator-managed dependencies).
+Configure database and Redis backends, build logs, user events, and external PostgreSQL connections for standalone or Operator deployments.
 
 include::modules/config-file-minimal.adoc[leveloffset=+1]
 

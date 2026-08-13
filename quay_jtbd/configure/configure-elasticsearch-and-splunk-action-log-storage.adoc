@@ -4,7 +4,7 @@
 :context: configure_elasticsearch_and_splunk_action_log_storage
 
 [role="_abstract"]
-To ensure registry events are retained where the organization already monitors logs, you can wire Elasticsearch or Splunk storage in Quay.
+Configure Elasticsearch or Splunk backends for Red Hat Quay action log storage and create action logs.
 
 include::modules/proc_manage-log-storage.adoc[leveloffset=+1]
 

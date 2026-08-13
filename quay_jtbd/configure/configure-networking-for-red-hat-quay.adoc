@@ -4,7 +4,7 @@
 :context: configure_networking_for_red_hat_quay
 
 [role="_abstract"]
-To ensure the registry is reachable the way your network requires, you can configure IPv6/dual-stack and custom ingress or routes.
+Configure IPv6, dual-stack networking, custom ingress, and SSL/TLS routes for Red Hat Quay on OpenShift.
 
 include::modules/proc_manage-ipv6-dual-stack.adoc[leveloffset=+1]
 

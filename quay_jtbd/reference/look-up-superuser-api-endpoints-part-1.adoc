@@ -4,7 +4,7 @@
 :context: look_up_superuser_api_endpoints_part_1
 
 [role="_abstract"]
-To call the correct methods with the right parameters, you can use API endpoint references for this area.
+Reference superuser API endpoints for install users, organizations, logs, and service keys.
 
 include::modules/api-superuser.adoc[leveloffset=+1]
 

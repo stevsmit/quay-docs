@@ -4,7 +4,7 @@
 :context: work_with_oci_artifacts_helm_charts_and_image_signing
 
 [role="_abstract"]
-To ensure your cloud-native artifacts are stored and verified alongside container images, you can push, attach referrers, and sign content with Cosign in Quay.
+Push OCI artifacts and Helm charts, attach referrers to image tags, and sign content with Cosign in Red Hat Quay.
 
 include::modules/oci-intro.adoc[leveloffset=+1]
 

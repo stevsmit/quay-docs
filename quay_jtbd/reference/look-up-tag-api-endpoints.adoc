@@ -4,7 +4,7 @@
 :context: look_up_tag_api_endpoints
 
 [role="_abstract"]
-To call the correct methods with the right parameters, you can use API endpoint references for this area.
+Reference tag API endpoints to list, change, delete tags, and view pull statistics.
 
 include::modules/api-tag.adoc[leveloffset=+1]
 

@@ -4,8 +4,6 @@
 :context: ensure_fips_compliance_for_the_registry
 
 [role="_abstract"]
-To ensure cryptographic modules meet government and industry mandates, you can enable FIPS compliance for Red Hat Quay/Clair.
-
-include::modules/fips-overview.adoc[leveloffset=+1]
+Enable FIPS compliance for Red Hat Quay and Clair to meet cryptographic module requirements.
 
 include::modules/enabling-fips-compliance.adoc[leveloffset=+1]

@@ -4,7 +4,7 @@
 :context: configure_and_monitor_repository_mirroring
 
 [role="_abstract"]
-To ensure upstream images stay current in Red Hat Quay, you can create repository mirrors, start syncs, and monitor mirroring health.
+Enable repository mirroring, create mirrored repositories, start syncs, and monitor mirroring health and capacity.
 
 include::modules/enabling-mirroring-quay.adoc[leveloffset=+1]
 

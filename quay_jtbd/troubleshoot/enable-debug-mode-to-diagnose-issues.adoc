@@ -4,7 +4,7 @@
 :context: enable_debug_mode_to_diagnose_issues
 
 [role="_abstract"]
-To ensure logs reveal enough detail to find the root cause, you can run Red Hat Quay or the Operator in debug mode.
+Run standalone Red Hat Quay or the Operator in debug mode, including LDAP deployments, to capture detailed diagnostic logs.
 
 include::modules/running-quay-debug-mode-intro.adoc[leveloffset=+1]
 

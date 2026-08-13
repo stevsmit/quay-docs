@@ -4,7 +4,7 @@
 :context: manage_oauth_access_token_lifecycle
 
 [role="_abstract"]
-To ensure long-lived API access stays under control, you can create, reassign, revoke, and rotate access tokens.
+Create, reassign, revoke, and rotate OAuth 2 access tokens for long-lived API access.
 
 include::modules/oauth2-access-tokens.adoc[leveloffset=+1]
 

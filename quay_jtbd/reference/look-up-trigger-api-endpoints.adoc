@@ -4,7 +4,7 @@
 :context: look_up_trigger_api_endpoints
 
 [role="_abstract"]
-To call the correct methods with the right parameters, you can use API endpoint references for this area.
+Reference build trigger API endpoints to list, update, start, and delete triggers.
 
 include::modules/api-trigger.adoc[leveloffset=+1]
 

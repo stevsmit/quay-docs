@@ -4,9 +4,7 @@
 :context: back_up_red_hat_quay_on_openshift
 
 [role="_abstract"]
-To preserve Operator-managed data before maintenance or disaster recovery, you can back up the registry, configuration, database, and object storage.
-
-include::modules/backing-up-and-restoring-intro.adoc[leveloffset=+1]
+Back up Operator-managed Red Hat Quay on OpenShift, including configuration, managed database, and object storage data.
 
 include::modules/optional-enabling-read-only-mode-backup-restore-ocp.adoc[leveloffset=+1]
 

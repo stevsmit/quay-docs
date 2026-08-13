@@ -4,6 +4,6 @@
 :context: choose_a_single_registry_or_multiple_registries
 
 [role="_abstract"]
-To avoid unnecessary infrastructure cost and complexity, you can decide whether to run one shared Red Hat Quay registry or multiple distinct registries.
+Compare running one shared Red Hat Quay registry with deploying multiple distinct registries to balance cost, isolation, and operational complexity.
 
 include::modules/core-distinct-registries.adoc[leveloffset=+1]

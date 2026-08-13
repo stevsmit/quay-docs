@@ -4,7 +4,7 @@
 :context: manage_registry_wide_and_team_access_policies
 
 [role="_abstract"]
-To ensure organization-wide security policies are enforced consistently, you can manage restricted users, superuser access, and team roles.
+Manage registry-wide access, restricted users, superuser access, and team roles for consistent security policies.
 
 include::modules/registry-wide-access-management.adoc[leveloffset=+1]
 

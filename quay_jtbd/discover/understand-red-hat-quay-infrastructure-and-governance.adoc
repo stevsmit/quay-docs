@@ -4,7 +4,7 @@
 :context: understand_red_hat_quay_infrastructure_and_governance
 
 [role="_abstract"]
-To plan deployment and operations, you can understand how Red Hat Quay distributes content, governs storage, and supports disconnected environments.
+Review mirroring, geo-replication, air-gapped deployment, storage governance, quota management, and namespace auto-pruning to understand how Red Hat Quay distributes and governs content.
 
 include::modules/core-infrastructure.adoc[leveloffset=+1]
 

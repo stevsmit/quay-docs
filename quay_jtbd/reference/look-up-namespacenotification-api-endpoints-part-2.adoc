@@ -4,7 +4,7 @@
 :context: look_up_namespacenotification_api_endpoints_part_2
 
 [role="_abstract"]
-To call the correct methods with the right parameters, you can use API endpoint references for this area.
+Reference namespacenotification API endpoints to test user namespace notifications and reset notification failures.
 
 include::modules/api-namespacenotification-testUserNamespaceNotification.adoc[leveloffset=+1]
 

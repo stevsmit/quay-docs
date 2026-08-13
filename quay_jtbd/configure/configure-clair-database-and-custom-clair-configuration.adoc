@@ -4,7 +4,7 @@
 :context: configure_clair_database_and_custom_clair_configuration
 
 [role="_abstract"]
-To ensure vulnerability scanning runs against the database backend your environment requires, you can set managed or unmanaged Clair database options.
+Configure managed or unmanaged Clair databases and run custom Clair configurations for standalone or Operator deployments.
 
 include::modules/clair-unmanaged.adoc[leveloffset=+1]
 

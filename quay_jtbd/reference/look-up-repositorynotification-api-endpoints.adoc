@@ -4,7 +4,7 @@
 :context: look_up_repositorynotification_api_endpoints
 
 [role="_abstract"]
-To call the correct methods with the right parameters, you can use API endpoint references for this area.
+Reference repositorynotification API endpoints to create, list, and reset repository event notifications.
 
 include::modules/api-repositorynotification.adoc[leveloffset=+1]
 

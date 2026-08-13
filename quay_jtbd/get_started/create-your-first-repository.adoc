@@ -4,6 +4,6 @@
 :context: create_your_first_repository
 
 [role="_abstract"]
-To have a place to store and share container images, you can create a repository.
+Create your first repository by using the Red Hat Quay UI to store and share container images.
 
 include::modules/creating-an-image-repository-via-the-ui.adoc[leveloffset=+1]

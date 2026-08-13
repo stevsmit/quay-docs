@@ -4,9 +4,7 @@
 :context: look_up_required_red_hat_quay_configuration_fields
 
 [role="_abstract"]
-To build a valid configuration file, you can use required configuration field references.
-
-include::modules/con_schema.adoc[leveloffset=+1]
+Look up required Red Hat Quay configuration fields for database, storage, Redis, and core component settings.
 
 include::modules/understanding-configuration-file.adoc[leveloffset=+1]
 

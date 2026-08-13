@@ -4,7 +4,7 @@
 :context: authenticate_users_with_oidc_and_single_sign_on
 
 [role="_abstract"]
-To ensure Red Hat Quay access follows your enterprise login and group model, you can configure OIDC or Red Hat SSO (including team sync).
+Configure Microsoft Entra ID OIDC, Red Hat Single Sign-On, team synchronization, and On-Behalf-Of flows for enterprise login.
 
 include::modules/configuring-entra-oidc.adoc[leveloffset=+1]
 

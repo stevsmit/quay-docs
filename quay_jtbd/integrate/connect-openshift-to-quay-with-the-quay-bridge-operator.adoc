@@ -4,7 +4,7 @@
 :context: connect_openshift_to_quay_with_the_quay_bridge_operator
 
 [role="_abstract"]
-To ensure cluster image workflows integrate with your registry, you can install and configure the Quay Bridge Operator.
+Install and configure the Quay Bridge Operator, create OAuth secrets, and deploy a QuayIntegration custom resource on OpenShift.
 
 include::modules/con_quay-bridge-operator-features.adoc[leveloffset=+1]
 

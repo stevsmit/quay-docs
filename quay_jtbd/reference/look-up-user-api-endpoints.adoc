@@ -4,7 +4,7 @@
 :context: look_up_user_api_endpoints
 
 [role="_abstract"]
-To call the correct methods with the right parameters, you can use API endpoint references for this area.
+Reference user API endpoints for logged-in user information, starred repositories, and definitions.
 
 include::modules/api-user.adoc[leveloffset=+1]
 

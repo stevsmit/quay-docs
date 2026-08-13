@@ -4,7 +4,7 @@
 :context: look_up_action_log_configuration_fields
 
 [role="_abstract"]
-To ensure logging settings are complete and consistent, you can use field references for Splunk, Elasticsearch, and UI display options.
+Look up action log, Elasticsearch, and Splunk configuration fields for Red Hat Quay log storage settings.
 
 include::modules/proc_splunk-audit-log-ui-display.adoc[leveloffset=+1]
 

@@ -4,7 +4,7 @@
 :context: understand_red_hat_quay_capabilities_and_architecture
 
 [role="_abstract"]
-To assess whether it fits your organization's needs, you can understand what Red Hat Quay offers and how its core architecture is designed.
+Review Red Hat Quay features, core architecture, scalability, build automation, integration, and security to evaluate whether the registry meets your requirements.
 
 include::modules/con_quay_overview.adoc[leveloffset=+1]
 

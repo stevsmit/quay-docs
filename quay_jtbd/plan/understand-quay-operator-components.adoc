@@ -4,7 +4,7 @@
 :context: understand_quay_operator_components
 
 [role="_abstract"]
-To know what components the deployment will include, you can understand what the Operator manages and its prerequisites.
+Before you deploy Red Hat Quay on OpenShift, review managed and unmanaged Operator components, the QuayRegistry custom resource, and cluster prerequisites.
 
 include::modules/operator-concepts.adoc[leveloffset=+1]
 

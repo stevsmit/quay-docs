@@ -4,7 +4,7 @@
 :context: reclaim_storage_with_garbage_collection
 
 [role="_abstract"]
-To ensure the registry stays efficient in production, you can run garbage collection to reclaim space.
+Configure and run garbage collection, review quota interactions, and monitor garbage collection metrics to reclaim storage.
 
 include::modules/garbage-collection-practice.adoc[leveloffset=+1]
 

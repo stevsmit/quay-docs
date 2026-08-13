@@ -4,6 +4,6 @@
 :context: understand_the_red_hat_quay_permissions_model
 
 [role="_abstract"]
-To grant the right access without over-permissioning, you can understand Red Hat Quay's permission levels.
+Review Red Hat Quay permission levels and role-based access control to grant appropriate access without over-permissioning.
 
 include::modules/role-based-access-control-intro.adoc[leveloffset=+1]

@@ -4,9 +4,7 @@
 :context: configure_registry_core_and_ui_settings
 
 [role="_abstract"]
-To ensure the registry matches your operational policies, you can configure core registry, UI, session, search, and mail fields.
-
-include::modules/core-configuration-overview.adoc[leveloffset=+1]
+Configure branding, logging, registry state, UI, session timeout, search, and mail settings in your Red Hat Quay configuration.
 
 include::modules/config-fields-basic.adoc[leveloffset=+1]
 

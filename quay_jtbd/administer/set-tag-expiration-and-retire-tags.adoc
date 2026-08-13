@@ -4,7 +4,7 @@
 :context: set_tag_expiration_and_retire_tags
 
 [role="_abstract"]
-To ensure stale images are retired safely, you can set expiration and remove or undo tags.
+Set tag expiration from repositories, Dockerfiles, or annotations, and delete or undo tags by using the UI or API.
 
 include::modules/setting-tag-expirations-v2-ui.adoc[leveloffset=+1]
 

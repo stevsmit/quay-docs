@@ -4,7 +4,7 @@
 :context: look_up_organization_and_permission_api_endpoints
 
 [role="_abstract"]
-To call the correct methods with the right parameters, you can use API endpoint references for this area.
+Reference organization and permission API endpoints to manage user and team permissions.
 
 include::modules/api-organization-getApplicationInformation.adoc[leveloffset=+1]
 

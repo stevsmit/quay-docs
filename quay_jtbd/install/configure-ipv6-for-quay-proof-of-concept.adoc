@@ -4,7 +4,7 @@
 :context: configure_ipv6_for_quay_proof_of_concept
 
 [role="_abstract"]
-To enable clients to reach the registry over IPv6, you can configure certificates and networking for IPv6.
+Configure certificates, Podman trust, and dual-stack networking for an IPv6 or dual-stack proof-of-concept Red Hat Quay deployment.
 
 include::modules/ssl-testing-ui.adoc[leveloffset=+1]
 

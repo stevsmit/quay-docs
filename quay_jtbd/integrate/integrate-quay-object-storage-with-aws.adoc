@@ -4,7 +4,7 @@
 :context: integrate_quay_object_storage_with_aws
 
 [role="_abstract"]
-To enable Red Hat Quay to use cloud-native access and distribution patterns, you can integrate STS and CloudFront options.
+Integrate Red Hat Quay object storage with AWS STS, IAM roles, and CloudFront for cloud-native access patterns.
 
 include::modules/configuring-aws-sts-quay.adoc[leveloffset=+1]
 
