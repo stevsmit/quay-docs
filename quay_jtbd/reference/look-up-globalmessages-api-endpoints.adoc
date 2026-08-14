@@ -8,6 +8,8 @@ Reference globalmessages API endpoints to list and delete registry-wide messages
 
 include::modules/api-globalmessages.adoc[leveloffset=+1]
 
-include::modules/api-globalmessages-getGlobalMessages.adoc[leveloffset=+2]
+include::modules/api-globalmessages-createGlobalMessage.adoc[leveloffset=+2]
 
 include::modules/api-globalmessages-deleteGlobalMessage.adoc[leveloffset=+2]
+
+include::modules/api-globalmessages-getGlobalMessages.adoc[leveloffset=+2]

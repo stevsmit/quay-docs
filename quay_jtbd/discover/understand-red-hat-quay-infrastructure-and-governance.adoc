@@ -12,6 +12,8 @@ include::modules/mirroring-intro.adoc[leveloffset=+1]
 
 include::modules/arch-mirror-registry.adoc[leveloffset=+2]
 
+include::modules/georepl-intro.adoc[leveloffset=+1]
+
 include::modules/mirroring-versus-georepl.adoc[leveloffset=+1]
 
 include::modules/airgap-intro.adoc[leveloffset=+1]

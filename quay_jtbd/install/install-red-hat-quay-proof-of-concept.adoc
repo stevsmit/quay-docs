@@ -1,5 +1,5 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="install-red-hat-quay-proof of concept_{context}"]
+[id="install-red-hat-quay-proof-of-concept_{context}"]
 = Install Red Hat Quay proof of concept
 :context: install_red_hat_quay_proof_of_concept
 

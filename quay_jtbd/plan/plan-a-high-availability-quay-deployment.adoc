@@ -1,6 +1,6 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="plan-a-high-availability-quay-deployment_{context}"]
-= Plan a high availability Quay deployment
+= Plan a {productname} high availability deployment
 :context: plan_a_high_availability_quay_deployment
 
 [role="_abstract"]

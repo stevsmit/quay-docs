@@ -1,5 +1,5 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="get-started-after-a-proof of concept-quay-deployment_{context}"]
+[id="get-started-after-a-proof-of-concept-quay-deployment_{context}"]
 = Get started after a proof of concept Quay deployment
 :context: get_started_after_a_proof_of_concept_quay_deployment
 

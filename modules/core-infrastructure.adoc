@@ -49,4 +49,4 @@ image:178_Quay_architecture_0821_deployment_ex2.png[Integrating standalone {prod
 
 The following Operator is available to help integrate standalone and Operator based deployments of {productname} with {ocp}:
 
-{productname} Bridge Operator:: Ensures seamless integration and user experience by using {productname} with {ocp} in conjunction with {ocp} Builds and ImageStreams
+{qbo}:: Ensures seamless integration and user experience by using {productname} with {ocp} in conjunction with {ocp} Builds and ImageStreams

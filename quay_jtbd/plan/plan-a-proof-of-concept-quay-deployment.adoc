@@ -1,6 +1,6 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="plan-a-proof of concept-quay-deployment_{context}"]
-= Plan a proof of concept Quay deployment
+[id="plan-a-proof-of-concept-quay-deployment_{context}"]
+= Plan a {productname} proof of concept deployment
 :context: plan_a_proof_of_concept_quay_deployment
 
 [role="_abstract"]

@@ -10,10 +10,10 @@ Install {productname-ocp}, as a proof of concept, or in high availability.
 include::install-red-hat-quay-on-openshift-container-platform.adoc[leveloffset=+1]
 
 // Job: Install Red Hat Quay proof of concept
-include::install-red-hat-quay-proof of concept.adoc[leveloffset=+1]
+include::install-red-hat-quay-proof-of-concept.adoc[leveloffset=+1]
 
 // Job: Configure IPv6 for Quay proof of concept
-include::configure-ipv6-for-quay-proof of concept.adoc[leveloffset=+1]
+include::configure-ipv6-for-quay-proof-of-concept.adoc[leveloffset=+1]
 
 // Job: Install Red Hat Quay in high availability
 include::install-red-hat-quay-in-high-availability.adoc[leveloffset=+1]

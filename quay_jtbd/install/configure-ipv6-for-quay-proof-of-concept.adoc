@@ -1,5 +1,5 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="configure-ipv6-for-quay-proof of concept_{context}"]
+[id="configure-ipv6-for-quay-proof-of-concept_{context}"]
 = Configure IPv6 for Quay proof of concept
 :context: configure_ipv6_for_quay_proof_of_concept
 
