@@ -1,27 +1,25 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="configure-clair-updaters-and-disconnected-scanning_{context}"]
+[id="configure_clair_updaters_and_disconnected_scanning_{context}"]
 = Configure Clair updaters and disconnected scanning
 :context: configure_clair_updaters_and_disconnected_scanning
 
 [role="_abstract"]
-Configure Clair updaters, disconnected scanning, updater sets, and Common Product Enumeration mapping for your network constraints.
+Configure Red Hat Quay settings for clair updaters and disconnected scanning.
 
 include::modules/clair-updaters.adoc[leveloffset=+1]
 
-include::modules/full-rhel-coverage.adoc[leveloffset=+2]
+include::modules/full-rhel-coverage.adoc[leveloffset=+1]
 
-include::modules/disabling-clair-updater-component-managed-db.adoc[leveloffset=+2]
+include::modules/disabling-clair-updater-component-managed-db.adoc[leveloffset=+1]
 
-include::modules/configuring-clair-updaters.adoc[leveloffset=+2]
+include::modules/configuring-clair-updaters.adoc[leveloffset=+1]
 
 include::modules/clair-disconnected.adoc[leveloffset=+1]
 
-include::modules/clair-clairctl.adoc[leveloffset=+2]
+include::modules/clair-clairctl.adoc[leveloffset=+1]
 
-include::modules/clair-clairctl-standalone.adoc[leveloffset=+2]
+include::modules/clair-clairctl-standalone.adoc[leveloffset=+1]
 
 include::modules/mapping-repositories-to-cpe-information.adoc[leveloffset=+1]
 
-include::modules/mapping-repositories-to-cpe-configuration.adoc[leveloffset=+2]
-
-include::modules/config-fields-overview.adoc[leveloffset=+1]
+include::modules/mapping-repositories-to-cpe-configuration.adoc[leveloffset=+1]

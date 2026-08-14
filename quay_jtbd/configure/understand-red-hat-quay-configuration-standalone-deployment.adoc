@@ -1,0 +1,19 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="understand_red_hat_quay_configuration_standalone_deployment_{context}"]
+= Understand Red Hat Quay configuration: Standalone deployment
+:context: understand_red_hat_quay_configuration_standalone_deployment
+
+[role="_abstract"]
+Configure a standalone or on-premises Red Hat Quay deployment using minimal `config.yaml` examples and post-deployment updates.
+
+include::modules/on-prem-configuration-overview.adoc[leveloffset=+1]
+
+include::modules/config-file-minimal.adoc[leveloffset=+2]
+
+include::modules/sample-config-file-minimal.adoc[leveloffset=+2]
+
+include::modules/minimal-configuration-local-storage.adoc[leveloffset=+3]
+
+include::modules/minimal-configuration-cloud-based-storage.adoc[leveloffset=+3]
+
+include::modules/modifying-config-file-post-deployment.adoc[leveloffset=+2]

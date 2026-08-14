@@ -1,21 +1,21 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="configure-notifications-for-registry-events_{context}"]
+[id="configure_notifications_for_registry_events_{context}"]
 = Configure notifications for registry events
 :context: configure_notifications_for_registry_events
 
 [role="_abstract"]
-Configure image, quota, and repository event notifications and email routing by using the UI or API.
+Configure Red Hat Quay settings for notifications for registry events.
 
 include::modules/proc_use-quay-notifications.adoc[leveloffset=+1]
 
-include::modules/creating-notifications.adoc[leveloffset=+2]
+include::modules/creating-notifications.adoc[leveloffset=+1]
 
-include::modules/creating-image-expiration-notification.adoc[leveloffset=+2]
+include::modules/creating-image-expiration-notification.adoc[leveloffset=+1]
 
-include::modules/creating-notifications-api.adoc[leveloffset=+2]
+include::modules/creating-notifications-api.adoc[leveloffset=+1]
 
-include::modules/creating-quota-notifications-api.adoc[leveloffset=+2]
+include::modules/creating-quota-notifications-api.adoc[leveloffset=+1]
 
-include::modules/configuring-email-routing-contact-email.adoc[leveloffset=+2]
+include::modules/configuring-email-routing-contact-email.adoc[leveloffset=+1]
 
 include::modules/repository-events.adoc[leveloffset=+1]

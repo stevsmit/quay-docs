@@ -1,0 +1,19 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="look_up_clair_configuration_fields_part_1_{context}"]
+= Clair configuration fields (part 1)
+:context: look_up_clair_configuration_fields_part_1
+
+[role="_abstract"]
+Look up Clair configuration overview and indexer, matcher, and updater fields.
+
+include::modules/config-fields-overview.adoc[leveloffset=+1]
+
+include::modules/config-fields-general-clair.adoc[leveloffset=+2]
+
+include::modules/config-fields-clair-indexer.adoc[leveloffset=+2]
+
+include::modules/config-fields-clair-matcher.adoc[leveloffset=+2]
+
+include::modules/config-fields-clair-matchers.adoc[leveloffset=+2]
+
+include::modules/config-fields-clair-updaters.adoc[leveloffset=+2]

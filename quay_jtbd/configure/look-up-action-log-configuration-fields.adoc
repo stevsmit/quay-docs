@@ -1,12 +1,10 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="look-up-action-log-configuration-fields_{context}"]
-= Look up action log configuration fields
+[id="look_up_action_log_configuration_fields_{context}"]
+= Action log configuration fields
 :context: look_up_action_log_configuration_fields
 
 [role="_abstract"]
-Look up action log, Elasticsearch, and Splunk configuration fields for Red Hat Quay log storage settings.
-
-include::modules/proc_splunk-audit-log-ui-display.adoc[leveloffset=+1]
+Look up action log, Elasticsearch, and Splunk configuration fields.
 
 include::modules/config-fields-actionlog.adoc[leveloffset=+1]
 

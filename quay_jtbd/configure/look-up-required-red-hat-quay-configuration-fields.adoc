@@ -1,0 +1,11 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="look_up_required_red_hat_quay_configuration_fields_{context}"]
+= Look up required configuration fields
+:context: look_up_required_red_hat_quay_configuration_fields
+
+[role="_abstract"]
+Look up required configuration fields for general settings, storage, database, and Redis.
+
+include::modules/config-fields-required-intro.adoc[leveloffset=+1]
+
+include::modules/config-fields-required-general.adoc[leveloffset=+2]

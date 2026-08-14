@@ -1,19 +1,21 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="configure-clair-database-and-custom-clair-configuration_{context}"]
+[id="configure_clair_database_and_custom_clair_configuration_{context}"]
 = Configure Clair database and custom Clair configuration
 :context: configure_clair_database_and_custom_clair_configuration
 
 [role="_abstract"]
-Configure managed or unmanaged Clair databases and run custom Clair configurations for standalone or Operator deployments.
+Configure Red Hat Quay settings for clair database and custom clair configuration.
 
 include::modules/clair-unmanaged.adoc[leveloffset=+1]
 
-include::modules/unmanaging-clair-database.adoc[leveloffset=+2]
+include::modules/unmanaging-clair-database.adoc[leveloffset=+1]
 
-include::modules/configuring-custom-clair-database.adoc[leveloffset=+2]
+include::modules/configuring-custom-clair-database.adoc[leveloffset=+1]
 
 include::modules/custom-clair-configuration-managed-database.adoc[leveloffset=+1]
 
-include::modules/managed-clair-database.adoc[leveloffset=+2]
+include::modules/managed-clair-database.adoc[leveloffset=+1]
 
-include::modules/configuring-custom-clair-database-managed.adoc[leveloffset=+2]
+include::modules/configuring-custom-clair-database-managed.adoc[leveloffset=+1]
+
+include::modules/clair-vulnerability-scanner-overview.adoc[leveloffset=+1]

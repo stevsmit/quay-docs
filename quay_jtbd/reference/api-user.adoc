@@ -1,0 +1,19 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="api_user_{context}"]
+= user
+:context: api_user
+
+[role="_abstract"]
+Reference user API endpoints for Red Hat Quay.
+
+include::modules/api-user.adoc[leveloffset=+1]
+
+include::modules/api-user-createStar.adoc[leveloffset=+2]
+
+include::modules/api-user-listStarredRepos.adoc[leveloffset=+2]
+
+include::modules/api-user-getLoggedInUser.adoc[leveloffset=+2]
+
+include::modules/api-user-deleteStar.adoc[leveloffset=+2]
+
+include::modules/api-user-getUserInformation.adoc[leveloffset=+2]
