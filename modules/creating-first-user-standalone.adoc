@@ -1,7 +1,6 @@
 // Module included in the following assemblies:
 //
-// * quay_jtbd/get_started/get-started-after-a-proof-of-concept-quay-deployment.adoc
-// * quay_jtbd/get_started/get-started-after-deploying-quay-in-high-availability.adoc
+// * quay_jtbd/get_started/get-started-after-deploying-quay-on-standalone-hosts.adoc
 
 :_mod-docs-content-type: PROCEDURE
 [id="creating-first-user-standalone"]
