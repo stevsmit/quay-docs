@@ -1,0 +1,145 @@
+#!/usr/bin/env bash
+# Build Surge preview output using ccutil (Pantheon / docs.redhat.com styling).
+# Falls back to build_docs for any book that ccutil cannot compile.
+set -euo pipefail
+
+CCUTIL_IMAGE="${CCUTIL_IMAGE:-quay.io/rhn_support_gmcgoldr/levccutil}"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$REPO_ROOT"
+
+container() {
+  if command -v podman >/dev/null 2>&1; then
+    podman run --rm -v "${REPO_ROOT}:/work:Z" "$CCUTIL_IMAGE" "$@"
+  elif command -v docker >/dev/null 2>&1; then
+    docker run --rm -v "${REPO_ROOT}:/work" "$CCUTIL_IMAGE" "$@"
+  else
+    echo "ERROR: podman or docker is required for build_docs_preview" >&2
+    exit 1
+  fi
+}
+
+book_out() {
+  case "$1" in
+    api) echo api_quay ;;
+    *) echo "$1" ;;
+  esac
+}
+
+rm -rf dist
+mkdir -p dist
+
+echo "=== Compiling books with ccutil ==="
+container bash -c '
+  set -uo pipefail
+  cd /work
+  for master in */master.adoc; do
+    dir=$(dirname "$master")
+    echo "--- ccutil: $dir ---"
+    if (cd "$dir" && ccutil compile --lang en_US --type asciidoc --main-file master.adoc); then
+      echo "OK: $dir"
+    else
+      echo "FAIL: $dir" >&2
+    fi
+  done
+'
+
+echo "=== Assembling dist/ ==="
+FAILED=()
+for master in */master.adoc; do
+  dir=$(dirname "$master")
+  out=$(book_out "$dir")
+  src="${dir}/build/tmp/en-US/html-single"
+
+  if [[ ! -f "${src}/index.html" ]]; then
+    FAILED+=("$dir")
+    continue
+  fi
+
+  mkdir -p "dist/${out}"
+  cp -a "${src}/." "dist/${out}/"
+
+  # Flat file: /deploy_red_hat_quay_operator.html (existing PR preview links)
+  sed \
+    -e "s|href=\"Common_Content/|href=\"${out}/Common_Content/|g" \
+    -e "s|src=\"Common_Content/|src=\"${out}/Common_Content/|g" \
+    -e "s|href=\"images/|href=\"${out}/images/|g" \
+    -e "s|src=\"images/|src=\"${out}/images/|g" \
+    "dist/${out}/index.html" > "dist/${out}.html"
+
+  # Preview banner + optional overrides
+  for html in "dist/${out}/index.html" "dist/${out}.html"; do
+    if [[ -f "$html" ]]; then
+      sed -i \
+        -e 's|</head>|<link rel="stylesheet" type="text/css" href="/preview/surge-preview.css"/>\n</head>|' \
+        -e 's|<body>|<body>\n<div class="surge-preview-banner" role="status">Surge preview — Pantheon styling (ccutil). Not the live docs.redhat.com site.</div>|' \
+        "$html"
+    fi
+  done
+done
+
+# Fallback: plain asciidoctor for books ccutil could not build
+if ((${#FAILED[@]} > 0)); then
+  echo "=== Falling back to asciidoctor for: ${FAILED[*]} ==="
+  BOOK_ATTR=(-a productname="Project Quay" -a toc="left" -d book)
+  for dir in "${FAILED[@]}"; do
+    out=$(book_out "$dir")
+    mkdir -p "dist/${out}"
+    asciidoctor "${BOOK_ATTR[@]}" -a imagesdir=../images "${dir}/master.adoc" \
+      -D "dist/${out}" -o index.html
+    sed 's|src="../images/|src="images/|g; s|href="../images/|href="images/|g' \
+      "dist/${out}/index.html" > "dist/${out}.html"
+  done
+fi
+
+cp -a images dist/images
+
+# Welcome / index page
+cat > dist/welcome.html <<'EOF'
+<!DOCTYPE html>
+<html lang="en" class="chrometwo">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Quay Documentation — Surge Preview</title>
+  <link rel="stylesheet" type="text/css" href="deploy_red_hat_quay_operator/Common_Content/css/default.css">
+  <link rel="stylesheet" type="text/css" href="/preview/surge-preview.css">
+</head>
+<body>
+<div class="surge-preview-banner" role="status">Surge preview — Pantheon styling (ccutil). Not the live docs.redhat.com site.</div>
+<div id="chrometwo"><div id="main">
+<div class="book">
+<div class="titlepage">
+  <div class="producttitle"><span class="productname">Project Quay</span></div>
+  <h1 class="title">Documentation — Surge Preview</h1>
+  <div class="abstract"><p>Preview builds use ccutil (Red Hat Pantheon) for book styling similar to docs.redhat.com.</p></div>
+</div>
+<div class="section">
+<h2 class="title">Books</h2>
+<ul class="itemizedlist">
+EOF
+
+for master in */master.adoc; do
+  dir=$(dirname "$master")
+  out=$(book_out "$dir")
+  if [[ -f "dist/${out}/index.html" ]]; then
+  title=$(grep -m1 '<h1 class="title">' "dist/${out}/index.html" 2>/dev/null \
+    | sed 's/.*<h1 class="title">//;s/<\/h1>.*//' || echo "$out")
+  printf '  <li class="listitem"><a href="/%s/">%s</a> (<a href="/%s.html">single file</a>)</li>\n' \
+    "$out" "$title" "$out" >> dist/welcome.html
+  fi
+done
+
+cat >> dist/welcome.html <<'EOF'
+</ul>
+</div>
+</div>
+</div></div>
+</body>
+</html>
+EOF
+
+cp dist/welcome.html dist/index.html
+mkdir -p dist/preview
+cp preview/surge-preview.css dist/preview/
+
+echo "=== Preview build complete: dist/ ==="

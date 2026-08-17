@@ -1,0 +1,24 @@
+/* Surge preview banner and small layout tweaks on top of Pantheon default.css */
+
+.surge-preview-banner {
+  background: #0066cc;
+  color: #fff;
+  font-family: "Red Hat Text", "Overpass", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+}
+
+/* Slightly widen content area for modern displays */
+#chrometwo #main .book {
+  max-width: 72rem;
+}
+
+/* Improve TOC readability in Pantheon chrome-two layout */
+#chrometwo .toc {
+  font-size: 0.9rem;
+}

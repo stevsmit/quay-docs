@@ -12,11 +12,8 @@ jobs:
     - name: Checkout PR code
       uses: actions/checkout@v5
 
-    - name: Install asciidoctor
-      run: sudo gem install asciidoctor
-
-    - name: Build docs
-      run: bash build_docs
+    - name: Build docs (Pantheon/ccutil styling)
+      run: bash build_docs_preview
 
     - name: Save PR number
       if: success()
