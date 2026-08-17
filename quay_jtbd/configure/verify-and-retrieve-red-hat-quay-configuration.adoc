@@ -1,5 +1,5 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="verify-and-retrieve-red-hat-quay-configuration_{context}"]
+[id="verify_and_retrieve_red_hat_quay_configuration_{context}"]
 = Verify and retrieve Red Hat Quay configuration
 :context: verify_and_retrieve_red_hat_quay_configuration
 
@@ -8,12 +8,8 @@ Verify your configuration file, retrieve settings by using the API, and obtain c
 
 include::modules/config-file-verification.adoc[leveloffset=+1]
 
-include::modules/retrieving-config-api.adoc[leveloffset=+2]
+include::modules/retrieving-config-api.adoc[leveloffset=+1]
 
-include::modules/config-updates-318.adoc[leveloffset=+1]
-
-include::modules/proc_manage-advanced-config.adoc[leveloffset=+1]
+include::modules/obtaining-configuration-information-quay-standalone.adoc[leveloffset=+1]
 
 include::modules/obtaining-configuration-information-quay.adoc[leveloffset=+1]
-
-include::modules/obtaining-configuration-information-quay-standalone.adoc[leveloffset=+2]

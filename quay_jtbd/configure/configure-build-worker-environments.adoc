@@ -1,21 +1,21 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="configure-build-worker-environments_{context}"]
+[id="configure_build_worker_environments_{context}"]
 = Configure build worker environments
 :context: configure_build_worker_environments
 
 [role="_abstract"]
-Configure OpenShift, AWS EC2, bare-metal, and virtual build workers, including TLS and managed route settings.
+Configure Red Hat Quay settings for build worker environments.
 
 include::modules/configuring-openshift-tls-component-builds.adoc[leveloffset=+1]
 
 include::modules/proc_use-quay-build-workers-dockerfiles.adoc[leveloffset=+1]
 
-include::modules/prepare-ocp-for-bare-metal-builds.adoc[leveloffset=+2]
+include::modules/prepare-ocp-for-bare-metal-builds.adoc[leveloffset=+1]
 
 include::modules/setting-up-builds-aws.adoc[leveloffset=+1]
 
 include::modules/openshift-routes-limitations.adoc[leveloffset=+1]
 
-include::modules/configuring-quay-builds-custom-hostname.adoc[leveloffset=+2]
+include::modules/configuring-quay-builds-custom-hostname.adoc[leveloffset=+1]
 
 include::modules/build-enhancements.adoc[leveloffset=+1]

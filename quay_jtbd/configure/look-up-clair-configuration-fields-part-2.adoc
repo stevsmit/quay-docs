@@ -1,0 +1,17 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="look_up_clair_configuration_fields_part_2_{context}"]
+= Clair configuration fields (part 2)
+:context: look_up_clair_configuration_fields_part_2
+
+[role="_abstract"]
+Look up Clair notifier, authorization, trace, metrics, and scanner fields.
+
+include::modules/config-fields-clair-notifiers.adoc[leveloffset=+1]
+
+include::modules/config-fields-clair-auth.adoc[leveloffset=+2]
+
+include::modules/config-fields-clair-trace.adoc[leveloffset=+2]
+
+include::modules/config-fields-clair-metrics.adoc[leveloffset=+2]
+
+include::modules/config-fields-scanner.adoc[leveloffset=+2]

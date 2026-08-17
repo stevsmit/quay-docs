@@ -1,0 +1,11 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="configure_aws_sts_for_object_storage_{context}"]
+= Configure AWS STS for object storage
+:context: configure_aws_sts_for_object_storage
+
+[role="_abstract"]
+Set up AWS Security Token Service (STS) for Amazon S3 object storage on standalone, OpenShift, or ROSA deployments.
+
+include::modules/configuring-aws-sts-quay.adoc[leveloffset=+1]
+
+include::modules/configuring-quay-standalone-aws-sts.adoc[leveloffset=+2]

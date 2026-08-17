@@ -4,106 +4,127 @@ include::_attributes/attributes.adoc[]
 = Reference
 
 [role="_abstract"]
-Look up configuration parameters and API endpoints.
+Look up Red Hat Quay API endpoints.
 
-// Job: Look up required Red Hat Quay configuration fields
-include::look-up-required-red-hat-quay-configuration-fields.adoc[leveloffset=+1]
+// Job: Authorization
+include::api-authorization.adoc[leveloffset=+1]
 
-// Job: Look up optional Red Hat Quay configuration field categories
-include::look-up-optional-red-hat-quay-configuration-field-categories.adoc[leveloffset=+1]
+// Job: appspecifictokens
+include::api-appspecifictokens.adoc[leveloffset=+1]
 
-// Job: Look up Clair configuration field reference
-include::look-up-clair-configuration-field-reference.adoc[leveloffset=+1]
+// Job: build
+include::api-build.adoc[leveloffset=+1]
 
-// Job: Look up LDAP configuration field reference
-include::look-up-ldap-configuration-field-reference.adoc[leveloffset=+1]
+// Job: discovery
+include::api-discovery.adoc[leveloffset=+1]
 
-// Job: Look up OAuth and OIDC configuration field reference
-include::look-up-oauth-and-oidc-configuration-field-reference.adoc[leveloffset=+1]
+// Job: renewBootstrapToken
+include::api-bootstrap-renewBootstrapToken.adoc[leveloffset=+1]
 
-// Job: Look up SSL and TLS configuration field reference
-include::look-up-ssl-tls-configuration-field-reference.adoc[leveloffset=+1]
+// Job: error
+include::api-error.adoc[leveloffset=+1]
 
-// Job: Look up Red Hat Quay API authorization and app-specific token endpoints
-include::look-up-red-hat-quay-api-authorization-and-app-specific-token-endpoints.adoc[leveloffset=+1]
+// Job: globalmessages
+include::api-globalmessages.adoc[leveloffset=+1]
 
-// Job: Look up build, discovery, and error API endpoints
-include::look-up-build-discovery-and-error-api-endpoints.adoc[leveloffset=+1]
+// Job: logs
+include::api-logs.adoc[leveloffset=+1]
 
-// Job: Look up globalmessages API endpoints
-include::look-up-globalmessages-api-endpoints.adoc[leveloffset=+1]
+// Job: manifest
+include::api-manifest.adoc[leveloffset=+1]
 
-// Job: Look up logs API endpoints
-include::look-up-logs-api-endpoints.adoc[leveloffset=+1]
+// Job: mirror
+include::api-mirror.adoc[leveloffset=+1]
 
-// Job: Look up manifest API endpoints
-include::look-up-manifest-api-endpoints.adoc[leveloffset=+1]
+// Job: org_mirror
+include::api-org_mirror.adoc[leveloffset=+1]
 
-// Job: Look up mirror API endpoints
-include::look-up-mirror-api-endpoints.adoc[leveloffset=+1]
+// Job: capabilities
+include::api-capabilities.adoc[leveloffset=+1]
 
-// Job: Look up organization mirror and capabilities API endpoints
-include::look-up-organization-mirror-and-capabilities-api-endpoints.adoc[leveloffset=+1]
+// Job: namespacequota (part 1)
+include::api-namespacequota-part-1.adoc[leveloffset=+1]
 
-// Job: Look up namespacequota API endpoints (part 1)
-include::look-up-namespacequota-api-endpoints-part-1.adoc[leveloffset=+1]
+// Job: namespacequota (part 2)
+include::api-namespacequota-part-2.adoc[leveloffset=+1]
 
-// Job: Look up namespacequota API endpoints (part 2)
-include::look-up-namespacequota-api-endpoints-part-2.adoc[leveloffset=+1]
+// Job: namespacenotification (part 1)
+include::api-namespacenotification-part-1.adoc[leveloffset=+1]
 
-// Job: Look up namespacenotification API endpoints (part 1)
-include::look-up-namespacenotification-api-endpoints-part-1.adoc[leveloffset=+1]
+// Job: namespacenotification (part 2)
+include::api-namespacenotification-part-2.adoc[leveloffset=+1]
 
-// Job: Look up namespacenotification API endpoints (part 2)
-include::look-up-namespacenotification-api-endpoints-part-2.adoc[leveloffset=+1]
+// Job: organization (part 1)
+include::api-organization-part-1.adoc[leveloffset=+1]
 
-// Job: Look up organization API endpoints (part 1)
-include::look-up-organization-api-endpoints-part-1.adoc[leveloffset=+1]
+// Job: organization (part 2)
+include::api-organization-part-2.adoc[leveloffset=+1]
 
-// Job: Look up organization API endpoints (part 2)
-include::look-up-organization-api-endpoints-part-2.adoc[leveloffset=+1]
+// Job: organization (part 3)
+include::api-organization-part-3.adoc[leveloffset=+1]
 
-// Job: Look up organization and permission API endpoints
-include::look-up-organization-and-permission-api-endpoints.adoc[leveloffset=+1]
+// Job: permission
+include::api-permission.adoc[leveloffset=+1]
 
-// Job: Look up policy API endpoints (part 1)
-include::look-up-policy-api-endpoints-part-1.adoc[leveloffset=+1]
+// Job: policy (part 1)
+include::api-policy-part-1.adoc[leveloffset=+1]
 
-// Job: Look up policy and prototype and referrers API endpoints
-include::look-up-policy-and-prototype-and-referrers-api-endpoints.adoc[leveloffset=+1]
+// Job: policy (part 2)
+include::api-policy-part-2.adoc[leveloffset=+1]
 
-// Job: Look up repository API endpoints
-include::look-up-repository-api-endpoints.adoc[leveloffset=+1]
+// Job: prototype
+include::api-prototype.adoc[leveloffset=+1]
 
-// Job: Look up repositorynotification API endpoints
-include::look-up-repositorynotification-api-endpoints.adoc[leveloffset=+1]
+// Job: referrers
+include::api-referrers.adoc[leveloffset=+1]
 
-// Job: Look up robot API endpoints (part 1)
-include::look-up-robot-api-endpoints-part-1.adoc[leveloffset=+1]
+// Job: repository
+include::api-repository.adoc[leveloffset=+1]
 
-// Job: Look up robot and search and secscan API endpoints
-include::look-up-robot-and-search-and-secscan-api-endpoints.adoc[leveloffset=+1]
+// Job: repositorynotification
+include::api-repositorynotification.adoc[leveloffset=+1]
 
-// Job: Look up superuser API endpoints (part 1)
-include::look-up-superuser-api-endpoints-part-1.adoc[leveloffset=+1]
+// Job: robot (part 1)
+include::api-robot-part-1.adoc[leveloffset=+1]
 
-// Job: Look up superuser API endpoints (part 2)
-include::look-up-superuser-api-endpoints-part-2.adoc[leveloffset=+1]
+// Job: robot (part 2)
+include::api-robot-part-2.adoc[leveloffset=+1]
 
-// Job: Look up superuser API endpoints (part 3)
-include::look-up-superuser-api-endpoints-part-3.adoc[leveloffset=+1]
+// Job: search
+include::api-search.adoc[leveloffset=+1]
 
-// Job: Look up tag API endpoints
-include::look-up-tag-api-endpoints.adoc[leveloffset=+1]
+// Job: secscan
+include::api-secscan.adoc[leveloffset=+1]
 
-// Job: Look up immutability policy API endpoints
-include::look-up-immutability-policy-api-endpoints.adoc[leveloffset=+1]
+// Job: superuser (part 1)
+include::api-superuser-part-1.adoc[leveloffset=+1]
 
-// Job: Look up team API endpoints
-include::look-up-team-api-endpoints.adoc[leveloffset=+1]
+// Job: superuser (part 2)
+include::api-superuser-part-2.adoc[leveloffset=+1]
 
-// Job: Look up trigger API endpoints
-include::look-up-trigger-api-endpoints.adoc[leveloffset=+1]
+// Job: superuser (part 3)
+include::api-superuser-part-3.adoc[leveloffset=+1]
 
-// Job: Look up user API endpoints
-include::look-up-user-api-endpoints.adoc[leveloffset=+1]
+// Job: superuser (part 4)
+include::api-superuser-part-4.adoc[leveloffset=+1]
+
+// Job: tag
+include::api-tag.adoc[leveloffset=+1]
+
+// Job: immutability_policy (part 1)
+include::api-immutability_policy-part-1.adoc[leveloffset=+1]
+
+// Job: immutability_policy (part 2)
+include::api-immutability_policy-part-2.adoc[leveloffset=+1]
+
+// Job: team
+include::api-team.adoc[leveloffset=+1]
+
+// Job: trigger
+include::api-trigger.adoc[leveloffset=+1]
+
+// Job: user
+include::api-user.adoc[leveloffset=+1]
+
+// Job: Definitions
+include::api-definitions.adoc[leveloffset=+1]

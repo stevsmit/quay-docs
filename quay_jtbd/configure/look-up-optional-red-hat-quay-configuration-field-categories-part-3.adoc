@@ -1,0 +1,27 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="look_up_optional_red_hat_quay_configuration_field_categories_part_3_{context}"]
+= Optional configuration field categories (part 3)
+:context: look_up_optional_red_hat_quay_configuration_field_categories_part_3
+
+[role="_abstract"]
+Look up optional Red Hat Quay configuration fields — optional configuration field categories (part 3).
+
+include::modules/config-fields-storage-features.adoc[leveloffset=+1]
+
+include::modules/tag-image-mgmt-configuration-overview.adoc[leveloffset=+1]
+
+include::modules/config-fields-image-activity.adoc[leveloffset=+1]
+
+include::modules/config-fields-tag-expiration.adoc[leveloffset=+1]
+
+include::modules/config-fields-immutable-tags.adoc[leveloffset=+1]
+
+include::modules/config-fields-mirroring-repository.adoc[leveloffset=+1]
+
+include::modules/config-fields-mirroring-organization.adoc[leveloffset=+1]
+
+include::modules/config-fields-modelcache.adoc[leveloffset=+1]
+
+include::modules/scanner-metadata-configuration-overview.adoc[leveloffset=+1]
+
+include::modules/config-fields-modelcard-rendering.adoc[leveloffset=+1]

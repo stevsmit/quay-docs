@@ -1,0 +1,21 @@
+:_mod-docs-content-type: ASSEMBLY
+[id="api_mirror_{context}"]
+= mirror
+:context: api_mirror
+
+[role="_abstract"]
+Reference mirror API endpoints for Red Hat Quay.
+
+include::modules/api-mirror.adoc[leveloffset=+1]
+
+include::modules/api-mirror-syncCancel.adoc[leveloffset=+2]
+
+include::modules/api-mirror-syncNow.adoc[leveloffset=+2]
+
+include::modules/api-mirror-getRepoMirrorConfig.adoc[leveloffset=+2]
+
+include::modules/api-mirror-changeRepoMirrorConfig.adoc[leveloffset=+2]
+
+include::modules/api-mirror-createRepoMirrorConfig.adoc[leveloffset=+2]
+
+include::modules/api-mirror-getRepositoryMirrorHealth.adoc[leveloffset=+2]
