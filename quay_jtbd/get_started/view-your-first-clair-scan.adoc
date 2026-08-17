@@ -7,3 +7,8 @@
 View your first Clair vulnerability report in the Red Hat Quay UI to confirm security scanning is working.
 
 include::modules/security-scanning-ui.adoc[leveloffset=+1]
+
+[role="_additional-resources"]
+.Additional resources
+
+* xref:quay_jtbd-install.adoc#clair-standalone-configure[Setting up Clair on standalone {productname} deployments]

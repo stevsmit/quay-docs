@@ -22,3 +22,19 @@ After `build_docs` runs, each category is available as:
 * `/quay_jtbd-<category>.html` (flat HTML for `welcome.adoc` xrefs)
 
 Legacy books remain at their existing paths for comparison.
+
+== Cross-references
+
+Link to another *job assembly* or category book, not to `modules/`. Place xref links in assemblies (for example, under `[role="_additional-resources"]`), not in modules.
+
+* Same category book: `xref:<anchor-id>_{context}[Label]` when both topics are in one built book
+* Cross-category (Surge preview): `xref:quay_jtbd-<category>.adoc#anchor-id[Label]` — matches flat HTML output (`quay_jtbd-install.html`, and so on)
+* Category landing (`welcome.adoc`): `xref:quay_jtbd-<category>.adoc[Label]`
+
+Do not use `xref:modules/...` in JTBD assemblies; that pattern is for legacy books only.
+
+=== Why Surge and AEM xrefs differ
+
+Surge builds each JTBD category as a single HTML file (`quay_jtbd-install.html`), not one file per job assembly. A Lightspeed-style path such as `xref:../install/install-clair-for-red-hat-quay.adoc#anchor` becomes `install-clair-for-red-hat-quay.html` in HTML, but that file is never generated—only `quay_jtbd-install.html` exists. Use the flat book xref form above for Surge previews.
+
+For AEM, confirm with your migration pipeline whether book-level xrefs (`quay_jtbd-install.adoc#anchor`) or assembly-relative paths are required before publish.

@@ -4,7 +4,7 @@
 
 :_mod-docs-content-type: CONCEPT
 [id="quay-ha-plan-capacity"]
-= High availability host capacity
+= {productname} high availability host capacity
 
 [role="_abstract"]
 To plan host capacity for a high availability {productname} deployment, you can start from per-role CPU, memory, and disk guidance and adjust for your workload.

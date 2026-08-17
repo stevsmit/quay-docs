@@ -1,9 +1,0 @@
-:_mod-docs-content-type: ASSEMBLY
-[id="get-started-after-deploying-quay-in-high-availability_{context}"]
-= Get started after deploying Quay in high availability
-:context: get_started_after_deploying_quay_in_high_availability
-
-[role="_abstract"]
-After a high availability deployment, create the first user on your standalone registry and confirm you can reach the service.
-
-include::modules/creating-first-user-standalone.adoc[leveloffset=+1]

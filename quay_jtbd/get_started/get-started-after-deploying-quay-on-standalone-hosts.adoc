@@ -1,10 +1,10 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="get-started-after-a-proof-of-concept-quay-deployment_{context}"]
-= Get started after a proof of concept Quay deployment
-:context: get_started_after_a_proof_of_concept_quay_deployment
+[id="get-started-after-deploying-quay-on-standalone-hosts_{context}"]
+= Get started after deploying {productname} on standalone hosts
+:context: get_started_after_deploying_quay_on_standalone_hosts
 
 [role="_abstract"]
-After a proof of concept deployment, create the first user on your standalone registry and confirm you can reach the service.
+After you install {productname} as a proof of concept or in high availability on standalone hosts, create the first user in the UI and confirm you can reach the service.
 
 include::modules/creating-first-user-standalone.adoc[leveloffset=+1]
 
@@ -13,4 +13,3 @@ include::modules/creating-first-user-standalone.adoc[leveloffset=+1]
 
 * link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html/use_red_hat_quay/index[Using {productname}]
 * link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html/manage_red_hat_quay/index[Managing {productname}]
- 
