@@ -4,14 +4,14 @@
 :context: manage_oauth_access_token_lifecycle
 
 [role="_abstract"]
-Create, reassign, revoke, and rotate OAuth 2 access tokens for long-lived API access.
+Create, reassign, revoke, and rotate OAuth 2 access tokens for long-lived API access. Procedural content for this job is in the Develop documentation.
 
-include::modules/oauth2-access-tokens.adoc[leveloffset=+1]
+[role="_additional-resources"]
+.Additional resources
 
-include::modules/creating-oauth-access-token.adoc[leveloffset=+2]
-
-include::modules/reassigning-oauth-access-token.adoc[leveloffset=+2]
-
-include::modules/deleting-oauth-access-token.adoc[leveloffset=+2]
-
-include::modules/migrating-legacy-oauth-access-token.adoc[leveloffset=+2]
+* xref:quay_jtbd-develop.adoc#oauth2-access-tokens[About OAuth 2 access tokens]
+* xref:quay_jtbd-develop.adoc#creating-oauth-access-token[Creating an OAuth 2 access token]
+* xref:quay_jtbd-develop.adoc#creating-oauth-application-api[Managing a user application by using the API]
+* xref:quay_jtbd-develop.adoc#reassigning-oauth-access-token[Reassigning an OAuth access token]
+* xref:quay_jtbd-develop.adoc#deleting-oauth-access-token[Revoking an OAuth 2 access token]
+* xref:quay_jtbd-develop.adoc#rotating-legacy-oauth-access-token[Rotating a legacy OAuth 2 access token]

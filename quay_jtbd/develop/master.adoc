@@ -6,14 +6,17 @@ include::_attributes/attributes.adoc[]
 [role="_abstract"]
 Authenticate to the API, automate Quay, and build images.
 
+// Job: Get started with the Red Hat Quay API
+include::get-started-with-the-red-hat-quay-api.adoc[leveloffset=+1]
+
 // Job: Manage OAuth access tokens for the Red Hat Quay API
 include::manage-oauth-access-tokens-for-the-red-hat-quay-api.adoc[leveloffset=+1]
 
 // Job: Manage robot account tokens for the Red Hat Quay API
 include::manage-robot-account-tokens-for-the-red-hat-quay-api.adoc[leveloffset=+1]
 
-// Job: Get started with the Red Hat Quay API
-include::get-started-with-the-red-hat-quay-api.adoc[leveloffset=+1]
+// Job: Manage OCI referrers OAuth access tokens for the Red Hat Quay API
+include::manage-oci-referrers-oauth-access-tokens-for-the-red-hat-quay-api.adoc[leveloffset=+1]
 
 // Job: Automate organization and quota operations through the Red Hat Quay API
 include::automate-organization-and-quota-operations-through-the-red-hat-quay-api.adoc[leveloffset=+1]
@@ -21,7 +24,7 @@ include::automate-organization-and-quota-operations-through-the-red-hat-quay-api
 // Job: Automate repository and robot operations through the Red Hat Quay API
 include::automate-repository-and-robot-operations-through-the-red-hat-quay-api.adoc[leveloffset=+1]
 
-// Job: Automate tags, teams, and builds through the Red Hat Quay API
+// Job: Automate tags and teams through the Red Hat Quay API
 include::automate-tags-teams-and-builds-through-the-red-hat-quay-api.adoc[leveloffset=+1]
 
 // Job: Build container images from Dockerfiles in Red Hat Quay

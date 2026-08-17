@@ -14,10 +14,10 @@ include::modules/ssh-public-key-access.adoc[leveloffset=+2]
 
 include::modules/webhook.adoc[leveloffset=+2]
 
-include::modules/understanding-tag-naming-build-triggers.adoc[leveloffset=+2]
+include::modules/understanding-tag-naming-build-triggers.adoc[leveloffset=+1]
 
-include::modules/skipping-source-control-triggered-build.adoc[leveloffset=+2]
+include::modules/skipping-source-control-triggered-build.adoc[leveloffset=+1]
 
-include::modules/manually-triggering-a-build-trigger.adoc[leveloffset=+2]
+include::modules/manually-triggering-a-build-trigger.adoc[leveloffset=+1]
 
-include::modules/proc_github-app.adoc[leveloffset=+2]
+include::modules/proc_github-app.adoc[leveloffset=+1]
