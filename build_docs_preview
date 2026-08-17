@@ -42,6 +42,7 @@ title = html.escape(title_match.group(1)) if title_match else path.parent.name
 head_extra = (
     '<link rel="stylesheet" href="/assets/css/surge-preview.css">\n'
     '<script src="/assets/js/jquery.min.js"></script>\n'
+    '<script src="/assets/js/toc-collapse.js" defer></script>\n'
 )
 text = text.replace("</head>", head_extra + "</head>", 1)
 

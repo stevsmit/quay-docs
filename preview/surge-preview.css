@@ -33,3 +33,52 @@ body.article {
 #toc a:hover {
   color: #ee0000;
 }
+
+/* Collapsible nested TOC (subsections hidden until expanded) */
+#toc.toc2 li.toc-collapsible {
+  position: relative;
+}
+
+#toc.toc2 li.toc-collapsible > .toc-chevron {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 0.65rem;
+  left: 0;
+  line-height: 1.4;
+  padding: 0.15rem 0.25rem 0.15rem 0;
+  position: absolute;
+  top: 0.1rem;
+  width: 1rem;
+}
+
+#toc.toc2 li.toc-collapsible > .toc-chevron::before {
+  content: '▸';
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+
+#toc.toc2 li.toc-collapsible.expanded > .toc-chevron::before {
+  content: '▾';
+}
+
+#toc.toc2 li.toc-collapsible > a {
+  display: block;
+  padding-left: 1rem;
+}
+
+#toc.toc2 li.toc-collapsible > ul {
+  display: none;
+  margin-left: 0.5rem;
+}
+
+#toc.toc2 li.toc-collapsible.expanded > ul {
+  display: block;
+}
+
+/* Deeper nesting: extra indent per level */
+#toc.toc2 ul.sectlevel3 li.toc-collapsible > a,
+#toc.toc2 ul.sectlevel4 li.toc-collapsible > a {
+  padding-left: 1.25rem;
+}
