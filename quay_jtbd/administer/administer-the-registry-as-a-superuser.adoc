@@ -6,20 +6,16 @@
 [role="_abstract"]
 Use superuser API endpoints to manage organizations, quotas, build information, service keys, and recovery actions across the deployment.
 
-include::modules/superuser-manage-api.adoc[leveloffset=+1]
+include::modules/managing-organization-superuser-api.adoc[leveloffset=+1]
 
-include::modules/managing-organization-superuser-api.adoc[leveloffset=+2]
+include::modules/listing-repos-superuser-api.adoc[leveloffset=+1]
 
-include::modules/listing-repos-superuser-api.adoc[leveloffset=+2]
+include::modules/quota-organization-management-api.adoc[leveloffset=+1]
 
-include::modules/quota-organization-management-api.adoc[leveloffset=+2]
+include::modules/managing-organization-quota-superuser-api.adoc[leveloffset=+1]
 
-include::modules/managing-organization-quota-superuser-api.adoc[leveloffset=+2]
+include::modules/managing-user-quota-superuser-api.adoc[leveloffset=+1]
 
-include::modules/managing-user-quota-superuser-api.adoc[leveloffset=+2]
+include::modules/retrieving-build-info-superuser-api.adoc[leveloffset=+1]
 
-include::modules/retrieving-build-info-superuser-api.adoc[leveloffset=+2]
-
-include::modules/managing-service-keys-api.adoc[leveloffset=+2]
-
-include::modules/api-superuser.adoc[leveloffset=+2]
+include::modules/managing-service-keys-api.adoc[leveloffset=+1]
