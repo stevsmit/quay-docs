@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+# Build Surge preview with redhat-docs-template styling (asciidoctor + left-nav theme).
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$REPO_ROOT"
+
+book_out() {
+  case "$1" in
+    api) echo api_quay ;;
+    *) echo "$1" ;;
+  esac
+}
+
+fix_asset_paths() {
+  local file="$1"
+  sed -i \
+    -e 's|href="../assets/|href="/assets/|g' \
+    -e 's|src="../assets/|src="/assets/|g' \
+    -e 's|href="assets/|href="/assets/|g' \
+    -e 's|src="assets/|src="/assets/|g' \
+    -e 's|href="../images/|href="/images/|g' \
+    -e 's|src="../images/|src="/images/|g' \
+    "$file"
+}
+
+inject_preview_chrome() {
+  python3 - "$1" <<'PY'
+import html
+import pathlib
+import re
+import sys
+
+path = pathlib.Path(sys.argv[1])
+text = path.read_text()
+if "surge-preview-banner" in text:
+    sys.exit(0)
+
+title_match = re.search(r"<h1>(.*?)</h1>", text)
+title = html.escape(title_match.group(1)) if title_match else path.parent.name
+
+head_extra = (
+    '<link rel="stylesheet" href="/assets/css/surge-preview.css">\n'
+    '<script src="/assets/js/jquery.min.js"></script>\n'
+    '<script src="/assets/js/toc-collapse.js" defer></script>\n'
+)
+text = text.replace("</head>", head_extra + "</head>", 1)
+
+body_match = re.search(r"<body([^>]*)>", text)
+if body_match:
+    insert = (
+        f'<body{body_match.group(1)}>\n'
+        '<div class="surge-preview-banner" role="status">Surge preview — not docs.redhat.com</div>\n'
+        f'<div class="paragraph navbar"><p><a href="/"><span class="image">'
+        f'<img src="/assets/img/logo.svg" alt="Home" width="30"></span> | {title}</a></p></div>'
+    )
+    text = text.replace(body_match.group(0), insert, 1)
+
+footer = pathlib.Path("preview/assets/docinfo-footer.html").read_text()
+if footer not in text:
+    text = text.replace("</body>", footer + "\n</body>", 1)
+
+path.write_text(text)
+PY
+}
+
+BOOK_ATTR=(
+  -a productname="Red Hat Quay"
+  -a toc=left
+  -a toclevels=4
+  -d book
+  -a linkcss
+  -a stylesheet=redhat.css
+  -a stylesdir=../assets/css
+  -a imagesdir=../images
+  -a icons=font
+)
+
+rm -rf dist
+mkdir -p dist/assets
+cp -a preview/assets/. dist/assets/
+cp preview/surge-preview.css dist/assets/css/
+
+echo "=== Building books with redhat-docs-template theme ==="
+for master in */master.adoc; do
+  dir=$(dirname "$master")
+  out=$(book_out "$dir")
+  echo "--- $dir ---"
+  mkdir -p "dist/${out}"
+  asciidoctor "${BOOK_ATTR[@]}" "$master" -D "dist/${out}" -o index.html
+  fix_asset_paths "dist/${out}/index.html"
+  inject_preview_chrome "dist/${out}/index.html"
+  cp "dist/${out}/index.html" "dist/${out}.html"
+done
+
+cp -a images dist/images
+
+# Welcome / index page
+cat > dist/welcome.html <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Hat Quay Documentation — Surge Preview</title>
+  <link rel="stylesheet" href="/assets/css/redhat.css">
+  <link rel="stylesheet" href="/assets/css/surge-preview.css">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+</head>
+<body class="article">
+<div class="surge-preview-banner" role="status">Surge preview — not docs.redhat.com</div>
+<div id="content">
+<div class="sect1">
+<h2>Red Hat Quay documentation</h2>
+<div class="paragraph"><p>Preview builds use the <a href="https://github.com/redhat-documentation/redhat-docs-template">redhat-docs-template</a> theme: fixed left navigation, styled admonitions, and copy-to-clipboard code blocks.</p></div>
+<div class="ulist"><ul>
+EOF
+
+for master in */master.adoc; do
+  dir=$(dirname "$master")
+  out=$(book_out "$dir")
+  title=$(grep -m1 '<h1>' "dist/${out}/index.html" 2>/dev/null \
+    | sed 's/.*<h1>//;s/<\/h1>.*//' || echo "$out")
+  printf '<li><p><a href="/%s/">%s</a> (<a href="/%s.html">single page</a>)</p></li>\n' \
+    "$out" "$title" "$out" >> dist/welcome.html
+done
+
+cat >> dist/welcome.html <<'EOF'
+</ul></div>
+</div>
+</div>
+<script src="/assets/js/jquery.min.js"></script>
+</body>
+</html>
+EOF
+
+cp dist/welcome.html dist/index.html
+
+echo "=== Preview build complete: dist/ ==="
