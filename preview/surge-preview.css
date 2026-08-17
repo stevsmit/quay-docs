@@ -1,24 +1,35 @@
-/* Surge preview banner and small layout tweaks on top of Pantheon default.css */
+/* Surge preview banner — works with redhat-docs-template left-nav layout */
 
 .surge-preview-banner {
   background: #0066cc;
   color: #fff;
-  font-family: "Red Hat Text", "Overpass", sans-serif;
-  font-size: 0.875rem;
-  line-height: 1.4;
-  padding: 0.5rem 1rem;
+  font-family: "Red Hat Text", Roboto, sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  padding: 0.4rem 1rem;
   text-align: center;
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 10000;
+  left: 0;
+  right: 0;
+  z-index: 10000001;
 }
 
-/* Slightly widen content area for modern displays */
-#chrometwo #main .book {
-  max-width: 72rem;
+/* Offset fixed TOC and content below the banner */
+body.book.toc2,
+body.article {
+  padding-top: 2rem;
 }
 
-/* Improve TOC readability in Pantheon chrome-two layout */
-#chrometwo .toc {
-  font-size: 0.9rem;
+@media only screen and (min-width: 768px) {
+  body.book.toc2 #toc.toc2 {
+    top: 2rem;
+    height: calc(100% - 2rem);
+  }
+}
+
+/* RH accent on links */
+#content a:hover,
+#toc a:hover {
+  color: #ee0000;
 }

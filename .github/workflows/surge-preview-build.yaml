@@ -12,7 +12,10 @@ jobs:
     - name: Checkout PR code
       uses: actions/checkout@v5
 
-    - name: Build docs (Pantheon/ccutil styling)
+    - name: Install asciidoctor
+      run: sudo gem install asciidoctor
+
+    - name: Build docs (redhat-docs-template theme)
       run: bash build_docs_preview
 
     - name: Save PR number
