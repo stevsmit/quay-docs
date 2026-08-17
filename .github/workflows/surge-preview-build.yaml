@@ -15,8 +15,8 @@ jobs:
     - name: Install asciidoctor
       run: sudo gem install asciidoctor
 
-    - name: Build docs
-      run: bash build_docs
+    - name: Build docs (redhat-docs-template theme)
+      run: bash build_docs_preview
 
     - name: Save PR number
       if: success()
