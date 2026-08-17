@@ -1,6 +1,6 @@
 :_mod-docs-content-type: REFERENCE
 [id="oauth2-access-tokens"]
-= OAuth 2 access tokens
+= About OAuth 2 access tokens
 
 [role="_abstract"]
 OAuth 2 access tokens authenticate users to the {productname} API for applications that require user identity verification. You create a token for an organization OAuth application and select scopes that authorize API actions.

@@ -12,7 +12,7 @@ Robot federation configuration entries now support an optional `audiences` array
 
 A future release requires the `audiences` field for federated robot authentication.
 
-Configure federation entries by using the {productname} v2 UI or `POST /api/v1/organization/{orgname}/robots/{robot_shortname}/federation`. In {productname} 3.18, create and update requests persist `issuer` and `subject` only; audience validation applies when `audiences` is present in the stored federation configuration. For field descriptions, examples, and current API limitations, see link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#createorgrobotfederation[createOrgRobotFederation] and link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/use_red_hat_quay/index#configuring-federation-audiences[Configuring federation audiences].
+Configure federation entries by using the UI or `POST /api/v1/organization/{orgname}/robots/{robot_shortname}/federation`. In {productname} 3.18, create and update requests persist `issuer` and `subject` only; audience validation applies when `audiences` is present in the stored federation configuration. For field descriptions, examples, and current API limitations, see link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#createorgrobotfederation[createOrgRobotFederation] and link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/use_red_hat_quay/index#configuring-federation-audiences[Configuring federation audiences].
 
 [id="organization-application-token-api-318"]
 == Organization application OAuth token life cycle

@@ -20,8 +20,10 @@ include::modules/setting-tag-expiration-api.adoc[leveloffset=+2]
 
 include::modules/deleting-a-tag.adoc[leveloffset=+1]
 
-include::modules/deleting-a-tag-api.adoc[leveloffset=+2]
+include::modules/deleting-a-tag-api.adoc[leveloffset=+1]
+
 
 include::modules/reverting-tag-changes.adoc[leveloffset=+1]
 
-include::modules/reverting-tag-changes-api.adoc[leveloffset=+2]
+include::modules/reverting-tag-changes-api.adoc[leveloffset=+1]
+

@@ -1,5 +1,5 @@
 :productname: Red Hat Quay
-:productname-ocp: {productname-ocp} Container Platform
+:productname-ocp: Red Hat Quay on OpenShift Container Platform
 :quayio: Quay.io
 :productshortname: Quay
 :imagesdir: ../images
@@ -14,6 +14,7 @@
 
 ifeval::["{productname}" == "Red Hat Quay"]
 :upstream:
+:productname-ocp: Red Hat Quay on OpenShift Container Platform
 :productname: Red Hat Quay
 :productversion: 3
 :producty: 3.18

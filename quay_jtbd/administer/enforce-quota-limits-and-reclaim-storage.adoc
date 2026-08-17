@@ -10,7 +10,7 @@ include::modules/setting-reject-warning-limits.adoc[leveloffset=+1]
 
 include::modules/viewing-reject-warning-limits.adoc[leveloffset=+2]
 
-include::modules/quota-management-query-39.adoc[leveloffset=+2]
+include::modules/quota-management-query-39.adoc[leveloffset=+1]
 
 include::modules/deleting-tag-permanently.adoc[leveloffset=+1]
 

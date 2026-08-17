@@ -12,7 +12,8 @@ include::modules/viewing-usage-logs-v2-ui.adoc[leveloffset=+2]
 
 include::modules/viewing-usage-logs-api.adoc[leveloffset=+1]
 
-include::modules/viewing-aggregated-logs-api.adoc[leveloffset=+2]
+include::modules/viewing-aggregated-logs-api.adoc[leveloffset=+1]
+
 
 include::modules/viewing-detailed-logs-api.adoc[leveloffset=+2]
 

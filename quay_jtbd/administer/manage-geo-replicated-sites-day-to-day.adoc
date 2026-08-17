@@ -1,7 +1,7 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="manage-geo-replicated-sites-day-to-day_{context}"]
-= Manage geo-replicated sites day-to-day
-:context: manage_geo_replicated_sites_day_to_day
+[id="manage-geo-replicated-sites_{context}"]
+= Manage geo-replicated
+:context: manage_geo_replicated_sites
 
 [role="_abstract"]
 Manage geo-replicated sites by enabling storage preferences, running with replication settings, and adding or removing sites on standalone or OpenShift deployments.
