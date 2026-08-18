@@ -4,8 +4,14 @@
 :context: configure_aws_sts_for_object_storage
 
 [role="_abstract"]
-Set up AWS Security Token Service (STS) for Amazon S3 object storage on standalone, OpenShift, or ROSA deployments.
+Configure AWS Security Token Service (STS) for Amazon S3 object storage on standalone Red Hat Quay deployments.
 
-include::modules/configuring-aws-sts-quay.adoc[leveloffset=+1]
+include::modules/configuring-quay-standalone-aws-sts.adoc[leveloffset=+1]
 
-include::modules/configuring-quay-standalone-aws-sts.adoc[leveloffset=+2]
+[role="_additional-resources"]
+.Additional resources
+
+* xref:quay_jtbd-integrate.adoc#configuring-aws-sts-quay[Configuring AWS STS for {productname}]
+* xref:quay_jtbd-integrate.adoc#configuring-quay-ocp-aws-sts[Configuring {productname-ocp} to use AWS STS]
+* xref:quay_jtbd-integrate.adoc#configuring-quay-rosa-aws-sts[Configuring {productname} on {product-rosa} to use AWS STS]
+* xref:quay_jtbd-integrate.adoc#operator-cloudfront[AWS S3 CloudFront]
