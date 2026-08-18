@@ -1,6 +1,6 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="configure-ssl-tls-for-quay-on-openshift_{context}"]
-= Configure SSL/TLS for Quay on OpenShift
+= Configure SSL/TLS for {productname-ocp}
 :context: configure_ssl_tls_for_quay_on_openshift
 
 [role="_abstract"]
