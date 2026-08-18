@@ -22,4 +22,7 @@ include::modules/creating-quay-integration-custom-resource-web-console.adoc[leve
 
 include::modules/quay-bridge-operator-test.adoc[leveloffset=+2]
 
-include::modules/qbo-operator-upgrade.adoc[leveloffset=+2]
+[role="_additional-resources"]
+.Additional resources
+
+* xref:quay_jtbd-upgrade.adoc#qbo-operator-upgrade[Changing the {qbo} update channel]

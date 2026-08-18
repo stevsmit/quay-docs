@@ -83,6 +83,3 @@ include::look-up-clair-configuration-fields-part-1.adoc[leveloffset=+1]
 
 // Job: Clair notifier, authorization, trace, metrics, and scanner configuration fields
 include::look-up-clair-configuration-fields-part-2.adoc[leveloffset=+1]
-
-// Job: Tune Operator Horizontal Pod Autoscaling
-include::tune-operator-autoscaling-and-component-resources.adoc[leveloffset=+1]

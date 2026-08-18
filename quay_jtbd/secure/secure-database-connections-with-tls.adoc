@@ -16,6 +16,9 @@ include::modules/operator-managed-postgres-tls-custom-certs.adoc[leveloffset=+2]
 
 include::modules/operator-managed-postgres-tls-disable.adoc[leveloffset=+2]
 
-include::modules/operator-managed-postgres-tls-troubleshooting.adoc[leveloffset=+2]
-
 include::modules/configuring-cert-based-auth-quay-cloudsql.adoc[leveloffset=+2]
+
+[role="_additional-resources"]
+.Additional resources
+
+* xref:quay_jtbd-troubleshoot.adoc#operator-managed-postgres-tls-troubleshooting[Troubleshooting Operator-managed PostgreSQL TLS configurations]
