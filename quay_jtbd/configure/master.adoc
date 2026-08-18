@@ -15,7 +15,7 @@ include::understand-red-hat-quay-configuration-standalone-deployment.adoc[levelo
 // Job: Understand Red Hat Quay configuration: OpenShift Container Platform
 include::understand-red-hat-quay-configuration-openshift-container-platform.adoc[leveloffset=+1]
 
-// Job: Verify and retrieve Red Hat Quay configuration
+// Job: Retrieve Red Hat Quay configuration by using the API
 include::verify-and-retrieve-red-hat-quay-configuration.adoc[leveloffset=+1]
 
 // Job: Look up required configuration fields
