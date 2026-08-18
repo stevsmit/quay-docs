@@ -1,0 +1,9 @@
+:_mod-docs-content-type: REFERENCE
+[id="rn-3-17-4"]
+= RHSA-2026:54395 - {productname} 3.17.4 release
+
+Issued 2026-08-12
+
+[role="_abstract"]
+{productname} release 3.17.4 is now available with Clair {clairproductminv}. The bug fixes that are included in the update are listed in the link:https://access.redhat.com/errata/RHSA-2026:54395[RHSA-2026:54395] advisory.
+
