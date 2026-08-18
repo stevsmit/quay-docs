@@ -4,13 +4,13 @@ include::_attributes/attributes.adoc[]
 = Observe
 
 [role="_abstract"]
-Audit activity and monitor registry health and scanning.
-
-// Job: View and export registry usage logs
-include::view-and-export-registry-usage-logs.adoc[leveloffset=+1]
+Audit activity and monitor registry health and metrics.
 
 // Job: Understand audit and action logs
 include::understand-audit-and-action-logs.adoc[leveloffset=+1]
+
+// Job: View and export registry usage logs
+include::view-and-export-registry-usage-logs.adoc[leveloffset=+1]
 
 // Job: Expose Prometheus metrics for Red Hat Quay
 include::expose-prometheus-metrics-for-red-hat-quay.adoc[leveloffset=+1]
@@ -24,5 +24,5 @@ include::monitor-the-registry-from-the-openshift-console.adoc[leveloffset=+1]
 // Job: Verify deployment health status
 include::verify-deployment-health-status.adoc[leveloffset=+1]
 
-// Job: Observe Clair scanning and scanner metrics
+// Job: Monitor garbage collection metrics
 include::observe-clair-scanning-and-scanner-metrics.adoc[leveloffset=+1]

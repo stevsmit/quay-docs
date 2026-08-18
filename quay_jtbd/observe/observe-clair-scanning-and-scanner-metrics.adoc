@@ -1,18 +1,9 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="observe-clair-scanning-and-scanner-metrics_{context}"]
-= Observe Clair scanning and scanner metrics
-:context: observe_clair_scanning_and_scanner_metrics
+[id="monitor_garbage_collection_metrics_{context}"]
+= Monitor garbage collection metrics
+:context: monitor_garbage_collection_metrics
 
 [role="_abstract"]
-View Clair scan results and review Clair trace and garbage collection metrics to confirm scanning is working.
+Review Prometheus garbage collection metrics to confirm registry cleanup workers are running as expected.
 
-include::modules/security-scanning-ui.adoc[leveloffset=+1]
-
-include::modules/security-scanning-api.adoc[leveloffset=+1]
-
-
-include::modules/config-fields-clair-metrics.adoc[leveloffset=+1]
-
-include::modules/config-fields-clair-trace.adoc[leveloffset=+2]
-
-include::modules/garbage-collection-metrics.adoc[leveloffset=+2]
+include::modules/garbage-collection-metrics.adoc[leveloffset=+1]
