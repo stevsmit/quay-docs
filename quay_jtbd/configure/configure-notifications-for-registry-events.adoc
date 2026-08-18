@@ -4,18 +4,18 @@
 :context: configure_notifications_for_registry_events
 
 [role="_abstract"]
-Configure Red Hat Quay settings for notifications for registry events.
+Configure repository event notifications by using the web UI or API, set up quota and image expiration alerts, route email through organization contact addresses, and review repository event payload formats.
 
 include::modules/proc_use-quay-notifications.adoc[leveloffset=+1]
 
-include::modules/creating-notifications.adoc[leveloffset=+1]
+include::modules/creating-notifications.adoc[leveloffset=+2]
 
-include::modules/creating-image-expiration-notification.adoc[leveloffset=+1]
+include::modules/creating-image-expiration-notification.adoc[leveloffset=+3]
 
-include::modules/creating-notifications-api.adoc[leveloffset=+1]
+include::modules/creating-notifications-api.adoc[leveloffset=+2]
 
-include::modules/creating-quota-notifications-api.adoc[leveloffset=+1]
+include::modules/creating-quota-notifications-api.adoc[leveloffset=+2]
 
-include::modules/configuring-email-routing-contact-email.adoc[leveloffset=+1]
+include::modules/configuring-email-routing-contact-email.adoc[leveloffset=+2]
 
-include::modules/repository-events.adoc[leveloffset=+1]
+include::modules/repository-events.adoc[leveloffset=+2]

@@ -1,10 +1,10 @@
 :_mod-docs-content-type: ASSEMBLY
-[id="look_up_build_configuration_fields_{context}"]
-= Build configuration fields
-:context: look_up_build_configuration_fields
+[id="build_configuration_fields_{context}"]
+= Build automation configuration fields
+:context: build_configuration_fields
 
 [role="_abstract"]
-Look up build automation, Dockerfile trigger, build manager, and build log configuration fields.
+Optional configuration fields for Dockerfile build triggers, the build manager, and build logs.
 
 include::modules/builds-automation-configuration-overview.adoc[leveloffset=+1]
 
@@ -13,9 +13,3 @@ include::modules/config-fields-dockerfile-build.adoc[leveloffset=+2]
 include::modules/config-fields-build-manager.adoc[leveloffset=+2]
 
 include::modules/config-fields-build-logs.adoc[leveloffset=+2]
-
-include::modules/builders-virtual-environment.adoc[leveloffset=+1]
-
-include::modules/red-hat-quay-s3-bucket-modify.adoc[leveloffset=+1]
-
-include::modules/red-hat-quay-gcp-bucket-modify.adoc[leveloffset=+1]

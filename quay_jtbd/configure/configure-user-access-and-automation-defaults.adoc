@@ -4,8 +4,8 @@
 :context: configure_user_access_and_automation_defaults
 
 [role="_abstract"]
-Configure Red Hat Quay settings for user access and automation defaults.
+Configure automation defaults and initial user access settings, including superuser assignment, first-user bootstrap, user creation policy, and API browser restrictions.
 
 include::modules/config-preconfigure-automation-intro.adoc[leveloffset=+1]
 
-include::modules/config-preconfigure-automation.adoc[leveloffset=+1]
+include::modules/config-preconfigure-automation.adoc[leveloffset=+2]

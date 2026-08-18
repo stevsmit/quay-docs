@@ -4,18 +4,16 @@
 :context: configure_clair_database_and_custom_clair_configuration
 
 [role="_abstract"]
-Configure Red Hat Quay settings for clair database and custom clair configuration.
+Configure unmanaged or Operator-managed Clair databases and supply custom `clair-config.yaml` settings for external databases, SSL/TLS certificates, and managed Clair deployments.
 
 include::modules/clair-unmanaged.adoc[leveloffset=+1]
 
-include::modules/unmanaging-clair-database.adoc[leveloffset=+1]
+include::modules/unmanaging-clair-database.adoc[leveloffset=+2]
 
-include::modules/configuring-custom-clair-database.adoc[leveloffset=+1]
+include::modules/configuring-custom-clair-database.adoc[leveloffset=+2]
 
 include::modules/custom-clair-configuration-managed-database.adoc[leveloffset=+1]
 
-include::modules/managed-clair-database.adoc[leveloffset=+1]
+include::modules/managed-clair-database.adoc[leveloffset=+2]
 
-include::modules/configuring-custom-clair-database-managed.adoc[leveloffset=+1]
-
-include::modules/clair-vulnerability-scanner-overview.adoc[leveloffset=+1]
+include::modules/configuring-custom-clair-database-managed.adoc[leveloffset=+2]
