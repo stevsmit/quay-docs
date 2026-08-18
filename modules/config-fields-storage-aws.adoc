@@ -1,6 +1,6 @@
 :_mod-docs-content-type: CONCEPT
 [id="supported-aws-storage-backends"]
-= Supported AWS storage backends
+= Amazon Web Services storage backends
 
 [role="_abstract"]
 You can configure {productname} to use AWS S3, STS, or CloudFront storage backends in `DISTRIBUTED_STORAGE_CONFIG`. Use these examples to set credentials, regions, and distribution settings for each backend.

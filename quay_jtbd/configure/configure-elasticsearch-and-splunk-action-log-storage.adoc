@@ -4,18 +4,24 @@
 :context: configure_elasticsearch_and_splunk_action_log_storage
 
 [role="_abstract"]
-Configure Red Hat Quay settings for elasticsearch and splunk action log storage.
+Configure action log storage in Elasticsearch or Splunk, including Splunk installation prerequisites, bearer token generation, {productname} configuration, and log verification.
 
 include::modules/proc_manage-log-storage.adoc[leveloffset=+1]
 
-include::modules/proc_manage-log-storage-elasticsearch.adoc[leveloffset=+1]
+include::modules/proc_manage-log-storage-elasticsearch.adoc[leveloffset=+2]
 
-include::modules/proc_manage-log-storage-splunk.adoc[leveloffset=+1]
+include::modules/proc_manage-log-storage-splunk.adoc[leveloffset=+2]
 
-include::modules/proc_installing-creating-username-splunk.adoc[leveloffset=+1]
+include::modules/proc_installing-creating-username-splunk.adoc[leveloffset=+3]
 
-include::modules/proc_generating-splunk-token.adoc[leveloffset=+1]
+include::modules/proc_generating-splunk-token.adoc[leveloffset=+3]
 
-include::modules/proc_splunk-config.adoc[leveloffset=+1]
+include::modules/proc_generating-splunk-token-ui.adoc[leveloffset=+4]
 
-include::modules/proc_splunk-action-log.adoc[leveloffset=+1]
+include::modules/proc_generating-splunk-token-cli.adoc[leveloffset=+4]
+
+include::modules/proc_splunk-hec-obtaining-bearer-token.adoc[leveloffset=+4]
+
+include::modules/proc_splunk-config.adoc[leveloffset=+3]
+
+include::modules/proc_splunk-action-log.adoc[leveloffset=+3]

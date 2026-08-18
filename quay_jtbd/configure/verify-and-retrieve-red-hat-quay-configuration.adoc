@@ -1,15 +1,9 @@
 :_mod-docs-content-type: ASSEMBLY
 [id="verify_and_retrieve_red_hat_quay_configuration_{context}"]
-= Verify and retrieve Red Hat Quay configuration
+= Retrieve Red Hat Quay configuration by using the API
 :context: verify_and_retrieve_red_hat_quay_configuration
 
 [role="_abstract"]
-Verify your configuration file, retrieve settings by using the API, and obtain configuration information for standalone or OpenShift deployments.
-
-include::modules/config-file-verification.adoc[leveloffset=+1]
+Retrieve active Red Hat Quay configuration settings by using the superuser API.
 
 include::modules/retrieving-config-api.adoc[leveloffset=+1]
-
-include::modules/obtaining-configuration-information-quay-standalone.adoc[leveloffset=+1]
-
-include::modules/obtaining-configuration-information-quay.adoc[leveloffset=+1]
