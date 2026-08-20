@@ -1,10 +1,7 @@
-:_mod-docs-content-type: ASSEMBLY
+:_mod-docs-content-type: MAP
 include::_attributes/attributes.adoc[]
-[id="quay-jtbd-configure"]
 = Configure
 
-[role="_abstract"]
-Configure Quay, Clair, storage, networking, and Operator components, and look up configuration parameters.
 
 // Job: Understand Red Hat Quay configuration: Overview
 include::understand-red-hat-quay-configuration-overview.adoc[leveloffset=+1]

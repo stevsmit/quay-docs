@@ -1,10 +1,7 @@
-:_mod-docs-content-type: ASSEMBLY
+:_mod-docs-content-type: MAP
 include::_attributes/attributes.adoc[]
-[id="quay-jtbd-integrate"]
 = Integrate
 
-[role="_abstract"]
-Connect Quay to OpenShift, mirrors, proxy caches, and cloud storage.
 
 // Job: Connect OpenShift to Quay with the Quay Bridge Operator
 include::connect-openshift-to-quay-with-the-quay-bridge-operator.adoc[leveloffset=+1]

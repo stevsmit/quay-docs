@@ -1,10 +1,7 @@
-:_mod-docs-content-type: ASSEMBLY
+:_mod-docs-content-type: MAP
 include::_attributes/attributes.adoc[]
-[id="quay-jtbd-develop"]
 = Develop
 
-[role="_abstract"]
-Authenticate to the API, automate Quay, and build images.
 
 // Job: Get started with the Red Hat Quay API
 include::get-started-with-the-red-hat-quay-api.adoc[leveloffset=+1]
