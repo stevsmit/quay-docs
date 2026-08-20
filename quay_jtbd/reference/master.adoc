@@ -1,10 +1,7 @@
-:_mod-docs-content-type: ASSEMBLY
+:_mod-docs-content-type: MAP
 include::_attributes/attributes.adoc[]
-[id="quay-jtbd-reference"]
 = Reference
 
-[role="_abstract"]
-Look up Red Hat Quay API endpoints.
 
 // Job: Authorization
 include::api-authorization.adoc[leveloffset=+1]

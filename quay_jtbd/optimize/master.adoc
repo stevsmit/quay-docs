@@ -1,10 +1,7 @@
-:_mod-docs-content-type: ASSEMBLY
+:_mod-docs-content-type: MAP
 include::_attributes/attributes.adoc[]
-[id="quay-jtbd-optimize"]
 = Optimize
 
-[role="_abstract"]
-Tune resources, storage, and runtime performance.
 
 // Job: Tune Operator component resources and autoscaling
 include::tune-operator-component-resources-and-autoscaling.adoc[leveloffset=+1]

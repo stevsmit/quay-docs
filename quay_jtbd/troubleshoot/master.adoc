@@ -1,10 +1,7 @@
-:_mod-docs-content-type: ASSEMBLY
+:_mod-docs-content-type: MAP
 include::_attributes/attributes.adoc[]
-[id="quay-jtbd-troubleshoot"]
 = Troubleshoot
 
-[role="_abstract"]
-Diagnose and resolve Red Hat Quay issues.
 
 // Job: Get help from Red Hat Support
 include::get-help-from-red-hat-support.adoc[leveloffset=+1]
