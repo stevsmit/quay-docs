@@ -1,4 +1,5 @@
 :_mod-docs-content-type: ASSEMBLY
+:chunk-to-content:
 [id="manage-geo-replicated-sites_{context}"]
 = Manage geo-replicated
 :context: manage_geo_replicated_sites
@@ -6,14 +7,14 @@
 [role="_abstract"]
 Manage geo-replicated sites by enabling storage preferences, running with replication settings, and adding or removing sites on standalone or OpenShift deployments.
 
-include::modules/georepl-intro.adoc[leveloffset=+1]
+include::modules/georepl-intro.adoc[leveloffset=+1,toc="no"]
 
-include::modules/config-envvar-georepl.adoc[leveloffset=+2]
+include::modules/config-envvar-georepl.adoc[leveloffset=+2,toc="no"]
 
-include::modules/config-ui-storage-georepl.adoc[leveloffset=+2]
+include::modules/config-ui-storage-georepl.adoc[leveloffset=+2,toc="no"]
 
-include::modules/georepl-deploy-standalone.adoc[leveloffset=+2]
+include::modules/georepl-deploy-standalone.adoc[leveloffset=+2,toc="no"]
 
-include::modules/standalone-georepl-site-removal.adoc[leveloffset=+2]
+include::modules/standalone-georepl-site-removal.adoc[leveloffset=+2,toc="no"]
 
-include::modules/operator-georepl-site-removal.adoc[leveloffset=+2]
+include::modules/operator-georepl-site-removal.adoc[leveloffset=+2,toc="no"]

@@ -1,4 +1,5 @@
 :_mod-docs-content-type: ASSEMBLY
+:chunk-to-content:
 [id="manage-oauth-access-token-lifecycle_{context}"]
 = Manage OAuth 2 access token lifecycle
 :context: manage_oauth_access_token_lifecycle

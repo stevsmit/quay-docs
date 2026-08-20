@@ -1,4 +1,5 @@
 :_mod-docs-content-type: ASSEMBLY
+:chunk-to-content:
 [id="troubleshoot-clair-scanning-issues_{context}"]
 = Troubleshoot Clair scanning issues
 :context: troubleshoot_clair_scanning_issues
@@ -6,4 +7,4 @@
 [role="_abstract"]
 Troubleshoot Clair scanning issues to restore vulnerability reporting in your registry.
 
-include::modules/clair-troubleshooting-issues.adoc[leveloffset=+1]
+include::modules/clair-troubleshooting-issues.adoc[leveloffset=+1,toc="no"]
