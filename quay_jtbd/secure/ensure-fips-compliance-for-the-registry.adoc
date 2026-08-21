@@ -1,4 +1,5 @@
 :_mod-docs-content-type: ASSEMBLY
+:chunk-to-content:
 [id="ensure-fips-compliance-for-the-registry_{context}"]
 = Ensure FIPS compliance for the registry
 :context: ensure_fips_compliance_for_the_registry
@@ -6,4 +7,4 @@
 [role="_abstract"]
 Enable FIPS compliance for Red Hat Quay and Clair to meet cryptographic module requirements.
 
-include::modules/enabling-fips-compliance.adoc[leveloffset=+1]
+include::modules/enabling-fips-compliance.adoc[leveloffset=+1,toc="no"]

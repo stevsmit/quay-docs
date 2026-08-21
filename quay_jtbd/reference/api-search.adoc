@@ -1,4 +1,5 @@
 :_mod-docs-content-type: ASSEMBLY
+:chunk-to-content:
 [id="api_search_{context}"]
 = search
 :context: api_search
@@ -6,10 +7,10 @@
 [role="_abstract"]
 Reference search API endpoints for Red Hat Quay.
 
-include::modules/api-search.adoc[leveloffset=+1]
+include::modules/api-search.adoc[leveloffset=+1,toc="no"]
 
-include::modules/api-search-conductRepoSearch.adoc[leveloffset=+2]
+include::modules/api-search-conductRepoSearch.adoc[leveloffset=+2,toc="no"]
 
-include::modules/api-search-conductSearch.adoc[leveloffset=+2]
+include::modules/api-search-conductSearch.adoc[leveloffset=+2,toc="no"]
 
-include::modules/api-search-getMatchingEntities.adoc[leveloffset=+2]
+include::modules/api-search-getMatchingEntities.adoc[leveloffset=+2,toc="no"]

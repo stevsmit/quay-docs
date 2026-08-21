@@ -1,4 +1,5 @@
 :_mod-docs-content-type: ASSEMBLY
+:chunk-to-content:
 [id="troubleshoot-operator-managed-postgresql-tls_{context}"]
 = Troubleshoot Operator-managed PostgreSQL TLS
 :context: troubleshoot_operator_managed_postgresql_tls
@@ -6,4 +7,4 @@
 [role="_abstract"]
 Troubleshoot Operator-managed PostgreSQL TLS configurations to restore secure database connectivity.
 
-include::modules/operator-managed-postgres-tls-troubleshooting.adoc[leveloffset=+1]
+include::modules/operator-managed-postgres-tls-troubleshooting.adoc[leveloffset=+1,toc="no"]

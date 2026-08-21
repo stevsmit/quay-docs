@@ -1,4 +1,5 @@
 :_mod-docs-content-type: ASSEMBLY
+:chunk-to-content:
 [id="troubleshoot-geo-replication-and-mirroring_{context}"]
 = Troubleshoot geo-replication and mirroring
 :context: troubleshoot_geo_replication_and_mirroring
@@ -6,13 +7,13 @@
 [role="_abstract"]
 Troubleshoot geo-replication and repository mirroring, including backend bucket checks and authentication.
 
-include::modules/geo-repl-troubleshooting-issues.adoc[leveloffset=+1]
+include::modules/geo-repl-troubleshooting-issues.adoc[leveloffset=+1,toc="no"]
 
-include::modules/check-data-replication.adoc[leveloffset=+1]
+include::modules/check-data-replication.adoc[leveloffset=+1,toc="no"]
 
-include::modules/check-backend-storage-running.adoc[leveloffset=+1]
+include::modules/check-backend-storage-running.adoc[leveloffset=+1,toc="no"]
 
-include::modules/repo-mirroring-troubleshooting-issues.adoc[leveloffset=+1]
+include::modules/repo-mirroring-troubleshooting-issues.adoc[leveloffset=+1,toc="no"]
 
 [role="_additional-resources"]
 .Additional resources

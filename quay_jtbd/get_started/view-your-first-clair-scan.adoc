@@ -1,4 +1,5 @@
 :_mod-docs-content-type: ASSEMBLY
+:chunk-to-content:
 [id="view-your-first-clair-scan_{context}"]
 = View your first Clair scan
 :context: view_your_first_clair_scan
@@ -6,4 +7,4 @@
 [role="_abstract"]
 View your first Clair vulnerability report in the Red Hat Quay UI to confirm security scanning is working.
 
-include::modules/security-scanning-ui.adoc[leveloffset=+1]
+include::modules/security-scanning-ui.adoc[leveloffset=+1,toc="no"]
