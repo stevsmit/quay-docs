@@ -7,7 +7,7 @@ To add a new tag or restore an older tag on an image in {productname}, you can u
 
 .Prerequisites
 
-* You have link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#creating-oauth-access-token[Created an OAuth access token].
+* You have xref:quay_jtbd-develop.adoc#creating-oauth-access-token[Created an OAuth access token].
 
 .Procedure
 

@@ -10,4 +10,4 @@ image:swagger-mirroring.png[Mirroring API]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_api_reference/index[{productname} API Guide]
+* xref:quay_jtbd-reference.adoc[{productname} API Guide]

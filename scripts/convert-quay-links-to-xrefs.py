@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Convert docs.redhat.com red_hat_quay links in modules/ to JTBD xrefs."""
+"""Convert docs.redhat.com and access.redhat.com red_hat_quay links in modules/ to JTBD xrefs."""
 
 from __future__ import annotations
 
@@ -30,7 +30,14 @@ LEGACY_BOOK_MAP = {
     "managing_access_and_permissions": "secure",
     "red_hat_quay_architecture": "discover",
     "troubleshooting_red_hat_quay": "troubleshoot",
+    "deploy_red_hat_quay_-_high_availability": "plan",
 }
+
+# Legacy anchors that should resolve to the book landing page (no fragment).
+BOOK_LANDING_ANCHORS = frozenset({"doc-wrapper"})
+
+# Bare product doc hub URLs (no legacy book slug).
+PRODUCT_DOC_CATEGORY = "discover"
 
 # Legacy anchor ID -> JTBD module anchor ID
 ANCHOR_REMAP = {
@@ -47,6 +54,13 @@ ANCHOR_REMAP = {
     ),
     "operator-ipv6-dual-stack": "proc_manage-ipv6-dual-stack",
     "configuring-oidc-authentication": "configuring-entra-oidc",
+    "preparing_for_red_hat_quay_high_availability": "preparing-for-quay-ha",
+    "set_up_ceph": "set-up-ceph",
+    "red_hat_quay_garbage_collection": "garbage-collection",
+    "tag-expiration": "setting-tag-expiration-using-ui",
+    "using-ssl-to-protect-quay": "ssl-tls-quay-overview",
+    "clair-v4": "clair-vulnerability-scanner",
+    "clair-vulnerability-scanner-hosts": "clair-updaters",
 }
 
 # Prefer this JTBD category when anchor/module appears in multiple books
@@ -76,9 +90,23 @@ ANCHOR_CATEGORY = {
     "clair-vulnerability-scanner": "configure",
     "preserving-tls-settings-operator-upgrade_upgrade_red_hat_quay_on_openshift_container_platform": "upgrade",
     "optional-enabling-read-only-mode-backup-restore-standalone": "administer",
+    "creating-oauth-access-token": "develop",
+    "garbage-collection": "administer",
+    "setting-tag-expiration-using-ui": "administer",
+    "ssl-tls-quay-overview": "secure",
+    "clair-vulnerability-scanner": "configure",
+    "clair-updaters": "configure",
+    "clair-updater-urls": "configure",
+    "preparing-for-quay-ha": "plan",
+    "set-up-ceph": "plan",
+    "operator-monitor-deploy-cli": "install",
+    "operator-custom-ssl-certs-config-bundle": "secure",
+    "enabling-repository-mirroring-quay": "integrate",
 }
 
-LINK_PAT = re.compile(r"link:(https://docs\.redhat\.com[^[]+)\[([^\]]*)\]")
+LINK_PAT = re.compile(
+    r"link:(https://(?:docs|access)\.redhat\.com[^[]+)\[([^\]]*)\]"
+)
 
 
 def collect_anchors() -> set[str]:
@@ -140,6 +168,8 @@ def anchor_to_module() -> dict[str, str]:
 
 
 def parse_url(url: str) -> tuple[str | None, str | None]:
+    if re.search(r"/documentation/en-us/red_hat_quay/?(?:$|[?#])", url) and "/html" not in url:
+        return None, None
     book_match = re.search(r"/html(?:-single)?/([^/#]+)", url)
     book = book_match.group(1) if book_match else None
     anchor = None
@@ -194,7 +224,13 @@ def resolve_category(
                     if pref in cats:
                         return pref
     if book and book in LEGACY_BOOK_MAP:
-        return LEGACY_BOOK_MAP[book]
+        mapped = LEGACY_BOOK_MAP[book]
+        if mapped:
+            return mapped
+        if book == "manage_red_hat_quay":
+            return "administer"
+    if book is None and anchor is None:
+        return PRODUCT_DOC_CATEGORY
     return None
 
 
@@ -221,6 +257,8 @@ def convert_file(
             return match.group(0)
         book, anchor = parse_url(url)
         mapped_anchor = ANCHOR_REMAP.get(anchor, anchor) if anchor else None
+        if mapped_anchor in BOOK_LANDING_ANCHORS:
+            mapped_anchor = None
         cat = resolve_category(book, anchor, anchor_to_mod, module_cats)
         if not cat:
             report_skip.append(f"  {path.name}: no category for {url}")

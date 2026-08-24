@@ -13,5 +13,5 @@ The following guides might be useful after deploying a proof of concept version 
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/use_red_hat_quay/index[Using {productname}]
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/manage_red_hat_quay/index[Managing {productname}]
+* xref:quay_jtbd-administer.adoc[Using {productname}]
+* xref:quay_jtbd-administer.adoc[Managing {productname}]
