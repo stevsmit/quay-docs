@@ -61,14 +61,14 @@ include::modules/clair-openshift.adoc[leveloffset=+1]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/clair/index#clair-ephemeral-storage-overrides[Configuring ephemeral storage for managed Clair]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/clair/index#clair-ephemeral-storage-overrides[Configuring ephemeral storage for managed Clair]
 
 include::modules/clair-ephemeral-storage-overrides.adoc[leveloffset=+2]
 
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_operator_features/index#operator-volume-size-overrides[Volume size overrides]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_operator_features/index#operator-volume-size-overrides[Volume size overrides]
 
 include::modules/clair-testing.adoc[leveloffset=+1]
 
@@ -81,7 +81,7 @@ include::modules/configuring-custom-clair-database.adoc[leveloffset=+2]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html/deploy_red_hat_quay_on_openshift_with_the_quay_operator/quay_operator_features#clair-openshift-config[Clair on OpenShift config]
+* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/deploy_red_hat_quay_on_openshift_with_the_quay_operator/quay_operator_features#clair-openshift-config[Clair on OpenShift config]
 
 include::modules/custom-clair-configuration-managed-database.adoc[leveloffset=+1]
 
@@ -92,7 +92,7 @@ include::modules/configuring-custom-clair-database-managed.adoc[leveloffset=+2]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html/deploy_red_hat_quay_on_openshift_with_the_quay_operator/quay_operator_features#clair-openshift-config[Clair on OpenShift config]
+* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/deploy_red_hat_quay_on_openshift_with_the_quay_operator/quay_operator_features#clair-openshift-config[Clair on OpenShift config]
 
 include::modules/clair-disconnected.adoc[leveloffset=+1]
 

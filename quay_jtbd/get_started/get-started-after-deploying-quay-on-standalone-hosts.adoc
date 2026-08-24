@@ -12,5 +12,5 @@ include::modules/creating-first-user-standalone.adoc[leveloffset=+1,toc="no"]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html/use_red_hat_quay/index[Using {productname}]
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html/manage_red_hat_quay/index[Managing {productname}]
+* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/use_red_hat_quay/index[Using {productname}]
+* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/manage_red_hat_quay/index[Managing {productname}]

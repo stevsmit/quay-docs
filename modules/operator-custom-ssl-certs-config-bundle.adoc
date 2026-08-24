@@ -26,4 +26,4 @@ The following procedures enable you to apply custom SSL/TLS certificates to ensu
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/securing_red_hat_quay/index#operator-external-tls-secret-reference[Referencing an external TLS Secret for {productname-ocp}]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/securing_red_hat_quay/index#operator-external-tls-secret-reference[Referencing an external TLS Secret for {productname-ocp}]

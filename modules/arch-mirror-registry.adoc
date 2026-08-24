@@ -21,4 +21,4 @@ Unlike {productname}, the _mirror registry for Red Hat OpenShift_ is not a highl
 .Additional resources
 
 * link:https://console.redhat.com/openshift/downloads#tool-mirror-registry[OpenShift console Downloads]
-* link:https://docs.openshift.com/container-platform/{ocp-y}/installing/disconnected_install/installing-mirroring-creating-registry.html[Creating a mirror registry with mirror registry for Red Hat OpenShift]
+* link:https://docs.openshift.com/container-platform/4.22/installing/disconnected_install/installing-mirroring-creating-registry.html[Creating a mirror registry with mirror registry for Red Hat OpenShift]

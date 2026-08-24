@@ -32,7 +32,7 @@ endif::downstream[]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html/upgrade_red_hat_quay/index[Upgrade {productname}]
+* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/upgrade_red_hat_quay/index[Upgrade {productname}]
 ifdef::downstream[]
 * link:https://access.redhat.com/documentation/en-us/red_hat_quay[{productname} Documentation]
 endif::downstream[]

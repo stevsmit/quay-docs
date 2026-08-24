@@ -20,6 +20,6 @@ With {quayio}, you can discover pre-built public container images shared by othe
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html/vulnerability_reporting_with_clair_on_red_hat_quay/index[Clair]
+* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/vulnerability_reporting_with_clair_on_red_hat_quay/index[Clair]
 * link:https://quay.io/search[{quayio} Explore]
 * link:https://quay.io/plans/[{quayio} Pricing]

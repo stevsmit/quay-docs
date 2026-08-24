@@ -14,4 +14,4 @@ By configuring Red Hat Single Sign-On on {productname}, you can create a seamles
 
 * link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.0[Red Hat Single Sign-On]
 * link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.6/html-single/server_installation_and_configuration_guide/index#operator[Red Hat Single Sign-On Operator]
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html/deploying_the_red_hat_quay_operator_on_openshift_container_platform/operator-config-cli#operator-custom-ssl-certs-config-bundle[SSL/TLS for your {productname-ocp} deployment]
+* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/deploying_the_red_hat_quay_operator_on_openshift_container_platform/operator-config-cli#operator-custom-ssl-certs-config-bundle[SSL/TLS for your {productname-ocp} deployment]

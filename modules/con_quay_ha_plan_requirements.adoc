@@ -31,6 +31,6 @@ Run {productname} and Redis on multiple systems so that you can lose a node with
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html-single/configure_red_hat_quay/index[Configure {productname}]
+* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/configure_red_hat_quay/index[Configure {productname}]
 * link:https://access.redhat.com/support/policy/updates/rhquay/policies[{productname} Support Policy]
 * link:https://access.redhat.com/solutions/3680151[S3 IAM Bucket Policy]

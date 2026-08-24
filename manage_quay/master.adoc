@@ -42,9 +42,9 @@ include::modules/managing-oauth-application-tokens-api.adoc[leveloffset=+2]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#createorganizationapplicationtoken[createOrganizationApplicationToken]
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#listorganizationapplicationtokens[listOrganizationApplicationTokens]
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#deleteorganizationapplicationtoken[deleteOrganizationApplicationToken]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#createorganizationapplicationtoken[createOrganizationApplicationToken]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#listorganizationapplicationtokens[listOrganizationApplicationTokens]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#deleteorganizationapplicationtoken[deleteOrganizationApplicationToken]
 
 include::modules/renewing-bootstrap-token.adoc[leveloffset=+2]
 include::modules/revoking-bootstrap-token.adoc[leveloffset=+2]
@@ -167,7 +167,7 @@ include::modules/entra-oidc-troubleshooting.adoc[leveloffset=+2]
 
 [role="_additional-resources"]
 .Additional resources
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/configure_red_hat_quay/index#oidc-config-fields[OIDC configuration fields]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/configure_red_hat_quay/index#oidc-config-fields[OIDC configuration fields]
 
 
 include::modules/configuring-red-hat-sso.adoc[leveloffset=+2]
@@ -195,7 +195,7 @@ include::modules/configuring-federation-audiences.adoc[leveloffset=+2]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#createorgrobotfederation[createOrgRobotFederation]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#createorgrobotfederation[createOrgRobotFederation]
 
 include::modules/exchanging-oauth2-robot-account-token.adoc[leveloffset=+2]
 
@@ -265,12 +265,12 @@ include::modules/creating-policy-api-other-user.adoc[leveloffset=+3]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html-single/manage_red_hat_quay/index#garbage-collection[{productname} garbage collection]
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#createorganizationautoprunepolicy[`POST /api/v1/organization/{orgname}/autoprunepolicy/`]
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#updateorganizationautoprunepolicy[`PUT /api/v1/organization/{orgname}/autoprunepolicy/{policy_uuid}`]
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#updaterepositoryautoprunepolicy[`PUT /api/v1/repository/{repository}/autoprunepolicy/{policy_uuid}`]
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#createuserautoprunepolicy[`POST /api/v1/repository/<user_account>/<user_repository>/autoprunepolicy/`]
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#updateuserautoprunepolicy[`PUT /api/v1/repository/<user_account>/<user_repository>/autoprunepolicy/<policy_uuid>`]
+* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#garbage-collection[{productname} garbage collection]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#createorganizationautoprunepolicy[`POST /api/v1/organization/{orgname}/autoprunepolicy/`]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#updateorganizationautoprunepolicy[`PUT /api/v1/organization/{orgname}/autoprunepolicy/{policy_uuid}`]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#updaterepositoryautoprunepolicy[`PUT /api/v1/repository/{repository}/autoprunepolicy/{policy_uuid}`]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#createuserautoprunepolicy[`POST /api/v1/repository/<user_account>/<user_repository>/autoprunepolicy/`]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#updateuserautoprunepolicy[`PUT /api/v1/repository/<user_account>/<user_repository>/autoprunepolicy/<policy_uuid>`]
 
 
 include::modules/georepl-intro.adoc[leveloffset=+1]
@@ -280,9 +280,9 @@ include::modules/georepl-prereqs.adoc[leveloffset=+2]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/vulnerability_reporting_with_clair_on_red_hat_quay/index#advanced-clair-configuration[Advanced Clair configuration]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/vulnerability_reporting_with_clair_on_red_hat_quay/index#advanced-clair-configuration[Advanced Clair configuration]
 * link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/vulnerability_reporting_with_clair_on_red_hat_quay/index#clair-openshift-config[Retrieving and decoding the Clair configuration secret for Clair deployments on {ocp}]
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html/proof_of_concept_-_deploying_red_hat_quay/advanced-quay-poc-deployment[Proof of concept deployment using SSL/TLS certificates]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html/proof_of_concept_-_deploying_red_hat_quay/advanced-quay-poc-deployment[Proof of concept deployment using SSL/TLS certificates]
 
 include::modules/config-ui-storage-georepl.adoc[leveloffset=+3]
 include::modules/georepl-deploy-standalone.adoc[leveloffset=+3]
@@ -301,7 +301,7 @@ include::modules/updating-read-only-expiration-time.adoc[leveloffset=+3]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/configure_red_hat_quay/index#config-fields-misc[Miscellaneous configuration fields]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/configure_red_hat_quay/index#config-fields-misc[Miscellaneous configuration fields]
 
 include::modules/backing-up-red-hat-quay-standalone.adoc[leveloffset=+2]
 include::modules/restoring-red-hat-quay-standalone.adoc[leveloffset=+2]
