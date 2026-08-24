@@ -23,4 +23,4 @@ How the cluster TLS security profile applies depends on whether the Operator or 
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/securing_red_hat_quay/index#operator-custom-ssl-certs-config-bundle[Configuring custom SSL/TLS certificates for {productname-ocp}]
+* xref:quay_jtbd-secure.adoc#operator-custom-ssl-certs-config-bundle[Configuring custom SSL/TLS certificates for {productname-ocp}]

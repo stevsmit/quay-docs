@@ -31,5 +31,5 @@ Geo-replication:: Local storage cannot be used for geo-replication. Geo-replicat
 .Additional resources
 
 * link:https://www.redhat.com/en/technologies/cloud-computing/openshift-data-foundation[{odf}]
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/deploy_red_hat_quay_-_high_availability/preparing_for_red_hat_quay_high_availability#set_up_ceph[Quay High Availability Guide]
+* xref:quay_jtbd-plan.adoc#set-up-ceph[Quay High Availability Guide]
 * link:https://docs.redhat.com/en/documentation/red_hat_ceph_storage/5/html-single/architecture_guide/index[Red Hat Ceph Storage Architecture Guide]

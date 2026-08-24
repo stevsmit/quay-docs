@@ -31,4 +31,4 @@ WEBHOOK_HOSTNAME_BLACKLIST:
 
 [role="_additional-resources"]
 .Additional resources
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html/manage_red_hat_quay/standalone-deployment-backup-restore#optional-enabling-read-only-mode-backup-restore-standalone[Enabling read-only mode for {productname}]
+* xref:quay_jtbd-administer.adoc#optional-enabling-read-only-mode-backup-restore-standalone[Enabling read-only mode for {productname}]

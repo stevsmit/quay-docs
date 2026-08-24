@@ -28,6 +28,6 @@ In some cases, you might receive an *Unsupported* message. This might indicate t
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/manage_red_hat_quay/clair-vulnerability-scanner#clair-vulnerability-scanner-hosts[Clair vulnerability databases]
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/vulnerability_reporting_with_clair_on_red_hat_quay/clair-concepts#clair-updater-urls[Clair updater URLs]
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/vulnerability_reporting_with_clair_on_red_hat_quay/index#config-fields-overview[Clair configuration overview]
+* xref:quay_jtbd-configure.adoc#clair-updaters[Clair vulnerability databases]
+* xref:quay_jtbd-configure.adoc#clair-updater-urls[Clair updater URLs]
+* xref:quay_jtbd-configure.adoc#config-fields-overview[Clair configuration overview]

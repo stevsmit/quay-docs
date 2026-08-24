@@ -10,11 +10,11 @@
 [role="_abstract"]
 To control who can pull or interact with a repository, you can set its visibility to public or private by using the {productname} API.
 
-The visibility of your repository can be set to `private` or `public` by using the link:https://docs.redhat.com/en/documentation/red_hat_quay/3.12/html-single/red_hat_quay_api_reference/index#changerepovisibility[`POST /api/v1/repository/{repository}/changevisibility`] command.
+The visibility of your repository can be set to `private` or `public` by using the xref:quay_jtbd-reference.adoc#changerepovisibility[`POST /api/v1/repository/{repository}/changevisibility`] command.
 
 .Prerequisites 
 
-* You have link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#creating-oauth-access-token[Created an OAuth access token].
+* You have xref:quay_jtbd-develop.adoc#creating-oauth-access-token[Created an OAuth access token].
 * You have created a repository. 
 
 .Procedure

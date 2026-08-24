@@ -47,5 +47,5 @@
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_release_notes/index#doc-wrapper[{productname} Release Notes]
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_architecture/index[{productname} architecture guide]
+* xref:quay_jtbd-whats_new.adoc[{productname} Release Notes]
+* xref:quay_jtbd-discover.adoc[{productname} architecture guide]
