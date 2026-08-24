@@ -25,4 +25,4 @@ DISTRIBUTED_STORAGE_PREFERENCE:
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html/proof_of_concept_-_deploying_red_hat_quay[Proof of Concept - Deploying {productname}]
+* xref:quay_jtbd-install.adoc[Proof of Concept - Deploying {productname}]
