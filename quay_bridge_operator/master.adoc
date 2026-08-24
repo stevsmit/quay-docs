@@ -23,4 +23,4 @@ include::modules/qbo-operator-upgrade.adoc[leveloffset=+1]
 [role="_additional-resources"]
 == Additional resources
 
-* link:https://docs.openshift.com/container-platform/{ocp-y}/security/certificate_types_descriptions/proxy-certificates.html[{ocp} documentation]
+* link:https://docs.openshift.com/container-platform/4.22/security/certificate_types_descriptions/proxy-certificates.html[{ocp} documentation]

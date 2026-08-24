@@ -57,7 +57,7 @@ include::modules/creating-an-image-repository-via-skopeo-copy.adoc[leveloffset=+
 
 [role="_additional-resources"]
 .Additional resources
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/manage_red_hat_quay/index#preparing-registry-large-artifacts[Preparing your registry to accept large artifacts]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/manage_red_hat_quay/index#preparing-registry-large-artifacts[Preparing your registry to accept large artifacts]
 
 include::modules/creating-an-image-repository-via-the-api.adoc[leveloffset=+2]
 
@@ -91,7 +91,7 @@ include::modules/configuring-federation-audiences.adoc[leveloffset=+3]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#createorgrobotfederation[createOrgRobotFederation]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#createorgrobotfederation[createOrgRobotFederation]
 
 include::modules/exchanging-oauth2-robot-account-token.adoc[leveloffset=+3]
 
@@ -208,7 +208,7 @@ include::modules/viewing-usage-logs-api.adoc[leveloffset=+2]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#creating-oauth-access-token[Creating an OAuth access token]
+* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#creating-oauth-access-token[Creating an OAuth access token]
 
 include::modules/viewing-aggregated-logs-api.adoc[leveloffset=+3]
 
@@ -224,7 +224,7 @@ include::modules/security-scanning.adoc[leveloffset=+1]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html/vulnerability_reporting_with_clair_on_red_hat_quay/testing-clair-with-quay[Clair on {productname}]
+* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/vulnerability_reporting_with_clair_on_red_hat_quay/testing-clair-with-quay[Clair on {productname}]
 
 include::modules/security-scanning-ui.adoc[leveloffset=+2]
 
@@ -233,7 +233,7 @@ include::modules/security-scanning-api.adoc[leveloffset=+2]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#getrepomanifestsecurity[`GET /api/v1/repository/{repository}/manifest/{manifestref}/security`]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#getrepomanifestsecurity[`GET /api/v1/repository/{repository}/manifest/{manifestref}/security`]
 
 //Notifications and events
 include::modules/proc_use-quay-notifications.adoc[leveloffset=+1]
@@ -246,7 +246,7 @@ include::modules/creating-quota-notifications-api.adoc[leveloffset=+2]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#creating-oauth-access-token[Creating an OAuth access token]
+* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#creating-oauth-access-token[Creating an OAuth access token]
 
 include::modules/configuring-email-routing-contact-email.adoc[leveloffset=+2]
 include::modules/resetting-quota-notifications.adoc[leveloffset=+2]
@@ -311,4 +311,4 @@ include::modules/testing-oci-support.adoc[leveloffset=+2]
 [role="_additional-resources"]
 == Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index[{productname} API guide]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_reference/index[{productname} API guide]

@@ -330,4 +330,4 @@ include::modules/api-definitions.adoc[leveloffset=+1]
 == Additional resources
 
 * link:https://oauth.net/2/[OAuth 2.0 protocol]
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html/red_hat_quay_api_guide/index[{productname} API guide]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html/red_hat_quay_api_guide/index[{productname} API guide]

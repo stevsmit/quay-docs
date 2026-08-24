@@ -16,4 +16,4 @@ These options help you streamline your CI/CD pipeline, enforce build policies, a
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html/builders_and_image_automation/index[Builders and automation]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html/builders_and_image_automation/index[Builders and automation]

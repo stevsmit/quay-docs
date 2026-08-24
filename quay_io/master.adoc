@@ -115,7 +115,7 @@ include::modules/configuring-federation-audiences.adoc[leveloffset=+3]
 
 * xref:exchanging-oauth2-robot-account-token[Exchanging an OAuth2 access token for a {productname} robot account token]
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/red_hat_quay_api_reference/index#createorgrobotfederation[createOrgRobotFederation]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_reference/index#createorgrobotfederation[createOrgRobotFederation]
 
 include::modules/exchanging-oauth2-robot-account-token.adoc[leveloffset=+3]
 
