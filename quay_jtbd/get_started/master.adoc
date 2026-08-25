@@ -8,10 +8,10 @@ include::_attributes/attributes.adoc[]
 include::get-started-with-quay-io.adoc[leveloffset=+1]
 
 // Job: Get started after deploying Quay on OpenShift Container Platform
-include::get-started-after-deploying-quay-on-openshift-container-platform.adoc[leveloffset=+1]
+include::get-started-after-deploying-quay-on-openshift-container-platform.adoc[leveloffset=+1,navtitle="After {ocp} deployment"]
 
 // Job: Get started after deploying Quay on standalone hosts
-include::get-started-after-deploying-quay-on-standalone-hosts.adoc[leveloffset=+1]
+include::get-started-after-deploying-quay-on-standalone-hosts.adoc[leveloffset=+1,navtitle="After standalone deployment"]
 
 // Shared first-success tasks
 // Job: Create your first organization
@@ -27,4 +27,4 @@ include::push-and-pull-your-first-image.adoc[leveloffset=+1]
 include::view-your-first-clair-scan.adoc[leveloffset=+1]
 
 // Job: Enable and make your first Quay API call
-include::enable-and-make-your-first-quay-api-call.adoc[leveloffset=+1]
+include::enable-and-make-your-first-quay-api-call.adoc[leveloffset=+1,navtitle="First API call"]
