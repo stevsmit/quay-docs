@@ -7,13 +7,13 @@
 [role="_abstract"]
 Configure unmanaged or Operator-managed Clair databases and supply custom `clair-config.yaml` settings for external databases, SSL/TLS certificates, and managed Clair deployments.
 
-include::modules/clair-unmanaged.adoc[leveloffset=+1,toc="no"]
+include::modules/clair-unmanaged.adoc[leveloffset=+1]
 
 include::modules/unmanaging-clair-database.adoc[leveloffset=+2,toc="no"]
 
 include::modules/configuring-custom-clair-database.adoc[leveloffset=+2,toc="no"]
 
-include::modules/custom-clair-configuration-managed-database.adoc[leveloffset=+1,toc="no"]
+include::modules/custom-clair-configuration-managed-database.adoc[leveloffset=+1]
 
 include::modules/managed-clair-database.adoc[leveloffset=+2,toc="no"]
 

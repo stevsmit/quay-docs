@@ -7,7 +7,7 @@
 [role="_abstract"]
 Resize managed storage for Red Hat Quay and Clair, apply volume size overrides, and configure ephemeral storage for managed Clair.
 
-include::modules/operator-resize-storage.adoc[leveloffset=+1,toc="no"]
+include::modules/operator-resize-storage.adoc[leveloffset=+1]
 
 include::modules/operator-volume-size-overrides.adoc[leveloffset=+2,toc="no"]
 

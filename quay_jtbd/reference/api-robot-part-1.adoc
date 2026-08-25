@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference robot (part 1) API endpoints for Red Hat Quay.
 
-include::modules/api-robot.adoc[leveloffset=+1,toc="no"]
+include::modules/api-robot.adoc[leveloffset=+1]
 
 include::modules/api-robot-getUserRobots.adoc[leveloffset=+2,toc="no"]
 

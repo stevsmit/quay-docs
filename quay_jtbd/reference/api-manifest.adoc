@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference manifest API endpoints for Red Hat Quay.
 
-include::modules/api-manifest.adoc[leveloffset=+1,toc="no"]
+include::modules/api-manifest.adoc[leveloffset=+1]
 
 include::modules/api-manifest-getManifestLabel.adoc[leveloffset=+2,toc="no"]
 

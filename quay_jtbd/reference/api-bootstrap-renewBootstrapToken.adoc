@@ -7,4 +7,4 @@
 [role="_abstract"]
 Reference the renewBootstrapToken API endpoint for Red Hat Quay.
 
-include::modules/api-bootstrap-renewBootstrapToken.adoc[leveloffset=+1,toc="no"]
+include::modules/api-bootstrap-renewBootstrapToken.adoc[leveloffset=+1]

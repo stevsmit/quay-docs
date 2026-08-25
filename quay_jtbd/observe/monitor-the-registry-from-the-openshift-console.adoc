@@ -7,4 +7,4 @@
 [role="_abstract"]
 Monitor Red Hat Quay health and alerts from the OpenShift web console.
 
-include::modules/operator-console-monitoring-alerting.adoc[leveloffset=+1,toc="no"]
+include::modules/operator-console-monitoring-alerting.adoc[leveloffset=+1]

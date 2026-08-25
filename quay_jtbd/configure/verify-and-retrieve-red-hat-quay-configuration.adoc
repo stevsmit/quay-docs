@@ -7,4 +7,4 @@
 [role="_abstract"]
 Retrieve active Red Hat Quay configuration settings by using the superuser API.
 
-include::modules/retrieving-config-api.adoc[leveloffset=+1,toc="no"]
+include::modules/retrieving-config-api.adoc[leveloffset=+1]

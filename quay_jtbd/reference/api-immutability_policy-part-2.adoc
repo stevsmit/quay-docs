@@ -7,6 +7,6 @@
 [role="_abstract"]
 Reference immutability_policy (part 2) API endpoints for Red Hat Quay.
 
-include::modules/api-immutability_policy.adoc[leveloffset=+1,toc="no"]
+include::modules/api-immutability_policy.adoc[leveloffset=+1]
 
 include::modules/api-immutability_policy-updateRepositoryImmutabilityPolicy.adoc[leveloffset=+2,toc="no"]

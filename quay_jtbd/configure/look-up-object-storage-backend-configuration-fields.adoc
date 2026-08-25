@@ -7,7 +7,7 @@
 [role="_abstract"]
 Look up object storage configuration fields for local, cloud, Ceph, Nutanix, IBM Cloud, NetApp, and HCP backends.
 
-include::modules/config-fields-storage-fields.adoc[leveloffset=+1,toc="no"]
+include::modules/config-fields-storage-fields.adoc[leveloffset=+1]
 
 include::modules/config-fields-storage-local.adoc[leveloffset=+2,toc="no"]
 

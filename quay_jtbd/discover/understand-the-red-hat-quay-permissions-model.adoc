@@ -7,4 +7,4 @@
 [role="_abstract"]
 Review Red Hat Quay permission levels and role-based access control to grant appropriate access without over-permissioning.
 
-include::modules/role-based-access-control-intro.adoc[leveloffset=+1,toc="no"]
+include::modules/role-based-access-control-intro.adoc[leveloffset=+1]

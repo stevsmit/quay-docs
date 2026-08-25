@@ -7,7 +7,7 @@
 [role="_abstract"]
 Integrate Red Hat Quay object storage with AWS STS, IAM roles, and CloudFront for cloud-native access patterns.
 
-include::modules/configuring-aws-sts-quay.adoc[leveloffset=+1,toc="no"]
+include::modules/configuring-aws-sts-quay.adoc[leveloffset=+1]
 
 include::modules/creating-iam-user-aws-sts-quay.adoc[leveloffset=+2,toc="no"]
 

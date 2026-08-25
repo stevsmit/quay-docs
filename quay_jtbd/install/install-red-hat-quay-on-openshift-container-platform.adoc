@@ -7,13 +7,13 @@
 [role="_abstract"]
 Install the Red Hat Quay Operator from OperatorHub and deploy a QuayRegistry, including infrastructure-node options.
 
-include::modules/operator-install.adoc[leveloffset=+1,toc="no"]
+include::modules/operator-install.adoc[leveloffset=+1]
 
-include::modules/registry-deploy-console.adoc[leveloffset=+1,toc="no"]
+include::modules/registry-deploy-console.adoc[leveloffset=+1]
 
-include::modules/registry-deploy-cli.adoc[leveloffset=+1,toc="no"]
+include::modules/registry-deploy-cli.adoc[leveloffset=+1]
 
-include::modules/operator-deploy-infrastructure.adoc[leveloffset=+1,toc="no"]
+include::modules/operator-deploy-infrastructure.adoc[leveloffset=+1]
 
 include::modules/labeling-taint-nodes-for-infrastructure-use.adoc[leveloffset=+2,toc="no"]
 

@@ -7,13 +7,13 @@
 [role="_abstract"]
 Troubleshoot geo-replication and repository mirroring, including backend bucket checks and authentication.
 
-include::modules/geo-repl-troubleshooting-issues.adoc[leveloffset=+1,toc="no"]
+include::modules/geo-repl-troubleshooting-issues.adoc[leveloffset=+1]
 
-include::modules/check-data-replication.adoc[leveloffset=+1,toc="no"]
+include::modules/check-data-replication.adoc[leveloffset=+1]
 
-include::modules/check-backend-storage-running.adoc[leveloffset=+1,toc="no"]
+include::modules/check-backend-storage-running.adoc[leveloffset=+1]
 
-include::modules/repo-mirroring-troubleshooting-issues.adoc[leveloffset=+1,toc="no"]
+include::modules/repo-mirroring-troubleshooting-issues.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
 .Additional resources

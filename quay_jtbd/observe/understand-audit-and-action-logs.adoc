@@ -7,7 +7,7 @@
 [role="_abstract"]
 Review usage logs, database logs, log entry kinds, and Splunk audit display options for Red Hat Quay action logs.
 
-include::modules/understanding-action-logs.adoc[leveloffset=+1,toc="no"]
+include::modules/understanding-action-logs.adoc[leveloffset=+1]
 
 include::modules/viewing-database-logs.adoc[leveloffset=+2,toc="no"]
 

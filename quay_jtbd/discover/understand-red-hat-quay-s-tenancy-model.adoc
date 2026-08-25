@@ -7,7 +7,7 @@
 [role="_abstract"]
 Review how users, organizations, repositories, robot accounts, and teams relate in the Red Hat Quay tenancy model before you structure ownership and access.
 
-include::modules/tenancy-model.adoc[leveloffset=+1,toc="no"]
+include::modules/tenancy-model.adoc[leveloffset=+1]
 
 include::modules/user-create.adoc[leveloffset=+2,toc="no"]
 

@@ -7,6 +7,6 @@
 [role="_abstract"]
 Reference referrers API endpoints for Red Hat Quay.
 
-include::modules/api-referrers.adoc[leveloffset=+1,toc="no"]
+include::modules/api-referrers.adoc[leveloffset=+1]
 
 include::modules/api-referrers-getReferrers.adoc[leveloffset=+2,toc="no"]

@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference namespacequota (part 2) API endpoints for Red Hat Quay.
 
-include::modules/api-namespacequota.adoc[leveloffset=+1,toc="no"]
+include::modules/api-namespacequota.adoc[leveloffset=+1]
 
 include::modules/api-namespacequota-changeOrganizationQuota.adoc[leveloffset=+2,toc="no"]
 

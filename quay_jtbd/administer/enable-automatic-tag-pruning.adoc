@@ -7,7 +7,7 @@
 [role="_abstract"]
 Review auto-pruning prerequisites, regular expressions, and pull activity tracking, then enable automatic tag pruning for your registry.
 
-include::modules/red-hat-quay-namespace-auto-pruning-overview.adoc[leveloffset=+1,toc="no"]
+include::modules/red-hat-quay-namespace-auto-pruning-overview.adoc[leveloffset=+1]
 
 include::modules/prerequisites-limitations-namespace-autopruning.adoc[leveloffset=+2,toc="no"]
 

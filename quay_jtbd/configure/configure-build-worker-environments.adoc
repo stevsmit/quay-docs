@@ -7,9 +7,9 @@
 [role="_abstract"]
 Configure TLS, bare metal, and virtual build worker environments for {productname} on {ocp}, including managed-route constraints, optional EC2 builder fallback, and object storage prerequisites for virtual builds.
 
-include::modules/configuring-openshift-tls-component-builds.adoc[leveloffset=+1,toc="no"]
+include::modules/configuring-openshift-tls-component-builds.adoc[leveloffset=+1]
 
-include::modules/proc_use-quay-build-workers-dockerfiles.adoc[leveloffset=+1,toc="no"]
+include::modules/proc_use-quay-build-workers-dockerfiles.adoc[leveloffset=+1]
 
 include::modules/prepare-ocp-for-bare-metal-builds.adoc[leveloffset=+2,toc="no"]
 
@@ -21,7 +21,7 @@ include::modules/openshift-routes-limitations.adoc[leveloffset=+3,toc="no"]
 
 include::modules/configuring-quay-builds-custom-hostname.adoc[leveloffset=+3,toc="no"]
 
-include::modules/build-enhancements.adoc[leveloffset=+1,toc="no"]
+include::modules/build-enhancements.adoc[leveloffset=+1]
 
 include::modules/builders-virtual-environment.adoc[leveloffset=+2,toc="no"]
 

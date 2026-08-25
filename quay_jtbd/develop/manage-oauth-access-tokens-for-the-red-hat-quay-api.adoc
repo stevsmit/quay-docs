@@ -7,14 +7,14 @@
 [role="_abstract"]
 Review OAuth 2 access token scopes and security, then create, reassign, revoke, and rotate organization OAuth 2 access tokens. After you have an OAuth 2 access token, you can create user application tokens for Docker, Podman, and other clients.
 
-include::modules/oauth2-access-tokens.adoc[leveloffset=+1,toc="no"]
+include::modules/oauth2-access-tokens.adoc[leveloffset=+1]
 
-include::modules/creating-oauth-access-token.adoc[leveloffset=+1,toc="no"]
+include::modules/creating-oauth-access-token.adoc[leveloffset=+1]
 
-include::modules/creating-oauth-application-api.adoc[leveloffset=+1,toc="no"]
+include::modules/creating-oauth-application-api.adoc[leveloffset=+1]
 
-include::modules/reassigning-oauth-access-token.adoc[leveloffset=+1,toc="no"]
+include::modules/reassigning-oauth-access-token.adoc[leveloffset=+1]
 
-include::modules/deleting-oauth-access-token.adoc[leveloffset=+1,toc="no"]
+include::modules/deleting-oauth-access-token.adoc[leveloffset=+1]
 
-include::modules/migrating-legacy-oauth-access-token.adoc[leveloffset=+1,toc="no"]
+include::modules/migrating-legacy-oauth-access-token.adoc[leveloffset=+1]

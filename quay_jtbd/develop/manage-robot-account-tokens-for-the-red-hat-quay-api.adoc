@@ -7,7 +7,7 @@
 [role="_abstract"]
 Create and regenerate robot account tokens for CI/CD pull and push access without interactive user authentication.
 
-include::modules/robot-account-tokens.adoc[leveloffset=+1,toc="no"]
+include::modules/robot-account-tokens.adoc[leveloffset=+1]
 
 include::modules/regenerating-robot-account-token-ui.adoc[leveloffset=+2,toc="no"]
 

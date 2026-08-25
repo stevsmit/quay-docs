@@ -7,4 +7,4 @@
 [role="_abstract"]
 Reference Authorization information for the Red Hat Quay API.
 
-include::modules/api-authorization.adoc[leveloffset=+1,toc="no"]
+include::modules/api-authorization.adoc[leveloffset=+1]

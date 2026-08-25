@@ -7,7 +7,7 @@
 [role="_abstract"]
 Configure action log storage in Elasticsearch or Splunk, including Splunk installation prerequisites, bearer token generation, {productname} configuration, and log verification.
 
-include::modules/proc_manage-log-storage.adoc[leveloffset=+1,toc="no"]
+include::modules/proc_manage-log-storage.adoc[leveloffset=+1]
 
 include::modules/proc_manage-log-storage-elasticsearch.adoc[leveloffset=+2,toc="no"]
 
