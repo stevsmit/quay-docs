@@ -1,6 +1,7 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="understand_red_hat_quay_configuration_openshift_container_platform_{context}"]
+:navtitle: OpenShift configuration
 = Understand Red Hat Quay configuration: OpenShift Container Platform
 :context: understand_red_hat_quay_configuration_openshift_container_platform
 

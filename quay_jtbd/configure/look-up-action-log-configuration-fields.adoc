@@ -1,6 +1,7 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="action_log_elasticsearch_and_splunk_configuration_fields_{context}"]
+:navtitle: Action log fields
 = Action log, Elasticsearch, and Splunk configuration fields
 :context: action_log_elasticsearch_and_splunk_configuration_fields
 

@@ -1,6 +1,7 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="configure_elasticsearch_and_splunk_action_log_storage_{context}"]
+:navtitle: Action log storage
 = Configure Elasticsearch and Splunk action log storage
 :context: configure_elasticsearch_and_splunk_action_log_storage
 

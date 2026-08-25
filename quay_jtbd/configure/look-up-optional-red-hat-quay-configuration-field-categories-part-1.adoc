@@ -1,6 +1,7 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="optional_red_hat_quay_configuration_field_categories_part_1_{context}"]
+:navtitle: Core and UI fields
 = Core, web UI, and user configuration fields
 :context: optional_red_hat_quay_configuration_field_categories_part_1
 

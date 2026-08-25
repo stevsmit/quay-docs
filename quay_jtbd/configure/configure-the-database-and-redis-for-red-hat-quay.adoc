@@ -1,6 +1,7 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="configure_the_database_and_redis_for_red_hat_quay_{context}"]
+:navtitle: Database and Redis
 = Configure Red Hat Quay database and Redis backends
 :context: configure_the_database_and_redis_for_red_hat_quay
 

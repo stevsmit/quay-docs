@@ -1,6 +1,7 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="verify_and_retrieve_red_hat_quay_configuration_{context}"]
+:navtitle: Retrieve configuration (API)
 = Retrieve Red Hat Quay configuration by using the API
 :context: verify_and_retrieve_red_hat_quay_configuration
 

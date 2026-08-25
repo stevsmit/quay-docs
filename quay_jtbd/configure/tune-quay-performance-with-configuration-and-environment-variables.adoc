@@ -1,6 +1,7 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="tune_quay_performance_with_configuration_and_environment_variables_{context}"]
+:navtitle: Performance tuning
 = Tune Quay performance with configuration and environment variables
 :context: tune_quay_performance_with_configuration_and_environment_variables
 
