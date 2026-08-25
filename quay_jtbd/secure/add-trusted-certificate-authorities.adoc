@@ -5,7 +5,7 @@
 :context: add_trusted_certificate_authorities
 
 [role="_abstract"]
-Add trusted certificate authorities for LDAP, storage, and other TLS endpoints on standalone, container, and OpenShift deployments.
+Add trusted certificate authorities for LDAP, storage, and other TLS endpoints on standalone, container, and {ocp} deployments.
 
 include::modules/config-extra-ca-certs-quay.adoc[leveloffset=+1]
 
