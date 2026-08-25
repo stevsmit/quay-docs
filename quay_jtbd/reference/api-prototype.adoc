@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference prototype API endpoints for Red Hat Quay.
 
-include::modules/api-prototype.adoc[leveloffset=+1,toc="no"]
+include::modules/api-prototype.adoc[leveloffset=+1]
 
 include::modules/api-prototype-updateOrganizationPrototypePermission.adoc[leveloffset=+2,toc="no"]
 

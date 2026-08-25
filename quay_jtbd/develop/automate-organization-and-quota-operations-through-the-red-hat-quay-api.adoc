@@ -7,13 +7,13 @@
 [role="_abstract"]
 Automate organization management, quota limits, mirroring, and global messages by using the Red Hat Quay API. Organization procedures cover contact email, members, applications, and proxy cache configuration.
 
-include::modules/managing-user-options-api.adoc[leveloffset=+1,toc="no"]
+include::modules/managing-user-options-api.adoc[leveloffset=+1]
 
-include::modules/api-global-messages.adoc[leveloffset=+1,toc="no"]
+include::modules/api-global-messages.adoc[leveloffset=+1]
 
-include::modules/mirror-quay-api.adoc[leveloffset=+1,toc="no"]
+include::modules/mirror-quay-api.adoc[leveloffset=+1]
 
-include::modules/quota-management-api.adoc[leveloffset=+1,toc="no"]
+include::modules/quota-management-api.adoc[leveloffset=+1]
 
 include::modules/quota-organization-management-api.adoc[leveloffset=+2,toc="no"]
 
@@ -21,7 +21,7 @@ include::modules/quota-limit-api.adoc[leveloffset=+2,toc="no"]
 
 include::modules/quota-limit-user-api.adoc[leveloffset=+2,toc="no"]
 
-include::modules/organization-management-api.adoc[leveloffset=+1,toc="no"]
+include::modules/organization-management-api.adoc[leveloffset=+1]
 
 include::modules/org-contact-email-api.adoc[leveloffset=+2,toc="no"]
 

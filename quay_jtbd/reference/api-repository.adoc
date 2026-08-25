@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference repository API endpoints for Red Hat Quay.
 
-include::modules/api-repository.adoc[leveloffset=+1,toc="no"]
+include::modules/api-repository.adoc[leveloffset=+1]
 
 include::modules/api-repository-createRepo.adoc[leveloffset=+2,toc="no"]
 

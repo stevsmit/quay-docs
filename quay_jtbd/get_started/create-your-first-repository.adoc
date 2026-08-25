@@ -7,4 +7,4 @@
 [role="_abstract"]
 Create your first repository by using the Red Hat Quay UI to store and share container images.
 
-include::modules/creating-an-image-repository-via-the-ui.adoc[leveloffset=+1,toc="no"]
+include::modules/creating-an-image-repository-via-the-ui.adoc[leveloffset=+1]

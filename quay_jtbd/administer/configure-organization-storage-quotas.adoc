@@ -7,7 +7,7 @@
 [role="_abstract"]
 Configure organization storage quotas, system defaults, notifications, and API limits to prevent any tenant from exhausting registry capacity.
 
-include::modules/quota-management-and-enforcement.adoc[leveloffset=+1,toc="no"]
+include::modules/quota-management-and-enforcement.adoc[leveloffset=+1]
 
 include::modules/quota-management-limitations.adoc[leveloffset=+2,toc="no"]
 
@@ -21,7 +21,7 @@ include::modules/resetting-quota-notifications.adoc[leveloffset=+2,toc="no"]
 
 include::modules/deleting-quota-notifications.adoc[leveloffset=+2,toc="no"]
 
-include::modules/quota-establishment-api.adoc[leveloffset=+1,toc="no"]
+include::modules/quota-establishment-api.adoc[leveloffset=+1]
 
 include::modules/setting-quota-api.adoc[leveloffset=+2,toc="no"]
 

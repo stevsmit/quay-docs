@@ -7,7 +7,7 @@
 [role="_abstract"]
 Configure geo-replication storage preferences and database connection pool environment variables during deployment. For rate limits, HTTP and worker tuning, and large artifact settings, see the Optimize documentation.
 
-include::modules/config-envvar-intro.adoc[leveloffset=+1,toc="no"]
+include::modules/config-envvar-intro.adoc[leveloffset=+1]
 
 include::modules/config-envvar-georepl.adoc[leveloffset=+2,toc="no"]
 

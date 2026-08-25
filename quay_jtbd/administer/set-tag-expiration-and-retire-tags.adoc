@@ -7,7 +7,7 @@
 [role="_abstract"]
 Set tag expiration from repositories, Dockerfiles, or annotations, and delete or undo tags by using the UI or API.
 
-include::modules/setting-tag-expirations-v2-ui.adoc[leveloffset=+1,toc="no"]
+include::modules/setting-tag-expirations-v2-ui.adoc[leveloffset=+1]
 
 include::modules/setting-tag-expiration-using-ui.adoc[leveloffset=+2,toc="no"]
 
@@ -19,12 +19,12 @@ include::modules/removing-tag-expiration-annotation.adoc[leveloffset=+2,toc="no"
 
 include::modules/setting-tag-expiration-api.adoc[leveloffset=+2,toc="no"]
 
-include::modules/deleting-a-tag.adoc[leveloffset=+1,toc="no"]
+include::modules/deleting-a-tag.adoc[leveloffset=+1]
 
-include::modules/deleting-a-tag-api.adoc[leveloffset=+1,toc="no"]
+include::modules/deleting-a-tag-api.adoc[leveloffset=+1]
 
 
-include::modules/reverting-tag-changes.adoc[leveloffset=+1,toc="no"]
+include::modules/reverting-tag-changes.adoc[leveloffset=+1]
 
-include::modules/reverting-tag-changes-api.adoc[leveloffset=+1,toc="no"]
+include::modules/reverting-tag-changes-api.adoc[leveloffset=+1]
 

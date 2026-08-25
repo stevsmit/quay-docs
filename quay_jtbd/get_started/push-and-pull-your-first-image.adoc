@@ -7,4 +7,4 @@
 [role="_abstract"]
 Push and pull your first container image with Podman to confirm your registry accepts content from the CLI.
 
-include::modules/pushing-pulling-first-image.adoc[leveloffset=+1,toc="no"]
+include::modules/pushing-pulling-first-image.adoc[leveloffset=+1]

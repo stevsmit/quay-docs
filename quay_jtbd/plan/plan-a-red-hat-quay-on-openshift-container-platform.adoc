@@ -7,9 +7,9 @@
 [role="_abstract"]
 Before you deploy {productname-ocp}, review what the Operator manages, how configuration works, external registry integration options, and {ocp} cluster and object storage requirements.
 
-include::modules/operator-concepts.adoc[leveloffset=+1,toc="no"]
+include::modules/operator-concepts.adoc[leveloffset=+1]
 
-include::modules/operator-components-intro.adoc[leveloffset=+1,toc="no"]
+include::modules/operator-components-intro.adoc[leveloffset=+1]
 
 include::modules/understanding-quayregistry-cr.adoc[leveloffset=+2,toc="no"]
 
@@ -17,13 +17,13 @@ include::modules/operator-components-managed.adoc[leveloffset=+2,toc="no"]
 
 include::modules/operator-components-unmanaged.adoc[leveloffset=+2,toc="no"]
 
-include::modules/quay-internal-registry-intro.adoc[leveloffset=+1,toc="no"]
+include::modules/quay-internal-registry-intro.adoc[leveloffset=+1]
 
-include::modules/openshift-cluster.adoc[leveloffset=+1,toc="no"]
+include::modules/openshift-cluster.adoc[leveloffset=+1]
 
 include::modules/resource-requirements.adoc[leveloffset=+2,toc="no"]
 
-include::modules/object-storage.adoc[leveloffset=+1,toc="no"]
+include::modules/object-storage.adoc[leveloffset=+1]
 
 include::modules/operator-managed-storage-overview.adoc[leveloffset=+2,toc="no"]
 

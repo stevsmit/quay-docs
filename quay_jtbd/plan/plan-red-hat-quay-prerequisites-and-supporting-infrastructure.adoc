@@ -7,8 +7,8 @@
 [role="_abstract"]
 Before you deploy Red Hat Quay, review supported options for image storage, database, and Redis backends.
 
-include::modules/core-prereqs-storage.adoc[leveloffset=+1,toc="no"]
+include::modules/core-prereqs-storage.adoc[leveloffset=+1]
 
-include::modules/core-prereqs-db.adoc[leveloffset=+1,toc="no"]
+include::modules/core-prereqs-db.adoc[leveloffset=+1]
 
-include::modules/core-prereqs-redis.adoc[leveloffset=+1,toc="no"]
+include::modules/core-prereqs-redis.adoc[leveloffset=+1]

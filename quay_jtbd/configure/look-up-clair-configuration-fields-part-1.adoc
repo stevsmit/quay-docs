@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference configuration fields for Clair general settings, indexing, matching, matchers, and updaters.
 
-include::modules/config-fields-overview.adoc[leveloffset=+1,toc="no"]
+include::modules/config-fields-overview.adoc[leveloffset=+1]
 
 include::modules/config-fields-general-clair.adoc[leveloffset=+2,toc="no"]
 

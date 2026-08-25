@@ -7,6 +7,6 @@
 [role="_abstract"]
 Upgrade geo-replicated Red Hat Quay deployments on standalone or Operator installations in the supported order.
 
-include::modules/upgrading-geo-repl-quay.adoc[leveloffset=+1,toc="no"]
+include::modules/upgrading-geo-repl-quay.adoc[leveloffset=+1]
 
-include::modules/upgrading-geo-repl-quay-operator.adoc[leveloffset=+1,toc="no"]
+include::modules/upgrading-geo-repl-quay-operator.adoc[leveloffset=+1]

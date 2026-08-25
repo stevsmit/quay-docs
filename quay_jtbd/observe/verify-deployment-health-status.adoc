@@ -7,7 +7,7 @@
 [role="_abstract"]
 Verify deployment health by using health-check endpoints on Red Hat Quay.
 
-include::modules/health-check-quay.adoc[leveloffset=+1,toc="no"]
+include::modules/health-check-quay.adoc[leveloffset=+1]
 
 include::modules/instance-endpoint-quay.adoc[leveloffset=+2,toc="no"]
 

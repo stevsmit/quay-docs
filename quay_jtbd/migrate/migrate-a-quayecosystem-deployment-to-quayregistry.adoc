@@ -7,8 +7,8 @@
 [role="_abstract"]
 Migrate a QuayEcosystem deployment to QuayRegistry, review supported configurations, and revert if needed.
 
-include::modules/upgrading-quayecosystem.adoc[leveloffset=+1,toc="no"]
+include::modules/upgrading-quayecosystem.adoc[leveloffset=+1]
 
-include::modules/supported-quayecossytem-configurations-for-upgrades.adoc[leveloffset=+1,toc="no"]
+include::modules/supported-quayecossytem-configurations-for-upgrades.adoc[leveloffset=+1]
 
 include::modules/reverting-quayecosystem-upgrade.adoc[leveloffset=+2,toc="no"]

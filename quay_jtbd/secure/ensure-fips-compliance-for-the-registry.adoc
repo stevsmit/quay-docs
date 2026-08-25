@@ -7,4 +7,4 @@
 [role="_abstract"]
 Enable FIPS compliance for Red Hat Quay and Clair to meet cryptographic module requirements.
 
-include::modules/enabling-fips-compliance.adoc[leveloffset=+1,toc="no"]
+include::modules/enabling-fips-compliance.adoc[leveloffset=+1]

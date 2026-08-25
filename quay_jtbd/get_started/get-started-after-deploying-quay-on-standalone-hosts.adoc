@@ -7,7 +7,7 @@
 [role="_abstract"]
 After you install {productname} as a proof of concept or in high availability on standalone hosts, create the first user in the UI and confirm you can reach the service.
 
-include::modules/creating-first-user-standalone.adoc[leveloffset=+1,toc="no"]
+include::modules/creating-first-user-standalone.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
 .Additional resources

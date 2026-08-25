@@ -7,7 +7,7 @@
 [role="_abstract"]
 Configure AWS Security Token Service (STS) for Amazon S3 object storage on standalone Red Hat Quay deployments.
 
-include::modules/configuring-quay-standalone-aws-sts.adoc[leveloffset=+1,toc="no"]
+include::modules/configuring-quay-standalone-aws-sts.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
 .Additional resources

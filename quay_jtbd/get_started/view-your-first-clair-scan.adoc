@@ -7,4 +7,4 @@
 [role="_abstract"]
 View your first Clair vulnerability report in the Red Hat Quay UI to confirm security scanning is working.
 
-include::modules/security-scanning-ui.adoc[leveloffset=+1,toc="no"]
+include::modules/security-scanning-ui.adoc[leveloffset=+1]

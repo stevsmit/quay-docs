@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference search API endpoints for Red Hat Quay.
 
-include::modules/api-search.adoc[leveloffset=+1,toc="no"]
+include::modules/api-search.adoc[leveloffset=+1]
 
 include::modules/api-search-conductRepoSearch.adoc[leveloffset=+2,toc="no"]
 

@@ -7,6 +7,6 @@
 [role="_abstract"]
 Look up required configuration fields for general settings, storage, database, and Redis.
 
-include::modules/config-fields-required-intro.adoc[leveloffset=+1,toc="no"]
+include::modules/config-fields-required-intro.adoc[leveloffset=+1]
 
 include::modules/config-fields-required-general.adoc[leveloffset=+2,toc="no"]
