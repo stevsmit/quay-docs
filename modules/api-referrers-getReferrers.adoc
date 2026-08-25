@@ -24,7 +24,4 @@ _required_|The full path of the repository. e.g. namespace/name|string
 |path|**referrers**
  
 _required_| Looks up the OCI referrers of a manifest under a repository.|string
-|**manifest_digest**
- 
-_required_|The digest of the manifest|string
 |===
