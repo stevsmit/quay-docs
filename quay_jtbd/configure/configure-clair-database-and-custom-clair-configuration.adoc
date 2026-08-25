@@ -1,7 +1,6 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="configure_clair_database_and_custom_clair_configuration_{context}"]
-:navtitle: Clair database
 = Configure Clair database and custom Clair configuration
 :context: configure_clair_database_and_custom_clair_configuration
 

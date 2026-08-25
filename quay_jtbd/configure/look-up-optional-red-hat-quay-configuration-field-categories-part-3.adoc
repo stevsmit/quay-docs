@@ -1,7 +1,6 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="optional_red_hat_quay_configuration_field_categories_part_3_{context}"]
-:navtitle: Storage and metadata fields
 = Storage, image management, and metadata configuration fields
 :context: optional_red_hat_quay_configuration_field_categories_part_3
 
