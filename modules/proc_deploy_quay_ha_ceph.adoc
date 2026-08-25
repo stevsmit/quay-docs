@@ -1,6 +1,6 @@
 :_mod-docs-content-type: CONCEPT
 [id="set-up-ceph"]
-= Set up Ceph
+= Setting up Ceph object storage
 
 [role="_abstract"]
 To provide object storage for {productname}, you can install a multi-node Ceph cluster and configure a Ceph Object Gateway for registry image data.
@@ -19,5 +19,5 @@ Once you have set up the Ceph storage cluster, create a Ceph Object Gateway (als
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/{producty}/html-single/installation_guide_for_red_hat_enterprise_linux[Installing Red Hat Ceph Storage on Red Hat Enterprise Linux]
-* link:https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/{producty}/html/installation_guide_for_red_hat_enterprise_linux/deploying-red-hat-ceph-storage#installing-the-ceph-object-gateway[Installing the Ceph Object Gateway]
+* link:https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/3/html-single/installation_guide_for_red_hat_enterprise_linux[Installing Red Hat Ceph Storage on Red Hat Enterprise Linux]
+* link:https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/3/html/installation_guide_for_red_hat_enterprise_linux/deploying-red-hat-ceph-storage#installing-the-ceph-object-gateway[Installing the Ceph Object Gateway]

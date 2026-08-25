@@ -33,8 +33,8 @@ include::modules/preserving-tls-settings-operator-upgrade.adoc[leveloffset=+2]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/configure_red_hat_quay/index#config-fields-ssl[SSL/TLS configuration fields]
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/release_notes/index#ocp-tls-security-profile-inheritance[{ocp} cluster TLS security profile inheritance]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/configure_red_hat_quay/index#config-fields-ssl[SSL/TLS configuration fields]
+* link:https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/release_notes/index#ocp-tls-security-profile-inheritance[{ocp} cluster TLS security profile inheritance]
 
 include::modules/creating-custom-ssl-certs-config-bundle.adoc[leveloffset=+3]
 include::modules/operator-external-tls-secret-reference.adoc[leveloffset=+3]

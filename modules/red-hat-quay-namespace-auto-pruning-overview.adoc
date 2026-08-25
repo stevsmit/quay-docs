@@ -19,4 +19,4 @@ Users can configure multiple policies per namespace or repository through the {p
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html-single/manage_red_hat_quay/index#garbage-collection[{productname} garbage collection]
+* xref:quay_jtbd-administer.adoc#garbage-collection[{productname} garbage collection]

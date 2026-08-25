@@ -9,7 +9,7 @@
 = Bulk managing robot account repository access
 
 [role="_abstract"]
-To grant a robot account access to several repositories at once, you can set its permissions in bulk by using the {productname} v2 UI.
+To grant a robot account access to several repositories at once, you can set its permissions in bulk by using the UI.
 
 .Prerequisites
 

@@ -8,7 +8,7 @@ Mirroring in {productname} enables automatic synchronization of repositories wit
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://docs.redhat.com/en/documentation/red_hat_quay/{producty}/html-single/manage_red_hat_quay/index#repo-mirroring-in-red-hat-quay[Repository mirroring]
+* xref:quay_jtbd-integrate.adoc#arch-mirroring-intro[Repository mirroring]
 
 .Mirroring configuration
 [cols="3a,1a,2a",options="header"]

@@ -28,14 +28,14 @@ include::modules/configure-ceph-ansible-node.adoc[leveloffset=+2]
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/{producty}/html-single/installation_guide_for_red_hat_enterprise_linux/index#installing-a-red-hat-ceph-storage-cluster[Installing a Red Hat Ceph Storage cluster]
+* link:https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/3/html-single/installation_guide_for_red_hat_enterprise_linux/index#installing-a-red-hat-ceph-storage-cluster[Installing a Red Hat Ceph Storage cluster]
 
 include::modules/install-ceph-object-gateway.adoc[leveloffset=+2]
 
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/{producty}/html/installation_guide_for_red_hat_enterprise_linux/deploying-red-hat-ceph-storage#installing-the-ceph-object-gateway[Installing the Ceph Object Gateway]
+* link:https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/3/html/installation_guide_for_red_hat_enterprise_linux/deploying-red-hat-ceph-storage#installing-the-ceph-object-gateway[Installing the Ceph Object Gateway]
 
 include::modules/proc_deploy_quay_ha.adoc[leveloffset=+1]
 

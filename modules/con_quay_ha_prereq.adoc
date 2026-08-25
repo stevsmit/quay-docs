@@ -1,6 +1,6 @@
 :_mod-docs-content-type: CONCEPT
 [id="preparing-for-quay-ha"]
-= Preparing for {productname} (high availability)
+= Preparing hosts for a high availability deployment
 
 [role="_abstract"]
 To prepare for a high availability {productname} deployment, you need compatible database, object storage, load balancer, and RHEL systems that meet the sizing requirements in this guide.
@@ -78,7 +78,7 @@ Production quality deployments of {productname} generally use Podman. Docker has
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html-single/configure_red_hat_quay/index[Configure {productname}]
+* xref:quay_jtbd-configure.adoc[Configure {productname}]
 * link:https://access.crunchydata.com/documentation/postgres-operator/latest/[Postgres Operator]
 * link:https://www.crunchydata.com/[Crunchy Data]
 * link:https://access.redhat.com/support/policy/updates/rhquay/policies[{productname} Support Policy]

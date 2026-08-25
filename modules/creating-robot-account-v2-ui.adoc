@@ -9,7 +9,7 @@
 = Creating a robot account by using the UI
 
 [role="_abstract"]
-To automate access to your repositories, you can create a robot account by using the {productname} v2 UI. Robot accounts generate credentials that container clients can use to push and pull images without a personal login.
+To automate access to your repositories, you can create a robot account by using the UI. Robot accounts generate credentials that container clients can use to push and pull images without a personal login.
 
 .Procedure 
 

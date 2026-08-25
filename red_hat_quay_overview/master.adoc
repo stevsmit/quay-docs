@@ -8,9 +8,9 @@ include::_attributes/attributes.adoc[]
 
 include::modules/con_quay_overview.adoc[leveloffset=+1]
 
-include::modules/con_quay_intro.adoc[leveloffset=+1]
+include::modules/con_quay_features.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html/vulnerability_reporting_with_clair_on_red_hat_quay/index[Vulnerability reporting with Clair on {productname}]
+* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/vulnerability_reporting_with_clair_on_red_hat_quay/index[Vulnerability reporting with Clair on {productname}]

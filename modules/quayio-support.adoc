@@ -15,4 +15,4 @@ For incidents related to service disruptions or performance issues not listed on
 * link:https://access.redhat.com/knowledgebase[Red Hat Knowledgebase]
 * link:https://status.quay.io/[Quay.io status page]
 * link:http://access.redhat.com[Red Hat Customer Portal]
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/3.9/html-single/troubleshooting_red_hat_quay[{productname} Troubleshooting guide]
+* xref:quay_jtbd-troubleshoot.adoc[{productname} Troubleshooting guide]

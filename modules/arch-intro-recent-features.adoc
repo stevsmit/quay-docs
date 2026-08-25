@@ -8,4 +8,4 @@
 [role="_additional-resources"]
 .Additional resources
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_quay/{producty}/html/red_hat_quay_release_notes/index[{productname} Release Notes]
+* xref:quay_jtbd-whats_new.adoc[{productname} Release Notes]

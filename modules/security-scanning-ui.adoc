@@ -5,6 +5,10 @@
 [role="_abstract"]
 To review the results of a Clair security scan, you can open the *Security Scanner* page for a tag in the {productname} UI. You can inspect detected CVEs and check available remediation options.
 
+.Prerequisites
+
+* For standalone {productname} deployments, you have deployed Clair. For more information, see "Setting up Clair on standalone {productname} deployments"
+
 .Procedure 
 
 . Navigate to a repository and click *Tags* in the navigation pane. This page shows the results of the security scan.
@@ -17,8 +21,5 @@ To review the results of a Clair security scan, you can open the *Security Scann
 +
 [NOTE]
 ====
-Image scanning only lists vulnerabilities found by Clair security scanner. What users do about the vulnerabilities are uncovered is up to said user. 
-ifeval::["{context}" == "use-quay"]
-{productname} superusers do not act on found vulnerabilities. 
-endif::[]
+Image scanning only lists vulnerabilities found by Clair security scanner. What users do about the vulnerabilities are uncovered is up to said user.
 ====
