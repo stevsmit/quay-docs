@@ -65,8 +65,13 @@ jobs:
           // Supports legacy top-level books and JTBD books under quay_jtbd/<category>/.
           const previewPaths = new Set();
           for (const file of files) {
-            if (file.filename === 'welcome.adoc' || file.filename === 'build_docs') {
+            if (file.filename === 'welcome.adoc' || file.filename === 'build_docs' || file.filename === 'build_docs_preview') {
               previewPaths.add('/');
+              continue;
+            }
+            if (file.filename === 'quay-3-18-navigation.adoc') {
+              previewPaths.add('/quay-3-18-navigation.html');
+              previewPaths.add('/quay_jtbd-navigation/');
               continue;
             }
             const parts = file.filename.split('/');

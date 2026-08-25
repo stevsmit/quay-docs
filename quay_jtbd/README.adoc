@@ -14,6 +14,17 @@ Each product documentation category is a book:
 
 Category order and module placement come from `JTBD draft 11.pre-gapfill.xlsx`.
 
+== Product navigation MAP
+
+The AEM migration root ditamap is `quay-3-18-navigation.adoc` at the repository root. It includes all 17 category MAPs (`quay_jtbd/*/master.adoc`) at `leveloffset=+1` in the same order as `welcome.adoc`.
+
+After `build_docs` or `build_docs_preview` runs, the unified navigation preview is:
+
+* `/quay-3-18-navigation.html` (flat HTML)
+* `/quay_jtbd-navigation/` (directory index)
+
+Individual category books remain available for focused review and for cross-book xrefs in Surge previews.
+
 == Job assemblies and navigation
 
 * Category `master.adoc` files use `:_mod-docs-content-type: MAP` and include job assemblies at `leveloffset=+1`.

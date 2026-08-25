@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Build Surge preview with redhat-docs-template styling (asciidoctor + left-nav theme).
-# Supports legacy top-level books and JTBD category books under quay_jtbd/.
+# Supports legacy top-level books, JTBD category books, and the product navigation MAP.
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -138,6 +138,11 @@ if [[ -d quay_jtbd ]]; then
     dir=$(basename "$(dirname "$master")")
     build_book "$master" "quay_jtbd/${dir}" "quay_jtbd-${dir}" "../../images" "../../assets/css" 2
   done
+fi
+
+echo "=== Building JTBD product navigation MAP ==="
+if [[ -f quay-3-18-navigation.adoc ]]; then
+  build_book "quay-3-18-navigation.adoc" "quay_jtbd-navigation" "quay-3-18-navigation" "images" "assets/css" 1
 fi
 
 cp -a images dist/images

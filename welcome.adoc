@@ -8,6 +8,9 @@ include::_attributes/attributes.adoc[]
 
 This preview reorganizes {productname} documentation by Jobs-to-be-Done categories.
 
+xref:quay-3-18-navigation.adoc[Full JTBD navigation preview]::
+  Browse all JTBD categories and jobs in a single left-hand navigation tree (AEM migration root MAP).
+
 xref:quay_jtbd-whats_new.adoc[What's new]::
   Learn what has changed in the current Red Hat Quay release.
 
