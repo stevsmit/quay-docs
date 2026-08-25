@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference trigger API endpoints for Red Hat Quay.
 
-include::modules/api-trigger.adoc[leveloffset=+1,toc="no"]
+include::modules/api-trigger.adoc[leveloffset=+1]
 
 include::modules/api-trigger-activateBuildTrigger.adoc[leveloffset=+2,toc="no"]
 

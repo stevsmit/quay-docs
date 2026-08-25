@@ -7,6 +7,6 @@
 [role="_abstract"]
 Create OCI referrers OAuth access tokens to list OCI referrers of a manifest under a repository by using the {productname} `v2/auth` endpoint.
 
-include::modules/oci-referrers-oauth-access-token.adoc[leveloffset=+1,toc="no"]
+include::modules/oci-referrers-oauth-access-token.adoc[leveloffset=+1]
 
 include::modules/creating-v2-oauth-access-token.adoc[leveloffset=+2,toc="no"]

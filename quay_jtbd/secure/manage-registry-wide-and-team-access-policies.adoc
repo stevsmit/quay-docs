@@ -7,13 +7,13 @@
 [role="_abstract"]
 Manage registry-wide access, restricted users, superuser access, and team roles for consistent security policies.
 
-include::modules/registry-wide-access-management.adoc[leveloffset=+1,toc="no"]
+include::modules/registry-wide-access-management.adoc[leveloffset=+1]
 
 include::modules/managing-restricted-users.adoc[leveloffset=+2,toc="no"]
 
 include::modules/managing-superuser-full-access.adoc[leveloffset=+2,toc="no"]
 
-include::modules/set-team-role.adoc[leveloffset=+1,toc="no"]
+include::modules/set-team-role.adoc[leveloffset=+1]
 
 include::modules/managing-team-members-repo-permissions-ui.adoc[leveloffset=+2,toc="no"]
 

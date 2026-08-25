@@ -7,4 +7,4 @@
 [role="_abstract"]
 After deploying {productname-ocp}, create the first user in the UI and prepare to create a repository and push your first image.
 
-include::modules/first-user-ui.adoc[leveloffset=+1,toc="no"]
+include::modules/first-user-ui.adoc[leveloffset=+1]

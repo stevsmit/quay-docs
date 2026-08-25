@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference mirror API endpoints for Red Hat Quay.
 
-include::modules/api-mirror.adoc[leveloffset=+1,toc="no"]
+include::modules/api-mirror.adoc[leveloffset=+1]
 
 include::modules/api-mirror-syncCancel.adoc[leveloffset=+2,toc="no"]
 

@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference superuser (part 2) API endpoints for Red Hat Quay.
 
-include::modules/api-superuser.adoc[leveloffset=+1,toc="no"]
+include::modules/api-superuser.adoc[leveloffset=+1]
 
 include::modules/api-superuser-listAllAppTokens.adoc[leveloffset=+2,toc="no"]
 

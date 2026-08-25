@@ -7,6 +7,6 @@
 [role="_abstract"]
 Reference capabilities API endpoints for Red Hat Quay.
 
-include::modules/api-capabilities.adoc[leveloffset=+1,toc="no"]
+include::modules/api-capabilities.adoc[leveloffset=+1]
 
 include::modules/api-capabilities-getRegistryCapabilities.adoc[leveloffset=+2,toc="no"]

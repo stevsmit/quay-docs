@@ -7,7 +7,7 @@
 [role="_abstract"]
 Configure a standalone or on-premises Red Hat Quay deployment using minimal `config.yaml` examples, post-deployment updates, and procedures to verify, troubleshoot, and read the configuration file.
 
-include::modules/on-prem-configuration-overview.adoc[leveloffset=+1,toc="no"]
+include::modules/on-prem-configuration-overview.adoc[leveloffset=+1]
 
 include::modules/config-file-minimal.adoc[leveloffset=+2,toc="no"]
 

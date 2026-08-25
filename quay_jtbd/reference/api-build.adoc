@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference build API endpoints for Red Hat Quay.
 
-include::modules/api-build.adoc[leveloffset=+1,toc="no"]
+include::modules/api-build.adoc[leveloffset=+1]
 
 include::modules/api-build-getRepoBuildStatus.adoc[leveloffset=+2,toc="no"]
 

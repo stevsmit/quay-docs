@@ -7,12 +7,12 @@
 [role="_abstract"]
 Set reject and warning limits, calculate total registry size, and permanently delete image tags to enforce quotas and reclaim storage.
 
-include::modules/setting-reject-warning-limits.adoc[leveloffset=+1,toc="no"]
+include::modules/setting-reject-warning-limits.adoc[leveloffset=+1]
 
 include::modules/viewing-reject-warning-limits.adoc[leveloffset=+2,toc="no"]
 
-include::modules/quota-management-query-39.adoc[leveloffset=+1,toc="no"]
+include::modules/quota-management-query-39.adoc[leveloffset=+1]
 
-include::modules/deleting-tag-permanently.adoc[leveloffset=+1,toc="no"]
+include::modules/deleting-tag-permanently.adoc[leveloffset=+1]
 
 include::modules/permanently-deleting-image-tag-v2-ui.adoc[leveloffset=+2,toc="no"]

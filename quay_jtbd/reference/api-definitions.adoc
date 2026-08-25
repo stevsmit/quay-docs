@@ -7,4 +7,4 @@
 [role="_abstract"]
 Reference Definitions information for the Red Hat Quay API.
 
-include::modules/api-definitions.adoc[leveloffset=+1,toc="no"]
+include::modules/api-definitions.adoc[leveloffset=+1]

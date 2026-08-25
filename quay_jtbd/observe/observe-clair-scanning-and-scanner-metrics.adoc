@@ -7,4 +7,4 @@
 [role="_abstract"]
 Review Prometheus garbage collection metrics to confirm registry cleanup workers are running as expected.
 
-include::modules/garbage-collection-metrics.adoc[leveloffset=+1,toc="no"]
+include::modules/garbage-collection-metrics.adoc[leveloffset=+1]

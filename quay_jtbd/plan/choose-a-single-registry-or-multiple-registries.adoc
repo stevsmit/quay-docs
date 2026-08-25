@@ -7,4 +7,4 @@
 [role="_abstract"]
 Compare running one shared Red Hat Quay registry with deploying multiple distinct registries to balance cost, isolation, and operational complexity.
 
-include::modules/core-distinct-registries.adoc[leveloffset=+1,toc="no"]
+include::modules/core-distinct-registries.adoc[leveloffset=+1]

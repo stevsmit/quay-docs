@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference org_mirror API endpoints for Red Hat Quay.
 
-include::modules/api-org_mirror.adoc[leveloffset=+1,toc="no"]
+include::modules/api-org_mirror.adoc[leveloffset=+1]
 
 include::modules/api-org_mirror-createOrgMirrorConfig.adoc[leveloffset=+2,toc="no"]
 

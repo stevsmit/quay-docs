@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference configuration fields for Clair notifiers, authorization, tracing, metrics, and the security scanner.
 
-include::modules/config-fields-clair-notifiers.adoc[leveloffset=+1,toc="no"]
+include::modules/config-fields-clair-notifiers.adoc[leveloffset=+1]
 
 include::modules/config-fields-clair-auth.adoc[leveloffset=+2,toc="no"]
 

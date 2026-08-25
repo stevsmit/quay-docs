@@ -7,4 +7,4 @@
 [role="_abstract"]
 Migrate the Clair PostgreSQL database from version 13 to 15 when required by your Red Hat Quay upgrade path.
 
-include::modules/clair-postgresql-database-update.adoc[leveloffset=+1,toc="no"]
+include::modules/clair-postgresql-database-update.adoc[leveloffset=+1]

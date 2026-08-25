@@ -7,7 +7,7 @@
 [role="_abstract"]
 Review Prometheus metrics for registry queues, garbage collection, push and pull activity, and authentication.
 
-include::modules/metrics-general-registry-stats.adoc[leveloffset=+1,toc="no"]
+include::modules/metrics-general-registry-stats.adoc[leveloffset=+1]
 
 include::modules/metrics-queue-items.adoc[leveloffset=+2,toc="no"]
 

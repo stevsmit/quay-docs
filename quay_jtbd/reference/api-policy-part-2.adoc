@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference policy (part 2) API endpoints for Red Hat Quay.
 
-include::modules/api-policy.adoc[leveloffset=+1,toc="no"]
+include::modules/api-policy.adoc[leveloffset=+1]
 
 include::modules/api-policy-updateRepositoryAutoPrunePolicy.adoc[leveloffset=+2,toc="no"]
 

@@ -7,17 +7,17 @@
 [role="_abstract"]
 Automate repository permissions, auto-prune policies, and robot operations by using the Red Hat Quay API.
 
-include::modules/repo-permission-api.adoc[leveloffset=+1,toc="no"]
+include::modules/repo-permission-api.adoc[leveloffset=+1]
 
 include::modules/user-permissions-repo.adoc[leveloffset=+2,toc="no"]
 
 include::modules/team-permissions-api.adoc[leveloffset=+2,toc="no"]
 
-include::modules/repo-policy-api.adoc[leveloffset=+1,toc="no"]
+include::modules/repo-policy-api.adoc[leveloffset=+1]
 
-include::modules/repo-creation-management.adoc[leveloffset=+1,toc="no"]
+include::modules/repo-creation-management.adoc[leveloffset=+1]
 
-include::modules/robot-account-manage-api.adoc[leveloffset=+1,toc="no"]
+include::modules/robot-account-manage-api.adoc[leveloffset=+1]
 
 include::modules/creating-robot-account-api.adoc[leveloffset=+2,toc="no"]
 
