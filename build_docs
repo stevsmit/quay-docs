@@ -43,4 +43,9 @@ if [[ -d quay_jtbd ]]; then
   done
 fi
 
+# JTBD product navigation MAP (category MAP → job ASSEMBLY → modules)
+if [[ -f quay-3-18-navigation.adoc ]]; then
+  build_master "quay-3-18-navigation.adoc" "quay_jtbd-navigation" "quay-3-18-navigation" "images"
+fi
+
 cp -a images dist/images
