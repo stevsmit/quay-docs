@@ -7,4 +7,4 @@
 [role="_abstract"]
 Troubleshoot Operator-managed PostgreSQL TLS configurations to restore secure database connectivity.
 
-include::modules/operator-managed-postgres-tls-troubleshooting.adoc[leveloffset=+1,toc="no"]
+include::modules/operator-managed-postgres-tls-troubleshooting.adoc[leveloffset=+1]

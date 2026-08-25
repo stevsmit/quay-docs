@@ -7,9 +7,9 @@
 [role="_abstract"]
 Learn how OAuth 2.0 tokens work, enable the Red Hat Quay API, and use API endpoints, Swagger, and automation workflows. Before you call authenticated endpoints, create an OAuth 2 access token; see xref:manage-oauth-access-tokens-for-the-red-hat-quay-api_{context}[Manage OAuth access tokens for the Red Hat Quay API].
 
-include::modules/token-overview.adoc[leveloffset=+1,toc="no"]
+include::modules/token-overview.adoc[leveloffset=+1]
 
-include::modules/using-the-api.adoc[leveloffset=+1,toc="no"]
+include::modules/using-the-api.adoc[leveloffset=+1]
 
 include::modules/configuring-api-calls.adoc[leveloffset=+2,toc="no"]
 

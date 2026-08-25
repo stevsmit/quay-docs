@@ -7,7 +7,7 @@
 [role="_abstract"]
 Configure certificate-based TLS between Red Hat Quay and PostgreSQL, including Operator-managed database TLS settings.
 
-include::modules/ssl-tls-sql.adoc[leveloffset=+1,toc="no"]
+include::modules/ssl-tls-sql.adoc[leveloffset=+1]
 
 include::modules/operator-managed-postgres-tls.adoc[leveloffset=+2,toc="no"]
 

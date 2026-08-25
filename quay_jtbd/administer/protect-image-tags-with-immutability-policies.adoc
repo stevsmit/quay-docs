@@ -7,7 +7,7 @@
 [role="_abstract"]
 Create, list, update, and delete tag immutability policies by using the Red Hat Quay v2 UI or API.
 
-include::modules/immutable-tag-overview.adoc[leveloffset=+1,toc="no"]
+include::modules/immutable-tag-overview.adoc[leveloffset=+1]
 
 include::modules/making-tag-immutable-ui.adoc[leveloffset=+2,toc="no"]
 

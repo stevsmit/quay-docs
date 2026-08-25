@@ -7,7 +7,7 @@
 [role="_abstract"]
 Reference organization (part 3) API endpoints for Red Hat Quay.
 
-include::modules/api-organization.adoc[leveloffset=+1,toc="no"]
+include::modules/api-organization.adoc[leveloffset=+1]
 
 include::modules/api-organization-changeOrganizationDetails.adoc[leveloffset=+2,toc="no"]
 

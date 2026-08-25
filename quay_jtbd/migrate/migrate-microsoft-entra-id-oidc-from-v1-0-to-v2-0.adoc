@@ -7,6 +7,6 @@
 [role="_abstract"]
 Migrate Microsoft Entra ID OIDC from v1.0 to v2.0 using a dual-issuer cutover and multi-issuer configuration.
 
-include::modules/migrating-entra-v1-to-v2-oidc.adoc[leveloffset=+1,toc="no"]
+include::modules/migrating-entra-v1-to-v2-oidc.adoc[leveloffset=+1]
 
-include::modules/configuring-entra-v2-multi-issuer-oidc.adoc[leveloffset=+1,toc="no"]
+include::modules/configuring-entra-v2-multi-issuer-oidc.adoc[leveloffset=+1]

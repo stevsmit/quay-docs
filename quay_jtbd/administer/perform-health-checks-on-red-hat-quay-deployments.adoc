@@ -7,7 +7,7 @@
 [role="_abstract"]
 Run a quick health check on a Red Hat Quay deployment by using the instance endpoint. For the full health check reference, see the Observe documentation.
 
-include::modules/instance-endpoint-quay.adoc[leveloffset=+1,toc="no"]
+include::modules/instance-endpoint-quay.adoc[leveloffset=+1]
 
 [role="_additional-resources"]
 .Additional resources

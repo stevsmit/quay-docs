@@ -7,7 +7,7 @@
 [role="_abstract"]
 Review sample deployment sizes, minimum requirements, and subscription options to budget and right-size your Red Hat Quay deployment.
 
-include::modules/sizing-intro.adoc[leveloffset=+1,toc="no"]
+include::modules/sizing-intro.adoc[leveloffset=+1]
 
 include::modules/sizing-sample.adoc[leveloffset=+2,toc="no"]
 

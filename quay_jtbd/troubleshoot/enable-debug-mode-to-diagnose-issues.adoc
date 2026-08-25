@@ -7,7 +7,7 @@
 [role="_abstract"]
 Run standalone Red Hat Quay or the Operator in debug mode, including LDAP deployments, to capture detailed diagnostic logs.
 
-include::modules/running-quay-debug-mode-intro.adoc[leveloffset=+1,toc="no"]
+include::modules/running-quay-debug-mode-intro.adoc[leveloffset=+1]
 
 include::modules/running-quay-debug-mode.adoc[leveloffset=+2,toc="no"]
 

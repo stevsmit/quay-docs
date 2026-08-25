@@ -7,4 +7,4 @@
 [role="_abstract"]
 Change the Quay Bridge Operator update channel to upgrade {productname-ocp} integration safely.
 
-include::modules/qbo-operator-upgrade.adoc[leveloffset=+1,toc="no"]
+include::modules/qbo-operator-upgrade.adoc[leveloffset=+1]

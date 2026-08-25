@@ -7,6 +7,6 @@
 [role="_abstract"]
 Reference discovery API endpoints for Red Hat Quay.
 
-include::modules/api-discovery.adoc[leveloffset=+1,toc="no"]
+include::modules/api-discovery.adoc[leveloffset=+1]
 
 include::modules/api-discovery-discovery.adoc[leveloffset=+2,toc="no"]

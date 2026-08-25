@@ -7,4 +7,4 @@
 [role="_abstract"]
 Troubleshoot Clair scanning issues to restore vulnerability reporting in your registry.
 
-include::modules/clair-troubleshooting-issues.adoc[leveloffset=+1,toc="no"]
+include::modules/clair-troubleshooting-issues.adoc[leveloffset=+1]

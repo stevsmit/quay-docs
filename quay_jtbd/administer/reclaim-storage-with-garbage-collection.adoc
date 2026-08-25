@@ -7,7 +7,7 @@
 [role="_abstract"]
 Configure and run garbage collection, review quota interactions, and monitor garbage collection metrics to reclaim storage.
 
-include::modules/garbage-collection-practice.adoc[leveloffset=+1,toc="no"]
+include::modules/garbage-collection-practice.adoc[leveloffset=+1]
 
 include::modules/garbage-collection-configuration-fields.adoc[leveloffset=+2,toc="no"]
 

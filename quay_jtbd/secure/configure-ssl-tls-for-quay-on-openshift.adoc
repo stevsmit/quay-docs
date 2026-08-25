@@ -7,7 +7,7 @@
 [role="_abstract"]
 Configure custom SSL/TLS certificates for Operator-managed Red Hat Quay, preserve TLS settings across upgrades, and use cert-manager with external secrets.
 
-include::modules/operator-custom-ssl-certs-config-bundle.adoc[leveloffset=+1,toc="no"]
+include::modules/operator-custom-ssl-certs-config-bundle.adoc[leveloffset=+1]
 
 include::modules/operator-ocp-tls-security-profile.adoc[leveloffset=+2,toc="no"]
 
