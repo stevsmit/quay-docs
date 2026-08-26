@@ -1,5 +1,6 @@
-// module included in the following assemblies:
-
+// Module included in the following assemblies:
+//
+// * quay_jtbd/plan/choose-a-quay-io-plan.adoc
 // * quay_io/master.adoc
 
 :_mod-docs-content-type: CONCEPT
