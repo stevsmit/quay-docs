@@ -9,4 +9,4 @@ Before you install a highly available registry, review shared infrastructure req
 
 include::modules/con_quay_ha_plan_requirements.adoc[leveloffset=+1]
 
-include::modules/con_quay_ha_plan_capacity.adoc[leveloffset=+1]
+include::modules/con_quay_ha_plan_capacity.adoc[leveloffset=+2,toc="no"]
