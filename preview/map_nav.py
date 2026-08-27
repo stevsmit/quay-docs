@@ -299,24 +299,7 @@ def build_map_nav(master: pathlib.Path) -> MapNav:
     root = NavNode(title=title, anchor=anchor, leveloffset=0, source=master)
     rhs_by_chunk: dict[str, list[NavNode]] = {}
     _expand_nav(root, master, attrs, rhs_by_chunk, chunk_anchor=None, visited=set())
-    for chunk_key, nodes in list(rhs_by_chunk.items()):
-        attach_subsections_list(nodes, attrs)
     return MapNav(root=root, rhs_by_chunk=rhs_by_chunk)
-
-
-def attach_subsections_list(nodes: list[NavNode], attrs: dict[str, str] | None) -> None:
-    for node in nodes:
-        attach_subsections(node, attrs)
-
-
-def attach_subsections(node: NavNode, attrs: dict[str, str] | None = None) -> None:
-    if node.source and node.source.suffix == '.adoc':
-        has_subs = any(c.leveloffset == 0 for c in node.children)
-        if not has_subs:
-            for sub in subsection_nodes(node.source, attrs):
-                node.children.append(sub)
-    for child in node.children:
-        attach_subsections(child, attrs)
 
 
 def _expand_nav(
