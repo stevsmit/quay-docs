@@ -93,11 +93,8 @@ body.article {
   padding-left: 1.25rem;
 }
 
-/* Right-hand "On this page" nav (chunked job sections) */
-body.has-right-toc #content {
-  margin-right: 16rem;
-}
-
+/* Right-hand "On this page" nav (chunked job sections).
+   Overlay the panel — do not shift #content; redhat.css already offsets for LHS. */
 #right-toc {
   background: #fafafa;
   border-left: 1px solid #ddd;
@@ -156,11 +153,49 @@ body.has-right-toc #content {
   margin: 0;
 }
 
-@media only screen and (max-width: 1279px) {
-  body.has-right-toc #content {
-    margin-right: 0;
-  }
+/* RHS: show level-2+ only when the level-1 parent is expanded */
+#right-toc li.rhs-collapsible {
+  position: relative;
+}
 
+#right-toc li.rhs-collapsible > .rhs-chevron {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 0.65rem;
+  left: 0;
+  line-height: 1.4;
+  padding: 0.15rem 0.25rem 0.15rem 0;
+  position: absolute;
+  top: 0.1rem;
+  width: 1rem;
+}
+
+#right-toc li.rhs-collapsible > .rhs-chevron::before {
+  content: '▸';
+  display: inline-block;
+}
+
+#right-toc li.rhs-collapsible.expanded > .rhs-chevron::before {
+  content: '▾';
+}
+
+#right-toc li.rhs-collapsible > a.rhs-parent {
+  display: block;
+  padding-left: 1rem;
+}
+
+#right-toc li.rhs-collapsible > ul {
+  display: none;
+  margin-left: 0.75rem;
+}
+
+#right-toc li.rhs-collapsible.expanded > ul {
+  display: block;
+}
+
+@media only screen and (max-width: 1279px) {
   #right-toc {
     display: none;
   }

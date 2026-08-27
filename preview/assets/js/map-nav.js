@@ -1,6 +1,9 @@
 /**
  * JTBD map preview: right-hand "On this page" nav for chunked job sections.
  * Reads #map-nav-data JSON emitted by preview/map_nav.py.
+ *
+ * Level-1 RHS entries are always visible; level-2+ children expand only when
+ * their parent is clicked (accordion — one expanded section at a time).
  */
 (function () {
   var dataEl = document.getElementById('map-nav-data');
@@ -26,15 +29,82 @@
     if (!nodes || !nodes.length) return '';
     var parts = ['<ul>'];
     nodes.forEach(function (node) {
-      var cls = depth > 2 ? ' class="right-toc-too-deep"' : '';
-      parts.push('<li' + cls + '><a href="#' + esc(node.anchor) + '">' + esc(node.title) + '</a>');
-      if (node.children && node.children.length) {
+      var hasChildren = node.children && node.children.length;
+      if (hasChildren) {
+        parts.push('<li class="rhs-collapsible">');
+        parts.push(
+          '<button type="button" class="rhs-chevron" aria-label="Show subsections" aria-expanded="false"></button>'
+        );
+        parts.push(
+          '<a href="#' +
+            esc(node.anchor) +
+            '" class="rhs-parent">' +
+            esc(node.title) +
+            '</a>'
+        );
         parts.push(renderList(node.children, depth + 1));
+      } else {
+        parts.push('<li><a href="#' + esc(node.anchor) + '">' + esc(node.title) + '</a>');
       }
       parts.push('</li>');
     });
     parts.push('</ul>');
     return parts.join('');
+  }
+
+  function collapseRhsItem(li) {
+    li.classList.remove('expanded');
+    var btn = li.querySelector('.rhs-chevron');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+  }
+
+  function expandRhsItem(li) {
+    var parentUl = li.parentElement;
+    if (parentUl) {
+      parentUl.querySelectorAll(':scope > li.rhs-collapsible.expanded').forEach(function (other) {
+        if (other !== li) collapseRhsItem(other);
+      });
+    }
+    li.classList.add('expanded');
+    var btn = li.querySelector('.rhs-chevron');
+    if (btn) {
+      btn.setAttribute('aria-expanded', 'true');
+      btn.setAttribute('aria-label', 'Hide subsections');
+    }
+  }
+
+  function toggleRhsItem(li) {
+    if (li.classList.contains('expanded')) {
+      collapseRhsItem(li);
+    } else {
+      expandRhsItem(li);
+    }
+  }
+
+  function bindRhsCollapse() {
+    rhsPanel.querySelectorAll('li.rhs-collapsible').forEach(function (li) {
+      var btn = li.querySelector('.rhs-chevron');
+      var link = li.querySelector('a.rhs-parent');
+      if (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          toggleRhsItem(li);
+        });
+      }
+      if (link) {
+        link.addEventListener('click', function () {
+          expandRhsItem(li);
+        });
+      }
+    });
+  }
+
+  function expandParentForAnchor(anchor) {
+    if (!anchor) return;
+    var link = rhsPanel.querySelector('a[href="#' + CSS.escape(anchor) + '"]');
+    if (!link) return;
+    var li = link.closest('li.rhs-collapsible');
+    if (li) expandRhsItem(li);
   }
 
   function renderRhs(chunkAnchor) {
@@ -47,17 +117,8 @@
     }
     rhsPanel.innerHTML =
       '<div class="right-toc-title">On this page</div>' + renderList(nodes, 1);
+    bindRhsCollapse();
     bindRhsScrollSpy();
-  }
-
-  function chunkForElement(el) {
-    while (el && el !== document.body) {
-      if (el.dataset && el.dataset.chunkAnchor) {
-        return el.dataset.chunkAnchor;
-      }
-      el = el.parentElement;
-    }
-    return null;
   }
 
   function bindRhsScrollSpy() {
@@ -84,6 +145,9 @@
       links.forEach(function (l) {
         l.classList.toggle('active', l === active);
       });
+      if (active) {
+        expandParentForAnchor(active.getAttribute('href').slice(1));
+      }
     }
 
     $(window).off('scroll.mapNavRhs').on('scroll.mapNavRhs', sync);
@@ -138,7 +202,9 @@
     var id = a.getAttribute('href').slice(1);
     if (data.rhsByChunk[id]) {
       current = id;
-      setTimeout(function () { renderRhs(id); }, 50);
+      setTimeout(function () {
+        renderRhs(id);
+      }, 50);
     }
   });
 })();

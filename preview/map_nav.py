@@ -329,24 +329,34 @@ def align_all_anchors(nav: MapNav, headings: list[tuple[str, str]]) -> None:
             index = align_anchors_preorder(node, headings, index)
 
 
-def render_toc_list(nodes: list[NavNode], depth: int = 1) -> str:
+def render_toc_list(nodes: list[NavNode], depth: int = 1, *, expanded: bool = True) -> str:
     if not nodes:
         return ''
     cls = 'sectlevel1' if depth == 1 else f'sectlevel{depth}'
     parts = [f'<ul class="{cls}">']
     for node in nodes:
         has_children = bool(node.children)
-        li_attrs = ' class="toc-collapsible expanded"' if has_children else ''
+        if expanded:
+            li_attrs = ' class="toc-collapsible expanded"' if has_children else ''
+        else:
+            li_attrs = ' class="rhs-collapsible"' if has_children else ''
         parts.append(f'<li{li_attrs}>')
         if has_children:
-            parts.append(
-                '<button type="button" class="toc-chevron" '
-                'aria-label="Collapse section" aria-expanded="true"></button>'
-            )
+            if expanded:
+                parts.append(
+                    '<button type="button" class="toc-chevron" '
+                    'aria-label="Collapse section" aria-expanded="true"></button>'
+                )
+            else:
+                parts.append(
+                    '<button type="button" class="rhs-chevron" '
+                    'aria-label="Show subsections" aria-expanded="false"></button>'
+                )
         href = f'#{html.escape(node.anchor)}' if node.anchor else '#'
-        parts.append(f'<a href="{href}">{html.escape(node.title)}</a>')
+        link_cls = ' class="rhs-parent"' if has_children and not expanded else ''
+        parts.append(f'<a href="{href}"{link_cls}>{html.escape(node.title)}</a>')
         if has_children:
-            parts.append(render_toc_list(node.children, depth + 1))
+            parts.append(render_toc_list(node.children, depth + 1, expanded=expanded))
         parts.append('</li>')
     parts.append('</ul>')
     return ''.join(parts)
@@ -377,7 +387,7 @@ def render_initial_rhs(nav: MapNav) -> str:
         return ''
     first_key = next(iter(nav.rhs_by_chunk))
     nodes = nav.rhs_by_chunk[first_key]
-    inner = render_toc_list(nodes, 1).replace('class="sectlevel1"', 'class="rhs-list"')
+    inner = render_toc_list(nodes, 1, expanded=False).replace('class="sectlevel1"', 'class="rhs-list"')
     return (
         '<aside id="right-toc" aria-label="On this page">'
         '<div class="right-toc-title">On this page</div>'
