@@ -195,6 +195,14 @@ body.article {
   display: block;
 }
 
+#right-toc li.rhs-collapsible li.rhs-collapsible > a.rhs-parent {
+  padding-left: 1rem;
+}
+
+#right-toc li.rhs-collapsible li.rhs-collapsible > .rhs-chevron {
+  left: 0;
+}
+
 @media only screen and (max-width: 1279px) {
   #right-toc {
     display: none;

@@ -2,8 +2,8 @@
  * JTBD Surge preview: map-preview style RHS ("On this page").
  *
  * LHS: category MAP jobs (levels 1–2).
- * RHS: assembly L1 modules for the active job — always listed, collapsible.
- * L2 modules and ==/=== subsections appear only when their L1 row is expanded.
+ * RHS: in-page detail for the active job — ==/=== subs and toc="no" modules.
+ * Assembly modules already shown on the LHS are omitted; their nested content appears here instead.
  */
 (function () {
   var dataEl = document.getElementById('map-nav-data');
@@ -21,7 +21,7 @@
 
   var SCROLL_LINE = 120;
   var currentChunk = null;
-  var expandedL1ByChunk = {};
+  var expandedByChunk = {};
 
   function esc(text) {
     var d = document.createElement('div');
@@ -35,19 +35,53 @@
     return el.getBoundingClientRect().top;
   }
 
-  function renderChildTree(nodes) {
+  function expandedSet(chunk) {
+    if (!expandedByChunk[chunk]) expandedByChunk[chunk] = new Set();
+    return expandedByChunk[chunk];
+  }
+
+  function isExpanded(chunk, anchor) {
+    return expandedSet(chunk).has(anchor);
+  }
+
+  function renderNavNode(node, chunk) {
+    var hasChildren = node.children && node.children.length;
+    if (!hasChildren) {
+      return '<li><a href="#' + esc(node.anchor) + '">' + esc(node.title) + '</a></li>';
+    }
+
+    var expanded = isExpanded(chunk, node.anchor);
+    var parts = ['<li class="rhs-collapsible' + (expanded ? ' expanded' : '') + '">'];
+    parts.push(
+      '<button type="button" class="rhs-chevron" aria-label="' +
+        (expanded ? 'Collapse section' : 'Expand section') +
+        '" aria-expanded="' +
+        (expanded ? 'true' : 'false') +
+        '"></button>'
+    );
+    parts.push(
+      '<a href="#' +
+        esc(node.anchor) +
+        '" class="rhs-parent">' +
+        esc(node.title) +
+        '</a>'
+    );
+    parts.push(renderChildList(node.children, chunk));
+    parts.push('</li>');
+    return parts.join('');
+  }
+
+  function renderChildList(nodes, chunk) {
     if (!nodes || !nodes.length) return '';
     var parts = ['<ul>'];
     nodes.forEach(function (node) {
-      parts.push('<li><a href="#' + esc(node.anchor) + '">' + esc(node.title) + '</a>');
-      parts.push(renderChildTree(node.children));
-      parts.push('</li>');
+      parts.push(renderNavNode(node, chunk));
     });
     parts.push('</ul>');
     return parts.join('');
   }
 
-  function renderChunkRhs(roots, expandedAnchor) {
+  function renderChunkRhs(roots, chunk) {
     if (!roots || !roots.length) {
       return (
         '<div class="right-toc-title">On this page</div>' +
@@ -57,57 +91,38 @@
 
     var parts = ['<div class="right-toc-title">On this page</div>', '<ul class="rhs-list">'];
     roots.forEach(function (l1) {
-      var hasChildren = l1.children && l1.children.length;
-      if (!hasChildren) {
-        parts.push('<li><a href="#' + esc(l1.anchor) + '">' + esc(l1.title) + '</a></li>');
-        return;
-      }
-
-      var expanded = expandedAnchor === l1.anchor;
-      parts.push('<li class="rhs-collapsible' + (expanded ? ' expanded' : '') + '">');
-      parts.push(
-        '<button type="button" class="rhs-chevron" aria-label="' +
-          (expanded ? 'Collapse section' : 'Expand section') +
-          '" aria-expanded="' +
-          (expanded ? 'true' : 'false') +
-          '"></button>'
-      );
-      parts.push(
-        '<a href="#' +
-          esc(l1.anchor) +
-          '" class="rhs-parent">' +
-          esc(l1.title) +
-          '</a>'
-      );
-      parts.push(renderChildTree(l1.children));
-      parts.push('</li>');
+      parts.push(renderNavNode(l1, chunk));
     });
     parts.push('</ul>');
     return parts.join('');
   }
 
-  function bindRhsCollapse(chunk, roots) {
+  function bindRhsCollapse(chunk) {
     rhsPanel.querySelectorAll('li.rhs-collapsible').forEach(function (li) {
-      var link = li.querySelector('a.rhs-parent');
+      var link = li.querySelector(':scope > a.rhs-parent');
       if (!link) return;
       var anchor = link.getAttribute('href').slice(1);
 
-      function toggle() {
-        var next = expandedL1ByChunk[chunk] === anchor ? null : anchor;
-        expandedL1ByChunk[chunk] = next;
+      function toggleExpand() {
+        var set = expandedSet(chunk);
+        if (set.has(anchor)) {
+          set.delete(anchor);
+        } else {
+          set.add(anchor);
+        }
         renderChunk(chunk);
       }
 
-      var btn = li.querySelector('.rhs-chevron');
+      var btn = li.querySelector(':scope > .rhs-chevron');
       if (btn) {
         btn.addEventListener('click', function (e) {
           e.preventDefault();
-          toggle();
+          toggleExpand();
         });
       }
       link.addEventListener('click', function () {
-        if (expandedL1ByChunk[chunk] !== anchor) {
-          expandedL1ByChunk[chunk] = anchor;
+        if (!isExpanded(chunk, anchor)) {
+          expandedSet(chunk).add(anchor);
           renderChunk(chunk);
         }
       });
@@ -159,9 +174,8 @@
 
   function renderChunk(chunk) {
     var roots = data.rhsByChunk[chunk];
-    var expanded = expandedL1ByChunk[chunk] || null;
-    rhsPanel.innerHTML = renderChunkRhs(roots, expanded);
-    bindRhsCollapse(chunk, roots);
+    rhsPanel.innerHTML = renderChunkRhs(roots, chunk);
+    bindRhsCollapse(chunk);
     bindRhsScrollSpy();
   }
 

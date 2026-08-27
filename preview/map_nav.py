@@ -3,7 +3,7 @@
 JTBD map navigation for Surge preview (LHS + RHS).
 
 LHS: map entries staged by leveloffset (+1..+4), excluding toc="no" under a chunk.
-RHS: assembly L1 modules (collapsible); L2/==/=== nested under each L1 in JSON.
+RHS: in-page detail not already on the LHS — ==/=== subs and toc="no" modules.
 """
 
 from __future__ import annotations
@@ -218,9 +218,41 @@ def build_rhs_node(node: NavNode, attrs: dict[str, str]) -> NavNode:
     return clone_node(node, children=children)
 
 
+def lhs_visible_anchors(full_tree: list[NavNode]) -> set[str]:
+    return {node.anchor for node in strip_toc_no(full_tree) if node.anchor}
+
+
+def omit_lhs_modules(roots: list[NavNode], lhs_anchors: set[str]) -> list[NavNode]:
+    """Replace LHS-visible assembly modules with their in-page children on the RHS."""
+    result: list[NavNode] = []
+    for root in roots:
+        if root.anchor in lhs_anchors:
+            result.extend(root.children)
+        else:
+            result.append(root)
+    return result
+
+
 def build_rhs_for_chunk(full_tree: list[NavNode], attrs: dict[str, str]) -> list[NavNode]:
-    """Assembly L1 modules as RHS roots; L2 includes and ==/=== nested under their L1 parent."""
-    return [build_rhs_node(node, attrs) for node in full_tree]
+    """Build RHS roots: skip LHS-visible modules; promote toc_no-only wrappers."""
+    lhs_anchors = lhs_visible_anchors(full_tree)
+    roots = [build_rhs_node(node, attrs) for node in full_tree]
+    roots = omit_lhs_modules(roots, lhs_anchors)
+    return promote_rhs_roots(roots)
+
+
+def promote_rhs_roots(roots: list[NavNode]) -> list[NavNode]:
+    """When one L1 wrapper only groups toc_no modules (no == subs), use those modules as RHS roots."""
+    if len(roots) != 1:
+        return roots
+    wrapper = roots[0]
+    if not wrapper.children:
+        return roots
+    if any(not child.source for child in wrapper.children):
+        return roots
+    if not all(child.toc_no for child in wrapper.children):
+        return roots
+    return wrapper.children
 
 
 def subsection_nodes(path: pathlib.Path, attrs: dict[str, str] | None = None) -> list[NavNode]:
