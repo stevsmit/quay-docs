@@ -1,8 +1,9 @@
 /**
- * JTBD map preview: RHS mirrors assembly structure (L1 + nested L2/==/===).
+ * JTBD Surge preview: map-preview style RHS ("On this page").
  *
- * LHS: category MAP (jobs). RHS: active job's assembly L1 modules always listed;
- * subsections and L2 modules under an L1 appear progressively while scrolling it.
+ * LHS: category MAP jobs (levels 1–2).
+ * RHS: assembly L1 modules for the active job — always listed, collapsible.
+ * L2 modules and ==/=== subsections appear only when their L1 row is expanded.
  */
 (function () {
   var dataEl = document.getElementById('map-nav-data');
@@ -20,7 +21,7 @@
 
   var SCROLL_LINE = 120;
   var currentChunk = null;
-  var lastRenderedKey = '';
+  var expandedL1ByChunk = {};
 
   function esc(text) {
     var d = document.createElement('div');
@@ -34,94 +35,83 @@
     return el.getBoundingClientRect().top;
   }
 
-  function headingPassed(anchor) {
-    var top = headingTop(anchor);
-    return top !== null && top <= SCROLL_LINE;
-  }
-
-  function collectAnchors(node, out) {
-    if (!node) return;
-    out.push(node.anchor);
-    (node.children || []).forEach(function (child) {
-      collectAnchors(child, out);
-    });
-  }
-
-  function findL1ForAnchor(roots, anchor) {
-    for (var i = 0; i < roots.length; i++) {
-      var anchors = [];
-      collectAnchors(roots[i], anchors);
-      if (anchors.indexOf(anchor) !== -1) return roots[i];
-    }
-    return null;
-  }
-
-  function activeL1Root(roots) {
-    var bestAnchor = null;
-    var bestTop = -Infinity;
-    roots.forEach(function (l1) {
-      var anchors = [];
-      collectAnchors(l1, anchors);
-      anchors.forEach(function (anchor) {
-        var top = headingTop(anchor);
-        if (top !== null && top <= SCROLL_LINE && top > bestTop) {
-          bestTop = top;
-          bestAnchor = anchor;
-        }
-      });
-    });
-    if (!bestAnchor) return null;
-    return findL1ForAnchor(roots, bestAnchor);
-  }
-
-  function progressiveChildren(node) {
-    var visible = [];
-    (node.children || []).forEach(function (child) {
-      if (!headingPassed(child.anchor)) return;
-      var nested = progressiveChildren(child);
-      visible.push({
-        anchor: child.anchor,
-        title: child.title,
-        children: nested,
-      });
-    });
-    return visible;
-  }
-
-  function renderChildNodes(children) {
-    if (!children || !children.length) return '';
+  function renderChildTree(nodes) {
+    if (!nodes || !nodes.length) return '';
     var parts = ['<ul>'];
-    children.forEach(function (child) {
-      parts.push('<li><a href="#' + esc(child.anchor) + '">' + esc(child.title) + '</a>');
-      parts.push(renderChildNodes(child.children));
+    nodes.forEach(function (node) {
+      parts.push('<li><a href="#' + esc(node.anchor) + '">' + esc(node.title) + '</a>');
+      parts.push(renderChildTree(node.children));
       parts.push('</li>');
     });
     parts.push('</ul>');
     return parts.join('');
   }
 
-  function renderChunkRhs(roots, activeL1) {
+  function renderChunkRhs(roots, expandedAnchor) {
+    if (!roots || !roots.length) {
+      return (
+        '<div class="right-toc-title">On this page</div>' +
+        '<p class="right-toc-empty">No sections in this job</p>'
+      );
+    }
+
     var parts = ['<div class="right-toc-title">On this page</div>', '<ul class="rhs-list">'];
     roots.forEach(function (l1) {
-      var isActive = activeL1 && l1.anchor === activeL1.anchor;
-      var visibleKids = isActive ? progressiveChildren(l1) : [];
-
-      if (isActive && visibleKids.length) {
-        parts.push('<li class="rhs-collapsible expanded">');
-        parts.push(
-          '<button type="button" class="rhs-chevron" aria-label="Hide subsections" aria-expanded="true"></button>'
-        );
-        parts.push(
-          '<a href="#' + esc(l1.anchor) + '" class="rhs-parent">' + esc(l1.title) + '</a>'
-        );
-        parts.push(renderChildNodes(visibleKids));
-        parts.push('</li>');
-      } else {
+      var hasChildren = l1.children && l1.children.length;
+      if (!hasChildren) {
         parts.push('<li><a href="#' + esc(l1.anchor) + '">' + esc(l1.title) + '</a></li>');
+        return;
       }
+
+      var expanded = expandedAnchor === l1.anchor;
+      parts.push('<li class="rhs-collapsible' + (expanded ? ' expanded' : '') + '">');
+      parts.push(
+        '<button type="button" class="rhs-chevron" aria-label="' +
+          (expanded ? 'Collapse section' : 'Expand section') +
+          '" aria-expanded="' +
+          (expanded ? 'true' : 'false') +
+          '"></button>'
+      );
+      parts.push(
+        '<a href="#' +
+          esc(l1.anchor) +
+          '" class="rhs-parent">' +
+          esc(l1.title) +
+          '</a>'
+      );
+      parts.push(renderChildTree(l1.children));
+      parts.push('</li>');
     });
     parts.push('</ul>');
     return parts.join('');
+  }
+
+  function bindRhsCollapse(chunk, roots) {
+    rhsPanel.querySelectorAll('li.rhs-collapsible').forEach(function (li) {
+      var link = li.querySelector('a.rhs-parent');
+      if (!link) return;
+      var anchor = link.getAttribute('href').slice(1);
+
+      function toggle() {
+        var next = expandedL1ByChunk[chunk] === anchor ? null : anchor;
+        expandedL1ByChunk[chunk] = next;
+        renderChunk(chunk);
+      }
+
+      var btn = li.querySelector('.rhs-chevron');
+      if (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          toggle();
+        });
+      }
+      link.addEventListener('click', function () {
+        if (expandedL1ByChunk[chunk] !== anchor) {
+          expandedL1ByChunk[chunk] = anchor;
+          renderChunk(chunk);
+        }
+      });
+    });
   }
 
   function bindRhsScrollSpy() {
@@ -167,44 +157,51 @@
     return best;
   }
 
-  function syncRhsFromScroll() {
+  function renderChunk(chunk) {
+    var roots = data.rhsByChunk[chunk];
+    var expanded = expandedL1ByChunk[chunk] || null;
+    rhsPanel.innerHTML = renderChunkRhs(roots, expanded);
+    bindRhsCollapse(chunk, roots);
+    bindRhsScrollSpy();
+  }
+
+  function syncChunkFromScroll() {
     var chunk = activeChunkFromScroll();
     if (!chunk || !data.rhsByChunk[chunk]) {
       if (currentChunk !== null) {
         rhsPanel.innerHTML =
           '<div class="right-toc-title">On this page</div>' +
-          '<p class="right-toc-empty">Scroll to a section</p>';
+          '<p class="right-toc-empty">Scroll to a job section</p>';
         currentChunk = null;
-        lastRenderedKey = '';
       }
       return;
     }
-
-    var roots = data.rhsByChunk[chunk];
-    var activeL1 = activeL1Root(roots);
-    var visibleKey = activeL1
-      ? activeL1.anchor + ':' + JSON.stringify(progressiveChildren(activeL1).map(function (c) {
-          return c.anchor;
-        }))
-      : '';
-    var key = chunk + '|' + visibleKey;
-
-    if (key === lastRenderedKey && chunk === currentChunk) {
+    if (chunk !== currentChunk) {
+      currentChunk = chunk;
+      renderChunk(chunk);
+    } else {
       bindRhsScrollSpy();
-      return;
     }
-
-    currentChunk = chunk;
-    lastRenderedKey = key;
-    rhsPanel.innerHTML = renderChunkRhs(roots, activeL1);
-    bindRhsScrollSpy();
   }
 
-  syncRhsFromScroll();
+  syncChunkFromScroll();
 
   var scrollTimer;
   window.addEventListener('scroll', function () {
     clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(syncRhsFromScroll, 50);
+    scrollTimer = setTimeout(syncChunkFromScroll, 80);
   });
+
+  var toc = document.getElementById('toc');
+  if (toc) {
+    toc.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute('href').slice(1);
+      if (data.rhsByChunk[id]) {
+        currentChunk = id;
+        renderChunk(id);
+      }
+    });
+  }
 })();

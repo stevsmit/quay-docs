@@ -3,7 +3,7 @@
 JTBD map navigation for Surge preview (LHS + RHS).
 
 LHS: map entries staged by leveloffset (+1..+4), excluding toc="no" under a chunk.
-RHS: toc="no" entries nested under :chunk-to-content: jobs, plus == subsections.
+RHS: assembly L1 modules (collapsible); L2/==/=== nested under each L1 in JSON.
 """
 
 from __future__ import annotations
@@ -434,7 +434,7 @@ def inject_map_nav(html_path: pathlib.Path, master: pathlib.Path) -> None:
 
     toc_inner = (
         '<div id="toctitle">Navigation</div>\n'
-        '<div class="map-nav-note">JTBD preview — map LHS + chunk RHS</div>\n'
+        '<div class="map-nav-note">JTBD preview — map LHS + assembly RHS</div>\n'
         + render_toc_list(nav.root.children or [nav.root])
     )
 
