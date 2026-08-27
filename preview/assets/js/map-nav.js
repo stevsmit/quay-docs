@@ -3,7 +3,8 @@
  *
  * LHS: category MAP jobs (levels 1–2).
  * RHS: in-page detail for the active job — ==/=== subs and toc="no" modules.
- * Assembly modules already shown on the LHS are omitted; their nested content appears here instead.
+ * Assembly modules already on the LHS are omitted unless they group ==/=== subs
+ * (then kept as a collapsible parent); toc_no-only wrappers promote their children.
  */
 (function () {
   var dataEl = document.getElementById('map-nav-data');

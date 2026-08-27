@@ -222,14 +222,29 @@ def lhs_visible_anchors(full_tree: list[NavNode]) -> set[str]:
     return {node.anchor for node in strip_toc_no(full_tree) if node.anchor}
 
 
+def has_subsection_children(node: NavNode) -> bool:
+    """True when the node has ==/=== subs parsed from module source (no source path)."""
+    return any(not child.source for child in node.children)
+
+
 def omit_lhs_modules(roots: list[NavNode], lhs_anchors: set[str]) -> list[NavNode]:
-    """Replace LHS-visible assembly modules with their in-page children on the RHS."""
+    """Adjust RHS for LHS-visible modules.
+
+    - No nested content: omit (e.g. About Red Hat Quay).
+    - Module has ==/=== subs: keep as collapsible RHS parent (e.g. arch-intro).
+    - toc_no-only wrapper: promote children (e.g. RHSA release entry).
+    """
     result: list[NavNode] = []
     for root in roots:
-        if root.anchor in lhs_anchors:
-            result.extend(root.children)
-        else:
+        if root.anchor not in lhs_anchors:
             result.append(root)
+            continue
+        if not root.children:
+            continue
+        if has_subsection_children(root):
+            result.append(root)
+        else:
+            result.extend(root.children)
     return result
 
 
