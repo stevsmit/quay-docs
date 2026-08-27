@@ -207,29 +207,29 @@ def strip_toc_no(nodes: list[NavNode]) -> list[NavNode]:
     return result
 
 
-def extract_toc_no_children(children: list[NavNode]) -> list[NavNode]:
-    extracted: list[NavNode] = []
-    for node in children:
-        if node.toc_no:
-            extracted.append(clone_node(node, children=extract_toc_no_children(node.children)))
-        else:
-            extracted.extend(extract_toc_no_children(node.children))
-    return extracted
-
-
-def build_rhs_roots(full_tree: list[NavNode]) -> list[NavNode]:
-    roots: list[NavNode] = []
-    for node in full_tree:
-        if node.toc_no:
-            continue
-        toc_children = extract_toc_no_children(node.children)
-        if toc_children:
-            roots.append(clone_node(node, children=toc_children))
-            continue
-        for child in node.children:
-            if not child.toc_no:
-                roots.extend(build_rhs_roots([child]))
-    return roots
+def build_rhs_sections(
+    path: pathlib.Path,
+    attrs: dict[str, str],
+    all_includes: list[NavNode],
+) -> list[NavNode]:
+    """One RHS entry per chunk section; children are only == subsections in that file."""
+    chunk_title, chunk_anchor = file_title_and_block_id(path, attrs)
+    sections = [
+        NavNode(
+            title=chunk_title,
+            anchor=chunk_anchor,
+            leveloffset=0,
+            source=path,
+            children=[],
+        )
+    ]
+    for node in all_includes:
+        subs = [
+            NavNode(title=sub.title, anchor=sub.anchor, leveloffset=0, source=node.source)
+            for sub in subsection_nodes(node.source, attrs)
+        ]
+        sections.append(clone_node(node, children=subs))
+    return sections
 
 
 def subsection_nodes(path: pathlib.Path, attrs: dict[str, str] | None = None) -> list[NavNode]:
@@ -269,25 +269,7 @@ def build_map_nav(master: pathlib.Path) -> MapNav:
     root = NavNode(title=title, anchor=anchor, leveloffset=0, source=master)
     rhs_by_chunk: dict[str, list[NavNode]] = {}
     _expand_nav(root, master, attrs, rhs_by_chunk, chunk_anchor=None, visited=set())
-    attach_subsections(root, attrs)
-    for chunk_key, nodes in list(rhs_by_chunk.items()):
-        attach_subsections_list(nodes, attrs)
     return MapNav(root=root, rhs_by_chunk=rhs_by_chunk)
-
-
-def attach_subsections_list(nodes: list[NavNode], attrs: dict[str, str] | None) -> None:
-    for node in nodes:
-        attach_subsections(node, attrs)
-
-
-def attach_subsections(node: NavNode, attrs: dict[str, str] | None = None) -> None:
-    if node.source and node.source.suffix == '.adoc':
-        has_subs = any(c.leveloffset == 0 for c in node.children)
-        if not has_subs:
-            for sub in subsection_nodes(node.source, attrs):
-                node.children.append(sub)
-    for child in node.children:
-        attach_subsections(child, attrs)
 
 
 def _expand_nav(
@@ -322,12 +304,9 @@ def _expand_nav(
     full_tree = nest_by_leveloffset(all_includes)
     lhs_parent.children.extend(strip_toc_no(full_tree))
 
-    if chunk_anchor:
-        rhs_roots = build_rhs_roots(full_tree)
-        if rhs_roots:
-            existing = rhs_by_chunk.get(chunk_anchor, [])
-            existing.extend(rhs_roots)
-            rhs_by_chunk[chunk_anchor] = existing
+    if is_chunk_file(path):
+        _, chunk_key = file_title_and_block_id(path, attrs)
+        rhs_by_chunk[chunk_key] = build_rhs_sections(path, attrs, all_includes)
 
     for child in lhs_parent.children:
         if not child.source:
@@ -417,7 +396,7 @@ def node_to_json(node: NavNode) -> dict:
 def nav_to_json(nav: MapNav) -> str:
     payload = {
         'lhs': [node_to_json(c) for c in nav.root.children],
-        'rhsByChunk': {
+        'rhsSectionsByChunk': {
             key: [node_to_json(n) for n in nodes]
             for key, nodes in nav.rhs_by_chunk.items()
         },
@@ -426,16 +405,11 @@ def nav_to_json(nav: MapNav) -> str:
     return json.dumps(payload, ensure_ascii=False)
 
 
-def render_initial_rhs(nav: MapNav) -> str:
-    if not nav.rhs_by_chunk:
-        return ''
-    first_key = next(iter(nav.rhs_by_chunk))
-    nodes = nav.rhs_by_chunk[first_key]
-    inner = render_toc_list(nodes, 1, expanded=False).replace('class="sectlevel1"', 'class="rhs-list"')
+def render_initial_rhs() -> str:
     return (
         '<aside id="right-toc" aria-label="On this page">'
         '<div class="right-toc-title">On this page</div>'
-        f'{inner}'
+        '<p class="right-toc-empty">Scroll to a section</p>'
         '</aside>'
     )
 
@@ -468,8 +442,8 @@ def inject_map_nav(html_path: pathlib.Path, master: pathlib.Path) -> None:
     else:
         raise SystemExit(f'No #toc in {html_path}')
 
-    rhs_html = render_initial_rhs(nav)
-    if rhs_html and 'id="right-toc"' not in text:
+    rhs_html = render_initial_rhs()
+    if 'id="right-toc"' not in text:
         text = text.replace('</body>', rhs_html + '\n</body>', 1)
 
     if 'map-nav.js' not in text:
