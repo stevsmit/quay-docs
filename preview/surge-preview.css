@@ -28,6 +28,16 @@ body.article {
   }
 }
 
+/* Map-driven TOC label (Release Notes / JTBD preview pilot) */
+#toc.toc2 .map-nav-note {
+  color: #666;
+  font-family: "Red Hat Text", Roboto, sans-serif;
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  margin: 0.25rem 0 0.75rem;
+  padding: 0 0.5rem;
+}
+
 /* RH accent on links */
 #content a:hover,
 #toc a:hover {
@@ -81,4 +91,77 @@ body.article {
 #toc.toc2 ul.sectlevel3 li.toc-collapsible > a,
 #toc.toc2 ul.sectlevel4 li.toc-collapsible > a {
   padding-left: 1.25rem;
+}
+
+/* Right-hand "On this page" nav (chunked job sections) */
+body.has-right-toc #content {
+  margin-right: 16rem;
+}
+
+#right-toc {
+  background: #fafafa;
+  border-left: 1px solid #ddd;
+  box-sizing: border-box;
+  font-family: "Red Hat Text", Roboto, sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  overflow-y: auto;
+  padding: 1rem 0.75rem 2rem;
+  position: fixed;
+  right: 0;
+  top: 2rem;
+  width: 15rem;
+  height: calc(100% - 2rem);
+  z-index: 1000;
+}
+
+#right-toc .right-toc-title {
+  color: #333;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+#right-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#right-toc li {
+  margin: 0.15rem 0;
+}
+
+#right-toc a {
+  color: #0066cc;
+  display: block;
+  padding: 0.15rem 0;
+  text-decoration: none;
+}
+
+#right-toc a:hover,
+#right-toc a.active {
+  color: #ee0000;
+}
+
+#right-toc ul ul {
+  margin-left: 0.75rem;
+}
+
+#right-toc .right-toc-empty {
+  color: #666;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+@media only screen and (max-width: 1279px) {
+  body.has-right-toc #content {
+    margin-right: 0;
+  }
+
+  #right-toc {
+    display: none;
+  }
 }

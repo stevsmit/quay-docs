@@ -74,6 +74,12 @@ path.write_text(text)
 PY
 }
 
+inject_map_nav() {
+  local html_file="$1"
+  local master="$2"
+  python3 preview/map_nav.py "$html_file" "$master"
+}
+
 build_book() {
   local master="$1"
   local out_dir="$2"
@@ -81,14 +87,28 @@ build_book() {
   local imagesdir="$4"
   local stylesdir="$5"
   local asset_depth="${6:-1}"
+  local map_nav="${7:-}"
+  local stylesheet="${8:-redhat.css}"
 
   echo "--- ${master} -> ${out_dir} ---"
   mkdir -p "dist/${out_dir}"
-  asciidoctor "${BOOK_ATTR[@]}" -a "imagesdir=${imagesdir}" -a "stylesdir=${stylesdir}" "$master" \
+  asciidoctor "${BOOK_ATTR[@]}" -a "imagesdir=${imagesdir}" -a "stylesdir=${stylesdir}" \
+    -a "stylesheet=${stylesheet}" "$master" \
     -D "dist/${out_dir}" -o index.html
   fix_asset_paths "dist/${out_dir}/index.html" "$asset_depth"
   inject_preview_chrome "dist/${out_dir}/index.html"
+  if [[ -n "$map_nav" ]]; then
+    inject_map_nav "dist/${out_dir}/index.html" "$master"
+  fi
   cp "dist/${out_dir}/index.html" "dist/${flat_name}.html"
+}
+
+build_jtbd_category_book() {
+  local master="$1"
+  local out_dir="$2"
+  local flat_name="$3"
+  local map_nav="$4"
+  build_book "$master" "$out_dir" "$flat_name" "../../images" "../../assets/css" 2 "$map_nav"
 }
 
 BOOK_ATTR=(
@@ -136,13 +156,14 @@ if [[ -d quay_jtbd ]]; then
   for master in quay_jtbd/*/master.adoc; do
     [[ -f "$master" ]] || continue
     dir=$(basename "$(dirname "$master")")
-    build_book "$master" "quay_jtbd/${dir}" "quay_jtbd-${dir}" "../../images" "../../assets/css" 2
+    build_jtbd_category_book "$master" "quay_jtbd/${dir}" "quay_jtbd-${dir}" "1"
   done
 fi
 
 echo "=== Building JTBD product navigation MAP ==="
 if [[ -f quay-3-18-navigation.adoc ]]; then
-  build_book "quay-3-18-navigation.adoc" "quay_jtbd-navigation" "quay-3-18-navigation" "images" "assets/css" 1
+  build_book "quay-3-18-navigation.adoc" "quay_jtbd-navigation" "quay-3-18-navigation" \
+    "images" "preview/assets/css" 1 "1" "preview/assets/css/redhat.css"
 fi
 
 cp -a images dist/images

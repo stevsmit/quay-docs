@@ -64,7 +64,14 @@ jobs:
           // Map changed book dirs to preview paths (flat + directory).
           // Supports legacy top-level books and JTBD books under quay_jtbd/<category>/.
           const previewPaths = new Set();
+          let previewInfraChanged = false;
           for (const file of files) {
+            if (
+              file.filename === 'build_docs_preview' ||
+              file.filename.startsWith('preview/')
+            ) {
+              previewInfraChanged = true;
+            }
             if (file.filename === 'welcome.adoc' || file.filename === 'build_docs' || file.filename === 'build_docs_preview') {
               previewPaths.add('/');
               continue;
@@ -92,6 +99,24 @@ jobs:
             }
             if (fs.existsSync(path.join('dist', dirPath, 'index.html'))) {
               previewPaths.add(`/${dirPath}/`);
+            }
+          }
+
+          if (previewInfraChanged && fs.existsSync('dist/quay_jtbd')) {
+            for (const entry of fs.readdirSync('dist/quay_jtbd', { withFileTypes: true })) {
+              if (!entry.isDirectory()) continue;
+              const cat = entry.name;
+              const flat = `quay_jtbd-${cat}`;
+              if (fs.existsSync(path.join('dist', `${flat}.html`))) {
+                previewPaths.add(`/${flat}.html`);
+              }
+              if (fs.existsSync(path.join('dist', 'quay_jtbd', cat, 'index.html'))) {
+                previewPaths.add(`/quay_jtbd/${cat}/`);
+              }
+            }
+            if (fs.existsSync(path.join('dist', 'quay-3-18-navigation.html'))) {
+              previewPaths.add('/quay-3-18-navigation.html');
+              previewPaths.add('/quay_jtbd-navigation/');
             }
           }
 
