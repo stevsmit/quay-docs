@@ -187,6 +187,51 @@ def nest_by_leveloffset(flat: list[NavNode]) -> list[NavNode]:
     return root.children
 
 
+def clone_node(node: NavNode, *, children: list[NavNode] | None = None) -> NavNode:
+    return NavNode(
+        title=node.title,
+        anchor=node.anchor,
+        leveloffset=node.leveloffset,
+        source=node.source,
+        toc_no=node.toc_no,
+        children=list(children if children is not None else node.children),
+    )
+
+
+def strip_toc_no(nodes: list[NavNode]) -> list[NavNode]:
+    result: list[NavNode] = []
+    for node in nodes:
+        if node.toc_no:
+            continue
+        result.append(clone_node(node, children=strip_toc_no(node.children)))
+    return result
+
+
+def extract_toc_no_children(children: list[NavNode]) -> list[NavNode]:
+    extracted: list[NavNode] = []
+    for node in children:
+        if node.toc_no:
+            extracted.append(clone_node(node, children=extract_toc_no_children(node.children)))
+        else:
+            extracted.extend(extract_toc_no_children(node.children))
+    return extracted
+
+
+def build_rhs_roots(full_tree: list[NavNode]) -> list[NavNode]:
+    roots: list[NavNode] = []
+    for node in full_tree:
+        if node.toc_no:
+            continue
+        toc_children = extract_toc_no_children(node.children)
+        if toc_children:
+            roots.append(clone_node(node, children=toc_children))
+            continue
+        for child in node.children:
+            if not child.toc_no:
+                roots.extend(build_rhs_roots([child]))
+    return roots
+
+
 def subsection_nodes(path: pathlib.Path, attrs: dict[str, str] | None = None) -> list[NavNode]:
     nodes: list[NavNode] = []
     past_title = False
@@ -261,29 +306,28 @@ def _expand_nav(
     if is_chunk_file(path):
         _, chunk_anchor = file_title_and_block_id(path, attrs)
 
-    flat_lhs: list[NavNode] = []
-    flat_rhs: list[NavNode] = []
-
+    all_includes: list[NavNode] = []
     for inc_path, leveloffset, toc_no in collect_includes(path):
         title, anchor = file_title_and_block_id(inc_path, attrs)
-        node = NavNode(
-            title=title,
-            anchor=anchor,
-            leveloffset=leveloffset,
-            source=inc_path,
-            toc_no=toc_no,
+        all_includes.append(
+            NavNode(
+                title=title,
+                anchor=anchor,
+                leveloffset=leveloffset,
+                source=inc_path,
+                toc_no=toc_no,
+            )
         )
-        if chunk_anchor and toc_no:
-            flat_rhs.append(node)
-        else:
-            flat_lhs.append(node)
 
-    lhs_parent.children.extend(nest_by_leveloffset(flat_lhs))
+    full_tree = nest_by_leveloffset(all_includes)
+    lhs_parent.children.extend(strip_toc_no(full_tree))
 
-    if chunk_anchor and flat_rhs:
-        existing = rhs_by_chunk.get(chunk_anchor, [])
-        existing.extend(nest_by_leveloffset(flat_rhs))
-        rhs_by_chunk[chunk_anchor] = existing
+    if chunk_anchor:
+        rhs_roots = build_rhs_roots(full_tree)
+        if rhs_roots:
+            existing = rhs_by_chunk.get(chunk_anchor, [])
+            existing.extend(rhs_roots)
+            rhs_by_chunk[chunk_anchor] = existing
 
     for child in lhs_parent.children:
         if not child.source:

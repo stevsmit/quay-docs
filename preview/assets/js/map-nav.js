@@ -107,6 +107,15 @@
     if (li) expandRhsItem(li);
   }
 
+  function expandRhsParentForAnchor(anchor) {
+    if (!anchor) return;
+    var selector = 'a.rhs-parent[href="#' + anchor.replace(/"/g, '\\"') + '"]';
+    var parentLink = rhsPanel.querySelector(selector);
+    if (!parentLink) return;
+    var li = parentLink.closest('li.rhs-collapsible');
+    if (li) expandRhsItem(li);
+  }
+
   function renderRhs(chunkAnchor) {
     var nodes = data.rhsByChunk[chunkAnchor];
     if (!nodes || !nodes.length) {
@@ -146,7 +155,9 @@
         l.classList.toggle('active', l === active);
       });
       if (active) {
-        expandParentForAnchor(active.getAttribute('href').slice(1));
+        var activeAnchor = active.getAttribute('href').slice(1);
+        expandParentForAnchor(activeAnchor);
+        expandRhsParentForAnchor(activeAnchor);
       }
     }
 
@@ -205,6 +216,10 @@
       setTimeout(function () {
         renderRhs(id);
       }, 50);
+      return;
     }
+    setTimeout(function () {
+      expandRhsParentForAnchor(id);
+    }, 50);
   });
 })();
