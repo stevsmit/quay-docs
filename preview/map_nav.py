@@ -20,6 +20,7 @@ INCLUDE_RE = re.compile(r'^include::(.+?)\[(.*)\]\s*$')
 ATTR_RE = re.compile(r'([\w-]+)=["\']?([^"\',\]]*)["\']?')
 BLOCK_ID_RE = re.compile(r'^\[id="([^"]+)"\]')
 SECTION2_RE = re.compile(r'^== (.+)$')
+SECTION3_RE = re.compile(r'^=== (.+)$')
 HEADING_RE = re.compile(
     r'<h([1-6])\s+id="([^"]+)"[^>]*>(.*?)</h[1-6]>',
     re.IGNORECASE | re.DOTALL,
@@ -207,59 +208,19 @@ def strip_toc_no(nodes: list[NavNode]) -> list[NavNode]:
     return result
 
 
-def build_rhs_for_chunk(all_includes: list[NavNode], attrs: dict[str, str]) -> list[NavNode]:
-    """Build per-chunk RHS roots from flat include order.
+def build_rhs_node(node: NavNode, attrs: dict[str, str]) -> NavNode:
+    """RHS node: ==/=== subs from source, then nested include children (L2 modules)."""
+    children: list[NavNode] = []
+    if node.source:
+        children.extend(subsection_nodes(node.source, attrs))
+    for child in node.children:
+        children.append(build_rhs_node(child, attrs))
+    return clone_node(node, children=children)
 
-    Release-notes pattern (+1 parent, no == subs, +2 toc=no run): nest toc=no modules
-    under the parent with their == subsections as grandchildren.
 
-    Discover pattern (+1 parent with == subs, +2 toc=no siblings): parent gets == subs
-    only; each toc=no module is its own RHS root when reached in the include list.
-    """
-    roots: list[NavNode] = []
-    i = 0
-    while i < len(all_includes):
-        node = all_includes[i]
-        if node.toc_no:
-            subs = [
-                NavNode(title=sub.title, anchor=sub.anchor, leveloffset=0, source=node.source)
-                for sub in subsection_nodes(node.source, attrs)
-            ]
-            roots.append(clone_node(node, children=subs))
-            i += 1
-            continue
-
-        inline_subs = subsection_nodes(node.source, attrs)
-        j = i + 1
-        toc_run: list[NavNode] = []
-        while j < len(all_includes):
-            nxt = all_includes[j]
-            if nxt.toc_no and nxt.leveloffset > node.leveloffset:
-                toc_run.append(nxt)
-                j += 1
-            else:
-                break
-
-        if toc_run and not inline_subs:
-            children = []
-            for toc_node in toc_run:
-                subs = [
-                    NavNode(title=sub.title, anchor=sub.anchor, leveloffset=0, source=toc_node.source)
-                    for sub in subsection_nodes(toc_node.source, attrs)
-                ]
-                children.append(clone_node(toc_node, children=subs))
-            roots.append(clone_node(node, children=children))
-            i = j
-        else:
-            if inline_subs:
-                subs = [
-                    NavNode(title=sub.title, anchor=sub.anchor, leveloffset=0, source=node.source)
-                    for sub in inline_subs
-                ]
-                roots.append(clone_node(node, children=subs))
-            i += 1
-
-    return roots
+def build_rhs_for_chunk(full_tree: list[NavNode], attrs: dict[str, str]) -> list[NavNode]:
+    """Assembly L1 modules as RHS roots; L2 includes and ==/=== nested under their L1 parent."""
+    return [build_rhs_node(node, attrs) for node in full_tree]
 
 
 def subsection_nodes(path: pathlib.Path, attrs: dict[str, str] | None = None) -> list[NavNode]:
@@ -267,6 +228,7 @@ def subsection_nodes(path: pathlib.Path, attrs: dict[str, str] | None = None) ->
     past_title = False
     pending_id = ''
     merged = {**(attrs or {}), **file_attrs(path)}
+    stack: list[NavNode] = []
     for line in read_lines(path):
         stripped = line.strip()
         if not past_title and stripped.startswith('= '):
@@ -278,12 +240,27 @@ def subsection_nodes(path: pathlib.Path, attrs: dict[str, str] | None = None) ->
         if m:
             pending_id = m.group(1)
             continue
-        m = SECTION2_RE.match(stripped)
-        if m:
-            title = substitute_attrs(m.group(1).strip(), merged)
-            anchor = pending_id or slug(title)
-            nodes.append(NavNode(title=title, anchor=anchor, leveloffset=0))
-            pending_id = ''
+        level = 0
+        title_text = ''
+        m2 = SECTION2_RE.match(stripped)
+        m3 = SECTION3_RE.match(stripped)
+        if m2:
+            level, title_text = 2, m2.group(1).strip()
+        elif m3:
+            level, title_text = 3, m3.group(1).strip()
+        else:
+            continue
+        title = substitute_attrs(title_text, merged)
+        anchor = pending_id or slug(title)
+        node = NavNode(title=title, anchor=anchor, leveloffset=level)
+        while stack and stack[-1].leveloffset >= level:
+            stack.pop()
+        if stack:
+            stack[-1].children.append(node)
+        else:
+            nodes.append(node)
+        stack.append(node)
+        pending_id = ''
     return nodes
 
 
@@ -336,7 +313,7 @@ def _expand_nav(
 
     if is_chunk_file(path):
         _, chunk_key = file_title_and_block_id(path, attrs)
-        rhs_by_chunk[chunk_key] = build_rhs_for_chunk(all_includes, attrs)
+        rhs_by_chunk[chunk_key] = build_rhs_for_chunk(full_tree, attrs)
 
     for child in lhs_parent.children:
         if not child.source:

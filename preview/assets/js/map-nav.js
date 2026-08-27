@@ -1,9 +1,8 @@
 /**
- * JTBD map preview: chunk-scoped, scroll-progressive RHS nav.
+ * JTBD map preview: RHS mirrors assembly structure (L1 + nested L2/==/===).
  *
- * - LHS: category MAP jobs (levels 1–2 of product navigation)
- * - RHS: assembly sections for the active job only; empty until you scroll
- *   into a section; level-2 entries appear one by one as their headings pass.
+ * LHS: category MAP (jobs). RHS: active job's assembly L1 modules always listed;
+ * subsections and L2 modules under an L1 appear progressively while scrolling it.
  */
 (function () {
   var dataEl = document.getElementById('map-nav-data');
@@ -40,114 +39,89 @@
     return top !== null && top <= SCROLL_LINE;
   }
 
-  function progressiveSubtree(node) {
-    if (!node || !headingPassed(node.anchor)) return null;
-
-    var kids = [];
+  function collectAnchors(node, out) {
+    if (!node) return;
+    out.push(node.anchor);
     (node.children || []).forEach(function (child) {
-      if (!headingPassed(child.anchor)) return;
-      var nested = progressiveSubtree(child);
-      kids.push(
-        nested || { anchor: child.anchor, title: child.title, children: [] }
-      );
+      collectAnchors(child, out);
     });
-
-    return { anchor: node.anchor, title: node.title, children: kids };
   }
 
-  function renderNode(node) {
-    var parts = [
-      '<li><a href="#' +
-        esc(node.anchor) +
-        '">' +
-        esc(node.title) +
-        '</a>',
-    ];
-    if (node.children && node.children.length) {
-      parts.push('<ul>');
-      node.children.forEach(function (child) {
-        parts.push(renderNode(child));
-      });
-      parts.push('</ul>');
+  function findL1ForAnchor(roots, anchor) {
+    for (var i = 0; i < roots.length; i++) {
+      var anchors = [];
+      collectAnchors(roots[i], anchors);
+      if (anchors.indexOf(anchor) !== -1) return roots[i];
     }
-    parts.push('</li>');
+    return null;
+  }
+
+  function activeL1Root(roots) {
+    var bestAnchor = null;
+    var bestTop = -Infinity;
+    roots.forEach(function (l1) {
+      var anchors = [];
+      collectAnchors(l1, anchors);
+      anchors.forEach(function (anchor) {
+        var top = headingTop(anchor);
+        if (top !== null && top <= SCROLL_LINE && top > bestTop) {
+          bestTop = top;
+          bestAnchor = anchor;
+        }
+      });
+    });
+    if (!bestAnchor) return null;
+    return findL1ForAnchor(roots, bestAnchor);
+  }
+
+  function progressiveChildren(node) {
+    var visible = [];
+    (node.children || []).forEach(function (child) {
+      if (!headingPassed(child.anchor)) return;
+      var nested = progressiveChildren(child);
+      visible.push({
+        anchor: child.anchor,
+        title: child.title,
+        children: nested,
+      });
+    });
+    return visible;
+  }
+
+  function renderChildNodes(children) {
+    if (!children || !children.length) return '';
+    var parts = ['<ul>'];
+    children.forEach(function (child) {
+      parts.push('<li><a href="#' + esc(child.anchor) + '">' + esc(child.title) + '</a>');
+      parts.push(renderChildNodes(child.children));
+      parts.push('</li>');
+    });
+    parts.push('</ul>');
     return parts.join('');
   }
 
-  function renderProgressiveTree(tree) {
-    if (!tree) {
-      rhsPanel.innerHTML =
-        '<div class="right-toc-title">On this page</div>' +
-        '<p class="right-toc-empty">Scroll to a section</p>';
-      return;
-    }
-    rhsPanel.innerHTML =
-      '<div class="right-toc-title">On this page</div>' +
-      '<ul class="rhs-list">' +
-      renderNode(tree) +
-      '</ul>';
-    bindRhsScrollSpy();
-  }
+  function renderChunkRhs(roots, activeL1) {
+    var parts = ['<div class="right-toc-title">On this page</div>', '<ul class="rhs-list">'];
+    roots.forEach(function (l1) {
+      var isActive = activeL1 && l1.anchor === activeL1.anchor;
+      var visibleKids = isActive ? progressiveChildren(l1) : [];
 
-  function activeSectionInChunk(chunkAnchor) {
-    var roots = data.rhsByChunk[chunkAnchor];
-    if (!roots || !roots.length) return null;
-
-    var active = null;
-    var bestTop = -Infinity;
-    roots.forEach(function (root) {
-      var top = headingTop(root.anchor);
-      if (top === null || top > SCROLL_LINE) return;
-      if (top > bestTop) {
-        bestTop = top;
-        active = root;
+      if (isActive && visibleKids.length) {
+        parts.push('<li class="rhs-collapsible expanded">');
+        parts.push(
+          '<button type="button" class="rhs-chevron" aria-label="Hide subsections" aria-expanded="true"></button>'
+        );
+        parts.push(
+          '<a href="#' + esc(l1.anchor) + '" class="rhs-parent">' + esc(l1.title) + '</a>'
+        );
+        parts.push(renderChildNodes(visibleKids));
+        parts.push('</li>');
+      } else {
+        parts.push('<li><a href="#' + esc(l1.anchor) + '">' + esc(l1.title) + '</a></li>');
       }
     });
-    return active;
-  }
-
-  function activeChunkFromScroll() {
-    var best = null;
-    var bestTop = -Infinity;
-    (data.chunkAnchors || []).forEach(function (anchor) {
-      var top = headingTop(anchor);
-      if (top === null || top > SCROLL_LINE) return;
-      if (top > bestTop) {
-        bestTop = top;
-        best = anchor;
-      }
-    });
-    return best;
-  }
-
-  function syncRhsFromScroll() {
-    var chunk = activeChunkFromScroll();
-    if (!chunk || !data.rhsByChunk[chunk]) {
-      if (currentChunk !== null) {
-        renderProgressiveTree(null);
-        currentChunk = null;
-        lastRenderedKey = '';
-      }
-      return;
-    }
-
-    var section = activeSectionInChunk(chunk);
-    var tree = section ? progressiveSubtree(section) : null;
-    var key =
-      chunk +
-      '|' +
-      (section ? section.anchor : '') +
-      '|' +
-      JSON.stringify(tree ? tree.children.map(function (c) { return c.anchor; }) : []);
-
-    if (key === lastRenderedKey && chunk === currentChunk) {
-      bindRhsScrollSpy();
-      return;
-    }
-
-    currentChunk = chunk;
-    lastRenderedKey = key;
-    renderProgressiveTree(tree);
+    parts.push('</ul>');
+    return parts.join('');
   }
 
   function bindRhsScrollSpy() {
@@ -178,6 +152,52 @@
 
     $(window).off('scroll.mapNavRhs').on('scroll.mapNavRhs', sync);
     sync();
+  }
+
+  function activeChunkFromScroll() {
+    var best = null;
+    var bestTop = -Infinity;
+    (data.chunkAnchors || []).forEach(function (anchor) {
+      var top = headingTop(anchor);
+      if (top !== null && top <= SCROLL_LINE && top > bestTop) {
+        bestTop = top;
+        best = anchor;
+      }
+    });
+    return best;
+  }
+
+  function syncRhsFromScroll() {
+    var chunk = activeChunkFromScroll();
+    if (!chunk || !data.rhsByChunk[chunk]) {
+      if (currentChunk !== null) {
+        rhsPanel.innerHTML =
+          '<div class="right-toc-title">On this page</div>' +
+          '<p class="right-toc-empty">Scroll to a section</p>';
+        currentChunk = null;
+        lastRenderedKey = '';
+      }
+      return;
+    }
+
+    var roots = data.rhsByChunk[chunk];
+    var activeL1 = activeL1Root(roots);
+    var visibleKey = activeL1
+      ? activeL1.anchor + ':' + JSON.stringify(progressiveChildren(activeL1).map(function (c) {
+          return c.anchor;
+        }))
+      : '';
+    var key = chunk + '|' + visibleKey;
+
+    if (key === lastRenderedKey && chunk === currentChunk) {
+      bindRhsScrollSpy();
+      return;
+    }
+
+    currentChunk = chunk;
+    lastRenderedKey = key;
+    rhsPanel.innerHTML = renderChunkRhs(roots, activeL1);
+    bindRhsScrollSpy();
   }
 
   syncRhsFromScroll();
