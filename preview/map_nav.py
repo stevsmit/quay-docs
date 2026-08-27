@@ -207,28 +207,58 @@ def strip_toc_no(nodes: list[NavNode]) -> list[NavNode]:
     return result
 
 
-def extract_toc_no_children(children: list[NavNode]) -> list[NavNode]:
-    extracted: list[NavNode] = []
-    for node in children:
-        if node.toc_no:
-            extracted.append(clone_node(node, children=extract_toc_no_children(node.children)))
-        else:
-            extracted.extend(extract_toc_no_children(node.children))
-    return extracted
+def build_rhs_for_chunk(all_includes: list[NavNode], attrs: dict[str, str]) -> list[NavNode]:
+    """Build per-chunk RHS roots from flat include order.
 
+    Release-notes pattern (+1 parent, no == subs, +2 toc=no run): nest toc=no modules
+    under the parent with their == subsections as grandchildren.
 
-def build_rhs_roots(full_tree: list[NavNode]) -> list[NavNode]:
+    Discover pattern (+1 parent with == subs, +2 toc=no siblings): parent gets == subs
+    only; each toc=no module is its own RHS root when reached in the include list.
+    """
     roots: list[NavNode] = []
-    for node in full_tree:
+    i = 0
+    while i < len(all_includes):
+        node = all_includes[i]
         if node.toc_no:
+            subs = [
+                NavNode(title=sub.title, anchor=sub.anchor, leveloffset=0, source=node.source)
+                for sub in subsection_nodes(node.source, attrs)
+            ]
+            roots.append(clone_node(node, children=subs))
+            i += 1
             continue
-        toc_children = extract_toc_no_children(node.children)
-        if toc_children:
-            roots.append(clone_node(node, children=toc_children))
-            continue
-        for child in node.children:
-            if not child.toc_no:
-                roots.extend(build_rhs_roots([child]))
+
+        inline_subs = subsection_nodes(node.source, attrs)
+        j = i + 1
+        toc_run: list[NavNode] = []
+        while j < len(all_includes):
+            nxt = all_includes[j]
+            if nxt.toc_no and nxt.leveloffset > node.leveloffset:
+                toc_run.append(nxt)
+                j += 1
+            else:
+                break
+
+        if toc_run and not inline_subs:
+            children = []
+            for toc_node in toc_run:
+                subs = [
+                    NavNode(title=sub.title, anchor=sub.anchor, leveloffset=0, source=toc_node.source)
+                    for sub in subsection_nodes(toc_node.source, attrs)
+                ]
+                children.append(clone_node(toc_node, children=subs))
+            roots.append(clone_node(node, children=children))
+            i = j
+        else:
+            if inline_subs:
+                subs = [
+                    NavNode(title=sub.title, anchor=sub.anchor, leveloffset=0, source=node.source)
+                    for sub in inline_subs
+                ]
+                roots.append(clone_node(node, children=subs))
+            i += 1
+
     return roots
 
 
@@ -269,7 +299,6 @@ def build_map_nav(master: pathlib.Path) -> MapNav:
     root = NavNode(title=title, anchor=anchor, leveloffset=0, source=master)
     rhs_by_chunk: dict[str, list[NavNode]] = {}
     _expand_nav(root, master, attrs, rhs_by_chunk, chunk_anchor=None, visited=set())
-    attach_subsections(root, attrs)
     for chunk_key, nodes in list(rhs_by_chunk.items()):
         attach_subsections_list(nodes, attrs)
     return MapNav(root=root, rhs_by_chunk=rhs_by_chunk)
@@ -322,12 +351,9 @@ def _expand_nav(
     full_tree = nest_by_leveloffset(all_includes)
     lhs_parent.children.extend(strip_toc_no(full_tree))
 
-    if chunk_anchor:
-        rhs_roots = build_rhs_roots(full_tree)
-        if rhs_roots:
-            existing = rhs_by_chunk.get(chunk_anchor, [])
-            existing.extend(rhs_roots)
-            rhs_by_chunk[chunk_anchor] = existing
+    if is_chunk_file(path):
+        _, chunk_key = file_title_and_block_id(path, attrs)
+        rhs_by_chunk[chunk_key] = build_rhs_for_chunk(all_includes, attrs)
 
     for child in lhs_parent.children:
         if not child.source:

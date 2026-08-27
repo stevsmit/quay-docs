@@ -1,9 +1,8 @@
 /**
- * JTBD map preview: right-hand "On this page" nav for chunked job sections.
- * Reads #map-nav-data JSON emitted by preview/map_nav.py.
+ * JTBD map preview: chunk-scoped RHS "On this page" nav.
  *
- * Level-1 RHS entries are always visible; level-2+ children expand only when
- * their parent is clicked (accordion — one expanded section at a time).
+ * RHS switches with the top-level job (chunk) in view. Within a chunk, only the
+ * active parent section's subtree is shown; level-2+ expand as you scroll into them.
  */
 (function () {
   var dataEl = document.getElementById('map-nav-data');
@@ -19,21 +18,27 @@
   var rhsPanel = document.getElementById('right-toc');
   if (!rhsPanel || !data.rhsByChunk) return;
 
+  var currentChunk = null;
+  var currentRootAnchor = null;
+
   function esc(text) {
     var d = document.createElement('div');
     d.textContent = text;
     return d.innerHTML;
   }
 
-  function renderList(nodes, depth) {
+  function renderList(nodes, depth, expandRoot) {
     if (!nodes || !nodes.length) return '';
     var parts = ['<ul>'];
     nodes.forEach(function (node) {
       var hasChildren = node.children && node.children.length;
       if (hasChildren) {
-        parts.push('<li class="rhs-collapsible">');
+        var expanded = expandRoot && depth === 1 ? ' expanded' : '';
+        parts.push('<li class="rhs-collapsible' + expanded + '">');
         parts.push(
-          '<button type="button" class="rhs-chevron" aria-label="Show subsections" aria-expanded="false"></button>'
+          '<button type="button" class="rhs-chevron" aria-label="Show subsections" aria-expanded="' +
+            (expanded ? 'true' : 'false') +
+            '"></button>'
         );
         parts.push(
           '<a href="#' +
@@ -42,7 +47,7 @@
             esc(node.title) +
             '</a>'
         );
-        parts.push(renderList(node.children, depth + 1));
+        parts.push(renderList(node.children, depth + 1, false));
       } else {
         parts.push('<li><a href="#' + esc(node.anchor) + '">' + esc(node.title) + '</a>');
       }
@@ -99,6 +104,45 @@
     });
   }
 
+  function collectAnchors(node, out) {
+    if (!node) return;
+    out.push(node.anchor);
+    (node.children || []).forEach(function (child) {
+      collectAnchors(child, out);
+    });
+  }
+
+  function findRootForAnchor(roots, anchor) {
+    for (var i = 0; i < roots.length; i++) {
+      var anchors = [];
+      collectAnchors(roots[i], anchors);
+      if (anchors.indexOf(anchor) !== -1) return roots[i];
+    }
+    return null;
+  }
+
+  function activeRhsRootInChunk(chunkAnchor) {
+    var roots = data.rhsByChunk[chunkAnchor];
+    if (!roots || !roots.length) return null;
+
+    var bestRoot = null;
+    var bestTop = -Infinity;
+    roots.forEach(function (root) {
+      var anchors = [];
+      collectAnchors(root, anchors);
+      anchors.forEach(function (anchor) {
+        var el = document.getElementById(anchor);
+        if (!el) return;
+        var top = el.getBoundingClientRect().top;
+        if (top <= 120 && top > bestTop) {
+          bestTop = top;
+          bestRoot = root;
+        }
+      });
+    });
+    return bestRoot || roots[0];
+  }
+
   function expandParentForAnchor(anchor) {
     if (!anchor) return;
     var link = rhsPanel.querySelector('a[href="#' + CSS.escape(anchor) + '"]');
@@ -107,25 +151,16 @@
     if (li) expandRhsItem(li);
   }
 
-  function expandRhsParentForAnchor(anchor) {
-    if (!anchor) return;
-    var selector = 'a.rhs-parent[href="#' + anchor.replace(/"/g, '\\"') + '"]';
-    var parentLink = rhsPanel.querySelector(selector);
-    if (!parentLink) return;
-    var li = parentLink.closest('li.rhs-collapsible');
-    if (li) expandRhsItem(li);
-  }
-
-  function renderRhs(chunkAnchor) {
-    var nodes = data.rhsByChunk[chunkAnchor];
-    if (!nodes || !nodes.length) {
+  function renderRhs(chunkAnchor, rootNode) {
+    if (!rootNode) {
       rhsPanel.innerHTML =
         '<div class="right-toc-title">On this page</div>' +
         '<p class="right-toc-empty">No nested sections</p>';
       return;
     }
     rhsPanel.innerHTML =
-      '<div class="right-toc-title">On this page</div>' + renderList(nodes, 1);
+      '<div class="right-toc-title">On this page</div>' +
+      renderList([rootNode], 1, true);
     bindRhsCollapse();
     bindRhsScrollSpy();
   }
@@ -155,9 +190,7 @@
         l.classList.toggle('active', l === active);
       });
       if (active) {
-        var activeAnchor = active.getAttribute('href').slice(1);
-        expandParentForAnchor(activeAnchor);
-        expandRhsParentForAnchor(activeAnchor);
+        expandParentForAnchor(active.getAttribute('href').slice(1));
       }
     }
 
@@ -186,25 +219,41 @@
         best = anchor;
       }
     });
-    return best || (data.chunkAnchors && data.chunkAnchors[0]);
+    return best;
+  }
+
+  function syncRhsFromScroll() {
+    var chunk = activeChunkFromScroll();
+    if (!chunk || !data.rhsByChunk[chunk]) {
+      if (currentChunk !== null) {
+        rhsPanel.innerHTML =
+          '<div class="right-toc-title">On this page</div>' +
+          '<p class="right-toc-empty">Scroll to a section</p>';
+        currentChunk = null;
+        currentRootAnchor = null;
+      }
+      return;
+    }
+
+    var root = activeRhsRootInChunk(chunk);
+    var rootAnchor = root ? root.anchor : null;
+    if (chunk === currentChunk && rootAnchor === currentRootAnchor) {
+      bindRhsScrollSpy();
+      return;
+    }
+
+    currentChunk = chunk;
+    currentRootAnchor = rootAnchor;
+    renderRhs(chunk, root);
   }
 
   markChunkSections();
-  var current = activeChunkFromScroll();
-  if (current) renderRhs(current);
+  syncRhsFromScroll();
 
   var scrollTimer;
   window.addEventListener('scroll', function () {
     clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(function () {
-      var next = activeChunkFromScroll();
-      if (next && next !== current) {
-        current = next;
-        renderRhs(current);
-      } else {
-        bindRhsScrollSpy();
-      }
-    }, 80);
+    scrollTimer = setTimeout(syncRhsFromScroll, 80);
   });
 
   document.getElementById('toc').addEventListener('click', function (e) {
@@ -212,14 +261,19 @@
     if (!a) return;
     var id = a.getAttribute('href').slice(1);
     if (data.rhsByChunk[id]) {
-      current = id;
-      setTimeout(function () {
-        renderRhs(id);
-      }, 50);
+      currentChunk = id;
+      currentRootAnchor = null;
+      setTimeout(syncRhsFromScroll, 50);
       return;
     }
     setTimeout(function () {
-      expandRhsParentForAnchor(id);
+      if (!currentChunk) return;
+      var roots = data.rhsByChunk[currentChunk];
+      var root = findRootForAnchor(roots, id);
+      if (root) {
+        currentRootAnchor = root.anchor;
+        renderRhs(currentChunk, root);
+      }
     }, 50);
   });
 })();
