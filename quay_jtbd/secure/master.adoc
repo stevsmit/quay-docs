@@ -10,13 +10,13 @@ include::configure-ssl-tls-for-standalone-red-hat-quay.adoc[leveloffset=+1,navti
 include::configure-ssl-tls-for-quay-on-openshift.adoc[leveloffset=+1,navtitle="SSL/TLS on OpenShift"]
 
 // Job: Secure database connections with TLS
-include::secure-database-connections-with-tls.adoc[leveloffset=+1]
+include::secure-database-connections-with-tls.adoc[leveloffset=+1,navtitle="Database TLS"]
 
 // Job: Add trusted certificate authorities
-include::add-trusted-certificate-authorities.adoc[leveloffset=+1]
+include::add-trusted-certificate-authorities.adoc[leveloffset=+1,navtitle="Trusted CAs"]
 
 // Job: Authenticate users with LDAP
-include::authenticate-users-with-ldap.adoc[leveloffset=+1]
+include::authenticate-users-with-ldap.adoc[leveloffset=+1,navtitle="LDAP authentication"]
 
 // Job: Authenticate users with OIDC and single sign-on
 include::authenticate-users-with-oidc-and-single-sign-on.adoc[leveloffset=+1,navtitle="OIDC and SSO"]
@@ -28,10 +28,10 @@ include::eliminate-long-lived-robot-credentials-with-keyless-authentication.adoc
 include::ensure-fips-compliance-for-the-registry.adoc[leveloffset=+1,navtitle="FIPS compliance"]
 
 // Job: Set repository permissions and visibility
-include::set-repository-permissions-and-visibility.adoc[leveloffset=+1]
+include::set-repository-permissions-and-visibility.adoc[leveloffset=+1,navtitle="Repository permissions"]
 
 // Job: Manage registry-wide and team access policies
 include::manage-registry-wide-and-team-access-policies.adoc[leveloffset=+1,navtitle="Registry access policies"]
 
 // Job: Review Clair vulnerability scan results
-include::review-clair-vulnerability-scan-results.adoc[leveloffset=+1]
+include::review-clair-vulnerability-scan-results.adoc[leveloffset=+1,navtitle="Clair scan results"]
