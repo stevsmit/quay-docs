@@ -18,17 +18,9 @@ jobs:
     - name: Build docs (redhat-docs-template theme)
       run: bash build_docs_preview
 
-    - name: Save PR number
-      if: success()
-      run: |
-        mkdir -p ./preview-build
-        echo ${{ github.event.pull_request.number }} > ./preview-build/pr_number.txt
-
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       if: success()
       with:
         name: preview-build
-        path: |
-          dist/
-          preview-build/pr_number.txt
+        path: dist/
