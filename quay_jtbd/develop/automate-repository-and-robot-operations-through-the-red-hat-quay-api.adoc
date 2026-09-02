@@ -1,11 +1,11 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="automate-repository-and-robot-operations-through-the-red-hat-quay-api_{context}"]
-= Automate repository and robot operations through the Red Hat Quay API
+= Script repositories, permissions, and robots from the API
 :context: automate_repository_and_robot_operations_through_the_red_hat_quay_api
 
 [role="_abstract"]
-Automate repository permissions, auto-prune policies, and robot operations by using the Red Hat Quay API.
+To script {productname} repository setup without the UI, you can use API examples for repository permissions, auto-prune policies, and robot operations.
 
 include::modules/repo-permission-api.adoc[leveloffset=+1]
 

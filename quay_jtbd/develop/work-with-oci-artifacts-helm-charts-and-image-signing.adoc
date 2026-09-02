@@ -1,11 +1,11 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="work-with-oci-artifacts-helm-charts-and-image-signing_{context}"]
-= Work with OCI artifacts, Helm charts, and image signing
+= Push Helm charts, OCI artifacts, and signed images
 :context: work_with_oci_artifacts_helm_charts_and_image_signing
 
 [role="_abstract"]
-Push OCI artifacts and Helm charts, attach referrers to image tags, and sign content with Cosign in Red Hat Quay.
+To store artifacts beyond container images in {productname}, you can push OCI artifacts and Helm charts and sign content with Cosign. The registry then holds signed, non-image content.
 
 include::modules/oci-intro.adoc[leveloffset=+1]
 
