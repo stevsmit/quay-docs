@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When an Operator-managed registry is lost or corrupted, I want a restore procedure, so that I can bring Quay back from backup with database and storage data intact.
+To bring an Operator-managed {productname} registry back after failure, you can restore it from backup. The restore keeps database and object storage data intact.
 
 
 include::modules/scaling-up-quay-deployment.adoc[leveloffset=+1]

@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When automation must push and pull images, I want robot accounts with scoped repository access, so that pipelines use non-human credentials without sharing user passwords.
+To let automation push and pull {productname} images, you can create robot accounts and limit their repository access. Pipelines then use non-human credentials instead of shared user passwords.
 
 
 include::modules/creating-robot-account-v2-ui.adoc[leveloffset=+1]

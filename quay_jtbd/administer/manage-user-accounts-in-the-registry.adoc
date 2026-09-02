@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When I operate a production registry, I want to create and remove user accounts, so that only the right people can access Quay over time.
+To keep the right people on {productname} over time, you can create and delete user accounts. After you add or remove users, only the people you intend can sign in to the registry.
 
 
 include::modules/creating-user-account-quay-ui.adoc[leveloffset=+1]

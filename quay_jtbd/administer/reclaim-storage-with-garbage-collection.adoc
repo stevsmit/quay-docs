@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When deleted tags still consume storage, I want garbage collection, so that the registry actually frees space in production.
+To free disk space after {productname} tags are deleted, you can configure and run garbage collection. The registry then reclaims storage in production instead of leaving deleted tags on disk.
 
 
 include::modules/garbage-collection-practice.adoc[leveloffset=+1]

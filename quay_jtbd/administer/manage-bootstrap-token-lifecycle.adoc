@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When I first connect automation after deployment, I want short-lived bootstrap tokens I can provision, renew, and revoke, so that initial programmatic access does not rely on long-lived user credentials.
+To connect automation after you first deploy {productname}, you can provision, renew, and revoke short-lived bootstrap tokens. Initial programmatic access then does not rely on long-lived user credentials.
 
 
 include::modules/programmatic-oauth-token-provisioning.adoc[leveloffset=+1]

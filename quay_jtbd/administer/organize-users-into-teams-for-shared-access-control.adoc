@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When many users share repositories, I want to organize them into teams with roles, so that access control scales without granting every user individually.
+To scale access when many users share {productname} repositories, you can organize users into teams and assign roles. You can then grant access at the team level instead of to each user individually.
 
 
 include::modules/creating-a-team-ui.adoc[leveloffset=+1]

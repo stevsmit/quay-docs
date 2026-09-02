@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When I run geo-replicated Quay, I want to set storage preferences and add or remove sites, so that multi-site distribution stays correct day to day.
+To keep geo-replicated {productname} sites running correctly, you can set storage preferences and add or remove sites. Multi-site distribution then stays correct day to day.
 
 
 include::modules/georepl-intro.adoc[leveloffset=+1]

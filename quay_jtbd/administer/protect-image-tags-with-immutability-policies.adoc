@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When production tags must stay unchanged, I want immutability policies, so that those tags cannot be overwritten and are excluded from auto-prune. Immutable tags can still be removed by per-tag expiration.
+To keep production {productname} tags unchanged, you can set immutability policies. Immutable tags cannot be overwritten and are excluded from auto-prune, but you can still retire them with per-tag expiration.
 
 
 include::modules/immutable-tag-overview.adoc[leveloffset=+1]

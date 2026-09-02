@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When cleanup rules differ by registry, organization, or repository, I want auto-prune policies at each scope, so that retention matches how each tenant uses the registry.
+To match cleanup to how each tenant uses {productname}, you can create auto-prune policies at the registry, organization, or repository level. Retention then follows the rules that apply at each scope.
 
 
 include::modules/creating-registry-wide-auto-pruning-policy.adoc[leveloffset=+1]

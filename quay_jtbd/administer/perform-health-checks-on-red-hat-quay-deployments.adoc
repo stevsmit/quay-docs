@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When I need confidence the registry is healthy, I want to run health checks, so that I can find problems before users do. For the full health check reference, see the Observe documentation.
+To confirm a {productname} registry is healthy, you can run health checks. You can find problems before users report them. For the full health check reference, see the Observe documentation.
 
 
 include::modules/instance-endpoint-quay.adoc[leveloffset=+1]

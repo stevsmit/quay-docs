@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When I need to know what is in the registry, I want to view tags, labels, and tag history, so that I can identify the right image versions before changing retention or protection.
+To see what is in a {productname} registry, you can view tags, labels, and tag history. You can then identify the right image versions before you change retention or protection.
 
 
 include::modules/viewing-and-modifying-tags.adoc[leveloffset=+1]

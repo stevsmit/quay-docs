@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When multiple tenants share a registry, I want organization storage quotas and defaults, so that no tenant can exhaust registry capacity unnoticed.
+To keep one tenant from filling a shared {productname} registry unnoticed, you can set organization storage quotas and defaults. You can then see capacity use before a tenant exhausts the registry.
 
 
 include::modules/quota-management-and-enforcement.adoc[leveloffset=+1]

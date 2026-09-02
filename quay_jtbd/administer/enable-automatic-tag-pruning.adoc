@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When unused tags accumulate, I want to enable auto-pruning with the right prerequisites, so that the registry can drop stale tags without constant manual cleanup. Immutable tags are excluded from auto-prune; use tag expiration if those tags must still retire.
+To drop unused {productname} tags without constant manual cleanup, you can review prerequisites and enable auto-pruning. Immutable tags are excluded from auto-prune; expire those tags if they must still retire.
 
 
 include::modules/red-hat-quay-namespace-auto-pruning-overview.adoc[leveloffset=+1]

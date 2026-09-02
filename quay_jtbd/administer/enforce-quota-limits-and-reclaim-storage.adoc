@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When a tenant approaches or exceeds capacity, I want reject and warning limits and a way to delete tags, so that quota policy is enforced and storage can be reclaimed.
+To enforce quota when a tenant fills {productname} capacity, you can set reject and warning limits and delete tags. You can then apply the quota policy and reclaim storage.
 
 
 include::modules/setting-reject-warning-limits.adoc[leveloffset=+1]

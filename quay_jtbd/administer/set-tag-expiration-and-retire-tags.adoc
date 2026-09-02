@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When stale tags must not live forever, I want to set tag expiration and delete or undo tags, so that we can retire content on a schedule without relying only on auto-prune. Per-tag expiration, including the `quay.expires-after` label or annotation, still applies to immutable tags. Auto-prune does not.
+To retire {productname} tags on a schedule, you can set tag expiration and delete or undo tags. Per-tag expiration, including the `quay.expires-after` label or annotation, still applies to immutable tags; auto-prune does not.
 
 
 include::modules/setting-tag-expirations-v2-ui.adoc[leveloffset=+1]

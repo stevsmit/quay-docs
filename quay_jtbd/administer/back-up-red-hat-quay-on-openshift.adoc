@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When I run Quay on OpenShift, I want to back up configuration, the managed database, and object storage, so that an Operator-managed registry can be recovered.
+To protect an Operator-managed {productname} registry from data loss, you can back up configuration, the managed database, and object storage. You can then recover the deployment if it fails.
 
 
 include::modules/optional-enabling-read-only-mode-backup-restore-ocp.adoc[leveloffset=+1]

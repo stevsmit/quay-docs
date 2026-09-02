@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When I run standalone Quay, I want backup and restore, including service keys and the database, so that I can recover the registry after failure or corruption.
+To recover a standalone {productname} registry after failure or corruption, you can back up and restore the deployment, including service keys and the database.
 
 
 include::modules/standalone-deployment-backup-restore.adoc[leveloffset=+1]

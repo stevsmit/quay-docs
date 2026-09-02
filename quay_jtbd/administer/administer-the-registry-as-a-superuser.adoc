@@ -6,7 +6,7 @@
 
 [role="_abstract"]
 
-When I am a registry superuser, I want privileged API and recovery actions, so that I can administer the entire deployment and regain access if needed.
+To administer an entire {productname} deployment, you can use superuser API endpoints and recovery actions. Those privileged actions also help you regain access if needed.
 
 
 include::modules/managing-organization-superuser-api.adoc[leveloffset=+1]
