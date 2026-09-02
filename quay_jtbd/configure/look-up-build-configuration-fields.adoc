@@ -1,11 +1,11 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="build_configuration_fields_{context}"]
-= Build automation configuration fields
+= Look up build automation configuration fields
 :context: build_configuration_fields
 
 [role="_abstract"]
-Optional configuration fields for Dockerfile build triggers, the build manager, and build logs.
+To enable Dockerfile builds in {productname}, you can look up build trigger, build manager, and build log fields.
 
 include::modules/builds-automation-configuration-overview.adoc[leveloffset=+1]
 

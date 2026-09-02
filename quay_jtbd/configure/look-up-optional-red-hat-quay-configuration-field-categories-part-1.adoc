@@ -1,11 +1,11 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="optional_red_hat_quay_configuration_field_categories_part_1_{context}"]
-= Core, web UI, and user configuration fields
+= Look up core, web UI, and user configuration fields
 :context: optional_red_hat_quay_configuration_field_categories_part_1
 
 [role="_abstract"]
-Optional configuration fields for core registry behavior, IPv6, debugging, registry state, the web UI, session logout, and user and robot account settings.
+To change how the {productname} registry looks and behaves, you can look up optional core, IPv6, debugging, web UI, session, and user fields. You can set those values in `config.yaml` without hunting through unrelated topics.
 
 include::modules/core-configuration-overview.adoc[leveloffset=+1]
 

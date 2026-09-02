@@ -1,11 +1,11 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="clair_notifier_authorization_trace_metrics_and_scanner_configuration_fields_{context}"]
-= Clair notifier, authorization, trace, metrics, and scanner configuration fields
+= Look up Clair notifier, authorization, trace, metrics, and scanner configuration fields
 :context: clair_notifier_authorization_trace_metrics_and_scanner_configuration_fields
 
 [role="_abstract"]
-Reference configuration fields for Clair notifiers, authorization, tracing, metrics, and the security scanner.
+To tune Clair notifications and observability, you can look up notifier, authorization, tracing, metrics, and scanner fields.
 
 include::modules/config-fields-clair-notifiers.adoc[leveloffset=+1]
 

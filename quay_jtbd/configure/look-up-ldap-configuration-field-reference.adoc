@@ -1,11 +1,11 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="look_up_ldap_configuration_field_reference_{context}"]
-= LDAP configuration fields
+= Look up LDAP configuration fields
 :context: look_up_ldap_configuration_field_reference
 
 [role="_abstract"]
-Reference LDAP configuration fields for directory authentication, team synchronization, and superuser access in Red Hat Quay.
+To connect {productname} to LDAP, you can look up LDAP authentication, team synchronization, and superuser fields.
 
 include::modules/config-fields-ldap.adoc[leveloffset=+1]
 

@@ -1,11 +1,11 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="optional_red_hat_quay_configuration_field_categories_part_2_{context}"]
-= Authentication, repository, and security configuration fields
+= Look up authentication, repository, and security configuration fields
 :context: optional_red_hat_quay_configuration_field_categories_part_2
 
 [role="_abstract"]
-Optional configuration fields for reCAPTCHA, JWT, application tokens, programmatic bootstrap, namespace and repository management, nested repositories, additional security policies, and registry search.
+To apply login and repository policy in {productname}, you can look up optional authentication, repository, and security fields. Those fields include reCAPTCHA, JWT, application tokens, bootstrap, nested repositories, and search.
 
 include::modules/config-fields-recaptcha.adoc[leveloffset=+1]
 

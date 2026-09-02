@@ -5,7 +5,7 @@
 :context: understand_red_hat_quay_configuration_openshift_container_platform
 
 [role="_abstract"]
-Learn how the Quay Operator manages registry configuration on OpenShift through the QuayRegistry custom resource, managed and unmanaged components, and the config bundle Secret.
+To change Operator-managed {productname} configuration, you can use the QuayRegistry custom resource, managed components, and the config bundle Secret. You change those objects instead of editing `config.yaml` by hand.
 
 include::modules/operator-components-intro.adoc[leveloffset=+1]
 
