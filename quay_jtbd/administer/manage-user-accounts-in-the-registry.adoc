@@ -1,11 +1,13 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="manage-user-accounts-in-the-registry_{context}"]
-= Manage user accounts in the registry
+= Control who can sign in to the registry
 :context: manage_user_accounts_in_the_registry
 
 [role="_abstract"]
-Create and delete user accounts by using the Red Hat Quay UI or API.
+
+When I operate a production registry, I want to create and remove user accounts, so that only the right people can access Quay over time.
+
 
 include::modules/creating-user-account-quay-ui.adoc[leveloffset=+1]
 

@@ -1,11 +1,13 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="enforce-quota-limits-and-reclaim-storage_{context}"]
-= Enforce quota limits and reclaim storage
+= Enforce quota limits when tenants fill capacity
 :context: enforce_quota_limits_and_reclaim_storage
 
 [role="_abstract"]
-Set reject and warning limits, calculate total registry size, and permanently delete image tags to enforce quotas and reclaim storage.
+
+When a tenant approaches or exceeds capacity, I want reject and warning limits and a way to delete tags, so that quota policy is enforced and storage can be reclaimed.
+
 
 include::modules/setting-reject-warning-limits.adoc[leveloffset=+1]
 

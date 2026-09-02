@@ -1,11 +1,13 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="organize-users-into-teams-for-shared-access-control_{context}"]
-= Organize users into teams for shared access control
+= Scale access control with teams and roles
 :context: organize_users_into_teams_for_shared_access_control
 
 [role="_abstract"]
-Create teams, add members, set team roles, and manage repository permissions by using the UI or API.
+
+When many users share repositories, I want to organize them into teams with roles, so that access control scales without granting every user individually.
+
 
 include::modules/creating-a-team-ui.adoc[leveloffset=+1]
 

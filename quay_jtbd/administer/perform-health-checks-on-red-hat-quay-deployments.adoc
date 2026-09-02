@@ -1,11 +1,13 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="perform-health-checks-on-red-hat-quay-deployments_{context}"]
-= Perform health checks on Red Hat Quay deployments
+= Detect registry problems before users report them
 :context: perform_health_checks_on_red_hat_quay_deployments
 
 [role="_abstract"]
-Run a quick health check on a Red Hat Quay deployment by using the instance endpoint. For the full health check reference, see the Observe documentation.
+
+When I need confidence the registry is healthy, I want to run health checks, so that I can find problems before users do. For the full health check reference, see the Observe documentation.
+
 
 include::modules/instance-endpoint-quay.adoc[leveloffset=+1]
 

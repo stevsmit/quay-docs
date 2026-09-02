@@ -1,11 +1,13 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="create-automatic-tag-pruning-policies_{context}"]
-= Create automatic tag pruning policies
+= Set auto-prune policies at the right scope
 :context: create_automatic_tag_pruning_policies
 
 [role="_abstract"]
-Create registry-wide, organization, and repository auto-pruning policies by using the Red Hat Quay UI or API.
+
+When cleanup rules differ by registry, organization, or repository, I want auto-prune policies at each scope, so that retention matches how each tenant uses the registry.
+
 
 include::modules/creating-registry-wide-auto-pruning-policy.adoc[leveloffset=+1]
 

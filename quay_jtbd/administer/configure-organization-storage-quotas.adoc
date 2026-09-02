@@ -1,11 +1,13 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="configure-organization-storage-quotas_{context}"]
-= Configure organization storage quotas
+= Cap storage per organization
 :context: configure_organization_storage_quotas
 
 [role="_abstract"]
-Configure organization storage quotas, system defaults, notifications, and API limits to prevent any tenant from exhausting registry capacity.
+
+When multiple tenants share a registry, I want organization storage quotas and defaults, so that no tenant can exhaust registry capacity unnoticed.
+
 
 include::modules/quota-management-and-enforcement.adoc[leveloffset=+1]
 

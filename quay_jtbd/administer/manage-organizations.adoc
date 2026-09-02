@@ -1,11 +1,13 @@
 :_mod-docs-content-type: ASSEMBLY
 :chunk-to-content:
 [id="manage-organizations_{context}"]
-= Manage organizations
+= Group repositories by team or project
 :context: manage_organizations
 
 [role="_abstract"]
-Create and delete organizations and manage organization settings by using the UI or API.
+
+When teams need shared ownership of images, I want to create and manage organizations, so that repositories are grouped by team or project rather than by individual users.
+
 
 include::modules/org-create.adoc[leveloffset=+1]
 
