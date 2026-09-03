@@ -28,13 +28,16 @@ jobs:
         run_id: ${{ github.event.workflow_run.id }}
         path: .
 
-    # PR identity comes from the trusted workflow_run event (and GitHub API
-    # fallback for fork PRs). Never read pr_number.txt from the artifact.
+    # PR identity comes from the trusted workflow_run event. Never read
+    # pr_number.txt from the artifact. Fork PRs leave pull_requests empty
+    # and commits/{sha}/pulls empty; look up by trusted head owner:branch.
     - name: Resolve PR number
       id: pr
       env:
         EVENT_PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
         HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        HEAD_OWNER: ${{ github.event.workflow_run.head_repository.owner.login }}
+        HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
         GH_TOKEN: ${{ github.token }}
         REPO: ${{ github.repository }}
       run: |
@@ -47,7 +50,23 @@ jobs:
             --jq '.[0].number // empty')"
         fi
         if [[ ! "${PR_NUMBER}" =~ ^[0-9]+$ ]]; then
-          echo "Could not resolve a numeric PR number for head_sha=${HEAD_SHA}" >&2
+          if [[ ! "${HEAD_OWNER}" =~ ^[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?$ ]]; then
+            echo "Invalid head owner for PR lookup" >&2
+            exit 1
+          fi
+          if [[ -z "${HEAD_BRANCH}" || "${HEAD_BRANCH}" == *:* ]]; then
+            echo "Invalid head branch for PR lookup" >&2
+            exit 1
+          fi
+          PR_NUMBER="$(gh api \
+            -H 'Accept: application/vnd.github+json' \
+            -f state=open \
+            -f head="${HEAD_OWNER}:${HEAD_BRANCH}" \
+            "/repos/${REPO}/pulls" \
+            --jq 'if length == 1 then .[0].number else empty end')"
+        fi
+        if [[ ! "${PR_NUMBER}" =~ ^[0-9]+$ ]]; then
+          echo "Could not resolve a numeric PR number for head_sha=${HEAD_SHA} head=${HEAD_OWNER}:${HEAD_BRANCH}" >&2
           exit 1
         fi
         echo "number=${PR_NUMBER}" >> "${GITHUB_OUTPUT}"
