@@ -14,11 +14,17 @@ jobs:
 
     steps:
     - name: Teardown Surge deployment
-      run: |
-        DEPLOY_DOMAIN="quay-docs-pr-${{ github.event.pull_request.number }}.surge.sh"
-        npx surge teardown $DEPLOY_DOMAIN --token $SURGE_TOKEN
       env:
+        PR_NUMBER: ${{ github.event.pull_request.number }}
         SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+      run: |
+        set -euo pipefail
+        if [[ ! "${PR_NUMBER}" =~ ^[0-9]+$ ]]; then
+          echo "Invalid PR number" >&2
+          exit 1
+        fi
+        DEPLOY_DOMAIN="quay-docs-pr-${PR_NUMBER}.surge.sh"
+        npx surge teardown "${DEPLOY_DOMAIN}" --token "${SURGE_TOKEN}"
 
     - name: Update PR comment
       uses: actions/github-script@v8

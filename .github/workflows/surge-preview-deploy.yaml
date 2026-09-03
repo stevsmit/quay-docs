@@ -28,31 +28,66 @@ jobs:
         run_id: ${{ github.event.workflow_run.id }}
         path: .
 
-    - name: Read PR number
+    # PR identity comes from the trusted workflow_run event (and GitHub API
+    # fallback for fork PRs). Never read pr_number.txt from the artifact.
+    - name: Resolve PR number
       id: pr
+      env:
+        EVENT_PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
+        HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        GH_TOKEN: ${{ github.token }}
+        REPO: ${{ github.repository }}
       run: |
-        PR_NUMBER=$(cat preview-build/pr_number.txt)
-        echo "number=$PR_NUMBER" >> $GITHUB_OUTPUT
+        set -euo pipefail
+        PR_NUMBER="${EVENT_PR_NUMBER:-}"
+        if [[ ! "${PR_NUMBER}" =~ ^[0-9]+$ ]]; then
+          PR_NUMBER="$(gh api \
+            -H 'Accept: application/vnd.github+json' \
+            "/repos/${REPO}/commits/${HEAD_SHA}/pulls" \
+            --jq '.[0].number // empty')"
+        fi
+        if [[ ! "${PR_NUMBER}" =~ ^[0-9]+$ ]]; then
+          echo "Could not resolve a numeric PR number for head_sha=${HEAD_SHA}" >&2
+          exit 1
+        fi
+        echo "number=${PR_NUMBER}" >> "${GITHUB_OUTPUT}"
 
     - name: Deploy to Surge
       id: deploy
-      run: |
-        DEPLOY_DOMAIN="quay-docs-pr-${{ steps.pr.outputs.number }}.surge.sh"
-        cd dist
-        npx surge . "$DEPLOY_DOMAIN" --token "${{ secrets.SURGE_TOKEN }}"
-        echo "url=https://$DEPLOY_DOMAIN" >> $GITHUB_OUTPUT
       env:
+        PR_NUMBER: ${{ steps.pr.outputs.number }}
         SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+      run: |
+        set -euo pipefail
+        if [[ ! "${PR_NUMBER}" =~ ^[0-9]+$ ]]; then
+          echo "Invalid PR number" >&2
+          exit 1
+        fi
+        DEPLOY_DOMAIN="quay-docs-pr-${PR_NUMBER}.surge.sh"
+        cd dist
+        npx surge . "${DEPLOY_DOMAIN}" --token "${SURGE_TOKEN}"
+        echo "url=https://${DEPLOY_DOMAIN}" >> "${GITHUB_OUTPUT}"
 
     - name: Comment PR with deployment URL
       uses: actions/github-script@v8
+      env:
+        DEPLOY_URL: ${{ steps.deploy.outputs.url }}
+        PR_NUMBER: ${{ steps.pr.outputs.number }}
+        HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
       with:
         script: |
           const fs = require('fs');
           const path = require('path');
-          const deploymentUrl = '${{ steps.deploy.outputs.url }}';
-          const prNumber = ${{ steps.pr.outputs.number }};
-          const headSha = '${{ github.event.workflow_run.head_sha }}';
+          const deploymentUrl = process.env.DEPLOY_URL;
+          const prNumber = Number.parseInt(process.env.PR_NUMBER, 10);
+          const headSha = process.env.HEAD_SHA;
+
+          if (!Number.isInteger(prNumber) || prNumber < 1) {
+            throw new Error('Invalid PR number');
+          }
+          if (!/^https:\/\/quay-docs-pr-\d+\.surge\.sh$/.test(deploymentUrl)) {
+            throw new Error('Unexpected deployment URL');
+          }
 
           const { data: files } = await github.rest.pulls.listFiles({
             owner: context.repo.owner,
