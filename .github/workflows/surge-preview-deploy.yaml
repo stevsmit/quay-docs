@@ -58,7 +58,7 @@ jobs:
             echo "Invalid head branch for PR lookup" >&2
             exit 1
           fi
-          PR_NUMBER="$(gh api \
+          PR_NUMBER="$(gh api --method GET \
             -H 'Accept: application/vnd.github+json' \
             -f state=open \
             -f head="${HEAD_OWNER}:${HEAD_BRANCH}" \
