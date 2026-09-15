@@ -1006,21 +1006,8 @@
 <li><a href="#retrieving-config-file-api">Retrieving active configuration settings by using the API</a></li>
 </ul>
 </li>
-<li><a href="#configure_the_database_and_redis_for_red_hat_quay_verify_and_retrieve_red_hat_quay_configuration">Configure Red Hat Quay database and Redis backends</a>
+<li><a href="#configure_the_database_and_redis_for_red_hat_quay_verify_and_retrieve_red_hat_quay_configuration">Configure database and Redis backends</a>
 <ul class="sectlevel3">
-<li><a href="#config-fields-db">Database configuration fields</a>
-<ul class="sectlevel4">
-<li><a href="#database-uri">Database URI</a></li>
-<li><a href="#database-connection-arguments">Database connection arguments</a></li>
-<li><a href="#config-fields-postgres">SSL/TLS connection arguments</a></li>
-</ul>
-</li>
-<li><a href="#config-fields-redis">Redis configuration fields</a>
-<ul class="sectlevel4">
-<li><a href="#config-fields-redis-build-logs">Build logs</a></li>
-<li><a href="#user-event-fields-redis">User events</a></li>
-</ul>
-</li>
 <li><a href="#operator-unmanaged-postgres">Using an external PostgreSQL database</a></li>
 <li><a href="#integrating-external-postgresql-db">Configuring an external PostgreSQL connection</a></li>
 <li><a href="#integrating-external-redis-db">Configuring an external Redis connection</a></li>
@@ -1618,7 +1605,24 @@
 </li>
 </ul>
 </li>
-<li><a href="#look_up_object_storage_backend_configuration_fields_required_red_hat_quay_configuration_fields">Object storage backend configuration reference</a>
+<li><a href="#look_up_database_and_redis_configuration_fields_required_red_hat_quay_configuration_fields">Database and Redis configuration reference</a>
+<ul class="sectlevel3">
+<li><a href="#config-fields-db">Database configuration fields</a>
+<ul class="sectlevel4">
+<li><a href="#database-uri">Database URI</a></li>
+<li><a href="#database-connection-arguments">Database connection arguments</a></li>
+<li><a href="#config-fields-postgres">SSL/TLS connection arguments</a></li>
+</ul>
+</li>
+<li><a href="#config-fields-redis">Redis configuration fields</a>
+<ul class="sectlevel4">
+<li><a href="#config-fields-redis-build-logs">Build logs</a></li>
+<li><a href="#user-event-fields-redis">User events</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#look_up_object_storage_backend_configuration_fields_look_up_database_and_redis_configuration_fields">Object storage backend configuration reference</a>
 <ul class="sectlevel3">
 <li><a href="#config-fields-storage-fields">Storage configuration fields</a>
 <ul class="sectlevel4">
@@ -27070,460 +27074,9 @@ DISTRIBUTED_STORAGE_PREFERENCE:
 </div>
 </div>
 <div class="sect2">
-<h3 id="configure_the_database_and_redis_for_red_hat_quay_verify_and_retrieve_red_hat_quay_configuration">Configure Red Hat Quay database and Redis backends</h3>
+<h3 id="configure_the_database_and_redis_for_red_hat_quay_verify_and_retrieve_red_hat_quay_configuration">Configure database and Redis backends</h3>
 <div class="paragraph _abstract">
-<p>Configure Red Hat Quay settings for red hat quay database and redis backends.</p>
-</div>
-<div class="sect3">
-<h4 id="config-fields-db">Database configuration fields</h4>
-<div class="paragraph _abstract">
-<p>You must configure database connectivity for Red Hat Quay by setting the <code>DB_URI</code> field. You can optionally define connection settings such as SSL/TLS behavior by using <code>DB_CONNECTION_ARGS</code>.</p>
-</div>
-<div class="sect4">
-<h5 id="database-uri">Database URI</h5>
-<div class="paragraph">
-<p>You configure the database connection for Red Hat Quay by setting the required <code>DB_URI</code> field.</p>
-</div>
-<div class="paragraph">
-<p>The following table describes the <code>DB_URI</code> configuration field:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 13. Database URI</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 16.6666%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Field</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>DB_URI</strong> (Required)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The URI for accessing the database, including any credentials.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="listingblock">
-<div class="title">Database URI example</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
-DB_URI: postgresql://quayuser:quaypass@quay-server.example.com:5432/quay
-# ...</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="database-connection-arguments">Database connection arguments</h5>
-<div class="paragraph">
-<p>You can define optional connection arguments by using the <code>DB_CONNECTION_ARGS</code> parameter. Some of the key-value pairs under <code>DB_CONNECTION_ARGS</code> are generic, while others are database specific.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 14. Database connection arguments</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 16.6666%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Field</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>DB_CONNECTION_ARGS</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Object</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Optional connection arguments for the database, such as timeouts and SSL/TLS.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.autorollback</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Boolean</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Whether to use thread-local connections. Should <strong>always</strong> be <code>True</code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.threadlocals</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Boolean</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Whether to use auto-rollback connections. Should <strong>always</strong> be <code>True</code>.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="listingblock">
-<div class="title">Database connection arguments example</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
-DB_URI: postgresql://quayuser:quaypass@quay-server.example.com:5432/quay
-DB_CONNECTION_ARGS:
-  autorollback: true
-  threadlocals: true
-# ...</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="config-fields-postgres">SSL/TLS connection arguments</h5>
-<div class="paragraph">
-<p>With SSL/TLS, configuration depends on the database you are deploying.</p>
-</div>
-<div class="paragraph">
-<p>The <code>sslmode</code> option determines whether Red Hat Quay negotiates a secure SSL/TLS TCP/IP connection with the server, and with what priority. The following modes are available:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 15. <code>sslmode</code> options</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Mode</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslmode</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether, or with, what priority a secure SSL/TLS or TCP/IP connection is negotiated with the server.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong> &#160;&#160;&#160;*: disable</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Your configuration only tries non-SSL/TLS connections.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong> &#160;&#160;&#160;*: allow</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Your configuration first tries a non-SSL/TLS connection. Upon failure, tries an SSL/TLS connection.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong> &#160;&#160;&#160;*: prefer</strong> &#160;&#160;&#160; (Default)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Your configuration first tries an SSL/TLS connection. Upon failure, tries a non-SSL/TLS connection.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong> &#160;&#160;&#160;*: require</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Your configuration only tries an SSL/TLS connection. If a root CA file is present, it verifies the certificate in the same way as if verify-ca was specified.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong> &#160;&#160;&#160;*: verify-ca</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Your configuration only tries an SSL/TLS connection, and verifies that the server certificate is issued by a trusted certificate authority (CA).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong> &#160;&#160;&#160;*: verify-full</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Only tries an SSL/TLS connection, and verifies that the server certificate is issued by a trusted CA and that the requested server hostname matches that in the certificate.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>For more information on the valid arguments for PostgreSQL, see <em>Database Connection Control Functions</em> in Additional resources.</p>
-</div>
-<div class="listingblock">
-<div class="title">PostgreSQL SSL/TLS configuration</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
-DB_CONNECTION_ARGS:
-  sslmode: &lt;value&gt;
-  sslrootcert: path/to/.postgresql/root.crt
-# ...</code></pre>
-</div>
-</div>
-<div class="ulist _additional-resources">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p><a href="https://www.postgresql.org/docs/current/libpq-connect.html">Database Connection Control Functions</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="config-fields-redis">Redis configuration fields</h4>
-<div class="paragraph _abstract">
-<p>Redis is used by Red Hat Quay to support backend tasks and services, such as build triggers and notifications. There are configuration types related to Redis: build logs and user events. The following sections detail the configuration fields available for each type.</p>
-</div>
-<div class="sect4">
-<h5 id="config-fields-redis-build-logs">Build logs</h5>
-<div class="paragraph _abstract">
-<p>Red Hat Quay uses Redis to temporarily store build logs before they are accessed through the user interface or API. Use this reference to configure Redis connection settings for build log caching.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 16. Build logs configuration fields</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 16.6666%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Field</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>BUILDLOGS_REDIS</strong> (Required)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Object</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Redis connection details for build logs caching.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.host</strong> (Required)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The hostname at which Redis is accessible. <strong>Example:</strong> <code>quay-server.example.com</code></p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.port</strong> (Required)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The port at which Redis is accessible. <strong>Example:</strong> <code>6379</code></p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.password</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The password to connect to the Redis instance. <strong>Example:</strong> <code>strongpassword</code></p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.ssl</strong> (Optional)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Boolean</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Whether to enable TLS communication between Redis and Quay. Defaults to false.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="listingblock">
-<div class="title">Build logs configuration example</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
-BUILDLOGS_REDIS:
-  host: &lt;quay-server.example.com&gt;
-  password: &lt;example_password&gt;
-  port: 6379
-  ssl: true
-# ...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If your deployment uses Azure Cache for Redis and <code>ssl</code> is set to <code>True</code>, the port defaults to <code>6380</code>.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="user-event-fields-redis">User events</h5>
-<div class="paragraph _abstract">
-<p>User events record activity in Red Hat Quay and store it in Redis for access through the API or web interface. Use these fields to configure the Redis connection for user event handling.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 17. User events config</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 16.6666%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Field</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>USER_EVENTS_REDIS</strong> (Required)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Object</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Redis connection details for user event handling.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.host</strong> (Required)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The hostname at which Redis is accessible. <strong>Example:</strong> <code>quay-server.example.com</code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.port</strong> (Required)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Number</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The port at which Redis is accessible. <strong>Example:</strong> <code>6379</code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.password</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The password to connect to the Redis instance. <strong>Example:</strong> <code>strongpassword</code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.ssl</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Boolean</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Whether to enable TLS communication between Redis and Quay. Defaults to false.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.ssl_keyfile</strong> (Optional)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The key database file that contains the client certificate key. <strong>Example:</strong> <code>ssl_keyfile: /path/to/server/privatekey.pem</code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.ssl_certfile</strong> (Optional)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The file path of the SSL certificate. <strong>Example:</strong> <code>ssl_certfile: /path/to/server/certificate.pem</code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.ssl_cert_reqs</strong> (Optional)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The certificate validation level to use during the SSL/TLS handshake. <strong>Example:</strong> <code>ssl_cert_reqs: CERT_REQUIRED</code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.ssl_ca_certs</strong> (Optional)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The path to a file containing trusted CA certificates. <strong>Example:</strong> <code>ssl_ca_certs: /path/to/ca_certs.pem</code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.ssl_ca_data</strong> (Optional)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>A string that contains trusted CA certificates in PEM format. <strong>Example:</strong> <code>ssl_ca_data: &lt;certificate&gt;</code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>.ssl_check_hostname</strong> (Optional)</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Boolean</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Whether the client checks that the hostname in the server SSL/TLS certificate matches the hostname of the server it connects to. <strong>Example:</strong> <code>ssl_check_hostname: true</code>.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="listingblock">
-<div class="title">Redis user events  example</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
-USER_EVENTS_REDIS:
-  host: &lt;quay-redis.example.com&gt;
-  port: 6379
-  password: &lt;example_password&gt;
-  ssl: true
-  ssl_keyfile: /etc/ssl/private/redis-client.key
-  ssl_certfile: /etc/ssl/certs/redis-client.crt
-  ssl_cert_reqs: &lt;required_certificate&gt;
-  ssl_ca_certs: /etc/ssl/certs/ca-bundle.crt
-  ssl_check_hostname: true
-# ...</code></pre>
-</div>
-</div>
-</div>
+<p>Configure Red Hat Quay to use an external PostgreSQL database and a Redis instance. This job covers unmanaged database setup, external PostgreSQL integration, and unmanaged Redis configuration.</p>
 </div>
 <div class="sect3">
 <h4 id="operator-unmanaged-postgres">Using an external PostgreSQL database</h4>
@@ -28169,7 +27722,7 @@ PREFERRED_URL_SCHEME: https
 <p>Multiple valid configurations are possible, as shown in the following table:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 18. Valid configuration options for TLS and routes</caption>
+<caption class="title">Table 13. Valid configuration options for TLS and routes</caption>
 <colgroup>
 <col style="width: 18.1818%;">
 <col style="width: 18.1818%;">
@@ -28266,7 +27819,7 @@ PREFERRED_URL_SCHEME: https
 <p>The following options support automation and administrative control.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 19. Automation configuration fields</caption>
+<caption class="title">Table 14. Automation configuration fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 16.6666%;">
@@ -28413,7 +27966,7 @@ FEATURE_USER_CREATION: false
 <p>To accommodate this, Red Hat Quay allows specifying a preferred storage engine for each deployment using an environment variable. This ensures that while metadata remains synchronized across all regions, each region can use its own optimized storage backend without requiring separate configuration files.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 20. Geo-replication configuration</caption>
+<caption class="title">Table 15. Geo-replication configuration</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -28453,7 +28006,7 @@ FEATURE_USER_CREATION: false
 <p>Overtime, the connection pools release idle connections. To release all connections immediately, Red Hat Quay requires a restart.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 21. Database connection pooling configuration</caption>
+<caption class="title">Table 16. Database connection pooling configuration</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -32088,7 +31641,7 @@ updaters:
 <p>Common Product Enumeration (CPE) mapping configuration defines the fields and file paths used by Clair to associate packages with standardized product identifiers.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 22. Clair CPE mapping files</caption>
+<caption class="title">Table 17. Clair CPE mapping files</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -33105,7 +32658,7 @@ spec:
 <div class="sect5">
 <h6 id="operator-managed-postgres-tls-cert-options">Certificate options</h6>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 23. Operator-managed PostgreSQL TLS certificate sources</caption>
+<caption class="title">Table 18. Operator-managed PostgreSQL TLS certificate sources</caption>
 <colgroup>
 <col style="width: 40%;">
 <col style="width: 60%;">
@@ -38914,7 +38467,7 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 <p>Red Hat Quay has several health check endpoints. The following table shows you the health check, a description, an endpoint, and an example output.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 24. Health check endpoints</caption>
+<caption class="title">Table 19. Health check endpoints</caption>
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 37.5%;">
@@ -39875,7 +39428,7 @@ latest
 </table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 25. Red Hat Quay mirroring and geo-replication comparison</caption>
+<caption class="title">Table 20. Red Hat Quay mirroring and geo-replication comparison</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -40721,7 +40274,7 @@ SSRF_ALLOWED_HOSTS:
 <p>The following table describes the primary repository mirroring metrics added in Red Hat Quay 3.18.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 26. Repository mirror metrics</caption>
+<caption class="title">Table 21. Repository mirror metrics</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 16.6666%;">
@@ -42496,7 +42049,7 @@ spec:
 <p>The following configuration fields control rate limiting and performance-related behavior for your Red Hat Quay deployment.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 27. Rate limiting and performance configuration fields</caption>
+<caption class="title">Table 22. Rate limiting and performance configuration fields</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -42596,7 +42149,7 @@ PROMETHEUS_NAMESPACE: quay
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 28. HTTP connection count configuration variables</caption>
+<caption class="title">Table 23. HTTP connection count configuration variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -42717,7 +42270,7 @@ WORKER_CONNECTION_COUNT_SECSCAN: 10</code></pre>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 29. Worker count variables</caption>
+<caption class="title">Table 24. Worker count variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -42907,7 +42460,7 @@ minimum_chunk_size_mb: 20
 <p>The Red Hat Quay Operator uses environment variables to override default container images for components such as <code>base</code>, <code>clair</code>, <code>postgres</code>, and <code>redis</code>. You can set these variables in the <code>ClusterServiceVersion</code> object to customize which images the Operator uses for each component.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 30. ClusterServiceVersion environment variables</caption>
+<caption class="title">Table 25. ClusterServiceVersion environment variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -43425,7 +42978,7 @@ Spec:
 <p>Red Hat Quay offers two configuration fields that can be added to your <code>config.yaml</code> file to help diagnose issues or help obtain log information.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 31. Debug configuration variables</caption>
+<caption class="title">Table 26. Debug configuration variables</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -45003,7 +44556,7 @@ Total Size: 514.4 GiB</code></pre>
 <p>General required fields must be present in every Red Hat Quay configuration to start the registry. Use this reference to confirm values for authentication, URL settings, and secret keys.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 32. General required fields</caption>
+<caption class="title">Table 27. General required fields</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -45101,7 +44654,464 @@ SETUP_COMPLETE: true
 </div>
 </div>
 <div class="sect2">
-<h3 id="look_up_object_storage_backend_configuration_fields_required_red_hat_quay_configuration_fields">Object storage backend configuration reference</h3>
+<h3 id="look_up_database_and_redis_configuration_fields_required_red_hat_quay_configuration_fields">Database and Redis configuration reference</h3>
+<div class="paragraph _abstract">
+<p>Reference database and Redis configuration fields for Red Hat Quay. Use these fields to set the database URI, connection arguments, SSL/TLS connection behavior, Redis build log settings, and Redis user event settings.</p>
+</div>
+<div class="sect3">
+<h4 id="config-fields-db">Database configuration fields</h4>
+<div class="paragraph _abstract">
+<p>You must configure database connectivity for Red Hat Quay by setting the <code>DB_URI</code> field. You can optionally define connection settings such as SSL/TLS behavior by using <code>DB_CONNECTION_ARGS</code>.</p>
+</div>
+<div class="sect4">
+<h5 id="database-uri">Database URI</h5>
+<div class="paragraph">
+<p>You configure the database connection for Red Hat Quay by setting the required <code>DB_URI</code> field.</p>
+</div>
+<div class="paragraph">
+<p>The following table describes the <code>DB_URI</code> configuration field:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 28. Database URI</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 16.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>DB_URI</strong> (Required)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The URI for accessing the database, including any credentials.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Database URI example</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
+DB_URI: postgresql://quayuser:quaypass@quay-server.example.com:5432/quay
+# ...</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="database-connection-arguments">Database connection arguments</h5>
+<div class="paragraph">
+<p>You can define optional connection arguments by using the <code>DB_CONNECTION_ARGS</code> parameter. Some of the key-value pairs under <code>DB_CONNECTION_ARGS</code> are generic, while others are database specific.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 29. Database connection arguments</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 16.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>DB_CONNECTION_ARGS</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Object</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional connection arguments for the database, such as timeouts and SSL/TLS.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.autorollback</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Boolean</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Whether to use thread-local connections. Should <strong>always</strong> be <code>True</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.threadlocals</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Boolean</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Whether to use auto-rollback connections. Should <strong>always</strong> be <code>True</code>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Database connection arguments example</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
+DB_URI: postgresql://quayuser:quaypass@quay-server.example.com:5432/quay
+DB_CONNECTION_ARGS:
+  autorollback: true
+  threadlocals: true
+# ...</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="config-fields-postgres">SSL/TLS connection arguments</h5>
+<div class="paragraph">
+<p>With SSL/TLS, configuration depends on the database you are deploying.</p>
+</div>
+<div class="paragraph">
+<p>The <code>sslmode</code> option determines whether Red Hat Quay negotiates a secure SSL/TLS TCP/IP connection with the server, and with what priority. The following modes are available:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 30. <code>sslmode</code> options</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Mode</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslmode</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether, or with, what priority a secure SSL/TLS or TCP/IP connection is negotiated with the server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong> &#160;&#160;&#160;*: disable</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Your configuration only tries non-SSL/TLS connections.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong> &#160;&#160;&#160;*: allow</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Your configuration first tries a non-SSL/TLS connection. Upon failure, tries an SSL/TLS connection.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong> &#160;&#160;&#160;*: prefer</strong> &#160;&#160;&#160; (Default)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Your configuration first tries an SSL/TLS connection. Upon failure, tries a non-SSL/TLS connection.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong> &#160;&#160;&#160;*: require</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Your configuration only tries an SSL/TLS connection. If a root CA file is present, it verifies the certificate in the same way as if verify-ca was specified.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong> &#160;&#160;&#160;*: verify-ca</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Your configuration only tries an SSL/TLS connection, and verifies that the server certificate is issued by a trusted certificate authority (CA).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong> &#160;&#160;&#160;*: verify-full</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only tries an SSL/TLS connection, and verifies that the server certificate is issued by a trusted CA and that the requested server hostname matches that in the certificate.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>For more information on the valid arguments for PostgreSQL, see <em>Database Connection Control Functions</em> in Additional resources.</p>
+</div>
+<div class="listingblock">
+<div class="title">PostgreSQL SSL/TLS configuration</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
+DB_CONNECTION_ARGS:
+  sslmode: &lt;value&gt;
+  sslrootcert: path/to/.postgresql/root.crt
+# ...</code></pre>
+</div>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://www.postgresql.org/docs/current/libpq-connect.html">Database Connection Control Functions</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="config-fields-redis">Redis configuration fields</h4>
+<div class="paragraph _abstract">
+<p>Redis is used by Red Hat Quay to support backend tasks and services, such as build triggers and notifications. There are configuration types related to Redis: build logs and user events. The following sections detail the configuration fields available for each type.</p>
+</div>
+<div class="sect4">
+<h5 id="config-fields-redis-build-logs">Build logs</h5>
+<div class="paragraph _abstract">
+<p>Red Hat Quay uses Redis to temporarily store build logs before they are accessed through the user interface or API. Use this reference to configure Redis connection settings for build log caching.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 31. Build logs configuration fields</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 16.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>BUILDLOGS_REDIS</strong> (Required)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Object</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Redis connection details for build logs caching.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.host</strong> (Required)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The hostname at which Redis is accessible. <strong>Example:</strong> <code>quay-server.example.com</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.port</strong> (Required)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Number</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The port at which Redis is accessible. <strong>Example:</strong> <code>6379</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.password</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The password to connect to the Redis instance. <strong>Example:</strong> <code>strongpassword</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.ssl</strong> (Optional)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Boolean</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Whether to enable TLS communication between Redis and Quay. Defaults to false.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Build logs configuration example</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
+BUILDLOGS_REDIS:
+  host: &lt;quay-server.example.com&gt;
+  password: &lt;example_password&gt;
+  port: 6379
+  ssl: true
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If your deployment uses Azure Cache for Redis and <code>ssl</code> is set to <code>True</code>, the port defaults to <code>6380</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="user-event-fields-redis">User events</h5>
+<div class="paragraph _abstract">
+<p>User events record activity in Red Hat Quay and store it in Redis for access through the API or web interface. Use these fields to configure the Redis connection for user event handling.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 32. User events config</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 16.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>USER_EVENTS_REDIS</strong> (Required)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Object</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Redis connection details for user event handling.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.host</strong> (Required)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The hostname at which Redis is accessible. <strong>Example:</strong> <code>quay-server.example.com</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.port</strong> (Required)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Number</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The port at which Redis is accessible. <strong>Example:</strong> <code>6379</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.password</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The password to connect to the Redis instance. <strong>Example:</strong> <code>strongpassword</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.ssl</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Boolean</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Whether to enable TLS communication between Redis and Quay. Defaults to false.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.ssl_keyfile</strong> (Optional)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The key database file that contains the client certificate key. <strong>Example:</strong> <code>ssl_keyfile: /path/to/server/privatekey.pem</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.ssl_certfile</strong> (Optional)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The file path of the SSL certificate. <strong>Example:</strong> <code>ssl_certfile: /path/to/server/certificate.pem</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.ssl_cert_reqs</strong> (Optional)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The certificate validation level to use during the SSL/TLS handshake. <strong>Example:</strong> <code>ssl_cert_reqs: CERT_REQUIRED</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.ssl_ca_certs</strong> (Optional)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The path to a file containing trusted CA certificates. <strong>Example:</strong> <code>ssl_ca_certs: /path/to/ca_certs.pem</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.ssl_ca_data</strong> (Optional)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A string that contains trusted CA certificates in PEM format. <strong>Example:</strong> <code>ssl_ca_data: &lt;certificate&gt;</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>.ssl_check_hostname</strong> (Optional)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Boolean</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Whether the client checks that the hostname in the server SSL/TLS certificate matches the hostname of the server it connects to. <strong>Example:</strong> <code>ssl_check_hostname: true</code>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Redis user events  example</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
+USER_EVENTS_REDIS:
+  host: &lt;quay-redis.example.com&gt;
+  port: 6379
+  password: &lt;example_password&gt;
+  ssl: true
+  ssl_keyfile: /etc/ssl/private/redis-client.key
+  ssl_certfile: /etc/ssl/certs/redis-client.crt
+  ssl_cert_reqs: &lt;required_certificate&gt;
+  ssl_ca_certs: /etc/ssl/certs/ca-bundle.crt
+  ssl_check_hostname: true
+# ...</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="look_up_object_storage_backend_configuration_fields_look_up_database_and_redis_configuration_fields">Object storage backend configuration reference</h3>
 <div class="paragraph _abstract">
 <p>Look up object storage configuration fields for local, cloud, Ceph, Nutanix, IBM Cloud, NetApp, and HCP backends.</p>
 </div>
@@ -54211,7 +54221,7 @@ SECURITY_SCANNER_V4_INDEX_MAX_LAYER_SIZE: 8G
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-14 19:28:54 UTC
+Last updated 2026-09-15 14:29:45 UTC
 </div>
 </div>
 </body>
