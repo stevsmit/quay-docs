@@ -1035,17 +1035,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#tune_quay_performance_with_configuration_and_environment_variables_configure_networking_for_red_hat_quay">Tune Quay performance with configuration and environment variables</a>
-<ul class="sectlevel3">
-<li><a href="#config-envar-intro">Environment variable configuration</a>
-<ul class="sectlevel4">
-<li><a href="#config-envvar-georepl">Geo-replication storage preference environment variable</a></li>
-<li><a href="#config-envvar-dbpool">Database connection pooling</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#configure_elasticsearch_and_splunk_action_log_storage_tune_quay_performance_with_configuration_and_environment_variables">Configure Elasticsearch and Splunk action log storage</a>
+<li><a href="#configure_elasticsearch_and_splunk_action_log_storage_configure_networking_for_red_hat_quay">Configure Elasticsearch and Splunk action log storage</a>
 <ul class="sectlevel3">
 <li><a href="#proc_manage-log-storage">Action log storage backends (Elasticsearch and Splunk)</a>
 <ul class="sectlevel4">
@@ -1622,7 +1612,17 @@
 </li>
 </ul>
 </li>
-<li><a href="#look_up_object_storage_backend_configuration_fields_look_up_automation_and_user_access_configuration_fields">Object storage backend configuration reference</a>
+<li><a href="#look_up_performance_tuning_environment_variables_look_up_automation_and_user_access_configuration_fields">Performance tuning environment variable reference</a>
+<ul class="sectlevel3">
+<li><a href="#config-envar-intro">Environment variable configuration</a>
+<ul class="sectlevel4">
+<li><a href="#config-envvar-georepl">Geo-replication storage preference environment variable</a></li>
+<li><a href="#config-envvar-dbpool">Database connection pooling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#look_up_object_storage_backend_configuration_fields_look_up_performance_tuning_environment_variables">Object storage backend configuration reference</a>
 <ul class="sectlevel3">
 <li><a href="#config-fields-storage-fields">Storage configuration fields</a>
 <ul class="sectlevel4">
@@ -27767,185 +27767,7 @@ PREFERRED_URL_SCHEME: https
 </div>
 </div>
 <div class="sect2">
-<h3 id="tune_quay_performance_with_configuration_and_environment_variables_configure_networking_for_red_hat_quay">Tune Quay performance with configuration and environment variables</h3>
-<div class="paragraph _abstract">
-<p>Configure geo-replication storage preferences and database connection pool environment variables during deployment. For rate limits, HTTP and worker tuning, and large artifact settings, see the Optimize documentation.</p>
-</div>
-<div class="sect3">
-<h4 id="config-envar-intro">Environment variable configuration</h4>
-<div class="paragraph _abstract">
-<p>The following environment variables tune Red Hat Quay runtime behavior for geo-replication, database pooling, HTTP concurrency, and worker scaling.</p>
-</div>
-<div class="paragraph">
-<p>Use environment variables cautiously. These options typically override or augment existing configuration mechanisms.</p>
-</div>
-<div class="paragraph">
-<p>This section documents environment variables related to the following components:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Geo-replication preferences</p>
-</li>
-<li>
-<p>Database connection pooling</p>
-</li>
-<li>
-<p>HTTP connection concurrency</p>
-</li>
-<li>
-<p>Worker process scaling</p>
-</li>
-</ul>
-</div>
-<div class="sect4">
-<h5 id="config-envvar-georepl">Geo-replication storage preference environment variable</h5>
-<div class="paragraph _abstract">
-<p>Use the <code>QUAY_DISTRIBUTED_STORAGE_PREFERENCE</code> environment variable to set the preferred storage engine for a geo-replicated Red Hat Quay deployment in each region.</p>
-</div>
-<div class="paragraph">
-<p>Red Hat Quay supports multi-region deployments where multiple instances operate across geographically distributed sites. In these scenarios, each site shares the same configuration and metadata, but storage backends might vary between regions.</p>
-</div>
-<div class="paragraph">
-<p>To accommodate this, Red Hat Quay allows specifying a preferred storage engine for each deployment using an environment variable. This ensures that while metadata remains synchronized across all regions, each region can use its own optimized storage backend without requiring separate configuration files.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 14. Geo-replication configuration</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 16.6666%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Variable</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>QUAY_DISTRIBUTED_STORAGE_PREFERENCE</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The preferred storage engine  (by ID in DISTRIBUTED_STORAGE_CONFIG) to use.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="config-envvar-dbpool">Database connection pooling</h5>
-<div class="paragraph _abstract">
-<p>Use the <code>DB_CONNECTION_POOLING</code> environment variable and <code>DB_CONNECTION_ARGS</code> settings to control whether Red Hat Quay pools database connections and the maximum pool size per process.</p>
-</div>
-<div class="paragraph">
-<p>Database connection pooling is enabled by default, and each process that interacts with the database contains a connection pool. These per-process connection pools are configured to maintain a maximum of 20 connections. Under heavy load, it is possible to fill the connection pool for every process within a Red Hat Quay container. Under certain deployments and loads, this might require analysis to ensure that Red Hat Quay does not exceed the configured database&#8217;s maximum connection count.</p>
-</div>
-<div class="paragraph">
-<p>Overtime, the connection pools release idle connections. To release all connections immediately, Red Hat Quay requires a restart.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 15. Database connection pooling configuration</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 16.6666%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Variable</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>DB_CONNECTION_POOLING</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Whether to enable or disable database connection pooling. Defaults to true. Accepted values are <code>"true"</code> or <code>"false"</code></p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>If database connection pooling is enabled, it is possible to change the maximum size of the connection pool. This can be done through the following <code>config.yaml</code> option:</p>
-</div>
-<div class="listingblock">
-<div class="title">Database connection pooling example YAML</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
-DB_CONNECTION_ARGS:
-  max_connections: 10
-# ...</code></pre>
-</div>
-</div>
-<div class="sect5">
-<h6 id="disabling-database-pooling-standalone">Disabling database pooling in standalone deployments</h6>
-<div class="paragraph">
-<p>For standalone Red Hat Quay deployments, database connection pooling can be toggled off when starting your deployment. For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo podman run -d --rm -p 80:8080 -p 443:8443  \
-   --name=quay \
-   -v $QUAY/config:/conf/stack:Z \
-   -v $QUAY/storage:/datastorage:Z \
-   -e DB_CONNECTION_POOLING=false
-   registry.redhat.io/quay/quay-rhel8:v3.12.1</code></pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="disabling-database-pooling-quay-ocp">Disabling database pooling for Red Hat Quay on OpenShift Container Platform</h6>
-<div class="paragraph">
-<p>For Red Hat Quay on OpenShift Container Platform, database connection pooling can be configured by modifying the <code>QuayRegistry</code> custom resource definition (CRD). For example:</p>
-</div>
-<div class="listingblock">
-<div class="title">Example QuayRegistry CRD</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">spec:
-  components:
-  - kind: quay
-    managed: true
-    overrides:
-      env:
-      - name: DB_CONNECTION_POOLING
-        value: "false"</code></pre>
-</div>
-</div>
-<div class="ulist _additional-resources">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p><a href="quay_jtbd-optimize.html#config-fields-rate-limit-performance">Rate limiting and performance configuration fields</a></p>
-</li>
-<li>
-<p><a href="quay_jtbd-optimize.html#config-envvar-worker-connection">HTTP connection counts</a></p>
-</li>
-<li>
-<p><a href="quay_jtbd-optimize.html#config-envvar-worker-count">Worker process counts</a></p>
-</li>
-<li>
-<p><a href="quay_jtbd-optimize.html#preparing-registry-large-artifacts">Preparing your registry to accept large artifacts</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="configure_elasticsearch_and_splunk_action_log_storage_tune_quay_performance_with_configuration_and_environment_variables">Configure Elasticsearch and Splunk action log storage</h3>
+<h3 id="configure_elasticsearch_and_splunk_action_log_storage_configure_networking_for_red_hat_quay">Configure Elasticsearch and Splunk action log storage</h3>
 <div class="paragraph _abstract">
 <p>Configure action log storage in Elasticsearch or Splunk, including Splunk installation prerequisites, bearer token generation, Red Hat Quay configuration, and log verification.</p>
 </div>
@@ -31485,7 +31307,7 @@ updaters:
 <p>Common Product Enumeration (CPE) mapping configuration defines the fields and file paths used by Clair to associate packages with standardized product identifiers.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 16. Clair CPE mapping files</caption>
+<caption class="title">Table 14. Clair CPE mapping files</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -32502,7 +32324,7 @@ spec:
 <div class="sect5">
 <h6 id="operator-managed-postgres-tls-cert-options">Certificate options</h6>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 17. Operator-managed PostgreSQL TLS certificate sources</caption>
+<caption class="title">Table 15. Operator-managed PostgreSQL TLS certificate sources</caption>
 <colgroup>
 <col style="width: 40%;">
 <col style="width: 60%;">
@@ -38311,7 +38133,7 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 <p>Red Hat Quay has several health check endpoints. The following table shows you the health check, a description, an endpoint, and an example output.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 18. Health check endpoints</caption>
+<caption class="title">Table 16. Health check endpoints</caption>
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 37.5%;">
@@ -39272,7 +39094,7 @@ latest
 </table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 19. Red Hat Quay mirroring and geo-replication comparison</caption>
+<caption class="title">Table 17. Red Hat Quay mirroring and geo-replication comparison</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -40118,7 +39940,7 @@ SSRF_ALLOWED_HOSTS:
 <p>The following table describes the primary repository mirroring metrics added in Red Hat Quay 3.18.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 20. Repository mirror metrics</caption>
+<caption class="title">Table 18. Repository mirror metrics</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 16.6666%;">
@@ -41893,7 +41715,7 @@ spec:
 <p>The following configuration fields control rate limiting and performance-related behavior for your Red Hat Quay deployment.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 21. Rate limiting and performance configuration fields</caption>
+<caption class="title">Table 19. Rate limiting and performance configuration fields</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -41993,7 +41815,7 @@ PROMETHEUS_NAMESPACE: quay
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 22. HTTP connection count configuration variables</caption>
+<caption class="title">Table 20. HTTP connection count configuration variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -42114,7 +41936,7 @@ WORKER_CONNECTION_COUNT_SECSCAN: 10</code></pre>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 23. Worker count variables</caption>
+<caption class="title">Table 21. Worker count variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -42304,7 +42126,7 @@ minimum_chunk_size_mb: 20
 <p>The Red Hat Quay Operator uses environment variables to override default container images for components such as <code>base</code>, <code>clair</code>, <code>postgres</code>, and <code>redis</code>. You can set these variables in the <code>ClusterServiceVersion</code> object to customize which images the Operator uses for each component.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 24. ClusterServiceVersion environment variables</caption>
+<caption class="title">Table 22. ClusterServiceVersion environment variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -42822,7 +42644,7 @@ Spec:
 <p>Red Hat Quay offers two configuration fields that can be added to your <code>config.yaml</code> file to help diagnose issues or help obtain log information.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 25. Debug configuration variables</caption>
+<caption class="title">Table 23. Debug configuration variables</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -44400,7 +44222,7 @@ Total Size: 514.4 GiB</code></pre>
 <p>General required fields must be present in every Red Hat Quay configuration to start the registry. Use this reference to confirm values for authentication, URL settings, and secret keys.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 26. General required fields</caption>
+<caption class="title">Table 24. General required fields</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -44516,7 +44338,7 @@ SETUP_COMPLETE: true
 <p>The following table describes the <code>DB_URI</code> configuration field:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 27. Database URI</caption>
+<caption class="title">Table 25. Database URI</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -44558,7 +44380,7 @@ DB_URI: postgresql://quayuser:quaypass@quay-server.example.com:5432/quay
 <p>You can define optional connection arguments by using the <code>DB_CONNECTION_ARGS</code> parameter. Some of the key-value pairs under <code>DB_CONNECTION_ARGS</code> are generic, while others are database specific.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 28. Database connection arguments</caption>
+<caption class="title">Table 26. Database connection arguments</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -44628,7 +44450,7 @@ DB_CONNECTION_ARGS:
 <p>The <code>sslmode</code> option determines whether Red Hat Quay negotiates a secure SSL/TLS TCP/IP connection with the server, and with what priority. The following modes are available:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 29. <code>sslmode</code> options</caption>
+<caption class="title">Table 27. <code>sslmode</code> options</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -44704,7 +44526,7 @@ DB_CONNECTION_ARGS:
 <p>Red Hat Quay uses Redis to temporarily store build logs before they are accessed through the user interface or API. Use this reference to configure Redis connection settings for build log caching.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 30. Build logs configuration fields</caption>
+<caption class="title">Table 28. Build logs configuration fields</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -44797,7 +44619,7 @@ BUILDLOGS_REDIS:
 <p>User events record activity in Red Hat Quay and store it in Redis for access through the API or web interface. Use these fields to configure the Redis connection for user event handling.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 31. User events config</caption>
+<caption class="title">Table 29. User events config</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -45007,7 +44829,7 @@ USER_EVENTS_REDIS:
 <p>The following options support automation and administrative control.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 32. Automation configuration fields</caption>
+<caption class="title">Table 30. Automation configuration fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 16.6666%;">
@@ -45111,7 +44933,185 @@ FEATURE_USER_CREATION: false
 </div>
 </div>
 <div class="sect2">
-<h3 id="look_up_object_storage_backend_configuration_fields_look_up_automation_and_user_access_configuration_fields">Object storage backend configuration reference</h3>
+<h3 id="look_up_performance_tuning_environment_variables_look_up_automation_and_user_access_configuration_fields">Performance tuning environment variable reference</h3>
+<div class="paragraph _abstract">
+<p>Reference the environment variables available for tuning Red Hat Quay runtime behavior. Use these variables to configure geo-replication storage preferences and database connection pooling. For rate limits, HTTP connection counts, worker process scaling, and large artifact settings, see the Optimize documentation.</p>
+</div>
+<div class="sect3">
+<h4 id="config-envar-intro">Environment variable configuration</h4>
+<div class="paragraph _abstract">
+<p>The following environment variables tune Red Hat Quay runtime behavior for geo-replication, database pooling, HTTP concurrency, and worker scaling.</p>
+</div>
+<div class="paragraph">
+<p>Use environment variables cautiously. These options typically override or augment existing configuration mechanisms.</p>
+</div>
+<div class="paragraph">
+<p>This section documents environment variables related to the following components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Geo-replication preferences</p>
+</li>
+<li>
+<p>Database connection pooling</p>
+</li>
+<li>
+<p>HTTP connection concurrency</p>
+</li>
+<li>
+<p>Worker process scaling</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="config-envvar-georepl">Geo-replication storage preference environment variable</h5>
+<div class="paragraph _abstract">
+<p>Use the <code>QUAY_DISTRIBUTED_STORAGE_PREFERENCE</code> environment variable to set the preferred storage engine for a geo-replicated Red Hat Quay deployment in each region.</p>
+</div>
+<div class="paragraph">
+<p>Red Hat Quay supports multi-region deployments where multiple instances operate across geographically distributed sites. In these scenarios, each site shares the same configuration and metadata, but storage backends might vary between regions.</p>
+</div>
+<div class="paragraph">
+<p>To accommodate this, Red Hat Quay allows specifying a preferred storage engine for each deployment using an environment variable. This ensures that while metadata remains synchronized across all regions, each region can use its own optimized storage backend without requiring separate configuration files.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 31. Geo-replication configuration</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 16.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Variable</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>QUAY_DISTRIBUTED_STORAGE_PREFERENCE</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The preferred storage engine  (by ID in DISTRIBUTED_STORAGE_CONFIG) to use.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="config-envvar-dbpool">Database connection pooling</h5>
+<div class="paragraph _abstract">
+<p>Use the <code>DB_CONNECTION_POOLING</code> environment variable and <code>DB_CONNECTION_ARGS</code> settings to control whether Red Hat Quay pools database connections and the maximum pool size per process.</p>
+</div>
+<div class="paragraph">
+<p>Database connection pooling is enabled by default, and each process that interacts with the database contains a connection pool. These per-process connection pools are configured to maintain a maximum of 20 connections. Under heavy load, it is possible to fill the connection pool for every process within a Red Hat Quay container. Under certain deployments and loads, this might require analysis to ensure that Red Hat Quay does not exceed the configured database&#8217;s maximum connection count.</p>
+</div>
+<div class="paragraph">
+<p>Overtime, the connection pools release idle connections. To release all connections immediately, Red Hat Quay requires a restart.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 32. Database connection pooling configuration</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 16.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Variable</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>DB_CONNECTION_POOLING</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Whether to enable or disable database connection pooling. Defaults to true. Accepted values are <code>"true"</code> or <code>"false"</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>If database connection pooling is enabled, it is possible to change the maximum size of the connection pool. This can be done through the following <code>config.yaml</code> option:</p>
+</div>
+<div class="listingblock">
+<div class="title">Database connection pooling example YAML</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
+DB_CONNECTION_ARGS:
+  max_connections: 10
+# ...</code></pre>
+</div>
+</div>
+<div class="sect5">
+<h6 id="disabling-database-pooling-standalone">Disabling database pooling in standalone deployments</h6>
+<div class="paragraph">
+<p>For standalone Red Hat Quay deployments, database connection pooling can be toggled off when starting your deployment. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo podman run -d --rm -p 80:8080 -p 443:8443  \
+   --name=quay \
+   -v $QUAY/config:/conf/stack:Z \
+   -v $QUAY/storage:/datastorage:Z \
+   -e DB_CONNECTION_POOLING=false
+   registry.redhat.io/quay/quay-rhel8:v3.12.1</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="disabling-database-pooling-quay-ocp">Disabling database pooling for Red Hat Quay on OpenShift Container Platform</h6>
+<div class="paragraph">
+<p>For Red Hat Quay on OpenShift Container Platform, database connection pooling can be configured by modifying the <code>QuayRegistry</code> custom resource definition (CRD). For example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example QuayRegistry CRD</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">spec:
+  components:
+  - kind: quay
+    managed: true
+    overrides:
+      env:
+      - name: DB_CONNECTION_POOLING
+        value: "false"</code></pre>
+</div>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="quay_jtbd-optimize.html#config-fields-rate-limit-performance">Rate limiting and performance configuration fields</a></p>
+</li>
+<li>
+<p><a href="quay_jtbd-optimize.html#config-envvar-worker-connection">HTTP connection counts</a></p>
+</li>
+<li>
+<p><a href="quay_jtbd-optimize.html#config-envvar-worker-count">Worker process counts</a></p>
+</li>
+<li>
+<p><a href="quay_jtbd-optimize.html#preparing-registry-large-artifacts">Preparing your registry to accept large artifacts</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="look_up_object_storage_backend_configuration_fields_look_up_performance_tuning_environment_variables">Object storage backend configuration reference</h3>
 <div class="paragraph _abstract">
 <p>Look up object storage configuration fields for local, cloud, Ceph, Nutanix, IBM Cloud, NetApp, and HCP backends.</p>
 </div>
@@ -54221,7 +54221,7 @@ SECURITY_SCANNER_V4_INDEX_MAX_LAYER_SIZE: 8G
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-15 15:05:24 UTC
+Last updated 2026-09-15 15:25:18 UTC
 </div>
 </div>
 </body>
