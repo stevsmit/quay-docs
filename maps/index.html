@@ -1035,16 +1035,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#configure_user_access_and_automation_defaults_configure_networking_for_red_hat_quay">Configure user access and automation defaults</a>
-<ul class="sectlevel3">
-<li><a href="#config-preconfigure-automation-intro">Automation configuration options</a>
-<ul class="sectlevel4">
-<li><a href="#config-preconfigure-automation">Pre-configuration options for automation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#tune_quay_performance_with_configuration_and_environment_variables_configure_user_access_and_automation_defaults">Tune Quay performance with configuration and environment variables</a>
+<li><a href="#tune_quay_performance_with_configuration_and_environment_variables_configure_networking_for_red_hat_quay">Tune Quay performance with configuration and environment variables</a>
 <ul class="sectlevel3">
 <li><a href="#config-envar-intro">Environment variable configuration</a>
 <ul class="sectlevel4">
@@ -1622,7 +1613,16 @@
 </li>
 </ul>
 </li>
-<li><a href="#look_up_object_storage_backend_configuration_fields_look_up_database_and_redis_configuration_fields">Object storage backend configuration reference</a>
+<li><a href="#look_up_automation_and_user_access_configuration_fields_look_up_database_and_redis_configuration_fields">Automation and user access configuration reference</a>
+<ul class="sectlevel3">
+<li><a href="#config-preconfigure-automation-intro">Automation configuration options</a>
+<ul class="sectlevel4">
+<li><a href="#config-preconfigure-automation">Pre-configuration options for automation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#look_up_object_storage_backend_configuration_fields_look_up_automation_and_user_access_configuration_fields">Object storage backend configuration reference</a>
 <ul class="sectlevel3">
 <li><a href="#config-fields-storage-fields">Storage configuration fields</a>
 <ul class="sectlevel4">
@@ -27767,163 +27767,7 @@ PREFERRED_URL_SCHEME: https
 </div>
 </div>
 <div class="sect2">
-<h3 id="configure_user_access_and_automation_defaults_configure_networking_for_red_hat_quay">Configure user access and automation defaults</h3>
-<div class="paragraph _abstract">
-<p>Configure automation defaults and initial user access settings, including superuser assignment, first-user bootstrap, user creation policy, and API browser restrictions.</p>
-</div>
-<div class="sect3">
-<h4 id="config-preconfigure-automation-intro">Automation configuration options</h4>
-<div class="paragraph _abstract">
-<p>Red Hat Quay supports various mechanisms for automating deployment and configuration, which allows the integration of Red Hat Quay into GitOps and CI/CD pipelines. By defining these options and leveraging the API, Red Hat Quay can be initialized and managed without using the UI.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Because the Red Hat Quay Operator manages the <code>config.yaml</code> file through the <code>configBundleSecret</code> custom resource (CR), pre-configuring Red Hat Quay on OpenShift Container Platform requires an administrator to manually create a valid <code>config.yaml</code> file with the desired configuration. This file must then be bundled into a new Kubernetes Secret and used to replace the default <code>configBundleSecret</code> CR referenced by the <code>QuayRegistry</code> CR. This allows Red Hat Quay on OpenShift Container Platform to be deployed in a fully automated manner, bypassing the web-based configuration UI. For more information, see "Modifying the QuayRegistry CR after deployment" in Additional resources.</p>
-</div>
-<div class="paragraph">
-<p>For on-premise Red Hat Quay deployments, pre-configuration is done by manually creating a valid <code>config.yaml</code> file and then deploying the registry.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Automation options are ideal for environments that require declarative Red Hat Quay deployments, such as disconnected or air-gapped clusters.</p>
-</div>
-<div class="ulist _additional-resources">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p><a href="quay_jtbd-configure.html#modifying-quayregistry-cr-after-deployment">Modifying the QuayRegistry CR after deployment</a></p>
-</li>
-<li>
-<p><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/red_hat_quay_api_guide/index">Red Hat Quay API guide</a></p>
-</li>
-<li>
-<p><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/red_hat_quay_api_reference/index">Red Hat Quay API reference</a></p>
-</li>
-</ul>
-</div>
-<div class="sect4">
-<h5 id="config-preconfigure-automation">Pre-configuration options for automation</h5>
-<div class="paragraph _abstract">
-<p>Red Hat Quay provides configuration options that enable registry administrators to automate early setup tasks and API accessibility. These options are useful for new deployments and controlling how API calls can be made.</p>
-</div>
-<div class="paragraph">
-<p>The following options support automation and administrative control.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 14. Automation configuration fields</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 16.6666%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Field</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>FEATURE_USER_INITIALIZE</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Boolean</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Enables initial user bootstrapping in a newly deployed Red Hat Quay registry. When this field is set to <code>True</code> in the <code>config.yaml</code> file prior to deployment, it allows an administrator to create the first user by calling the <code>api/v1/user/initialize</code> endpoint.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>BROWSER_API_CALLS_XHR_ONLY</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Boolean</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Controls whether the registry API only accepts calls from browsers. To allow general browser-based access to the API, administrators must set this field to <code>False</code>. If set to <code>True</code>, API calls are blocked, preventing both administrators and users from interacting with the API.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>SUPER_USERS</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>String</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Defines a list of administrative users, or superusers, who have full privileges and unrestricted access to the registry. Red Hat Quay administrators should configure <code>SUPER_USERS</code> in the <code>config.yaml</code> before deployment to ensure immediate administrative access without requiring a redeploy. Setting this field post-deployment requires restarting the registry to take effect.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><strong>FEATURE_USER_CREATION</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Boolean</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Relegates the creation of new users to only superusers when this field is set to <code>False</code>. This setting is useful in controlled environments where user access must be provisioned manually by administrators.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Unlike all other registry API calls that require an OAuth 2 access token generated by an OAuth application in an existing organization, the <code>api/v1/user/initialize</code> endpoint does not require authentication. For more information about OAuth 2 access tokens, see "Red Hat Quay API guide" in Additional resources.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following YAML shows you the suggested configuration for automation:</p>
-</div>
-<div class="listingblock">
-<div class="title">Suggested configuration for automation</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
-FEATURE_USER_INITIALIZE: true
-BROWSER_API_CALLS_XHR_ONLY: false
-SUPER_USERS:
-- quayadmin
-FEATURE_USER_CREATION: false
-# ...</code></pre>
-</div>
-</div>
-<div class="ulist _additional-resources">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/red_hat_quay_api_guide/index#token-overview">OAuth 2 access token overview</a></p>
-</li>
-<li>
-<p><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/red_hat_quay_api_guide/index">Red Hat Quay API guide</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="tune_quay_performance_with_configuration_and_environment_variables_configure_user_access_and_automation_defaults">Tune Quay performance with configuration and environment variables</h3>
+<h3 id="tune_quay_performance_with_configuration_and_environment_variables_configure_networking_for_red_hat_quay">Tune Quay performance with configuration and environment variables</h3>
 <div class="paragraph _abstract">
 <p>Configure geo-replication storage preferences and database connection pool environment variables during deployment. For rate limits, HTTP and worker tuning, and large artifact settings, see the Optimize documentation.</p>
 </div>
@@ -27966,7 +27810,7 @@ FEATURE_USER_CREATION: false
 <p>To accommodate this, Red Hat Quay allows specifying a preferred storage engine for each deployment using an environment variable. This ensures that while metadata remains synchronized across all regions, each region can use its own optimized storage backend without requiring separate configuration files.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 15. Geo-replication configuration</caption>
+<caption class="title">Table 14. Geo-replication configuration</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -28006,7 +27850,7 @@ FEATURE_USER_CREATION: false
 <p>Overtime, the connection pools release idle connections. To release all connections immediately, Red Hat Quay requires a restart.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 16. Database connection pooling configuration</caption>
+<caption class="title">Table 15. Database connection pooling configuration</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -31641,7 +31485,7 @@ updaters:
 <p>Common Product Enumeration (CPE) mapping configuration defines the fields and file paths used by Clair to associate packages with standardized product identifiers.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 17. Clair CPE mapping files</caption>
+<caption class="title">Table 16. Clair CPE mapping files</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -32658,7 +32502,7 @@ spec:
 <div class="sect5">
 <h6 id="operator-managed-postgres-tls-cert-options">Certificate options</h6>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 18. Operator-managed PostgreSQL TLS certificate sources</caption>
+<caption class="title">Table 17. Operator-managed PostgreSQL TLS certificate sources</caption>
 <colgroup>
 <col style="width: 40%;">
 <col style="width: 60%;">
@@ -38467,7 +38311,7 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 <p>Red Hat Quay has several health check endpoints. The following table shows you the health check, a description, an endpoint, and an example output.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 19. Health check endpoints</caption>
+<caption class="title">Table 18. Health check endpoints</caption>
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 37.5%;">
@@ -39428,7 +39272,7 @@ latest
 </table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 20. Red Hat Quay mirroring and geo-replication comparison</caption>
+<caption class="title">Table 19. Red Hat Quay mirroring and geo-replication comparison</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -40274,7 +40118,7 @@ SSRF_ALLOWED_HOSTS:
 <p>The following table describes the primary repository mirroring metrics added in Red Hat Quay 3.18.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 21. Repository mirror metrics</caption>
+<caption class="title">Table 20. Repository mirror metrics</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 16.6666%;">
@@ -42049,7 +41893,7 @@ spec:
 <p>The following configuration fields control rate limiting and performance-related behavior for your Red Hat Quay deployment.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 22. Rate limiting and performance configuration fields</caption>
+<caption class="title">Table 21. Rate limiting and performance configuration fields</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -42149,7 +41993,7 @@ PROMETHEUS_NAMESPACE: quay
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 23. HTTP connection count configuration variables</caption>
+<caption class="title">Table 22. HTTP connection count configuration variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -42270,7 +42114,7 @@ WORKER_CONNECTION_COUNT_SECSCAN: 10</code></pre>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 24. Worker count variables</caption>
+<caption class="title">Table 23. Worker count variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -42460,7 +42304,7 @@ minimum_chunk_size_mb: 20
 <p>The Red Hat Quay Operator uses environment variables to override default container images for components such as <code>base</code>, <code>clair</code>, <code>postgres</code>, and <code>redis</code>. You can set these variables in the <code>ClusterServiceVersion</code> object to customize which images the Operator uses for each component.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 25. ClusterServiceVersion environment variables</caption>
+<caption class="title">Table 24. ClusterServiceVersion environment variables</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -42978,7 +42822,7 @@ Spec:
 <p>Red Hat Quay offers two configuration fields that can be added to your <code>config.yaml</code> file to help diagnose issues or help obtain log information.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 26. Debug configuration variables</caption>
+<caption class="title">Table 25. Debug configuration variables</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -44556,7 +44400,7 @@ Total Size: 514.4 GiB</code></pre>
 <p>General required fields must be present in every Red Hat Quay configuration to start the registry. Use this reference to confirm values for authentication, URL settings, and secret keys.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 27. General required fields</caption>
+<caption class="title">Table 26. General required fields</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -44672,7 +44516,7 @@ SETUP_COMPLETE: true
 <p>The following table describes the <code>DB_URI</code> configuration field:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 28. Database URI</caption>
+<caption class="title">Table 27. Database URI</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -44714,7 +44558,7 @@ DB_URI: postgresql://quayuser:quaypass@quay-server.example.com:5432/quay
 <p>You can define optional connection arguments by using the <code>DB_CONNECTION_ARGS</code> parameter. Some of the key-value pairs under <code>DB_CONNECTION_ARGS</code> are generic, while others are database specific.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 29. Database connection arguments</caption>
+<caption class="title">Table 28. Database connection arguments</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -44784,7 +44628,7 @@ DB_CONNECTION_ARGS:
 <p>The <code>sslmode</code> option determines whether Red Hat Quay negotiates a secure SSL/TLS TCP/IP connection with the server, and with what priority. The following modes are available:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 30. <code>sslmode</code> options</caption>
+<caption class="title">Table 29. <code>sslmode</code> options</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -44860,7 +44704,7 @@ DB_CONNECTION_ARGS:
 <p>Red Hat Quay uses Redis to temporarily store build logs before they are accessed through the user interface or API. Use this reference to configure Redis connection settings for build log caching.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 31. Build logs configuration fields</caption>
+<caption class="title">Table 30. Build logs configuration fields</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -44953,7 +44797,7 @@ BUILDLOGS_REDIS:
 <p>User events record activity in Red Hat Quay and store it in Redis for access through the API or web interface. Use these fields to configure the Redis connection for user event handling.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 32. User events config</caption>
+<caption class="title">Table 31. User events config</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 16.6666%;">
@@ -45111,7 +44955,163 @@ USER_EVENTS_REDIS:
 </div>
 </div>
 <div class="sect2">
-<h3 id="look_up_object_storage_backend_configuration_fields_look_up_database_and_redis_configuration_fields">Object storage backend configuration reference</h3>
+<h3 id="look_up_automation_and_user_access_configuration_fields_look_up_database_and_redis_configuration_fields">Automation and user access configuration reference</h3>
+<div class="paragraph _abstract">
+<p>Reference the automation and user access configuration fields for Red Hat Quay. Use these fields to enable first-user bootstrapping, control API browser access, define superusers, and restrict user creation to administrators.</p>
+</div>
+<div class="sect3">
+<h4 id="config-preconfigure-automation-intro">Automation configuration options</h4>
+<div class="paragraph _abstract">
+<p>Red Hat Quay supports various mechanisms for automating deployment and configuration, which allows the integration of Red Hat Quay into GitOps and CI/CD pipelines. By defining these options and leveraging the API, Red Hat Quay can be initialized and managed without using the UI.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Because the Red Hat Quay Operator manages the <code>config.yaml</code> file through the <code>configBundleSecret</code> custom resource (CR), pre-configuring Red Hat Quay on OpenShift Container Platform requires an administrator to manually create a valid <code>config.yaml</code> file with the desired configuration. This file must then be bundled into a new Kubernetes Secret and used to replace the default <code>configBundleSecret</code> CR referenced by the <code>QuayRegistry</code> CR. This allows Red Hat Quay on OpenShift Container Platform to be deployed in a fully automated manner, bypassing the web-based configuration UI. For more information, see "Modifying the QuayRegistry CR after deployment" in Additional resources.</p>
+</div>
+<div class="paragraph">
+<p>For on-premise Red Hat Quay deployments, pre-configuration is done by manually creating a valid <code>config.yaml</code> file and then deploying the registry.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Automation options are ideal for environments that require declarative Red Hat Quay deployments, such as disconnected or air-gapped clusters.</p>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="quay_jtbd-configure.html#modifying-quayregistry-cr-after-deployment">Modifying the QuayRegistry CR after deployment</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/red_hat_quay_api_guide/index">Red Hat Quay API guide</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/red_hat_quay_api_reference/index">Red Hat Quay API reference</a></p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="config-preconfigure-automation">Pre-configuration options for automation</h5>
+<div class="paragraph _abstract">
+<p>Red Hat Quay provides configuration options that enable registry administrators to automate early setup tasks and API accessibility. These options are useful for new deployments and controlling how API calls can be made.</p>
+</div>
+<div class="paragraph">
+<p>The following options support automation and administrative control.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 32. Automation configuration fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>FEATURE_USER_INITIALIZE</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Boolean</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Enables initial user bootstrapping in a newly deployed Red Hat Quay registry. When this field is set to <code>True</code> in the <code>config.yaml</code> file prior to deployment, it allows an administrator to create the first user by calling the <code>api/v1/user/initialize</code> endpoint.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>BROWSER_API_CALLS_XHR_ONLY</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Boolean</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Controls whether the registry API only accepts calls from browsers. To allow general browser-based access to the API, administrators must set this field to <code>False</code>. If set to <code>True</code>, API calls are blocked, preventing both administrators and users from interacting with the API.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>SUPER_USERS</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>String</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines a list of administrative users, or superusers, who have full privileges and unrestricted access to the registry. Red Hat Quay administrators should configure <code>SUPER_USERS</code> in the <code>config.yaml</code> before deployment to ensure immediate administrative access without requiring a redeploy. Setting this field post-deployment requires restarting the registry to take effect.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>FEATURE_USER_CREATION</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Boolean</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Relegates the creation of new users to only superusers when this field is set to <code>False</code>. This setting is useful in controlled environments where user access must be provisioned manually by administrators.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Unlike all other registry API calls that require an OAuth 2 access token generated by an OAuth application in an existing organization, the <code>api/v1/user/initialize</code> endpoint does not require authentication. For more information about OAuth 2 access tokens, see "Red Hat Quay API guide" in Additional resources.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following YAML shows you the suggested configuration for automation:</p>
+</div>
+<div class="listingblock">
+<div class="title">Suggested configuration for automation</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
+FEATURE_USER_INITIALIZE: true
+BROWSER_API_CALLS_XHR_ONLY: false
+SUPER_USERS:
+- quayadmin
+FEATURE_USER_CREATION: false
+# ...</code></pre>
+</div>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/red_hat_quay_api_guide/index#token-overview">OAuth 2 access token overview</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/red_hat_quay_api_guide/index">Red Hat Quay API guide</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="look_up_object_storage_backend_configuration_fields_look_up_automation_and_user_access_configuration_fields">Object storage backend configuration reference</h3>
 <div class="paragraph _abstract">
 <p>Look up object storage configuration fields for local, cloud, Ceph, Nutanix, IBM Cloud, NetApp, and HCP backends.</p>
 </div>
@@ -54221,7 +54221,7 @@ SECURITY_SCANNER_V4_INDEX_MAX_LAYER_SIZE: 8G
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-15 14:29:45 UTC
+Last updated 2026-09-15 15:05:24 UTC
 </div>
 </div>
 </body>
