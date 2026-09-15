@@ -1018,7 +1018,7 @@
 <li><a href="#configuring-quay-standalone-aws-sts">Configuring Red Hat Quay to use AWS STS</a></li>
 </ul>
 </li>
-<li><a href="#configure_networking_for_red_hat_quay_configure_aws_sts_for_object_storage">Configure networking for Red Hat Quay</a>
+<li><a href="#configure_networking_for_red_hat_quay_configure_aws_sts_for_object_storage">Configure networking</a>
 <ul class="sectlevel3">
 <li><a href="#proc_manage-ipv6-dual-stack">IPv6 and dual-stack deployments</a>
 <ul class="sectlevel4">
@@ -1027,10 +1027,10 @@
 <li><a href="#proc_manage-ipv6-limitations-38">IPv6 and dual-stack limitations</a></li>
 </ul>
 </li>
-<li><a href="#operator-custom-ingress">Configuring custom ingress</a>
+<li><a href="#operator-custom-ingress">Configure custom ingress</a>
 <ul class="sectlevel4">
 <li><a href="#disabling-route-component">Disabling the Route component</a></li>
-<li><a href="#configuring-ssl-tls-routes">Configuring SSL/TLS and routes</a></li>
+<li><a href="#configuring-ssl-tls-routes">Configure SSL/TLS and routes</a></li>
 </ul>
 </li>
 </ul>
@@ -27438,7 +27438,7 @@ DISTRIBUTED_STORAGE_CONFIG:
 </div>
 </div>
 <div class="sect2">
-<h3 id="configure_networking_for_red_hat_quay_configure_aws_sts_for_object_storage">Configure networking for Red Hat Quay</h3>
+<h3 id="configure_networking_for_red_hat_quay_configure_aws_sts_for_object_storage">Configure networking</h3>
 <div class="paragraph _abstract">
 <p>Configure IPv6 and dual-stack networking for standalone Red Hat Quay deployments, and manage custom ingress, routes, and SSL/TLS for Operator deployments on OpenShift Container Platform.</p>
 </div>
@@ -27615,7 +27615,7 @@ FEATURE_NONSUPERUSER_TEAM_SYNCING_SETUP: false</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="operator-custom-ingress">Configuring custom ingress</h4>
+<h4 id="operator-custom-ingress">Configure custom ingress</h4>
 <div class="paragraph _abstract">
 <p>You can configure custom ingress for Red Hat Quay by disabling the Operator-managed <code>route</code> component and managing your own routes or ingress controllers.</p>
 </div>
@@ -27690,7 +27690,7 @@ PREFERRED_URL_SCHEME: https
 </div>
 </div>
 <div class="sect4">
-<h5 id="configuring-ssl-tls-routes">Configuring SSL/TLS and routes</h5>
+<h5 id="configuring-ssl-tls-routes">Configure SSL/TLS and routes</h5>
 <div class="paragraph _abstract">
 <p>Configuring SSL/TLS and routes for Red Hat Quay lets you control how TLS termination and route management work together. The <code>tls</code> component provides support for OpenShift Container Platform edge termination routes and enables independent control of route management and TLS certificate handling.</p>
 </div>
@@ -46205,9 +46205,6 @@ FEATURE_LISTEN_IP_VERSION: dual-stack
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Used to debug LDAP operations in clear text, including passwords. Must be used with <code>DEBUGLOG=TRUE</code>.</p>
 </div>
-<div class="paragraph">
-<p>+</p>
-</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -54221,7 +54218,7 @@ SECURITY_SCANNER_V4_INDEX_MAX_LAYER_SIZE: 8G
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-15 15:25:18 UTC
+Last updated 2026-09-15 19:27:54 UTC
 </div>
 </div>
 </body>
