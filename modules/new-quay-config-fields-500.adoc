@@ -4,3 +4,18 @@
 
 [role="_abstract"]
 You can review configuration fields that are new or changed in {productname} {producty}.
+
+[id="operator-managed-read-only-mode-configuration-fields"]
+== Operator-managed read-only mode configuration fields
+
+The following internal configuration field is added to support the Operator-managed read-only lifecycle. This field is set automatically by the {productname} Operator and should not be modified manually.
+
+[cols="2a,1a,3a",options="header"]
+|===
+|Field |Type |Description
+
+|`INSTANCE_SERVICE_KEY_IMPORT_FROM_FILES`
+|Boolean
+|When set to `true`, the instance service key is imported from the Operator-mounted `.kid` and `.pem` files (`INSTANCE_SERVICE_KEY_KID_LOCATION` and `INSTANCE_SERVICE_KEY_LOCATION`) instead of being generated at boot. The Operator sets this field to `true` only when the read-only Secret is mounted. Defaults to `False`. This field is for internal use and is managed by the Operator.
+
+|===
