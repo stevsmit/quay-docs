@@ -958,7 +958,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#understand_red_hat_quay_configuration_openshift_container_platform_understand_red_hat_quay_configuration_standalone_deployment">Manage Red Hat Quay configuration on OpenShift Container Platform</a>
+<li><a href="#understand_red_hat_quay_configuration_openshift_container_platform_understand_red_hat_quay_configuration_standalone_deployment">Understand Red Hat Quay configuration on OpenShift Container Platform</a>
 <ul class="sectlevel3">
 <li><a href="#operator-components-intro">How Operator configuration works</a>
 <ul class="sectlevel4">
@@ -970,6 +970,10 @@
 <li><a href="#operator-external-tls-secret-reference">Referencing an external TLS Secret for Red Hat Quay on OpenShift Container Platform</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#modify_red_hat_quay_configuration_on_openshift_container_platform_understand_red_hat_quay_configuration_openshift_container_platform">Modify Red Hat Quay configuration on OpenShift Container Platform</a>
+<ul class="sectlevel3">
 <li><a href="#modifying-quayregistry-cr-after-deployment">Modifying the QuayRegistry CR after deployment</a>
 <ul class="sectlevel4">
 <li><a href="#modifying-quayregistry-cr-ocp-console">Modifying the QuayRegistry CR by using the OpenShift Container Platform web console</a></li>
@@ -985,7 +989,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#verify_and_retrieve_red_hat_quay_configuration_understand_red_hat_quay_configuration_openshift_container_platform">Retrieve Red Hat Quay configuration with the API</a>
+<li><a href="#verify_and_retrieve_red_hat_quay_configuration_modify_red_hat_quay_configuration_on_openshift_container_platform">Retrieve Red Hat Quay configuration with the API</a>
 <ul class="sectlevel3">
 <li><a href="#retrieving-config-file-api">Retrieving active configuration settings by using the API</a></li>
 </ul>
@@ -13755,10 +13759,10 @@ ArtifactType: application/vnd.unknown.artifact.v1</code></pre>
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-administer.html#immutable-tag-overview">Protect production tags from overwrite</a></p>
+<p><a href="#protect-image-tags-with-immutability-policies">Protect production tags from overwrite</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-administer.html#red-hat-quay-namespace-auto-pruning-overview">Turn on automatic cleanup of stale tags</a></p>
+<p><a href="#enable-automatic-tag-pruning">Turn on automatic cleanup of stale tags</a></p>
 </li>
 </ul>
 </div>
@@ -14185,10 +14189,10 @@ ArtifactType: application/vnd.unknown.artifact.v1</code></pre>
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-administer.html#setting-tag-expirations-v2-ui">Retire image tags on a schedule</a></p>
+<p><a href="#set-tag-expiration-and-retire-tags">Retire image tags on a schedule</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-administer.html#red-hat-quay-namespace-auto-pruning-overview">Turn on automatic cleanup of stale tags</a></p>
+<p><a href="#enable-automatic-tag-pruning">Turn on automatic cleanup of stale tags</a></p>
 </li>
 </ul>
 </div>
@@ -15262,10 +15266,10 @@ FEATURE_AUTO_PRUNE: true
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-administer.html#setting-tag-expirations-v2-ui">Retire image tags on a schedule</a></p>
+<p><a href="#set-tag-expiration-and-retire-tags">Retire image tags on a schedule</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-administer.html#immutable-tag-overview">Protect production tags from overwrite</a></p>
+<p><a href="#protect-image-tags-with-immutability-policies">Protect production tags from overwrite</a></p>
 </li>
 </ul>
 </div>
@@ -18528,10 +18532,10 @@ spec:
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-observe.html#health-check-quay">Performing health checks on Red Hat Quay deployments</a></p>
+<p><a href="#verify-deployment-health-status">Performing health checks on Red Hat Quay deployments</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-integrate.html#mirroring-metrics-health">Monitoring repository mirroring</a></p>
+<p><a href="#create-mirrors-and-monitor-synchronization">Monitoring repository mirroring</a></p>
 </li>
 </ul>
 </div>
@@ -21099,15 +21103,6 @@ main()</code></pre>
 <ul>
 <li>
 <p><a href="#manage-oauth-access-tokens-for-the-red-hat-quay-api">Authenticate applications with OAuth access tokens</a></p>
-</li>
-<li>
-<p><a href="#oauth2-access-tokens">About OAuth 2 access tokens</a></p>
-</li>
-<li>
-<p><a href="#creating-oauth-access-token">Creating an OAuth 2 access token</a></p>
-</li>
-<li>
-<p><a href="#creating-oauth-application-api">Managing a user application by using the API</a></p>
 </li>
 </ul>
 </div>
@@ -25827,9 +25822,9 @@ DB_CONNECTION_ARGS: {}
 </div>
 </div>
 <div class="sect2">
-<h3 id="understand_red_hat_quay_configuration_openshift_container_platform_understand_red_hat_quay_configuration_standalone_deployment">Manage Red Hat Quay configuration on OpenShift Container Platform</h3>
+<h3 id="understand_red_hat_quay_configuration_openshift_container_platform_understand_red_hat_quay_configuration_standalone_deployment">Understand Red Hat Quay configuration on OpenShift Container Platform</h3>
 <div class="paragraph _abstract">
-<p>Learn how the Quay Operator manages registry configuration on OpenShift through the QuayRegistry custom resource, managed and unmanaged components, and the config bundle Secret.</p>
+<p>Learn how the Quay Operator manages registry configuration on OpenShift through the QuayRegistry custom resource, managed and unmanaged components, and the TLS secret reference.</p>
 </div>
 <div class="sect3">
 <h4 id="operator-components-intro">How Operator configuration works</h4>
@@ -26277,6 +26272,12 @@ data:
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="modify_red_hat_quay_configuration_on_openshift_container_platform_understand_red_hat_quay_configuration_openshift_container_platform">Modify Red Hat Quay configuration on OpenShift Container Platform</h3>
+<div class="paragraph _abstract">
+<p>Apply configuration changes to a deployed Quay Operator registry by updating the QuayRegistry CR and the config bundle Secret, and retrieve current configuration from the CLI.</p>
+</div>
 <div class="sect3">
 <h4 id="modifying-quayregistry-cr-after-deployment">Modifying the QuayRegistry CR after deployment</h4>
 <div class="paragraph _abstract">
@@ -26406,26 +26407,6 @@ data:
 <p>Save the changes.</p>
 </li>
 </ol>
-</div>
-<div class="ulist _additional-resources">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p><a href="quay_jtbd-optimize.html#about-hpa">About Horizontal Pod Autoscaling (HPA)</a></p>
-</li>
-<li>
-<p><a href="quay_jtbd-optimize.html#operator-hpa-overview">Managing Horizontal Pod Autoscaling</a></p>
-</li>
-<li>
-<p><a href="quay_jtbd-optimize.html#configuring-resources-managed-components">Configuring QuayRegistry CR resources</a></p>
-</li>
-<li>
-<p><a href="quay_jtbd-optimize.html#configuring-resources-ocp-ui">Configuring resource requests by using the OpenShift Container Platform web console</a></p>
-</li>
-<li>
-<p><a href="quay_jtbd-optimize.html#configuring-resources-ocp-yaml">Configuring resource requests by using the CLI</a></p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -26780,11 +26761,31 @@ DISTRIBUTED_STORAGE_PREFERENCE:
 </li>
 </ol>
 </div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="#understand-red-hat-quay-configuration-openshift-container-platform">Understand Red Hat Quay configuration on OpenShift Container Platform</a></p>
+</li>
+<li>
+<p><a href="#tune-operator-component-resources-and-autoscaling">About Horizontal Pod Autoscaling (HPA)</a></p>
+</li>
+<li>
+<p><a href="#tune-operator-component-resources-and-autoscaling">Configuring QuayRegistry CR resources</a></p>
+</li>
+<li>
+<p><a href="#tune-operator-component-resources-and-autoscaling">Configuring resource requests by using the OpenShift Container Platform web console</a></p>
+</li>
+<li>
+<p><a href="#tune-operator-component-resources-and-autoscaling">Configuring resource requests by using the CLI</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="verify_and_retrieve_red_hat_quay_configuration_understand_red_hat_quay_configuration_openshift_container_platform">Retrieve Red Hat Quay configuration with the API</h3>
+<h3 id="verify_and_retrieve_red_hat_quay_configuration_modify_red_hat_quay_configuration_on_openshift_container_platform">Retrieve Red Hat Quay configuration with the API</h3>
 <div class="paragraph _abstract">
 <p>Retrieve active Red Hat Quay configuration settings by using the superuser API.</p>
 </div>
@@ -27209,16 +27210,16 @@ DISTRIBUTED_STORAGE_CONFIG:
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-integrate.html#configuring-aws-sts-quay">Configuring AWS STS for Red Hat Quay</a></p>
+<p><a href="#integrate-quay-object-storage-with-aws">Configuring AWS STS for Red Hat Quay</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-integrate.html#configuring-quay-ocp-aws-sts">Configuring Red Hat Quay on OpenShift Container Platform to use AWS STS</a></p>
+<p><a href="#integrate-quay-object-storage-with-aws">Configuring Red Hat Quay on OpenShift Container Platform to use AWS STS</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-integrate.html#configuring-quay-rosa-aws-sts">Configuring Red Hat Quay on Red&#160;Hat OpenShift Service on AWS to use AWS STS</a></p>
+<p><a href="#integrate-quay-object-storage-with-aws">Configuring Red Hat Quay on Red&#160;Hat OpenShift Service on AWS to use AWS STS</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-integrate.html#operator-cloudfront">AWS S3 CloudFront</a></p>
+<p><a href="#integrate-quay-object-storage-with-aws">AWS S3 CloudFront</a></p>
 </li>
 </ul>
 </div>
@@ -32825,7 +32826,7 @@ DB_URI: postgresql://&lt;dbusername&gt;:&lt;dbpassword&gt;@&lt;database_host&gt;
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-troubleshoot.html#operator-managed-postgres-tls-troubleshooting">Troubleshooting Operator-managed PostgreSQL TLS configurations</a></p>
+<p><a href="#troubleshoot-operator-managed-postgresql-tls">Troubleshooting Operator-managed PostgreSQL TLS configurations</a></p>
 </li>
 </ul>
 </div>
@@ -37943,7 +37944,7 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-integrate.html#mirroring-metrics-health">Monitoring repository mirroring</a></p>
+<p><a href="#create-mirrors-and-monitor-synchronization">Monitoring repository mirroring</a></p>
 </li>
 </ul>
 </div>
@@ -38994,7 +38995,7 @@ latest
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-upgrade.html#qbo-operator-upgrade">Changing the Quay Bridge Operator update channel</a></p>
+<p><a href="#upgrade-the-quay-bridge-operator">Changing the Quay Bridge Operator update channel</a></p>
 </li>
 </ul>
 </div>
@@ -43044,7 +43045,7 @@ gunicorn-web stdout | 2023-01-20 15:41:52,071 [205] [DEBUG] [app] Starting reque
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-configure.html#obtaining-configuration-information-quay">Reading the configuration file from an Operator deployment by using the OpenShift CLI</a></p>
+<p><a href="#understand-red-hat-quay-configuration-standalone-deployment">Reading the configuration file from an Operator deployment by using the OpenShift CLI</a></p>
 </li>
 </ul>
 </div>
@@ -43958,16 +43959,16 @@ Total Size: 514.4 GiB</code></pre>
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-plan.html#georepl-intro">Geo-replication</a></p>
+<p><a href="#manage-geo-replicated-sites-day-to-day">Geo-replication</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-configure.html#config-envvar-georepl">Geo-replication storage preference environment variable</a></p>
+<p><a href="#look-up-performance-tuning-environment-variables">Geo-replication storage preference environment variable</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-integrate.html#arch-mirroring-intro">Repository mirroring</a></p>
+<p><a href="#plan-and-enable-repository-mirroring">Repository mirroring</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-troubleshoot.html#clair-troubleshooting-issues">Troubleshooting Clair issue</a></p>
+<p><a href="#troubleshoot-clair-scanning-issues">Troubleshooting Clair issue</a></p>
 </li>
 </ul>
 </div>
@@ -45090,16 +45091,16 @@ DB_CONNECTION_ARGS:
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-optimize.html#config-fields-rate-limit-performance">Rate limiting and performance configuration fields</a></p>
+<p><a href="#tune-registry-runtime-performance">Rate limiting and performance configuration fields</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-optimize.html#config-envvar-worker-connection">HTTP connection counts</a></p>
+<p><a href="#tune-registry-runtime-performance">HTTP connection counts</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-optimize.html#config-envvar-worker-count">Worker process counts</a></p>
+<p><a href="#tune-registry-runtime-performance">Worker process counts</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-optimize.html#preparing-registry-large-artifacts">Preparing your registry to accept large artifacts</a></p>
+<p><a href="#tune-registry-runtime-performance">Preparing your registry to accept large artifacts</a></p>
 </li>
 </ul>
 </div>
@@ -54215,7 +54216,7 @@ SECURITY_SCANNER_V4_INDEX_MAX_LAYER_SIZE: 8G
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 19:09:41 UTC
+Last updated 2026-10-06 20:11:16 UTC
 </div>
 </div>
 </body>
