@@ -2941,7 +2941,7 @@ when there are changes to the Red Hat Quay product, such as a new release.</p>
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-configure.html">Clair</a></p>
+<p><a href="#install-clair-for-red-hat-quay">Clair</a></p>
 </li>
 <li>
 <p><a href="https://quay.io/search">Quay.io Explore</a></p>
@@ -2975,7 +2975,7 @@ when there are changes to the Red Hat Quay product, such as a new release.</p>
 <p><a href="http://access.redhat.com">Red Hat Customer Portal</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-troubleshoot.html">Red Hat Quay Troubleshooting guide</a></p>
+<p><a href="#get-help-from-red-hat-support">Red Hat Quay Troubleshooting guide</a></p>
 </li>
 </ul>
 </div>
@@ -4184,7 +4184,7 @@ the Organization.</p>
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-reference.html">Red Hat Quay API guide</a></p>
+<p><a href="#enable-and-make-your-first-quay-api-call">Red Hat Quay API guide</a></p>
 </li>
 </ul>
 </div>
@@ -5587,7 +5587,7 @@ on-premises object storage providers:</p>
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-configure.html">Configure Red Hat Quay</a></p>
+<p><a href="#configure-the-database-and-redis-for-red-hat-quay">Configure Red Hat Quay</a></p>
 </li>
 <li>
 <p><a href="https://access.redhat.com/support/policy/updates/rhquay/policies">Red Hat Quay Support Policy</a></p>
@@ -6545,7 +6545,7 @@ example-registry-quay-redis-8bd67b647-skgqx            1/1     Running     0    
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-install.html#operator-monitor-deploy-cli">Monitoring and debugging the deployment process</a></p>
+<p><a href="#operator-monitor-deploy-cli">Monitoring and debugging the deployment process</a></p>
 </li>
 </ul>
 </div>
@@ -15081,7 +15081,7 @@ RESET_CHILD_MANIFEST_EXPIRATION: true</code></pre>
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-administer.html#garbage-collection">Red Hat Quay garbage collection</a></p>
+<p><a href="#garbage-collection">Red Hat Quay garbage collection</a></p>
 </li>
 </ul>
 </div>
@@ -22574,7 +22574,7 @@ FEATURE_REFERRERS_API: true
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have <a href="quay_jtbd-develop.html#creating-oauth-access-token">Created an OAuth access token</a>.</p>
+<p>You have <a href="#creating-oauth-access-token">Created an OAuth access token</a>.</p>
 </li>
 <li>
 <p>You have organization administrator permissions.</p>
@@ -31722,7 +31722,7 @@ PREFERRED_URL_SCHEME: https
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-secure.html#operator-external-tls-secret-reference">Referencing an external TLS Secret for Red Hat Quay on OpenShift Container Platform</a></p>
+<p><a href="#operator-external-tls-secret-reference">Referencing an external TLS Secret for Red Hat Quay on OpenShift Container Platform</a></p>
 </li>
 </ul>
 </div>
@@ -31762,7 +31762,7 @@ PREFERRED_URL_SCHEME: https
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-secure.html#operator-custom-ssl-certs-config-bundle">Configuring custom SSL/TLS certificates for Red Hat Quay on OpenShift Container Platform</a></p>
+<p><a href="#operator-custom-ssl-certs-config-bundle">Configuring custom SSL/TLS certificates for Red Hat Quay on OpenShift Container Platform</a></p>
 </li>
 </ul>
 </div>
@@ -31864,7 +31864,7 @@ SSL_CIPHERS:
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have base64 decoded the original config bundle into a <code>config.yaml</code> file. For more information, see <a href="quay_jtbd-configure.html#operator-config-cli-download">Downloading the existing configuration</a>.</p>
+<p>You have base64 decoded the original config bundle into a <code>config.yaml</code> file. For more information, see <a href="#operator-config-cli-download">Downloading the existing configuration</a>.</p>
 </li>
 <li>
 <p>You have generated custom SSL certificates and keys.</p>
@@ -32631,10 +32631,10 @@ stringData:
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have generated custom Certificate Authorities (CAs) and your SSL/TLS certificates and keys are available in <code>PEM</code> format that will be used to generate an SSL connection with your CloudSQL database. For more information, see <a href="quay_jtbd-secure.html#ssl-tls-quay-overview">SSL and TLS for Red Hat Quay</a>.</p>
+<p>You have generated custom Certificate Authorities (CAs) and your SSL/TLS certificates and keys are available in <code>PEM</code> format that will be used to generate an SSL connection with your CloudSQL database. For more information, see <a href="#ssl-tls-quay-overview">SSL and TLS for Red Hat Quay</a>.</p>
 </li>
 <li>
-<p>You have <code>base64 decoded</code> the original config bundle into a <code>config.yaml</code> file. For more information, see <a href="quay_jtbd-configure.html#operator-config-cli-download">Downloading the existing configuration</a>.</p>
+<p>You have <code>base64 decoded</code> the original config bundle into a <code>config.yaml</code> file. For more information, see <a href="#operator-config-cli-download">Downloading the existing configuration</a>.</p>
 </li>
 <li>
 <p>You are using an externally managed PostgreSQL or CloudSQL database. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/deploying_the_red_hat_quay_operator_on_openshift_container_platform/index#operator-unmanaged-postgres">Using and existing PostgreSQL database</a> with the <code>DB_URI</code> variable set.</p>
@@ -32984,7 +32984,7 @@ ssl_ca_path: conf/stack/extra_ca_certs/ldap-ca.pem
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have base64 decoded the original config bundle into a <code>config.yaml</code> file. For more information, see <a href="quay_jtbd-configure.html#operator-config-cli-download">Downloading the existing configuration</a>.</p>
+<p>You have base64 decoded the original config bundle into a <code>config.yaml</code> file. For more information, see <a href="#operator-config-cli-download">Downloading the existing configuration</a>.</p>
 </li>
 <li>
 <p>You have a Certificate Authority (CA) file or files.</p>
@@ -40327,7 +40327,7 @@ SSRF_ALLOWED_HOSTS:
 <p><code>FEATURE_PROXY_CACHE</code> in your config.yaml is set to <code>True</code>.</p>
 </li>
 <li>
-<p>Assigned the <strong>Member</strong> team role. For more information about team roles, see <a href="quay_jtbd-administer.html#set-team-role">Setting a team role by using the UI</a>.</p>
+<p>Assigned the <strong>Member</strong> team role. For more information about team roles, see <a href="#set-team-role">Setting a team role by using the UI</a>.</p>
 </li>
 </ul>
 </div>
@@ -40375,7 +40375,7 @@ SSRF_ALLOWED_HOSTS:
 <div class="ulist">
 <ul>
 <li>
-<p>The default tag <strong>Expiration</strong> field for cached images in a proxy organization is set to 86400 seconds. In the proxy organization, the tag expiration is refreshed to the value set in the UI&#8217;s <strong>Expiration</strong> field every time the tag is pulled. This feature is different than Quay&#8217;s default <a href="quay_jtbd-administer.html#setting-tag-expiration-using-ui">individual tag expiration</a> feature. In a proxy organization, it is possible to override the individual tag feature. When this happens, the individual tag&#8217;s expiration is reset according to the <strong>Expiration</strong> field of the proxy organization.</p>
+<p>The default tag <strong>Expiration</strong> field for cached images in a proxy organization is set to 86400 seconds. In the proxy organization, the tag expiration is refreshed to the value set in the UI&#8217;s <strong>Expiration</strong> field every time the tag is pulled. This feature is different than Quay&#8217;s default <a href="#setting-tag-expiration-using-ui">individual tag expiration</a> feature. In a proxy organization, it is possible to override the individual tag feature. When this happens, the individual tag&#8217;s expiration is reset according to the <strong>Expiration</strong> field of the proxy organization.</p>
 </li>
 <li>
 <p>Expired images will disappear after the allotted time, but are still stored in Red Hat Quay. The time in which an image is completely deleted, or  collected, depends on the <strong>Time Machine</strong> setting of your organization. The default time for garbage collection is 14 days unless otherwise specified.</p>
@@ -41541,7 +41541,7 @@ quay-registry-quay-app   Deployment/quay-registry-quay-app   67%/90%, 54%/90%   
 </td>
 <td class="content">
 <div class="paragraph">
-<p>To expand database storage on an existing deployment, see <a href="quay_jtbd-optimize.html#operator-resize-storage">Resizing managed storage</a>.</p>
+<p>To expand database storage on an existing deployment, see <a href="#operator-resize-storage">Resizing managed storage</a>.</p>
 </div>
 </td>
 </tr>
@@ -44807,7 +44807,7 @@ USER_EVENTS_REDIS:
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="quay_jtbd-configure.html#modifying-quayregistry-cr-after-deployment">Modifying the QuayRegistry CR after deployment</a></p>
+<p><a href="#modifying-quayregistry-cr-after-deployment">Modifying the QuayRegistry CR after deployment</a></p>
 </li>
 <li>
 <p><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/red_hat_quay_api_guide/index">Red Hat Quay API guide</a></p>
@@ -45346,7 +45346,7 @@ DISTRIBUTED_STORAGE_PREFERENCE:
 <p><a href="https://www.ibm.com/docs/en/storage-ceph/8.0.0?topic=ceph-object-gateway">Ceph Object Gateway</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-configure.html#config-fields-storage-aws">AWS S3 storage</a></p>
+<p><a href="#config-fields-storage-aws">AWS S3 storage</a></p>
 </li>
 </ul>
 </div>
@@ -45575,7 +45575,7 @@ DISTRIBUTED_STORAGE_PREFERENCE:
 <p><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/cors.html">Cross-origin resource sharing (CORS)</a></p>
 </li>
 <li>
-<p><a href="quay_jtbd-configure.html#config-fields-storage-rados">Example B: Using RadosGW with general S3 access</a></p>
+<p><a href="#config-fields-storage-rados">Example B: Using RadosGW with general S3 access</a></p>
 </li>
 </ul>
 </div>
@@ -54215,7 +54215,7 @@ SECURITY_SCANNER_V4_INDEX_MAX_LAYER_SIZE: 8G
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 18:57:29 UTC
+Last updated 2026-10-06 19:09:41 UTC
 </div>
 </div>
 </body>
