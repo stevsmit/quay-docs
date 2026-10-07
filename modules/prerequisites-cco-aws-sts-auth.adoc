@@ -1,0 +1,29 @@
+:_mod-docs-content-type: REFERENCE
+[id="prerequisites-cco-aws-sts-auth"]
+= Prerequisites for CCO-based AWS STS authentication
+
+[role="_abstract"]
+To configure CCO-based AWS STS authentication for {productname-ocp}, ensure that your cluster meets the listed prerequisites. You can also review the `QuayRegistry` CR status conditions that the Quay Operator reports during credential provisioning.
+
+* Your cluster runs {ocp} 4.14 or later with STS mode enabled (for example, ROSA with STS, or an {ocp} cluster configured for manual STS mode with CCO).
+* CCO is available and not in manual mode without CredentialsRequest support.
+* The `objectstorage` component in your `QuayRegistry` CR is set to `managed: false`.
+* You have an Amazon S3 bucket already created for Quay object storage.
+* You have access to your cluster's OIDC provider URL.
+
+The Operator reports the following status conditions on the `QuayRegistry` CR during CCO-based credential provisioning:
+
+[cols="1,3",options="header"]
+|===
+|Condition reason |Description
+
+|`CredentialRequestPending`
+|The `CredentialsRequest` has been created but CCO has not yet provisioned the credentials Secret. This is a transient state during initial setup or after the role ARN changes.
+
+|`CredentialRequestNotProvisioned`
+|CCO did not provision the credentials Secret within the expected time, or the CCO API is not available on this cluster. Check that your cluster has STS mode enabled and that CCO is running.
+
+|`ConflictingCredentials`
+|The `ROLEARN` environment variable is set, but static AWS credentials (`s3AccessKey` or `s3SecretKey`) were detected in the `configBundleSecret`. The Operator blocks rollout until the static credentials are removed.
+
+|===

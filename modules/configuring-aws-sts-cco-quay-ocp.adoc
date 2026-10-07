@@ -1,0 +1,42 @@
+:_mod-docs-content-type: CONCEPT
+[id="configuring-aws-sts-cco-quay-ocp"]
+= About CCO-based AWS STS authentication for {productname-ocp}
+
+[role="_abstract"]
+Standardized STS configuration flow using the {ocp} Cloud Credential Operator (CCO) and the `CredentialsRequest` API allows Quay pods on STS-enabled clusters to authenticate to mazon S3 using short-lived tokens instead of static IAM access keys.
+
+When the `ROLEARN` environment variable is set in the Quay Operator's OLM Subscription, the Operator automatically creates a `CredentialsRequest` resource. CCO then provisions a Secret containing temporary AWS credentials, which the Operator mounts into `quay-app` and `quay-mirror` pods as `AWS_SHARED_CREDENTIALS_FILE`. This eliminates the need to store long-lived IAM user credentials in the `configBundleSecret`.
+
+This approach differs from the existing manual STS configuration in the following ways:
+
+* You do not need to create a static IAM user or generate access keys.
+* The Operator manages the `CredentialsRequest` lifecycle automatically. Credentials are refreshed by CCO without operator intervention.
+* The Operator monitors credential provisioning status and reports it through `QuayRegistry` status conditions.
+
+.Comparison of STS approaches
+
+[cols="1,1,1",options="header"]
+|===
+|Attribute |Manual STS (existing) |CCO-based STS (new)
+
+|Credential type
+|Static IAM user access key + secret key
+|Short-lived tokens provisioned by CCO
+
+|Credential storage
+|Stored in `configBundleSecret` (`sts_user_access_key`, `sts_user_secret_key`)
+|Mounted automatically from a CCO-provisioned Secret
+
+|Operator involvement
+|None — credentials are manually managed
+|Operator creates `CredentialsRequest`; CCO manages the lifecycle
+
+|OCP version required
+|Any supported OCP version
+|OCP 4.14 or later, with STS mode enabled
+
+|Supported platforms
+|Standalone, OCP, ROSA
+|OCP and ROSA with STS mode enabled
+
+|===
