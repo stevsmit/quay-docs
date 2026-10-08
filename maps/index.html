@@ -714,13 +714,6 @@
 </li>
 <li><a href="#back-up-red-hat-quay-on-openshift_enable_read_only_mode_for_red_hat_quay_on_openshift">Protect an Operator-managed registry from data loss</a>
 <ul class="sectlevel3">
-<li><a href="#optional-enabling-read-only-mode-backup-restore-ocp">Enabling read-only mode for Red Hat Quay on OpenShift Container Platform</a>
-<ul class="sectlevel4">
-<li><a href="#creating-service-keys-quay-ocp">Creating service keys for Red Hat Quay on OpenShift Container Platform</a></li>
-<li><a href="#quay-ocp-readonly">Configuring read-only mode Red Hat Quay on OpenShift Container Platform</a></li>
-<li><a href="#scaling-up-quay-ocp-read-only-deployment">Scaling up the Red Hat Quay from a read-only deployment</a></li>
-</ul>
-</li>
 <li><a href="#backing-up-red-hat-quay-operator">Backing up Red Hat Quay on OpenShift Container Platform</a>
 <ul class="sectlevel4">
 <li><a href="#prerequisites-for-backing-up-red-hat-quay-operator">Prerequisites for backing up Red Hat Quay on OpenShift Container Platform</a></li>
@@ -17476,7 +17469,7 @@ DISTRIBUTED_STORAGE_CONFIG:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The two read-only methods are mutually exclusive. If <code>REGISTRY_STATE: readonly</code> is already present in your config Secret, config bundle, or a <code>QUAY_OVERRIDE_CONFIG</code> override, the Operator sets an <code>OverrideConflict</code> condition and does not enter the operator-managed read-only state machine. Remove any existing <code>REGISTRY_STATE</code> override before setting <code>spec.readOnly: true</code>.</p>
+<p>The two read-only methods are mutually exclusive. If <code>REGISTRY_STATE: readonly</code> or any <code>INSTANCE_SERVICE_KEY_*</code> key is present in your config Secret or config bundle, the Operator sets a <code>ManualMigrationRequired</code> condition and does not enter the operator-managed read-only state machine. If the conflict is in a <code>QUAY_OVERRIDE_CONFIG</code> environment variable override, the condition reason is <code>OverrideConflict</code>. Remove any conflicting keys before setting <code>spec.readOnly: true</code>.</p>
 </div>
 </td>
 </tr>
@@ -17541,7 +17534,7 @@ DISTRIBUTED_STORAGE_CONFIG:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If the <code>QuayRegistry</code> status shows an <code>OverrideConflict</code> condition, <code>REGISTRY_STATE: readonly</code> is present in your configuration (config Secret, bundle, or <code>QUAY_OVERRIDE_CONFIG</code> override). Remove it and re-apply the patch.</p>
+<p>If the <code>QuayRegistry</code> status shows a <code>ManualMigrationRequired</code> condition, <code>REGISTRY_STATE: readonly</code> or an <code>INSTANCE_SERVICE_KEY_*</code> key is present in your config Secret or config bundle. If the condition reason is <code>OverrideConflict</code>, the conflicting key is in a <code>QUAY_OVERRIDE_CONFIG</code> environment variable override. In either case, remove the conflicting key and re-apply the patch.</p>
 </div>
 </td>
 </tr>
@@ -17638,11 +17631,60 @@ DISTRIBUTED_STORAGE_CONFIG:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>This method requires direct modification of secrets inside your OpenShift Container Platform cluster and several manual steps. If you are running Red Hat Quay 5 or later, the preferred method is the Operator-managed approach using <code>spec.readOnly</code>. The two methods are mutually exclusive: if <code>REGISTRY_STATE: readonly</code> is present in your configuration, setting <code>spec.readOnly: true</code> is rejected with an <code>OverrideConflict</code> condition.</p>
+<p>This method requires direct modification of secrets inside your OpenShift Container Platform cluster and several manual steps. If you are running Red Hat Quay 5 or later, the preferred method is the Operator-managed approach using <code>spec.readOnly</code>. The two methods are mutually exclusive: if <code>REGISTRY_STATE: readonly</code> or any <code>INSTANCE_SERVICE_KEY_*</code> key is present in your config Secret, setting <code>spec.readOnly: true</code> is blocked with a <code>ManualMigrationRequired</code> condition. If the conflict is in a <code>QUAY_OVERRIDE_CONFIG</code> environment variable override, the condition reason is <code>OverrideConflict</code>. Remove the conflicting keys before using the Operator-managed method.</p>
 </div>
 </td>
 </tr>
 </table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>If you are using Red Hat Enterprise Linux (RHEL) 7.x:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>You have enabled the Red Hat Software Collections List (RHSCL).</p>
+</li>
+<li>
+<p>You have installed Python 3.6.</p>
+</li>
+<li>
+<p>You have downloaded the <code>virtualenv</code> package.</p>
+</li>
+<li>
+<p>You have installed the <code>git</code> CLI.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If you are using Red Hat Enterprise Linux (RHEL) 8:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>You have installed Python 3 on your machine.</p>
+</li>
+<li>
+<p>You have downloaded the <code>python3-virtualenv</code> package.</p>
+</li>
+<li>
+<p>You have installed the <code>git</code> CLI.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>You have cloned the quay/quay repository.</p>
+</li>
+<li>
+<p>You have installed the <code>oc</code> CLI.</p>
+</li>
+<li>
+<p>You have access to the cluster with <code>cluster-admin</code> privileges.</p>
+</li>
+</ul>
 </div>
 <div class="sect4">
 <h5 id="upgrade-deferral-behavior">Upgrade deferral behavior</h5>
@@ -17888,49 +17930,26 @@ data:
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Patch the Red Hat Quay registry to exit read-only mode when the backup is complete:</p>
+<p>Edit the <code>config.yaml</code> file and remove the following information:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc patch quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; \
-  --type=merge \
-  -p '{"spec":{"readOnly":false}}'</code></pre>
+<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
+REGISTRY_STATE: readonly
+INSTANCE_SERVICE_KEY_KID_LOCATION: 'conf/stack/quay-readonly.kid'
+INSTANCE_SERVICE_KEY_LOCATION: 'conf/stack/quay-readonly.pem'
+# ...</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Monitor the status until the registry returns to normal operation:</p>
+<p>Scale the Red Hat Quay Operator back up by entering the following command:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; \
-  -o jsonpath='{.status.conditions[?(@.type=="Available")]}'</code></pre>
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc scale --replicas=1 deployment quay-operator -n openshift-operators</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>The Operator transitions through the <code>ExitingReadOnly</code> phase, cleans up the service key Secret, and restores normal deployment behavior.</p>
 </div>
 </li>
 </ol>
-</div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>Confirm that the <code>ReadOnly</code> condition is no longer present on the <code>QuayRegistry</code> resource:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; -o yaml | grep -A5 "conditions:"</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Confirm that image pushes are accepted:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ podman push &lt;registry_route&gt;/&lt;namespace&gt;/&lt;repository&gt;:&lt;tag&gt;</code></pre>
-</div>
-</div>
-</li>
-</ul>
 </div>
 <div class="ulist _additional-resources">
 <div class="title">Additional resources</div>
@@ -17946,313 +17965,7 @@ data:
 <div class="sect2">
 <h3 id="back-up-red-hat-quay-on-openshift_enable_read_only_mode_for_red_hat_quay_on_openshift">Protect an Operator-managed registry from data loss</h3>
 <div class="paragraph _abstract">
-<p>Back up Operator-managed Red Hat Quay on OpenShift Container Platform, including configuration, managed database, and object storage data.</p>
-</div>
-<div class="sect3">
-<h4 id="optional-enabling-read-only-mode-backup-restore-ocp">Enabling read-only mode for Red Hat Quay on OpenShift Container Platform</h4>
-<div class="paragraph _abstract">
-<p>Read-only mode keeps your Red Hat Quay on OpenShift Container Platform registry online during backup and restore by blocking write operations. You can use this mode when scaling down the deployment is unacceptable.</p>
-</div>
-<div class="paragraph">
-<p>When backing up and restoring, you are required to scale down your Red Hat Quay on OpenShift Container Platform deployment. This results in service unavailability during the backup period which, in some cases, might be unacceptable. Enabling read-only mode ensures service availability during the backup and restore procedure for Red Hat Quay on OpenShift Container Platform deployments.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>In some cases, you cannot enable read-only mode for Red Hat Quay because it requires inserting a service key and other manual configuration changes. As an alternative to read-only mode, Red Hat Quay administrators might consider enabling the <code>DISABLE_PUSHES</code> feature. When this field is set to <code>True</code>, users are unable to push images or image tags to the registry when using the CLI. Enabling <code>DISABLE_PUSHES</code> differs from <code>read-only</code> mode because the database is not set as <code>read-only</code> when it is enabled.</p>
-</div>
-<div class="paragraph">
-<p>This field might be useful in some situations such as when Red Hat Quay administrators want to calculate their registry&#8217;s quota and disable image pushing until after calculation has completed. With this method, administrators can avoid putting the whole registry in <code>read-only</code> mode, which affects the database, so that most operations can still be done.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>There are two methods to enable read-only mode for Red Hat Quay on OpenShift Container Platform:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Operator-managed method</dt>
-<dd>
-<p>The Operator-managed method is available in Red Hat Quay 5 and later. It allows the Red Hat Quay Operator to manage the read-only lifecycle for Red Hat Quay on OpenShift Container Platform deployments. This method is the preferred method for enabling read-only mode for Red Hat Quay on OpenShift Container Platform.</p>
-</dd>
-<dt class="hdlist1">Manual method</dt>
-<dd>
-<p>The manual method is the traditional method of enabling read-only mode for Red Hat Quay on OpenShift Container Platform. It requires you to manually insert a service key and make configuration changes. When the Operator detects <code>REGISTRY_STATE: readonly</code> set manually in the configuration, it defers image version upgrades and database migration jobs and sets a <code>ManualReadOnlyDetected</code> status condition.</p>
-</dd>
-</dl>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The two methods are mutually exclusive. If <code>REGISTRY_STATE: readonly</code> is present in your configuration, setting <code>spec.readOnly: true</code> is rejected with an <code>OverrideConflict</code> condition. Remove any manual <code>REGISTRY_STATE</code> setting before using the Operator-managed method.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="sect4">
-<h5 id="creating-service-keys-quay-ocp">Creating service keys for Red Hat Quay on OpenShift Container Platform</h5>
-<div class="paragraph _abstract">
-<p>To enable Red Hat Quay to communicate with components and sign completed requests such as image scanning and login, you can create service keys. Access the Quay container pod and run the <code>keypair</code> generation script to create the necessary keys.</p>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Enter the following command to obtain a list of Red Hat Quay pods:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n &lt;namespace&gt;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">example-registry-clair-app-7dc7ff5844-4skw5           0/1     Error                    0             70d
-example-registry-clair-app-7dc7ff5844-nvn4f           1/1     Running                  0             31d
-example-registry-clair-app-7dc7ff5844-x4smw           0/1     ContainerStatusUnknown   6 (70d ago)   70d
-example-registry-clair-app-7dc7ff5844-xjnvt           1/1     Running                  0             60d
-example-registry-clair-postgres-547d75759-75c49       1/1     Running                  0             70d
-example-registry-quay-app-76c8f55467-52wjz            1/1     Running                  0             70d
-example-registry-quay-app-76c8f55467-hwz4c            1/1     Running                  0             70d
-example-registry-quay-app-upgrade-57ghs               0/1     Completed                1             70d
-example-registry-quay-database-7c55899f89-hmnm6       1/1     Running                  0             70d
-example-registry-quay-mirror-6cccbd76d-btsnb          1/1     Running                  0             70d
-example-registry-quay-mirror-6cccbd76d-x8g42          1/1     Running                  0             70d
-example-registry-quay-redis-85cbdf96bf-4vk5m          1/1     Running                  0             70d</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Open a remote shell session to the <code>Quay</code> container by entering the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc rsh example-registry-quay-app-76c8f55467-52wjz</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Create the necessary service keys by entering the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">sh-4.4$ python3 tools/generatekeypair.py quay-readonly</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">Writing public key to quay-readonly.jwk
-Writing key ID to quay-readonly.kid
-Writing private key to quay-readonly.pem</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="quay-ocp-readonly">Configuring read-only mode Red Hat Quay on OpenShift Container Platform</h5>
-<div class="paragraph _abstract">
-<p>To enable read-only mode in Red Hat Quay and safely manage registry operations such as backup and restore, you can modify the configuration secret and restart the Quay container.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Deploying Red Hat Quay on OpenShift Container Platform in read-only mode requires you to modify the secrets stored inside of your OpenShift Container Platform cluster. It is highly recommended that you create a backup of the secret prior to making changes to it.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have created the service keys and added them to your PostgreSQL database.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Read the secret name of your Red Hat Quay on OpenShift Container Platform deployment by entering the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get deployment -o yaml &lt;quay_main_app_deployment_name&gt;</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Use the <code>base64</code> command to encode the <code>quay-readonly.kid</code> and <code>quay-readonly.pem</code> files by entering the following commands:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ base64 -w0 quay-readonly.kid</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">ZjUyNDFm...</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ base64 -w0 quay-readonly.pem</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output</div>
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">&lt;example_secret&gt;...</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Obtain the current configuration bundle and secret by entering the following command. Save the output to a file called <code>config.yaml</code>:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get secret quay-config-secret-name -o json | jq '.data."config.yaml"' | cut -d '"' -f2 | base64 -d -w0 &gt; config.yaml</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Edit the <code>config.yaml</code> file and add the following information to enable read-only mode:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
-REGISTRY_STATE: readonly
-INSTANCE_SERVICE_KEY_KID_LOCATION: 'conf/stack/quay-readonly.kid'
-INSTANCE_SERVICE_KEY_LOCATION: 'conf/stack/quay-readonly.pem'
-# ...</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Save the file and <code>base64</code> encode it by entering the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ base64 -w0 quay-config.yaml</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Scale down the Red Hat Quay Operator pods to <code>0</code> by entering the following command. This ensures that the Operator does not reconcile the secret after editing it.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc scale --replicas=0 deployment quay-operator -n openshift-operators</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Edit the secret to include the new content by entering the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc edit secret quay-config-secret-name -n quay-namespace</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
-data:
-  "quay-readonly.kid": "ZjUyNDFm..."
-  "quay-readonly.pem": "&lt;example_secret&gt;..."
-  "config.yaml": "QUNUSU9OX0xPR19..."
-# ...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With your Red Hat Quay on OpenShift Container Platform deployment on read-only mode, you can safely manage your registry&#8217;s operations and perform such actions as backup and restore.</p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="scaling-up-quay-ocp-read-only-deployment">Scaling up the Red Hat Quay from a read-only deployment</h5>
-<div class="paragraph _abstract">
-<p>To exit read-only mode and restore normal operations in Red Hat Quay, you can remove the read-only settings from the <code>config.yaml</code> file and scale the Operator deployment back up.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Depending on your needs, you might wait to scale up the Red Hat Quay deployment after backing up and restoring your registry.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Patch the Red Hat Quay registry to exit read-only mode when the backup is complete:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc patch quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; \
-  --type=merge \
-  -p '{"spec":{"readOnly":false}}'</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Monitor the status until the registry returns to normal operation:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; \
-  -o jsonpath='{.status.conditions[?(@.type=="Available")]}'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The Operator transitions through the <code>ExitingReadOnly</code> phase, cleans up the service key Secret, and restores normal deployment behavior.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>Confirm that the <code>ReadOnly</code> condition is no longer present on the <code>QuayRegistry</code> resource:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; -o yaml | grep -A5 "conditions:"</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Confirm that image pushes are accepted:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ podman push &lt;registry_route&gt;/&lt;namespace&gt;/&lt;repository&gt;:&lt;tag&gt;</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</div>
+<p>Back up Operator-managed Red Hat Quay on OpenShift Container Platform, including configuration, managed database, and object storage data. Before running a backup, place the registry in read-only mode to ensure application-consistent snapshots.</p>
 </div>
 <div class="sect3">
 <h4 id="backing-up-red-hat-quay-operator">Backing up Red Hat Quay on OpenShift Container Platform</h4>
@@ -18639,6 +18352,17 @@ quayregistry-quay-redis-84f888776f-hhgms           1/1     Running     0        
 </div>
 </li>
 </ol>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="#enable-read-only-mode-for-red-hat-quay-on-openshift">Enable read-only mode for Red Hat Quay on OpenShift Container Platform</a></p>
+</li>
+<li>
+<p><a href="#restore-red-hat-quay-on-openshift">Restore Red Hat Quay on OpenShift Container Platform after failure</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -54839,7 +54563,7 @@ SECURITY_SCANNER_V4_INDEX_MAX_LAYER_SIZE: 8G
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 20:29:48 UTC
+Last updated 2026-10-08 13:55:57 UTC
 </div>
 </div>
 </body>
