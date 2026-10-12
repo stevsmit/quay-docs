@@ -132,6 +132,9 @@
 <li><a href="#clair-vulnerability-scanner">Clair security scanner</a>
 <ul class="sectlevel4">
 <li><a href="#about-clair">About Clair</a></li>
+<li><a href="#clair-release-notes">Clair release notes</a></li>
+<li><a href="#vuln-database-clair">Clair vulnerability databases</a></li>
+<li><a href="#clair-supported-languages">Clair supported dependencies</a></li>
 <li><a href="#clair-concepts">Clair concepts</a></li>
 </ul>
 </li>
@@ -570,11 +573,9 @@
 <li><a href="#adding-managing-labels">Adding and managing labels by using the UI</a></li>
 <li><a href="#adding-managing-labels-api">Adding and managing labels by using the API</a></li>
 <li><a href="#viewing-model-card-information">Viewing model card information by using the UI</a></li>
-<li><a href="#fetching-images-and-tags">Fetching an image by tag or digest</a>
-<ul class="sectlevel4">
+<li><a href="#fetching-images-and-tags">Fetching an image by tag or digest</a></li>
+<li><a href="#viewing-tag-history-v2-ui">Viewing Red Hat Quay tag history by using the UI</a></li>
 <li><a href="#viewing-tag-history-v2-api">Viewing Red Hat Quay tag history by using the API</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li><a href="#set-tag-expiration-and-retire-tags_view_and_manage_image_tag_information">Retire image tags on a schedule</a>
@@ -695,25 +696,16 @@
 </li>
 </ul>
 </li>
-<li><a href="#enable-read-only-mode-for-red-hat-quay-on-openshift_back_up_and_restore_standalone_red_hat_quay">Enable read-only mode for Red Hat Quay on OpenShift Container Platform</a>
+<li><a href="#back-up-red-hat-quay-on-openshift_back_up_and_restore_standalone_red_hat_quay">Protect an Operator-managed registry from data loss</a>
 <ul class="sectlevel3">
-<li><a href="#operator-managed-readonly-mode_enable_read_only_mode_for_red_hat_quay_on_openshift">Enabling Operator-managed read-only mode for Red Hat Quay on OpenShift Container Platform</a>
+<li><a href="#optional-enabling-read-only-mode-backup-restore-ocp">Enabling read-only mode for Red Hat Quay on OpenShift Container Platform</a>
 <ul class="sectlevel4">
-<li><a href="#disable-operator-managed-readonly-mode_enable_read_only_mode_for_red_hat_quay_on_openshift">Disabling Operator-managed read-only mode for Red Hat Quay on OpenShift Container Platform</a></li>
-</ul>
-</li>
-<li><a href="#manual-readonly-mode-ocp_enable_read_only_mode_for_red_hat_quay_on_openshift">Manually enabling read-only mode for Red Hat Quay on OpenShift Container Platform</a>
-<ul class="sectlevel4">
-<li><a href="#upgrade-deferral-behavior">Upgrade deferral behavior</a></li>
+<li><a href="#prerequisites-for-enabling-read-only-mode">Prerequisites for enabling read-only mode</a></li>
 <li><a href="#creating-service-keys-quay-ocp">Creating service keys for Red Hat Quay on OpenShift Container Platform</a></li>
 <li><a href="#quay-ocp-readonly">Configuring read-only mode Red Hat Quay on OpenShift Container Platform</a></li>
 <li><a href="#scaling-up-quay-ocp-read-only-deployment">Scaling up the Red Hat Quay from a read-only deployment</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#back-up-red-hat-quay-on-openshift_enable_read_only_mode_for_red_hat_quay_on_openshift">Protect an Operator-managed registry from data loss</a>
-<ul class="sectlevel3">
 <li><a href="#backing-up-red-hat-quay-operator">Backing up Red Hat Quay on OpenShift Container Platform</a>
 <ul class="sectlevel4">
 <li><a href="#prerequisites-for-backing-up-red-hat-quay-operator">Prerequisites for backing up Red Hat Quay on OpenShift Container Platform</a></li>
@@ -1316,12 +1308,49 @@
 <li><a href="#dns-configuration-for-a-manual-cluster">DNS configuration for a manual cluster</a></li>
 </ul>
 </li>
-<li><a href="#garbage-collection-metrics">Red Hat Quay garbage collection metrics</a>
-<ul class="sectlevel5">
-<li><a href="#understand-red-hat-quay-prometheus-metrics_expose_prometheus_metrics_for_red_hat_quay">Understand Red Hat Quay Prometheus metrics</a></li>
-<li><a href="#monitor-the-registry-from-the-openshift-console_understand_red_hat_quay_prometheus_metrics">Monitor the registry from the OpenShift console</a></li>
-<li><a href="#verify-deployment-health-status_monitor_the_registry_from_the_openshift_console">Verify deployment health status</a></li>
-<li><a href="#review-clair-vulnerability-scan-results_verify_deployment_health_status">Review Clair vulnerability scan results</a></li>
+<li><a href="#garbage-collection-metrics">Red Hat Quay garbage collection metrics</a></li>
+</ul>
+</li>
+<li><a href="#understand-red-hat-quay-prometheus-metrics_expose_prometheus_metrics_for_red_hat_quay">Understand Red Hat Quay Prometheus metrics</a>
+<ul class="sectlevel3">
+<li><a href="#metrics-general-registry-stats">General registry statistics</a>
+<ul class="sectlevel4">
+<li><a href="#metrics-queue-items">Queue items</a></li>
+<li><a href="#metrics-garbage-collection">Garbage collection metrics</a></li>
+<li><a href="#metrics-multipart-uploads">Multipart uploads metrics</a></li>
+<li><a href="#metrics-image-push-pull">Image push and pull metrics</a></li>
+<li><a href="#metrics-authentication">Authentication metrics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#monitor-the-registry-from-the-openshift-console_understand_red_hat_quay_prometheus_metrics">Monitor the registry from the OpenShift console</a>
+<ul class="sectlevel3">
+<li><a href="#operator-console-monitoring-alerting">Console monitoring and alerting</a>
+<ul class="sectlevel4">
+<li><a href="#operator-dashboard">Dashboard</a></li>
+<li><a href="#operator-metrics">Metrics</a></li>
+<li><a href="#operator-alerting">Alerting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#verify-deployment-health-status_monitor_the_registry_from_the_openshift_console">Verify deployment health status</a>
+<ul class="sectlevel3">
+<li><a href="#health-check-quay">Performing health checks on Red Hat Quay deployments</a>
+<ul class="sectlevel4">
+<li><a href="#instance-endpoint-quay">Navigating to a Red Hat Quay health check endpoint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#review-clair-vulnerability-scan-results_verify_deployment_health_status">Review Clair vulnerability scan results</a>
+<ul class="sectlevel3">
+<li><a href="#security-scanning-ui">Viewing Clair security scans by using the UI</a></li>
+<li><a href="#security-scanning-api">Viewing Clair security scans by using the API</a></li>
+<li><a href="#clair-severity-mapping">Clair severity mapping</a>
+<ul class="sectlevel4">
+<li><a href="#clair-severity-strings">Clair severity strings</a></li>
 </ul>
 </li>
 </ul>
@@ -1846,6 +1875,19 @@
 <div class="paragraph _abstract">
 <p>You can review new features and enhancements in Red Hat Quay 5.</p>
 </div>
+<div class="sect5">
+<h6 id="configurable-gunicorn-worker-timeout">Configurable gunicorn worker timeout</h6>
+<div class="ulist">
+<ul>
+<li>
+<p>Red Hat Quay 5 introduces configurable gunicorn worker timeout settings. Two new <code>config.yaml</code> parameters, <code>GUNICORN_REGISTRY_TIMEOUT</code> and <code>GUNICORN_WEB_TIMEOUT</code>, allow administrators to increase the gunicorn worker timeout beyond the previous hardcoded 30-second default.</p>
+<div class="paragraph">
+<p>Increasing these values prevents worker termination during long-running operations, including large image pushes, proxy cache blob downloads, and API queries on large organizations with quota enabled. The default values are <code>300</code> seconds for the registry process and <code>60</code> seconds for the web process. The minimum accepted value for both parameters is <code>30</code> seconds and the maximum is <code>300</code> seconds.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="sect4">
 <h5 id="new-features-and-enhancements-quay-ocp-500">Red Hat Quay on OpenShift Container Platform new features and enhancements</h5>
@@ -1853,9 +1895,16 @@
 <p>You can review new features and enhancements for Red Hat Quay on OpenShift Container Platform in 5.</p>
 </div>
 <div class="sect5">
-<h6 id="operator-managed-read-only-mode">Operator-managed read-only mode</h6>
+<h6 id="example_one">Default NetworkPolicy support for Operator-managed components</h6>
+<div class="ulist">
+<ul>
+<li>
+<p>Red Hat Quay 5 introduces automatic <code>NetworkPolicy</code> management for all Operator-managed components. The Red Hat Quay Operator now creates and reconciles default <code>NetworkPolicy</code> objects for each managed component, including <code>Quay</code>, <code>Clair</code>, <code>PostgreSQL</code>, <code>Redis</code>, <code>mirror</code>, and <code>upgrade</code> jobs. Policies are applied only for components that are explicitly marked as managed in the <code>QuayRegistry</code> custom resource; components marked as unmanaged do not receive <code>NetworkPolicy</code> restrictions.</p>
 <div class="paragraph">
-<p>With Red Hat Quay 5, the Red Hat Quay Operator supports an Operator-managed read-only lifecycle for application-consistent backups. Previously, enabling read-only mode required manually creating service keys, modifying the configuration secret, and scaling the Operator deployment. Now, administrators can set <code>spec.readOnly: true</code> on the <code>QuayRegistry</code> custom resource to transition the registry into read-only mode. The Operator handles service key creation and rotation, configuration rendering, deployment restarts, and HPA management automatically.</p>
+<p>The default policies are not user-configurable. Some components, such as the Quay application and Clair, intentionally use broad egress rules to accommodate external dependencies, including cloud-based object storage, proxied upstream registries, and Clair&#8217;s CVE database updates.</p>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1865,9 +1914,9 @@
 <p>You can review configuration fields that are new or changed in Red Hat Quay 5.</p>
 </div>
 <div class="sect5">
-<h6 id="operator-managed-read-only-mode-configuration-fields">Operator-managed read-only mode configuration fields</h6>
+<h6 id="gunicorn-timeout-configuration-fields">Gunicorn worker timeout configuration fields</h6>
 <div class="paragraph">
-<p>The following internal configuration field is added to support the Operator-managed read-only lifecycle. This field is set automatically by the Red Hat Quay Operator and should not be modified manually.</p>
+<p>The following configuration fields allow you to tune the gunicorn worker timeout for the registry and web processes. Previously, the timeout was hardcoded at 30 seconds, which caused worker termination during legitimate long-running operations such as large image pushes, proxy cache blob downloads, and API queries on large organizations with quota enabled.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1885,13 +1934,24 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>INSTANCE_SERVICE_KEY_IMPORT_FROM_FILES</code></p>
+<p><code>GUNICORN_REGISTRY_TIMEOUT</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Boolean</p>
+<p>Integer</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>When set to <code>true</code>, the instance service key is imported from the Operator-mounted <code>.kid</code> and <code>.pem</code> files (<code>INSTANCE_SERVICE_KEY_KID_LOCATION</code> and <code>INSTANCE_SERVICE_KEY_LOCATION</code>) instead of being generated at boot. The Operator sets this field to <code>true</code> only when the read-only Secret is mounted. Defaults to <code>False</code>. This field is for internal use and is managed by the Operator.</p>
+<p>Specifies the worker timeout, in seconds, for the <code>gunicorn-registry</code> process. The minimum value is <code>30</code>. The maximum value is <code>300</code>. Defaults to <code>300</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>GUNICORN_WEB_TIMEOUT</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Integer</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the worker timeout, in seconds, for the <code>gunicorn-web</code> process. The minimum value is <code>30</code>. The maximum value is <code>300</code>. Defaults to <code>60</code>.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1901,46 +1961,7 @@
 <div class="sect4">
 <h5 id="new-api-endpoints-500">API endpoint enhancements</h5>
 <div class="paragraph _abstract">
-<p>The following API endpoints were added in Red Hat Quay 5</p>
-</div>
-<div class="sect5">
-<h6 id="service-key-status-endpoint-500">Service key status endpoint</h6>
-<div class="paragraph">
-<p>Red Hat Quay 5 adds the following <code>keyserver</code> endpoint to support the Operator-managed read-only lifecycle:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 50%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Method</th>
-<th class="tableblock halign-left valign-top">Endpoint</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>GET</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>/keys/services/&lt;service&gt;/keys/&lt;kid&gt;/status</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Returns key identity, operator-management state, and expiration metadata for a given service key.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Unlike the existing <code>GET /keys/services/&lt;service&gt;/keys/&lt;kid&gt;</code> endpoint, this endpoint returns <code>200</code> for expired and unapproved keys, so the Red Hat Quay Operator can inspect key metadata regardless of key state. The <code>operator_managed</code> field is <code>true</code> when the key was created by the Operator. The <code>expiration_date</code> field is formatted as RFC 3339 UTC.</p>
-</div>
-<div class="paragraph">
-<p>This endpoint is used internally by the Operator during the <code>PreparingKey</code> and <code>ExitingReadOnly</code> lifecycle phases and is not intended for direct use by registry administrators.</p>
-</div>
+<p>You can review API enhancements in Red Hat Quay 5.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3295,6 +3316,9 @@ when there are changes to the Red Hat Quay product, such as a new release.</p>
 <p><strong>Users</strong> can log in to a registry through the web UI or a by using a client like Podman and using their respective login commands, for example, <code>$ podman login</code>. Each user automatically gets a user namespace, for example, <code>&lt;quay-server.example.com&gt;/&lt;user&gt;/&lt;username&gt;</code>, or <code>quay.io/&lt;username&gt;</code> if you are using Quay.io.</p>
 </li>
 <li>
+<p><strong>Superusers</strong> have enhanced access and privileges through the <strong>Super User Admin Panel</strong> in the user interface. Superuser API calls are also available, which are not visible or accessible to normal users.</p>
+</li>
+<li>
 <p><strong>Robot accounts</strong> provide automated access to repositories for non-human users like pipeline tools. Robot accounts are similar to OpenShift Container Platform <strong>Service Accounts</strong>. Permissions can be granted to a robot account in a repository by adding that account like you would another user or team.</p>
 </li>
 </ul>
@@ -3343,6 +3367,9 @@ the Organization.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Users can create their own organization to share repositories of container images. This can be done through the Quay UI, or through API if you have an OAuth token for standalone or Operator-based deployments.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="use-quay-create-repo">Red Hat Quay repository overview</h5>
@@ -3351,6 +3378,59 @@ the Organization.</p>
 </div>
 <div class="paragraph">
 <p>For example, you might have a namespace for your personal projects, one for your company, or one for a specific team within your organization.</p>
+</div>
+<div class="paragraph">
+<p>Quay provides users with access controls for their repositories. Users can make a repository public, meaning that anyone can pull, or download, the images from it, or users can make it private, restricting access to authorized users or teams.</p>
+</div>
+<div class="paragraph">
+<p>Private repositories provide control over the users that have access to your images by allowing you to define users or teams who can push to, or pull from, the repository, thereby enhancing the security of your registry.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>These features are only available for paid plans on Quay.io. The free tier of Quay.io does not allow for private repositories. You must upgrade to a paid tier of Quay.io to create a private repository. For more information, see "Information about Quay.io pricing".</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can create a repository in Red Hat Quay in several ways, depending on your use case:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can push an image with the relevant <code>podman</code> or <code>docker</code> command.</p>
+</li>
+<li>
+<p>You can use the Red Hat Quay UI.</p>
+</li>
+<li>
+<p>On standalone or Operator-based deployments, you can use the Red Hat Quay API.</p>
+</li>
+<li>
+<p>For OCI artifacts, for example, a large-language model (LLM) or machine learning application, you can use <code>skopeo</code> or <code>oras</code> to copy the artifact to your repository.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For Quay.io users, if you push an image through the command-line interface (CLI) without first creating a repository on the UI, the created repository is set to <strong>Private</strong>, regardless of the plan you have. Create a repository on the Quay.io UI before you push an image. Quay.io checks the plan status and does not allow creation of a private repository if a plan is not active.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect4">
@@ -3371,6 +3451,25 @@ the Organization.</p>
 </li>
 <li>
 <p>Generated credentials can be copied and pasted to use with different container clients, such as Docker, Podman, Kubernetes, Mesos, and so on, to access each defined repository.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can use robot accounts to improve security in your Quay registry with advantages such as the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Specifying repository access.</p>
+</li>
+<li>
+<p>Granular permissions, such as <code>Read</code> (pull) or <code>Write</code> (push) access. They can also be equipped with <code>Admin</code> permissions if warranted.</p>
+</li>
+<li>
+<p>Designed for CI/CD pipelines, system integrations, and other automation tasks, helping avoid credential exposure in scripts, pipelines, or other environment variables.</p>
+</li>
+<li>
+<p>Robot Accounts use tokens instead of passwords, so an administrator can revoke a compromised token.</p>
 </li>
 </ul>
 </div>
@@ -3444,6 +3543,26 @@ the Organization.</p>
 <div class="paragraph _abstract">
 <p>Clair is a vulnerability scanner that analyzes container image layers and reports security issues from upstream CVE databases in Red Hat Quay. You can use these reports to identify vulnerabilities that affect image content.</p>
 </div>
+<div class="paragraph">
+<p>Clair v4 (Clair) leverages static code analyses for parsing image content and reporting vulnerabilities affecting the content. Quay.io includes Clair, enables it automatically, and the Red Hat Quay development team manages it.</p>
+</div>
+<div class="paragraph">
+<p>For Quay.io users, images are automatically indexed after they are pushed to your repository. Reports are then fetched from Clair, which matches images against its CVE database to report security information. This process happens automatically on Quay.io, and manual rescans are not required.</p>
+</div>
+<div class="paragraph">
+<p>For standalone or Operator-based deployments of Red Hat Quay, Clair can be deployed and scaled separately. Configuration fields for Clair are documented in the Clair configuration overview. Red Hat removes this chapter in a future version of Red Hat Quay.</p>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/vulnerability_reporting_with_clair_on_red_hat_quay/index">Vulnerability reporting with Clair on Red Hat Quay</a></p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/vulnerability_reporting_with_clair_on_red_hat_quay/index#config-fields-overview">Clair configuration overview</a></p>
+</li>
+</ul>
+</div>
 <div class="sect4">
 <h5 id="about-clair">About Clair</h5>
 <div class="paragraph _abstract">
@@ -3489,9 +3608,230 @@ the Organization.</p>
 </div>
 </div>
 <div class="sect4 _additional-resources">
-<h5 id="clair-concepts">Clair concepts</h5>
+<h5 id="clair-release-notes">Clair release notes</h5>
 <div class="paragraph _abstract">
 <div class="title">Additional resources</div>
+<p>New versions of Clair are regularly released. The source code needed to build Clair is packaged as an archive and attached to each release. For a list of Clair releases, see the Additional resources section.</p>
+</div>
+<div class="paragraph">
+<p>Release artifacts also include the <code>clairctl</code> command line interface tool, which obtains updater data from the internet by using an open host.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Clair 4.9</strong></dt>
+<dd>
+<p>Clair 4.9 was released on 25-12-10. For information about this release, see the Additional resources section.</p>
+</dd>
+<dt class="hdlist1"><strong>Clair 4.8</strong></dt>
+<dd>
+<p>Clair 4.8 was released on 24-10-28. The following changes have been made:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Clair on Red Hat Quay now requires that you update the Clair PostgreSQL database from version 13 to version 15. For more information about this procedure, see the Additional resources section.</p>
+</li>
+<li>
+<p>This release deprecates the updaters that rely on the Red Hat OVAL v2 security data in favor of the Red Hat VEX data. This change includes a database migration to delete all the vulnerabilities that originated from the OVAL v2 feeds. Because of this, there could be intermittent downtime in production environments before the VEX updater completes for the first time when no vulnerabilities exist.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><strong>Clair 4.8.0 known issues</strong></dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>When pushing SUSE Enterprise Linux Images with <strong>HIGH</strong> image vulnerabilities, Clair 4.8.0 does not report these vulnerabilities. This is a known issue that a future version of Red Hat Quay addresses.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><strong>Clair 4.7.4</strong></dt>
+<dd>
+<p>Clair 4.7.4 was released on 2024-05-01. The following changes have been made:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The default layer download location has changed. For more information, see the Additional resources section.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><strong>Clair 4.7.3</strong></dt>
+<dd>
+<p>Clair 4.7.3 was released on 2024-02-26. The following changes have been made:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The minimum TLS version for Clair is now 1.2. Previously, servers allowed for 1.1 connections.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><strong>Clair 4.7.2</strong></dt>
+<dd>
+<p>Clair 4.7.2 was released on 2023-10-09. The following changes have been made:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>CRDA support has been removed.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><strong>Clair 4.7.1</strong></dt>
+<dd>
+<p>Clair 4.7.1 was released as part of Red Hat Quay 3.9.1. The following changes have been made:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>With this release, you can view unpatched vulnerabilities from Red Hat Enterprise Linux (RHEL) sources. If you want to view unpatched vulnerabilities, you can set the <code>ignore_unpatched</code> parameter to <code>False</code>. For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">updaters:
+  config:
+    rhel:
+      ignore_unpatched: false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To disable this feature, you can set <code>ignore_unpatched</code> to <code>True</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><strong>Clair 4.7</strong></dt>
+<dd>
+<p>Clair 4.7 was released as part of Red Hat Quay 3.9, and includes support for the following features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Native support for indexing Golang modules and RubyGems in container images.</p>
+</li>
+<li>
+<p>Change to the OSV.dev vulnerability database as the source for any programming language package managers.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This includes popular sources like GitHub Security Advisories or PyPA.</p>
+</li>
+<li>
+<p>This allows offline capability.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Use of pyup.io for Python and CRDA for Java is suspended.</p>
+</li>
+<li>
+<p>Clair now supports Java, Golang, Python, and Ruby dependencies.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="vuln-database-clair">Clair vulnerability databases</h5>
+<div class="paragraph _abstract">
+<p>Clair uses several vulnerability databases to report issues in your images.</p>
+</div>
+<div class="paragraph">
+<p>The following databases are used:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ubuntu Oval database</p>
+</li>
+<li>
+<p>Debian Security Tracker</p>
+</li>
+<li>
+<p>Red Hat Enterprise Linux (RHEL) Oval database</p>
+</li>
+<li>
+<p>SUSE Oval database</p>
+</li>
+<li>
+<p>Oracle Oval database</p>
+</li>
+<li>
+<p>Alpine SecDB database</p>
+</li>
+<li>
+<p>VMware Photon OS database</p>
+</li>
+<li>
+<p>Amazon Web Services (AWS) UpdateInfo</p>
+</li>
+<li>
+<p>Open Source Vulnerability (OSV) Database</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="clair-supported-languages">Clair supported dependencies</h5>
+<div class="paragraph _abstract">
+<p>Clair supports identifying and managing multiple dependencies.</p>
+</div>
+<div class="paragraph">
+<p>The following dependencies are supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Java</p>
+</li>
+<li>
+<p>Golang</p>
+</li>
+<li>
+<p>Python</p>
+</li>
+<li>
+<p>Ruby</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This means that it can analyze and report on the third-party libraries and packages that a project in these languages relies on to work correctly.</p>
+</div>
+<div class="paragraph">
+<p>When an image that contains packages from a language unsupported by Clair is pushed to your repository, a vulnerability scan cannot be performed on those packages. Users do not receive an analysis or security report for unsupported dependencies or packages. As a result, the following consequences should be considered:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Security risks</strong>. Dependencies or packages that are not scanned for vulnerability might pose security risks to your organization.</p>
+</li>
+<li>
+<p><strong>Compliance issues</strong>. If your organization has specific security or compliance requirements, unscanned, or partially scanned, container images might result in non-compliance with certain regulations.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Scanned images are indexed, and a vulnerability report is created, but it might omit data from certain unsupported languages. For example, if your container image contains a Lua application, feedback from Clair is not provided because Clair does not detect it. It can detect other languages used in the container image, and shows detected CVEs for those languages. As a result, Clair images are <em>fully scanned</em> based on the languages that Clair supports.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="clair-concepts">Clair concepts</h5>
+<div class="paragraph _abstract">
 <p>Clair breaks container image analysis into indexing, matching, and notification. You can use these concepts to understand how Clair builds and updates vulnerability reports in Red Hat Quay.</p>
 </div>
 <div class="sect5">
@@ -3501,6 +3841,9 @@ the Organization.</p>
 </div>
 <div class="paragraph">
 <p>During indexing, a manifest that represents a container image is taken and broken down into its essential components. The indexer&#8217;s job is to uncover the image&#8217;s contained packages, its origin distribution, and the package repositories it relies on. This valuable information is then recorded and stored within Clair&#8217;s database. The insights gathered during indexing serve as the basis for generating a comprehensive vulnerability report. This report can be seamlessly transferred to a matcher node for further analysis and action, helping users make informed decisions about their container images' security.</p>
+</div>
+<div class="paragraph">
+<p>In Quay.io, Clair automatically feeds the <code>IndexReport</code> to a <code>matcher</code> node to compute the vulnerability report after an image is pushed to a repository. On standalone Red Hat Quay deployments or when Quay is deployed on OpenShift Container Platform, it can be fed to a <code>matcher</code> node to compute the vulnerability report.</p>
 </div>
 </div>
 <div class="sect5">
@@ -3512,7 +3855,7 @@ the Organization.</p>
 <p>Matchers are responsible for keeping the database of vulnerabilities up to date. Matchers run a set of updaters, which periodically probe their data sources for new content. New vulnerabilities are stored in the database when they are discovered.</p>
 </div>
 <div class="paragraph">
-<p>The matcher API is designed to always provide the most recent vulnerability report when queried. The vulnerability report summarizes both a manifest&#8217;s content and any vulnerabilities affecting the content.</p>
+<p>The matcher API is designed to always provide the most recent vulnerability report when queried. The vulnerability report summarizes both a manifest&#8217;s content and any vulnerabilities affecting the content. The matcher API is designed to be used often. The matcher API always provides the most recent <code>VulnerabilityReport</code> when queried. The <code>VulnerabilityReport</code> summarizes both a manifest&#8217;s content and any vulnerabilities affecting the content. On Quay.io, this interval is set to 6 hours.</p>
 </div>
 </div>
 <div class="sect5">
@@ -5550,6 +5893,9 @@ metadata:
 <h6 id="about-odf">About Red Hat OpenShift Data Foundation</h6>
 <div class="paragraph">
 <p>Red Hat OpenShift Data Foundation is a provider of agnostic persistent storage for OpenShift Container Platform supporting file, block, and object storage, either in-house or in hybrid clouds. As a Red&#160;Hat storage solution, Red Hat OpenShift Data Foundation is completely integrated with OpenShift Container Platform for deployment, management, and monitoring. For more information, see <em>Additional resources</em>.</p>
+</div>
+<div class="paragraph">
+<p>If you want the Operator to manage object storage for Red Hat Quay, your cluster needs to be capable of providing it through the <code>ObjectBucketClaim</code> API. There are multiple implementations of this API available, for instance, NooBaa in combination with Kubernetes <code>PersistentVolumes</code> or scalable storage backends like Ceph. Refer to <em>Additional resources</em> for more details on how to deploy this component.</p>
 </div>
 <div class="ulist _additional-resources">
 <div class="title">Additional resources</div>
@@ -11571,6 +11917,20 @@ password: 123456789</code></pre>
 <div class="paragraph">
 <p>If you push an image through the command-line interface (CLI) without first creating a repository on the UI, the created repository is set to <strong>Private</strong>.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Quay.io users should create a repository on the Quay.io UI before pushing an image. Quay.io checks the plan status and does not allow creation of a private repository if a plan is not active.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
@@ -11589,25 +11949,52 @@ password: 123456789</code></pre>
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
+<p>Pull a sample page from an example registry. For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo podman pull busybox</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Trying to pull docker.io/library/busybox...
+Getting image source signatures
+Copying blob 4c892f00285e done
+Copying config 22667f5368 done
+Writing manifest to image destination
+Storing signatures
+22667f53682a2920948d19c7133ab1c9c3f745805c14125859d20cede07f11f9</code></pre>
+</div>
+</div>
+</li>
+<li>
 <p>Tag the image on your local system with the new repository and image name. For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ podman tag docker.io/library/busybox quay.io/quayadmin/busybox:test</code></pre>
+</div>
+</div>
 </li>
 <li>
 <p>Push the image to the registry. Following this step, you can use your browser to see the tagged image in your repository.</p>
-<div class="paragraph">
-<p>+
-.Example output</p>
-</div>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre>Getting image source signatures
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ podman push --tls-verify=false quay.io/quayadmin/busybox:test</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Getting image source signatures
 Copying blob 6b245f040973 done
 Copying config 22667f5368 done
 Writing manifest to image destination
-Storing signatures</pre>
+Storing signatures</code></pre>
 </div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect4">
@@ -11730,6 +12117,9 @@ Storing signatures</code></pre>
 <h5 id="creating-an-image-repository-via-the-api">Creating a repository by using the API</h5>
 <div class="paragraph _abstract">
 <p>To create an image repository in Red Hat Quay, you can use the API.</p>
+</div>
+<div class="paragraph">
+<p>For standalone or Operator-based deployments, private repositories can be created by using the API and specifying the <code>visibility: `private`</code> option.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -13272,12 +13662,17 @@ UI_MODELCARD_LAYER_ANNOTATION:
 </li>
 <li>
 <p>Click <strong>Copy Command</strong> to copy the command, which can be used on the command-line interface (CLI). For example:</p>
-<div id="viewing-tag-history-v2-ui" class="paragraph">
-<p>= Viewing Red Hat Quay tag history by using the UI</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ podman pull quay-server.example.com/quayadmin/busybox:test2</code></pre>
+</div>
 </div>
 </li>
 </ol>
 </div>
+</div>
+<div class="sect3">
+<h4 id="viewing-tag-history-v2-ui">Viewing Red Hat Quay tag history by using the UI</h4>
 <div class="paragraph _abstract">
 <p>To review changes made to an image over time, you can open its <strong>Tag History</strong> page in the Red Hat Quay v2 UI. You can search by tag name, filter by date range, and see when each tag was modified.</p>
 </div>
@@ -13311,8 +13706,9 @@ UI_MODELCARD_LAYER_ANNOTATION:
 </li>
 </ol>
 </div>
-<div class="sect4">
-<h5 id="viewing-tag-history-v2-api">Viewing Red Hat Quay tag history by using the API</h5>
+</div>
+<div class="sect3">
+<h4 id="viewing-tag-history-v2-api">Viewing Red Hat Quay tag history by using the API</h4>
 <div class="paragraph _abstract">
 <p>To review the history of image tags in a Red Hat Quay repository, you can use the API.</p>
 </div>
@@ -13378,7 +13774,6 @@ UI_MODELCARD_LAYER_ANNOTATION:
 </div>
 </div>
 </div>
-</div>
 <div class="sect2">
 <h3 id="set-tag-expiration-and-retire-tags_view_and_manage_image_tag_information">Retire image tags on a schedule</h3>
 <div class="paragraph _abstract">
@@ -13406,6 +13801,9 @@ UI_MODELCARD_LAYER_ANNOTATION:
 </ul>
 </div>
 <div class="paragraph">
+<p>The Red Hat Quay superuser has no special privilege related to deleting expired images from user repositories. There is no central mechanism for the superuser to gather information and act on user repositories. It is up to the owners of each repository to manage expiration and the deletion of their images.</p>
+</div>
+<div class="paragraph">
 <p>Tag expiration can be set up in one of three ways:</p>
 </div>
 <div class="ulist">
@@ -13417,8 +13815,7 @@ UI_MODELCARD_LAYER_ANNOTATION:
 <p>By setting the <code>quay.expires-after=</code> annotation label in the Dockerfile when the image is created. <code>--annotation</code> can be passed in for both image manifests and image indexes.</p>
 </li>
 <li>
-<p>By selecting an expiration date on the
-UI. For example:</p>
+<p>By selecting an expiration date on the Quay UI. For example:</p>
 <div class="paragraph">
 <p><span class="image"><img src="images/tag-expires-ui.png" alt="Change tag expiration under the Options icon or from the EXPIRES column"></span></p>
 </div>
@@ -13838,7 +14235,7 @@ ArtifactType: application/vnd.unknown.artifact.v1</code></pre>
 <p>To restore a previous image for a tag in Red Hat Quay, you can use the API.</p>
 </div>
 <div class="paragraph">
-<p>offers a comprehensive <em>time machine</em> feature that allows older images tags to remain in the repository for set periods of time so that they can revert changes made to tags. This feature allows users to revert tag changes, like tag deletions.</p>
+<p>Quay offers a comprehensive <em>time machine</em> feature that allows older images tags to remain in the repository for set periods of time so that they can revert changes made to tags. This feature allows users to revert tag changes, like tag deletions.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -17446,20 +17843,17 @@ DISTRIBUTED_STORAGE_CONFIG:
 </div>
 </div>
 <div class="sect2">
-<h3 id="enable-read-only-mode-for-red-hat-quay-on-openshift_back_up_and_restore_standalone_red_hat_quay">Enable read-only mode for Red Hat Quay on OpenShift Container Platform</h3>
+<h3 id="back-up-red-hat-quay-on-openshift_back_up_and_restore_standalone_red_hat_quay">Protect an Operator-managed registry from data loss</h3>
 <div class="paragraph _abstract">
-<p>Place a Red Hat Quay on OpenShift Container Platform registry into read-only mode before a backup to ensure application-consistent snapshots. Use the Operator-managed method for Red Hat Quay 5 and later, or the manual method for earlier releases.</p>
+<p>Back up Operator-managed Red Hat Quay on OpenShift Container Platform, including configuration, managed database, and object storage data.</p>
 </div>
 <div class="sect3">
-<h4 id="operator-managed-readonly-mode_enable_read_only_mode_for_red_hat_quay_on_openshift">Enabling Operator-managed read-only mode for Red Hat Quay on OpenShift Container Platform</h4>
+<h4 id="optional-enabling-read-only-mode-backup-restore-ocp">Enabling read-only mode for Red Hat Quay on OpenShift Container Platform</h4>
 <div class="paragraph _abstract">
-<p>Use the Red Hat Quay Operator to manage the full read-only lifecycle for application-consistent backups.</p>
+<p>Read-only mode keeps your Red Hat Quay on OpenShift Container Platform registry online during backup and restore by blocking write operations. You can use this mode when scaling down the deployment is unacceptable.</p>
 </div>
 <div class="paragraph">
-<p>By setting <code>spec.readOnly: true</code> on the <code>QuayRegistry</code> custom resource, the Operator automatically handles service key creation, configuration rendering, deployment restarts, and HPA management without requiring any manual configuration changes.</p>
-</div>
-<div class="paragraph">
-<p>This procedure replaces the manual steps of creating service keys and editing the configuration secret that were required in earlier releases.</p>
+<p>When backing up and restoring, you are required to scale down your Red Hat Quay on OpenShift Container Platform deployment. This results in service unavailability during the backup period which, in some cases, might be unacceptable. Enabling read-only mode ensures service availability during the backup and restore procedure for Red Hat Quay on OpenShift Container Platform deployments.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -17469,176 +17863,21 @@ DISTRIBUTED_STORAGE_CONFIG:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The two read-only methods are mutually exclusive. If <code>REGISTRY_STATE: readonly</code> or any <code>INSTANCE_SERVICE_KEY_*</code> key is present in your config Secret or config bundle, the Operator sets a <code>ManualMigrationRequired</code> condition and does not enter the operator-managed read-only state machine. If the conflict is in a <code>QUAY_OVERRIDE_CONFIG</code> environment variable override, the condition reason is <code>OverrideConflict</code>. Remove any conflicting keys before setting <code>spec.readOnly: true</code>.</p>
+<p>In some cases, you cannot enable read-only mode for Red Hat Quay because it requires inserting a service key and other manual configuration changes. As an alternative to read-only mode, Red Hat Quay administrators might consider enabling the <code>DISABLE_PUSHES</code> feature. When this field is set to <code>True</code>, users are unable to push images or image tags to the registry when using the CLI. Enabling <code>DISABLE_PUSHES</code> differs from <code>read-only</code> mode because the database is not set as <code>read-only</code> when it is enabled.</p>
+</div>
+<div class="paragraph">
+<p>This field might be useful in some situations such as when Red Hat Quay administrators want to calculate their registry&#8217;s quota and disable image pushing until after calculation has completed. With this method, administrators can avoid putting the whole registry in <code>read-only</code> mode, which affects the database, so that most operations can still be done.</p>
 </div>
 </td>
 </tr>
 </table>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have a <code>QuayRegistry</code> resource deployed and in a healthy state.</p>
-</li>
-<li>
-<p>You have <code>cluster-admin</code> or equivalent permissions on the OpenShift Container Platform cluster.</p>
-</li>
-<li>
-<p>The <code>QuayRegistry</code> is running Red Hat Quay 5 or later (this feature requires the matching Quay application image).</p>
-</li>
-<li>
-<p>You do not have <code>REGISTRY_STATE</code> set as a manual override in your <code>QuayRegistry</code> configuration.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Enter read-only mode by patching the <code>QuayRegistry</code> custom resource:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc patch quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; \
-  --type=merge \
-  -p '{"spec":{"readOnly":true}}'</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Monitor the read-only lifecycle status until the phase reaches <code>ReadOnly</code>:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; \
-  -o jsonpath='{.status.conditions[?(@.type=="ReadOnly")]}'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The Operator transitions through the following phases in order:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>PreparingKey</code>: During this phase, the Operator creates the service key Secret and waits for Red Hat Quay to import it.</p>
-</li>
-<li>
-<p><code>EnteringReadOnly</code>: During this phase, the Operator renders <code>REGISTRY_STATE: readonly</code> in the configuration and restarts the deployment.</p>
-</li>
-<li>
-<p><code>ReadOnly</code>: During this phase, the registry is fully in read-only mode. Writes are blocked.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If the <code>QuayRegistry</code> status shows a <code>ManualMigrationRequired</code> condition, <code>REGISTRY_STATE: readonly</code> or an <code>INSTANCE_SERVICE_KEY_*</code> key is present in your config Secret or config bundle. If the condition reason is <code>OverrideConflict</code>, the conflicting key is in a <code>QUAY_OVERRIDE_CONFIG</code> environment variable override. In either case, remove the conflicting key and re-apply the patch.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Perform your backup operation while the registry is in read-only mode. For more information, see "Backing up and restoring Red Hat Quay on OpenShift Container Platform".</p>
-</li>
-<li>
-<p>When your backup is complete, disable read-only mode. For more information, see <a href="#disable-operator-managed-readonly-mode_enable_read_only_mode_for_red_hat_quay_on_openshift">Disabling Operator-managed read-only mode for Red Hat Quay on OpenShift Container Platform</a>.</p>
-</li>
-</ol>
 </div>
 <div class="sect4">
-<h5 id="disable-operator-managed-readonly-mode_enable_read_only_mode_for_red_hat_quay_on_openshift">Disabling Operator-managed read-only mode for Red Hat Quay on OpenShift Container Platform</h5>
-<div class="paragraph _abstract">
-<p>After your backup operation is complete, disable Operator-managed read-only mode by setting <code>spec.readOnly: false</code> on the <code>QuayRegistry</code> custom resource.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have completed your backup operation while the registry was in read-only mode.</p>
-</li>
-<li>
-<p>You have <code>cluster-admin</code> or equivalent permissions on the OpenShift Container Platform cluster.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Exit read-only mode when the backup is complete:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc patch quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; \
-  --type=merge \
-  -p '{"spec":{"readOnly":false}}'</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Monitor the status until the registry returns to normal operation:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; \
-  -o jsonpath='{.status.conditions[?(@.type=="Available")]}'</code></pre>
-</div>
-</div>
+<h5 id="prerequisites-for-enabling-read-only-mode">Prerequisites for enabling read-only mode</h5>
 <div class="paragraph">
-<p>The Operator transitions through the <code>ExitingReadOnly</code> phase, cleans up the service key Secret, and restores normal deployment behavior.</p>
-</div>
-</li>
-</ol>
+<p>You must meet the following prerequisites to enable read-only mode for Red Hat Quay on OpenShift Container Platform:</p>
 </div>
 <div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>Confirm that the <code>ReadOnly</code> condition is no longer present on the <code>QuayRegistry</code> resource:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get quayregistry &lt;registry_name&gt; -n &lt;namespace&gt; -o yaml | grep -A5 "conditions:"</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Confirm that image pushes are accepted:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ podman push &lt;registry_route&gt;/&lt;namespace&gt;/&lt;repository&gt;:&lt;tag&gt;</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="manual-readonly-mode-ocp_enable_read_only_mode_for_red_hat_quay_on_openshift">Manually enabling read-only mode for Red Hat Quay on OpenShift Container Platform</h4>
-<div class="paragraph _abstract">
-<p>For deployments that do not use the Operator-managed read-only lifecycle, you can enable read-only mode manually by setting <code>REGISTRY_STATE: readonly</code> in the configuration secret. The Red Hat Quay Operator detects this setting and defers upgrades automatically.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This method requires direct modification of secrets inside your OpenShift Container Platform cluster and several manual steps. If you are running Red Hat Quay 5 or later, the preferred method is the Operator-managed approach using <code>spec.readOnly</code>. The two methods are mutually exclusive: if <code>REGISTRY_STATE: readonly</code> or any <code>INSTANCE_SERVICE_KEY_*</code> key is present in your config Secret, setting <code>spec.readOnly: true</code> is blocked with a <code>ManualMigrationRequired</code> condition. If the conflict is in a <code>QUAY_OVERRIDE_CONFIG</code> environment variable override, the condition reason is <code>OverrideConflict</code>. Remove the conflicting keys before using the Operator-managed method.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
 <ul>
 <li>
 <p>If you are using Red Hat Enterprise Linux (RHEL) 7.x:</p>
@@ -17686,42 +17925,13 @@ DISTRIBUTED_STORAGE_CONFIG:
 </li>
 </ul>
 </div>
-<div class="sect4">
-<h5 id="upgrade-deferral-behavior">Upgrade deferral behavior</h5>
-<div class="paragraph">
-<p>When the Red Hat Quay Operator detects <code>REGISTRY_STATE: readonly</code> set directly in the user-provided config Secret, the merged config bundle Secret, or a <code>QUAY_OVERRIDE_CONFIG</code> environment variable override, it performs the following actions:</p>
-</div>
-<div class="ulist">
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
 <ul>
 <li>
-<p>Sets a <code>ReadOnly</code> status condition on the <code>QuayRegistry</code> resource with <code>reason: ManualReadOnlyDetected</code>.</p>
-</li>
-<li>
-<p>Defers image version upgrades. The Operator freezes the current Quay image and does not roll out a new version.</p>
-</li>
-<li>
-<p>Defers PostgreSQL and Clair PostgreSQL upgrade jobs and version migration triggers.</p>
-</li>
-<li>
-<p>Continues reconciling all other components normally.</p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/configure_red_hat_quay/index#config-fields-web-ui">Miscellaneous configuration fields</a></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>The following condition is set on the <code>QuayRegistry</code> resource:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">- type: ReadOnly
-  status: "True"
-  reason: ManualReadOnlyDetected
-  message: "Registry is in read-only mode via user config (REGISTRY_STATE).
-            Operator upgrades are deferred. Consider using spec.readOnly
-            for full operator-managed lifecycle."</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The condition is automatically cleared when <code>REGISTRY_STATE</code> is removed from all user-controlled configuration sources. After it is cleared, the Operator resumes normal upgrade and reconciliation behavior.</p>
 </div>
 </div>
 <div class="sect4">
@@ -17920,7 +18130,7 @@ data:
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Depending on your needs, you might wait to scale up the Red Hat Quay deployment after backing up and restoring your registry.</p>
+<p>Depending on your needs, you might wait to scale up the Red Hat Quay deployment after backing up and restoring your regisry.</p>
 </div>
 </td>
 </tr>
@@ -17951,21 +18161,7 @@ INSTANCE_SERVICE_KEY_LOCATION: 'conf/stack/quay-readonly.pem'
 </li>
 </ol>
 </div>
-<div class="ulist _additional-resources">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p><a href="#back-up-red-hat-quay-on-openshift">Protect an Operator-managed registry from data loss</a></p>
-</li>
-</ul>
 </div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="back-up-red-hat-quay-on-openshift_enable_read_only_mode_for_red_hat_quay_on_openshift">Protect an Operator-managed registry from data loss</h3>
-<div class="paragraph _abstract">
-<p>Back up Operator-managed Red Hat Quay on OpenShift Container Platform, including configuration, managed database, and object storage data. Before running a backup, place the registry in read-only mode to ensure application-consistent snapshots.</p>
 </div>
 <div class="sect3">
 <h4 id="backing-up-red-hat-quay-operator">Backing up Red Hat Quay on OpenShift Container Platform</h4>
@@ -18352,17 +18548,6 @@ quayregistry-quay-redis-84f888776f-hhgms           1/1     Running     0        
 </div>
 </li>
 </ol>
-</div>
-<div class="ulist _additional-resources">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p><a href="#enable-read-only-mode-for-red-hat-quay-on-openshift">Enable read-only mode for Red Hat Quay on OpenShift Container Platform</a></p>
-</li>
-<li>
-<p><a href="#restore-red-hat-quay-on-openshift">Restore Red Hat Quay on OpenShift Container Platform after failure</a></p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -24202,21 +24387,36 @@ FEATURE_REFERRERS_API: true
 <div class="paragraph _abstract">
 <p>The Red Hat Quay builds feature supports building Docker and Podman container images from Dockerfiles. You can create containerized applications by defining build contexts and using base images from public repositories.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>supports the ability to build Docker and Podman container images. This functionality is valuable for developers and organizations who rely on container and container orchestration.</p>
+<p>Because blueprints rely on images from other public repositories, they might be subject to rate limiting. Consequently, your build <em>could</em> fail.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Quay supports the ability to build Docker and Podman container images. This functionality is valuable for developers and organizations who rely on container and container orchestration.</p>
+</div>
+<div class="paragraph">
+<p>For Quay.io users, this feature works the same across both free, and paid, tier plans. However, Quay.io limits the number of simultaneous builds that a single user can submit at one time.</p>
 </div>
 <div class="sect5">
 <h6 id="build-contexts">Build contexts</h6>
 <div class="paragraph">
-<p>When building an image with Docker or Podman, a directory is specified to become the <em>build context</em>. This is true for both manual Builds and Build triggers, because the Build that is created by
-is not different than running <code>docker build</code> or <code>podman build</code> on your local machine.</p>
+<p>When building an image with Docker or Podman, a directory is specified to become the <em>build context</em>. This is true for both manual Builds and Build triggers, because the Build that is created by Quay is no different than running <code>docker build</code> or <code>podman build</code> on your local machine.</p>
 </div>
 <div class="paragraph">
-<p>Build contexts are always specified in the <em>subdirectory</em> from the Build setup, and fallback to the root of the Build source if a directory is not specified.</p>
+<p>Quay Build contexts are always specified in the <em>subdirectory</em> from the Build setup, and fallback to the root of the Build source if a directory is not specified.</p>
 </div>
 <div class="paragraph">
-<p>When a build is triggered,
-Build workers clone the Git repository to the worker machine, and then enter the Build context before conducting a Build.</p>
+<p>When a build is triggered, Quay Build workers clone the Git repository to the worker machine, and then enter the Build context before conducting a Build.</p>
 </div>
 <div class="paragraph">
 <p>For Builds based on <code>.tar</code> archives, Build workers extract the archive and enter the Build context. For example:</p>
@@ -24239,8 +24439,7 @@ Build workers clone the Git repository to the worker machine, and then enter the
 <p>If a subdirectory is specified in the Build trigger setup, for example, <code>subdir</code>, only the Dockerfile within it is visible to the Build. This means that you cannot use the <code>ADD</code> command in the Dockerfile to add <code>file</code>, because it is outside of the Build context.</p>
 </div>
 <div class="paragraph">
-<p>Unlike Docker Hub, the Dockerfile is part of the Build context on
-As a result, it must not appear in the <code>.dockerignore</code> file.</p>
+<p>Unlike Docker Hub, the Dockerfile is part of the Build context on Quay. As a result, it must not appear in the <code>.dockerignore</code> file.</p>
 </div>
 </div>
 </div>
@@ -24302,6 +24501,35 @@ As a result, it must not appear in the <code>.dockerignore</code> file.</p>
 <p><span class="image"><img src="images/build-history.png" alt="Build history v2 UI"></span></p>
 </div>
 </li>
+<li>
+<p>You can check the status of your <em>build</em> by clicking the commit in the <strong>Build History</strong> page, or by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ oc get pods -n virtual-builders</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre>NAME                                               READY   STATUS    RESTARTS   AGE
+f192fe4a-c802-4275-bcce-d2031e635126-9l2b5-25lg2   1/1     Running   0          7s</pre>
+</div>
+</div>
+</li>
+<li>
+<p>After the <em>build</em> has completed, the <code>oc get pods -n virtual-builders</code> command returns no resources:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n virtual-builders</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre>No resources found in virtual-builders namespace.</pre>
+</div>
+</div>
+</li>
 </ol>
 </div>
 </div>
@@ -24309,6 +24537,13 @@ As a result, it must not appear in the <code>.dockerignore</code> file.</p>
 <h5 id="creating-a-build-trigger">Creating a build trigger</h5>
 <div class="paragraph _abstract">
 <p>To automate container image builds from your Git repositories, you can create a custom Git build trigger in Red Hat Quay. Build triggers automatically build and push images when you push code to your Git repository.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Quay cannot automatically detect the proper Robot Account to use with the trigger. This must be done manually during the creation process.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>The following steps can be replicated to create a <em>build trigger</em> using Github, Gitlab, or Bitbucket, however, you must configure the credentials for these services in your <code>config.yaml</code> file.</p>
@@ -24330,6 +24565,14 @@ As a result, it must not appear in the <code>.dockerignore</code> file.</p>
 </td>
 </tr>
 </table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>For Red Hat Quay on OpenShift Container Platform deployments, you have configured your OpenShift Container Platform environment for either <a href="#bare-metal-builds">bare metal builds</a> or <a href="#red-hat-quay-builders-enhancement">virtual builds</a>.</p>
+</li>
+</ul>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -24725,6 +24968,35 @@ As a result, it must not appear in the <code>.dockerignore</code> file.</p>
 <p>After the build starts, you can see the <em>build ID</em> on the <strong>Repository Builds</strong> page.</p>
 </div>
 </li>
+<li>
+<p>You can check the status of your <em>build</em> by clicking the commit in the <strong>Build History</strong> page, or by running the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n virtual-builders</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre>NAME                                               READY   STATUS    RESTARTS   AGE
+f192fe4a-c802-4275-bcce-d2031e635126-9l2b5-25lg2   1/1     Running   0          7s</pre>
+</div>
+</div>
+</li>
+<li>
+<p>After the <em>build</em> has completed, the <code>oc get pods -n virtual-builders</code> command returns no resources:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ oc get pods -n virtual-builders</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre>No resources found in virtual-builders namespace.</pre>
+</div>
+</div>
+</li>
 </ol>
 </div>
 </div>
@@ -24798,14 +25070,16 @@ As a result, it must not appear in the <code>.dockerignore</code> file.</p>
 <p>In addition to container images, a variety of artifacts have emerged that support not just individual applications, but also the Kubernetes platform as a whole. These range from Open Policy Agent (OPA) policies for security and governance to Helm charts and Operators that aid in application deployment.</p>
 </div>
 <div class="paragraph">
-<p>is a private container registry that not only stores container images, but also supports an entire ecosystem of tooling to aid in the management of containers.
-strives to be as compatible as possible with the OCI 1.1 Image and Distribution specifications, and supports common media types like <em>Helm charts</em> (as long as they pushed with a version of Helm that supports OCI) and a variety of arbitrary media types within the manifest or layer components of container images.</p>
+<p>Quay is a private container registry that not only stores container images, but also supports an entire ecosystem of tooling to aid in the management of containers.</p>
 </div>
 <div class="paragraph">
-<p>In addition to its expanded support for novel media types,
-ensures compatibility with Docker images, including V2_2 and V2_1 formats. This compatibility with Docker V2_2 and V2_1 images demonstrates
-commitment to providing a seamless experience for Docker users. Moreover,
-continues to extend its support for Docker V1 pulls, catering to users who might still rely on this earlier version of Docker images.</p>
+<p>Quay strives to be as compatible as possible with the OCI 1.1 Image and Distribution specifications, and supports common media types like <em>Helm charts</em> (as long as they pushed with a version of Helm that supports OCI) and a variety of arbitrary media types within the manifest or layer components of container images.</p>
+</div>
+<div class="paragraph">
+<p>Support for OCI media types differs from previous iterations of Quay, when the registry was more strict about accepted media types. Because Quay works with a wider array of media types, including those that were previously outside the scope of its support, it is now more versatile accommodating not only standard container image formats but also emerging or unconventional types.</p>
+</div>
+<div class="paragraph">
+<p>In addition to its expanded support for novel media types, Quay ensures compatibility with Docker images, including V2_2 and V2_1 formats. This compatibility with Docker V2_2 and V2_1 images demonstrates commitment to providing a seamless experience for Docker users. Moreover, Quay continues to extend its support for Docker V1 pulls, catering to users who might still rely on this earlier version of Docker images.</p>
 </div>
 <div class="paragraph">
 <p>Support for OCI artifacts are enabled by default. The following examples show you how to use some media types, which can be used as examples for using other OCI media types.</p>
@@ -24827,11 +25101,34 @@ continues to extend its support for Docker V1 pulls, catering to users who might
 <p>Before you use Helm charts with Red Hat Quay, you can install a supported Helm client and trust registry certificates. OCI chart support requires a compatible Helm version.</p>
 </div>
 <div class="paragraph">
-<p>Helm simplifies how applications are packaged and deployed. Helm uses a packaging format called <em>Charts</em> which contain the Kubernetes resources representing an application.
-supports Helm charts so long as they are a version supported by OCI.</p>
+<p>Helm simplifies how applications are packaged and deployed. Helm uses a packaging format called <em>Charts</em> which contain the Kubernetes resources representing an application.</p>
 </div>
 <div class="paragraph">
-<p>You can download the most recent version of Helm from the Helm releases page.</p>
+<p>You can download the most recent version of Helm from the Helm releases page. After you have downloaded Helm, you must enable your system to trust SSL/TLS certificates used by Red Hat Quay.</p>
+</div>
+<div class="paragraph">
+<p>Communication between the Helm client and Red Hat Quay is facilitated over HTTPS. As of Helm 3.5, support is only available for registries communicating over HTTPS with trusted certificates. In addition, the operating system must trust the certificates exposed by the registry. You must ensure that your operating system has been configured to trust the certificates used by Red Hat Quay. Use the following procedure to enable your system to trust the custom certificates.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Enter the following command to copy the <code>rootCA.pem</code> file to the <code>/etc/pki/ca-trust/source/anchors/</code> folder:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo cp rootCA.pem   /etc/pki/ca-trust/source/anchors/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to update the CA trust store:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ sudo update-ca-trust extract</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 <div class="ulist _additional-resources">
 <div class="title">Additional resources</div>
@@ -24892,10 +25189,8 @@ supports Helm charts so long as they are a version supported by OCI.</p>
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">$ helm package ./etherpad</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Example output</p>
-</div>
 <div class="listingblock">
+<div class="title">Example output:</div>
 <div class="content">
 <pre class="highlight"><code class="language-terminal" data-lang="terminal">Successfully packaged chart and saved it to: /home/user/linux-amd64/etherpad-0.0.4.tgz</code></pre>
 </div>
@@ -24911,6 +25206,38 @@ supports Helm charts so long as they are a version supported by OCI.</p>
 </li>
 <li>
 <p>Push the chart to your repository using the <code>helm push</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ helm push etherpad-0.0.4.tgz oci://quay370.apps.quayperf370.perfscale.devcluster.openshift.com</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output:</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Pushed: quay370.apps.quayperf370.perfscale.devcluster.openshift.com/etherpad:0.0.4
+Digest: sha256:a6667ff2a0e2bd7aa4813db9ac854b5124ff1c458d170b70c2d2375325f2451b</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Ensure that the push worked by deleting the local copy, and then pulling the chart from the repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ rm -rf etherpad-0.0.4.tgz</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ helm pull oci://quay370.apps.quayperf370.perfscale.devcluster.openshift.com/etherpad --version 0.0.4</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example output:</div>
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">Pulled: quay370.apps.quayperf370.perfscale.devcluster.openshift.com/etherpad:0.0.4
+Digest: sha256:4f627399685880daf30cf77b6026dc129034d68c7676c7e07020b70cf7130902</code></pre>
+</div>
+</div>
 </li>
 </ol>
 </div>
@@ -25255,6 +25582,9 @@ FEATURE_REFERRERS_API: true
 <ul>
 <li>
 <p>You have installed Go version 1.16 or later.</p>
+</li>
+<li>
+<p>You have set <code>FEATURE_GENERAL_OCI_SUPPORT</code> to <code>True</code> in your <code>config.yaml</code> file.</p>
 </li>
 </ul>
 </div>
@@ -26783,6 +27113,65 @@ data:
 </div>
 <div class="paragraph">
 <p>If this field is omitted, the Red Hat Quay Operator automatically generates a configuration secret based on default values and managed component settings. If you provide this field, Red Hat Quay uses the <code>config.yaml</code> contents as the base configuration and merges them with values from managed components to form the final configuration, which is mounted into the <code>quay</code> application pods.</p>
+</div>
+<div class="paragraph">
+<p>How the <code>QuayRegistry</code> CR is configured determines which fields must be included in the <code>configBundleSecret&#8217;s `config.yaml</code> file for Red Hat Quay on OpenShift Container Platform. The following example shows you a default <code>config.yaml</code> file when the Operator manages all components. Note that this example looks different depending on whether components are managed or unmanaged (<code>managed: false</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">ALLOW_PULLS_WITHOUT_STRICT_LOGGING: false
+AUTHENTICATION_TYPE: Database
+DEFAULT_TAG_EXPIRATION: 2w
+ENTERPRISE_LOGO_URL: /static/img/RH_Logo_Quay_Black_UX-horizontal.svg
+FEATURE_BUILD_SUPPORT: false
+FEATURE_DIRECT_LOGIN: true
+FEATURE_MAILING: false
+REGISTRY_TITLE: Red Hat Quay
+REGISTRY_TITLE_SHORT: Red Hat Quay
+SETUP_COMPLETE: true
+TAG_EXPIRATION_OPTIONS:
+- 2w
+TEAM_RESYNC_STALE_TIME: 60m
+TESTING: false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In some cases, you might opt to manage certain components yourself, for example, object storage. In that scenario, you would modify the <code>QuayRegistry</code> CR as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
+    - kind: objectstorage
+      managed: false
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you are managing your own components, your deployment must be configured to include the necessary information or resources for that component. For example, if the <code>objectstorage</code> component is set to <code>managed: false</code>, you would include the relevant information depending on your storage provider inside of the <code>config.yaml</code> file. The following example shows you a distributed storage configuration using Google Cloud Storage:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
+DISTRIBUTED_STORAGE_CONFIG:
+    default:
+        - GoogleCloudStorage
+        - access_key: &lt;access_key&gt;
+          bucket_name: &lt;bucket_name&gt;
+          secret_key: &lt;secret_key&gt;
+          storage_path: /datastorage/registry
+# ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Similarly, if you are managing the <code>horizontalpodautoscaler</code> component, you must create an accompanying <code>HorizontalPodAutoscaler</code> custom resource.</p>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_quay/3.18/html-single/deploying_the_red_hat_quay_operator_on_openshift_container_platform/index#operator-hpa-overview">Disabling the horizontal pod autoscaler</a></p>
+</li>
+</ul>
 </div>
 <div class="sect4">
 <h5 id="modifying-configuration-file-ocp">Modifying the configuration file by using the OpenShift Container Platform web console</h5>
@@ -28865,6 +29254,9 @@ LOGS_MODEL_CONFIG:
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
+<p>Navigate to a repository.</p>
+</li>
+<li>
 <p>In the navigation pane, click <strong>Settings</strong>.</p>
 </li>
 <li>
@@ -29679,6 +30071,33 @@ https://&lt;quay-server.example.com&gt;/api/v1/organization/&lt;orgname&gt;/noti
     }
   },
   "homepage": "https://quay.io/repository/dgangaia/test/build/cbd534c5-f1c0-4816-b4e3-55446b851e70"
+}</pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="vulnerability-detected">Vulnerability detected</h6>
+<div class="paragraph">
+<p>The following example is a response from a Dockerfile Build has detected a vulnerability in the repository.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "repository": "dgangaia/repository",
+  "namespace": "dgangaia",
+  "name": "repository",
+  "docker_url": "quay.io/dgangaia/repository",
+  "homepage": "https://quay.io/repository/dgangaia/repository",
+
+  "tags": ["latest", "othertag"],
+
+  "vulnerability": {
+    "id": "CVE-1234-5678",
+    "description": "This is a bad vulnerability",
+    "link": "http://url/to/vuln/info",
+    "priority": "Critical",
+    "has_fix": true
+  }
 }</pre>
 </div>
 </div>
@@ -37212,6 +37631,9 @@ described in this chapter.</p>
 <p>Export logs only gathers log data that was previously produced. It does not stream logging data.</p>
 </li>
 <li>
+<p>Your Red Hat Quay instance must be configured for external storage for this feature. Local storage does not work for exporting logs.</p>
+</li>
+<li>
 <p>When logs are gathered and made available to you, you should immediately copy that data if you want to save it. By default, the data expires after one hour.</p>
 </li>
 </ul>
@@ -37252,6 +37674,20 @@ described in this chapter.</p>
 </li>
 <li>
 <p>A successful status of your log export request from the webhook URL is returned. Additionally, a link to the exported data is made available for you to delete to download the logs.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The URL points to a location in your Red Hat Quay external storage and is set to expire within one hour. Make sure that you copy the exported logs before the expiration time if you intend to keep your logs.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ul>
 </div>
@@ -37472,13 +37908,15 @@ quay_gc_storage_blobs_deleted_total{host="example-registry-quay-app-6df87f7b66-9
 ...</code></pre>
 </div>
 </div>
-<div class="sect5">
-<h6 id="understand-red-hat-quay-prometheus-metrics_expose_prometheus_metrics_for_red_hat_quay">Understand Red Hat Quay Prometheus metrics</h6>
+</div>
+</div>
+<div class="sect2">
+<h3 id="understand-red-hat-quay-prometheus-metrics_expose_prometheus_metrics_for_red_hat_quay">Understand Red Hat Quay Prometheus metrics</h3>
 <div class="paragraph _abstract">
 <p>Review Prometheus metrics for registry queues, garbage collection, push and pull activity, and authentication.</p>
 </div>
-<div class="sect6">
-<h7 id="metrics-general-registry-stats">General registry statistics</h7>
+<div class="sect3">
+<h4 id="metrics-general-registry-stats">General registry statistics</h4>
 <div class="paragraph _abstract">
 <p>Use these general registry statistics metrics to track how large a Red Hat Quay deployment has grown, including users, robots, organizations, repositories, and unscanned images.</p>
 </div>
@@ -37540,8 +37978,8 @@ quay_repository_rows{host="example-registry-quay-app-6df87f7b66-9tfn6",instance=
 quay_security_scanning_unscanned_images_remaining{host="example-registry-quay-app-6df87f7b66-9tfn6",instance="",job="quay",pid="208",process_name="secscan:application"} 5</code></pre>
 </div>
 </div>
-<div class="sect7">
-<h8 id="metrics-queue-items">Queue items</h8>
+<div class="sect4">
+<h5 id="metrics-queue-items">Queue items</h5>
 <div class="paragraph _abstract">
 <p>Use these queue items metrics to monitor the work queues that Red Hat Quay uses for exports, garbage collection, notifications, builds, and storage replication.</p>
 </div>
@@ -37654,8 +38092,8 @@ quay_queue_items_locked{host="example-registry-quay-app-6df87f7b66-9tfn6",instan
 </div>
 </div>
 </div>
-<div class="sect7">
-<h8 id="metrics-garbage-collection">Garbage collection metrics</h8>
+<div class="sect4">
+<h5 id="metrics-garbage-collection">Garbage collection metrics</h5>
 <div class="paragraph _abstract">
 <p>Use these garbage collection metrics to track how often garbage collection workers run and how many namespaces, repositories, and blobs they remove.</p>
 </div>
@@ -37730,8 +38168,8 @@ quay_gc_storage_blobs_deleted_total{host="example-registry-quay-app-6df87f7b66-9
 </div>
 </div>
 </div>
-<div class="sect7">
-<h8 id="metrics-multipart-uploads">Multipart uploads metrics</h8>
+<div class="sect4">
+<h5 id="metrics-multipart-uploads">Multipart uploads metrics</h5>
 <div class="paragraph _abstract">
 <p>Use these multipart upload metrics to monitor blob uploads to object storage and to help identify failures when Red Hat Quay cannot complete an upload.</p>
 </div>
@@ -37782,13 +38220,13 @@ quay_multipart_uploads_started_total{host="example-registry-quay-app-6df87f7b66-
 </div>
 </div>
 </div>
-<div class="sect7">
-<h8 id="metrics-image-push-pull">Image push and pull metrics</h8>
+<div class="sect4">
+<h5 id="metrics-image-push-pull">Image push and pull metrics</h5>
 <div class="paragraph _abstract">
 <p>Use these image push and pull metrics to track how many images and bytes clients upload to or download from the Red Hat Quay registry.</p>
 </div>
-<div class="sect8">
-<h9 id="metrics-image-pulls-total">Image pulls total</h9>
+<div class="sect5">
+<h6 id="metrics-image-pulls-total">Image pulls total</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -37827,8 +38265,8 @@ quay_multipart_uploads_started_total{host="example-registry-quay-app-6df87f7b66-
 </dl>
 </div>
 </div>
-<div class="sect8">
-<h9 id="metrics-image-bytes-pulled">Image bytes pulled</h9>
+<div class="sect5">
+<h6 id="metrics-image-bytes-pulled">Image bytes pulled</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -37859,8 +38297,8 @@ quay_multipart_uploads_started_total{host="example-registry-quay-app-6df87f7b66-
 </dl>
 </div>
 </div>
-<div class="sect8">
-<h9 id="metrics-image-pushes-total">Image pushes total</h9>
+<div class="sect5">
+<h6 id="metrics-image-pushes-total">Image pushes total</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -37899,8 +38337,8 @@ quay_multipart_uploads_started_total{host="example-registry-quay-app-6df87f7b66-
 </dl>
 </div>
 </div>
-<div class="sect8">
-<h9 id="metrics-image-bytes-pushed">Image bytes pushed</h9>
+<div class="sect5">
+<h6 id="metrics-image-bytes-pushed">Image bytes pushed</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -37930,8 +38368,8 @@ quay_registry_image_pushed_bytes_total{host="example-registry-quay-app-6df87f7b6
 </div>
 </div>
 </div>
-<div class="sect7">
-<h8 id="metrics-authentication">Authentication metrics</h8>
+<div class="sect4">
+<h5 id="metrics-authentication">Authentication metrics</h5>
 <div class="paragraph _abstract">
 <p>Use these authentication metrics to count registry and API authentication requests by type and by whether each request succeeded or failed.</p>
 </div>
@@ -38001,13 +38439,13 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="monitor-the-registry-from-the-openshift-console_understand_red_hat_quay_prometheus_metrics">Monitor the registry from the OpenShift console</h6>
+<div class="sect2">
+<h3 id="monitor-the-registry-from-the-openshift-console_understand_red_hat_quay_prometheus_metrics">Monitor the registry from the OpenShift console</h3>
 <div class="paragraph _abstract">
 <p>Monitor Red Hat Quay health and alerts from the OpenShift web console.</p>
 </div>
-<div class="sect6">
-<h7 id="operator-console-monitoring-alerting">Console monitoring and alerting</h7>
+<div class="sect3">
+<h4 id="operator-console-monitoring-alerting">Console monitoring and alerting</h4>
 <div class="paragraph _abstract">
 <p>Red Hat Quay provides monitoring and alerting features in the OpenShift Container Platform console for instances deployed by the Operator. You can use Grafana dashboards, individual metrics, and alerts to monitor registry performance and receive notifications when Quay pods restart frequently.</p>
 </div>
@@ -38025,8 +38463,8 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 </tr>
 </table>
 </div>
-<div class="sect7">
-<h8 id="operator-dashboard">Dashboard</h8>
+<div class="sect4">
+<h5 id="operator-dashboard">Dashboard</h5>
 <div class="paragraph">
 <p>On the OpenShift Container Platform console, click <strong>Monitoring</strong> &#8594; <strong>Dashboards</strong> and search for the dashboard of your desired Red Hat Quay registry instance:</p>
 </div>
@@ -38062,8 +38500,8 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 <p><span class="image"><img src="images/console-dashboard-1.png" alt="Console dashboard"></span></p>
 </div>
 </div>
-<div class="sect7">
-<h8 id="operator-metrics">Metrics</h8>
+<div class="sect4">
+<h5 id="operator-metrics">Metrics</h5>
 <div class="paragraph">
 <p>You can see the underlying metrics behind the Red Hat Quay dashboard by accessing <strong>Monitoring</strong> &#8594; <strong>Metrics</strong> in the UI. In the <strong>Expression</strong> field, enter the text <code>quay_</code> to see the list of metrics available:</p>
 </div>
@@ -38080,8 +38518,8 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 <p>This metric shows the number of organizations in the registry. It is also directly surfaced in the dashboard.</p>
 </div>
 </div>
-<div class="sect7">
-<h8 id="operator-alerting">Alerting</h8>
+<div class="sect4">
+<h5 id="operator-alerting">Alerting</h5>
 <div class="paragraph">
 <p>An alert is raised if the <code>Quay</code> pods restart too often. The alert can be configured by accessing the <strong>Alerting</strong> rules tab from <strong>Monitoring</strong> &#8594; <strong>Alerting</strong> in the console UI and searching for the Quay-specific alert:</p>
 </div>
@@ -38097,13 +38535,13 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="verify-deployment-health-status_monitor_the_registry_from_the_openshift_console">Verify deployment health status</h6>
+<div class="sect2">
+<h3 id="verify-deployment-health-status_monitor_the_registry_from_the_openshift_console">Verify deployment health status</h3>
 <div class="paragraph _abstract">
 <p>Verify deployment health by using health-check endpoints on Red Hat Quay.</p>
 </div>
-<div class="sect6">
-<h7 id="health-check-quay">Performing health checks on Red Hat Quay deployments</h7>
+<div class="sect3">
+<h4 id="health-check-quay">Performing health checks on Red Hat Quay deployments</h4>
 <div class="paragraph _abstract">
 <p>Use Red Hat Quay health check endpoints to monitor instance, end-to-end, and warning status before issues become critical.</p>
 </div>
@@ -38263,8 +38701,8 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 </tr>
 </table>
 </div>
-<div class="sect7">
-<h8 id="instance-endpoint-quay">Navigating to a Red Hat Quay health check endpoint</h8>
+<div class="sect4">
+<h5 id="instance-endpoint-quay">Navigating to a Red Hat Quay health check endpoint</h5>
 <div class="paragraph _abstract">
 <p>To check the health of your Red Hat Quay instance and view service status, you can navigate to the <code>health/instance</code> endpoint in your browser. The endpoint returns JSON with <code>status_code 200</code> for healthy or <code>503</code> when your deployment has an issue.</p>
 </div>
@@ -38298,13 +38736,13 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="review-clair-vulnerability-scan-results_verify_deployment_health_status">Review Clair vulnerability scan results</h6>
+<div class="sect2">
+<h3 id="review-clair-vulnerability-scan-results_verify_deployment_health_status">Review Clair vulnerability scan results</h3>
 <div class="paragraph _abstract">
 <p>Review Clair vulnerability scan results and severity mapping in the UI or API before promoting container images.</p>
 </div>
-<div class="sect6">
-<h7 id="security-scanning-ui">Viewing Clair security scans by using the UI</h7>
+<div class="sect3">
+<h4 id="security-scanning-ui">Viewing Clair security scans by using the UI</h4>
 <div class="paragraph _abstract">
 <p>To review the results of a Clair security scan, you can open the <strong>Security Scanner</strong> page for a tag in the Red Hat Quay UI. You can inspect detected CVEs and check available remediation options.</p>
 </div>
@@ -38348,8 +38786,8 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 </ol>
 </div>
 </div>
-<div class="sect6">
-<h7 id="security-scanning-api">Viewing Clair security scans by using the API</h7>
+<div class="sect3">
+<h4 id="security-scanning-api">Viewing Clair security scans by using the API</h4>
 <div class="paragraph _abstract">
 <p>To view Clair security scan results for a repository manifest in Red Hat Quay, you can call the manifest security API endpoint with an OAuth access token.</p>
 </div>
@@ -38384,13 +38822,13 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 </ul>
 </div>
 </div>
-<div class="sect6">
-<h7 id="clair-severity-mapping">Clair severity mapping</h7>
+<div class="sect3">
+<h4 id="clair-severity-mapping">Clair severity mapping</h4>
 <div class="paragraph _abstract">
 <p>Clair maps severity strings from multiple security databases to a common set of values in Red Hat Quay. You can use the mapped severities to assess vulnerabilities consistently.</p>
 </div>
-<div class="sect7">
-<h8 id="clair-severity-strings">Clair severity strings</h8>
+<div class="sect4">
+<h5 id="clair-severity-strings">Clair severity strings</h5>
 <div class="paragraph">
 <p>Clair alerts users with the following severity strings:</p>
 </div>
@@ -38728,8 +39166,6 @@ quay_authentication_attempts_total{auth_kind="basic",host="example-registry-quay
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -42102,14 +42538,58 @@ spec:
 <p><strong>Default:</strong> <code>quay</code></p>
 </div></div></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>GUNICORN_REGISTRY_TIMEOUT</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Integer</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The worker timeout, in seconds, for the <code>gunicorn-registry</code> process. Increase this value if workers are terminated during large image pushes or proxy cache blob downloads. The minimum accepted value is <code>30</code>. The maximum accepted value is <code>300</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Default:</strong> <code>300</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>GUNICORN_WEB_TIMEOUT</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Integer</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The worker timeout, in seconds, for the <code>gunicorn-web</code> process. Increase this value if workers are terminated during long-running API operations, such as quota queries on large organizations. The minimum accepted value is <code>30</code>. The maximum accepted value is <code>300</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Default:</strong> <code>60</code></p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Increasing the gunicorn worker timeout allows requests to run longer before the worker is forcibly terminated. However, each in-flight request holds CPU and memory resources for the entire duration. Setting very high timeout values can exhaust worker pool resources under concurrent load, potentially degrading performance for all users. Use the minimum value necessary to accommodate your longest expected operations.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="title">Rate limiting and performance example YAML</div>
 <div class="content">
 <pre class="highlight"><code class="language-yaml" data-lang="yaml"># ...
 FEATURE_RATE_LIMITS: false
 PROMETHEUS_NAMESPACE: quay
+GUNICORN_REGISTRY_TIMEOUT: 300
+GUNICORN_WEB_TIMEOUT: 60
 # ...</code></pre>
 </div>
 </div>
@@ -49535,6 +50015,20 @@ FEATURE_PROXY_CACHE: true
 # ...</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Proxy cache pulls of large images (500 MB or greater) can exceed the default gunicorn worker timeout. If proxy cache pulls fail with HTTP 500 errors, consider increasing <code>GUNICORN_REGISTRY_TIMEOUT</code> in your <code>config.yaml</code>. For more information, see "Rate limiting and performance configuration fields".</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -54563,7 +55057,7 @@ SECURITY_SCANNER_V4_INDEX_MAX_LAYER_SIZE: 8G
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-08 13:55:57 UTC
+Last updated 2026-10-12 19:27:29 UTC
 </div>
 </div>
 </body>
