@@ -3,40 +3,47 @@
 = About CCO-based AWS STS authentication for {productname-ocp}
 
 [role="_abstract"]
-Standardized STS configuration flow using the {ocp} Cloud Credential Operator (CCO) and the `CredentialsRequest` API allows Quay pods on STS-enabled clusters to authenticate to mazon S3 using short-lived tokens instead of static IAM access keys.
+The standardized AWS Security Token Service (STS) configuration flow uses the {ocp} Cloud Credential Operator (CCO) and the `CredentialsRequest` API to allow {productname} workloads to authenticate to Amazon S3 without storing long-lived IAM access keys in the `configBundleSecret`.
 
-When the `ROLEARN` environment variable is set in the Quay Operator's OLM Subscription, the Operator automatically creates a `CredentialsRequest` resource. CCO then provisions a Secret containing temporary AWS credentials, which the Operator mounts into `quay-app` and `quay-mirror` pods as `AWS_SHARED_CREDENTIALS_FILE`. This eliminates the need to store long-lived IAM user credentials in the `configBundleSecret`.
+When you set the `ROLEARN` environment variable in the {productname} Operator Subscription, the Operator validates the cluster and storage configuration and creates a `CredentialsRequest` resource. CCO creates an AWS shared configuration profile that contains the role ARN and projected token-file path. The Operator validates and mounts this profile, together with a projected {ocp} service account token, into the `quay-app` and `quay-mirror` pods.
+
+The profile Secret does not contain an AWS access key, secret key, session token, or the projected service account token. The AWS SDK in {productname} reads the profile and projected token, calls AWS STS `AssumeRoleWithWebIdentity`, and receives temporary AWS credentials. The AWS SDK refreshes the temporary credentials before they expire. The {productname} Operator configures this identity flow but does not assume the IAM role or access S3.
 
 This approach differs from the existing manual STS configuration in the following ways:
 
 * You do not need to create a static IAM user or generate access keys.
-* The Operator manages the `CredentialsRequest` lifecycle automatically. Credentials are refreshed by CCO without operator intervention.
-* The Operator monitors credential provisioning status and reports it through `QuayRegistry` status conditions.
+* The Operator manages the `CredentialsRequest` lifecycle and validates the CCO-generated profile.
+* {ocp} rotates the projected service account token, and the AWS SDK obtains and refreshes temporary AWS credentials.
+* The Operator reports credential provisioning and configuration errors through `QuayRegistry` status conditions.
 
 .Comparison of STS approaches
 
 [cols="1,1,1",options="header"]
 |===
-|Attribute |Manual STS (existing) |CCO-based STS (new)
+|Attribute |Manual STS |CCO-based STS
 
-|Credential type
-|Static IAM user access key + secret key
-|Short-lived tokens provisioned by CCO
+|Identity source
+|Static IAM user access key and secret key
+|Projected {ocp} service account token
 
-|Credential storage
-|Stored in `configBundleSecret` (`sts_user_access_key`, `sts_user_secret_key`)
-|Mounted automatically from a CCO-provisioned Secret
+|AWS credentials
+|The configured IAM user credentials are used to assume a role
+|AWS STS returns temporary role credentials to the AWS SDK in {productname}
+
+|Credential configuration
+|Stored in `configBundleSecret` as `sts_user_access_key` and `sts_user_secret_key`
+|CCO creates a profile Secret containing `role_arn` and `web_identity_token_file`; the token is projected separately
 
 |Operator involvement
-|None — credentials are manually managed
-|Operator creates `CredentialsRequest`; CCO manages the lifecycle
+|Credentials are configured manually
+|The Operator creates and manages the `CredentialsRequest` and configures the `quay-app` and `quay-mirror` workloads
 
-|OCP version required
-|Any supported OCP version
-|OCP 4.14 or later, with STS mode enabled
+|{ocp} version required
+|Any supported {ocp} version
+|{ocp} 4.14 or later on AWS, with CCO in `Manual` mode and a configured service account issuer
 
-|Supported platforms
-|Standalone, OCP, ROSA
-|OCP and ROSA with STS mode enabled
+|Supported deployments
+|Standalone, {productname-ocp}, and ROSA
+|AWS-based {productname-ocp} deployments that meet the CCO and OIDC prerequisites
 
 |===
